@@ -1,0 +1,35 @@
+* In this video, we will use the number line to motivate concepts in vector and geometric algebra, including addition, subtraction, and multiplication.
+* The equivalence of the number line to a one dimensional vector space will be illustrated, which will motivate the contraction axiom for the square of a vector in geometric algebra.
+* We can conceptualize the plane as a pair of perpendicular number lines, allowing us to map multiplication of numbers to multiplication of perpendicular vectors.
+* Multiplication of perpendicular vectors will be seen to have an oriented area representation, and we will see that such a product is order dependent.
+* We will return to the contraction axiom of geometric algebra and extract some of the basic identities (e_1^2 = 1, e_1 e_2 = -e_2 e_1, (e_1 e_2)^2 = -1, ...)
+* We will show the rotational nature of the 2D pseudoscalar, and note the connection to the complex imaginary.
+
+
+
+One of our basic tools for understanding counting and arithmetic is the number line.
+
+This has an origin 
+[animate point]
+
+and we may represent any number as a point on the line, with positive numbers to the right
+[animate points, 1, 3, 7]
+
+and negative numbers to the left
+[animate points, -2, -5, -6]
+
+We add two positive values, say 3, and 5, by moving first to the first point
+[animate 3, 5, sum]
+and then moving the distance from the origin of the second point from there to the right.
+
+We add two negative values, say -3, and -5, by moving first to the first point
+[animate -3, -5, sum]
+and then moving the distance from the origin of the second point from there to the left.
+
+In general, if we are adding a positive number, we are moving to the right, regardless of the starting point
+[animate -3+5]
+[animate -5+3]
+
+and if we are adding a negative number, we are moving to the left
+[animate 5-3]
+[animate 3-5]
