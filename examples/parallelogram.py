@@ -42,6 +42,7 @@ class DrawParallelogram(Scene):
         vrej = Line(start=oproj, end=op2, color=RED)
         vrejl = Tex(r'$\vec{b} - \left(\vec{b} \cdot \hat{a}\right) \hat{a}$').scale(1)
         vrejl.next_to(vrej, RIGHT)
+        vrejl.shift((-0.5,0,0))
         v2g = VGroup(v2, v2l)
         vrejg = VGroup(vrej, vrejl)
 
@@ -65,8 +66,13 @@ class DrawParallelogram(Scene):
         self.play(Create(dashside))
         self.play(FadeOut(vprojg, vrejg))
 
-        #move = (-5, 1.5, 0)
-        #a = VGroup(dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly)
-        #tx = tuple(map(add, a.get_center(), move))
-        #a.move_to( tx )
-        #self.play(Create(a))
+        move = (-5, 1, 0)
+        a = VGroup(dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly)
+        ### 
+        #b = a.copy()
+        #b.shift(LEFT)
+        #self.play(ReplacementTransform(a, b))
+        ### 
+        #self.play(a.animate.shift(LEFT))
+        self.play(a.animate.shift(move))
+        self.wait()
