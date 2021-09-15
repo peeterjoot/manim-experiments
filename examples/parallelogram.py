@@ -66,11 +66,5 @@ class DrawParallelogram(Scene):
 
         move = (-5, 1, 0)
         a = VGroup(dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly)
-        ### 
-        #b = a.copy()
-        #b.shift(LEFT)
-        #self.play(ReplacementTransform(a, b))
-        ### 
-        #self.play(a.animate.shift(LEFT))
         self.play(a.animate.shift(move))
         self.wait()
