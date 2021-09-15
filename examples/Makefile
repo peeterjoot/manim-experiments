@@ -3,7 +3,8 @@
 #all :: BraceAnnotation
 #all :: VectorArrow
 #all :: NumberLineExample
-all :: parallelogram
+#all :: parallelogram
+all :: q
 
 % : %.py
 	#manim -pql $^ $@

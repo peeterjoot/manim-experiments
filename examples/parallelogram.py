@@ -61,7 +61,12 @@ class DrawParallelogram(Scene):
         self.play(Create(vprojg))
         self.play(Create(vrejg))
         self.play(Create(dashrej))
-        #self.play(FadeOut(poly))
         self.play(Create(dashtop))
         self.play(Create(dashside))
         self.play(FadeOut(vprojg, vrejg))
+
+        move = (-5, 1.5, 0)
+        a = VGroup(dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly)
+        tx = tuple(map(add, a.get_center(), move))
+        a.move_to( tx )
+        self.play(Create(a))
