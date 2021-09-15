@@ -3,6 +3,7 @@ from operator import add, sub
 import numpy as np
 import math as libm
 
+# https://discord.com/channels/581738731934056449/582403919754297363/887786292778262558
 class DrawParallelogram(Scene):
     def construct(self):
         o = (0, 0, 0)
@@ -16,14 +17,11 @@ class DrawParallelogram(Scene):
         p1cap = [element / s for element in p1]
         p1dotp1cap = np.dot(p2, p1cap)
         proj = [element * p1dotp1cap for element in p1cap]
-        oproj = tuple(map(add, o, proj))
-        vproj = Line(start=o, end=oproj, color=RED)
 
         rej = tuple(map(sub, p2, proj))
-        vrej = Line(start=oproj, end=p2, color=RED)
 
-        op3 = tuple(map(add, p1, p2))
-        parallelogram = [o, p1, op3, p2]
+        p3 = tuple(map(add, p1, p2))
+        parallelogram = [o, p1, p3, p2]
         poly = Polygon(*parallelogram)
 
         cut = tuple(map(add, p1, rej))
@@ -35,12 +33,9 @@ class DrawParallelogram(Scene):
         self.play(Create(v1))
         self.play(Create(v2))
         self.play(Create(poly))
-        self.play(Create(vproj))
-        self.play(Create(vrej))
         self.play(Create(dashrej))
         self.play(Create(dashtop))
         self.play(Create(dashside))
-        self.play(FadeOut(vproj, vrej))
 
         move = (-5, 1.5, 0)
         a = VGroup(dashrej, dashtop, dashside, v1, v2, poly)
