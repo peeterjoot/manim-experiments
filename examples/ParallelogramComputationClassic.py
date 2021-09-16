@@ -7,12 +7,22 @@ def mknorm2(v):
     return r'{\left\lVert{' + v + r'}\right\rVert}^2'
 def lr(v):
     return r'\left( ' + v + r' \right)'
+def lrsq(v):
+    return r'{\left( ' + v + r' \right)}^2'
 
 class ParallelogramComputationClassic(Scene):
     def construct(self):
-        eq1_text=[ r'$\text{Area}$', '$=$', r'$\text{base} \times \text{height}$' ]
-        eq2_text=[ r'${\text{Area}}^2$', '$=$', '$' + mknorm2(r'\vec{u}') + mknorm2(r'\vec{v} - \left(\vec{v} \cdot \hat{u}\right) \hat{u}') + r'$' ]
-        eq3_text=[ r'$\,$', '$=$', '$' + mknorm2(r'\vec{u}') + '\left(' + mknorm2( r'\vec{v}') + r' + {\left(\vec{v} \cdot \hat{u}\right)}^2 -2 {\left(\vec{v} \cdot \hat{u}\right)}^2 \right) $' ]
+        vecu = r'\vec{u}'
+        uhat = r'\hat{u}'
+        vecv = r'\vec{v}'
+        nsqu = mknorm2(vecu)
+        nsqv = mknorm2(vecv)
+
+        eq1_text = [ r'$\text{Area}$', '$=$', r'$\text{base} \times \text{height}$' ]
+        eq2_text = [ r'${\text{Area}}^2$', '$=$', '${}{}$'.format( nsqu, mknorm2(r'{} - \left({} \cdot {} \right){}'.format(vecv, vecv, uhat, uhat)) ) ]
+        vdotusq = lrsq( r'\vec{v} \cdot \hat{u}' )
+        eq3_text = [ r'$\,$', '$=$', '$' + nsqu + r'\left(' + nsqv + ' + {} - 2 {}'.format( vdotusq, vdotusq ) + r'\right) $' ]
+
         #eq4_text=[ '', '$=$', '$' + mknorm2(r'\vec{u}') + '\left(' + mknorm2( r'\vec{v}') + r' - {\left(\vec{v} \cdot \hat{u}\right)}^2 \right) $' ]
         eq1_mob=Tex(*eq1_text)
         eq2_mob=Tex(*eq2_text)
