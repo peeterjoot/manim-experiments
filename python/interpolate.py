@@ -21,5 +21,6 @@ nsqv = mknorm2(vecv)
 #print( eq2_text )
 
 vdotusq = lrsq( r'\vec{v} \cdot \hat{u}' )
-eq3_text = '$' + nsqu + r'\left(' + nsqv + ' + {} - 2 {}'.format( vdotusq, vdotusq ) + r'\right) $'
+#eq3_text = '$' + nsqu + r'\left(' + nsqv + ' + {} - 2 {}'.format( vdotusq, vdotusq ) + r'\right) $'
+eq3_text = [ r'$\,$', '$=$', '$' + nsqu + r'\left(' + nsqv + ' + {} - 2 {}'.format( vdotusq, vdotusq ) + r'\right) $' ]
 print( eq3_text )

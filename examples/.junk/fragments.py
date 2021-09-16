@@ -27,3 +27,18 @@
 #        self.wait(1)
 #        self.play(Transform(final_line, color_final_line))
 #        self.wait(2)
+
+
+
+        #eq4_text=[ '', '$=$', '$' + mknorm2(r'\vec{u}') + '\left(' + mknorm2( r'\vec{v}') + r' - {\left(\vec{v} \cdot \hat{u}\right)}^2 \right) $' ]
+        #eq4_mob=Tex(*eq4_text)
+        #for i,item in enumerate(eq4_mob):
+        #    dir = RIGHT
+        #    if i == 2:
+        #        dir = LEFT
+        #    item.align_to(eq3_mob[i], dir)
+
+        #eq4=VGroup(*eq4_mob)
+        #eq4.shift(DOWN)
+        #self.play( Write(eq4) )
+        #self.play( FadeOut(eq2_mob[2]) )
