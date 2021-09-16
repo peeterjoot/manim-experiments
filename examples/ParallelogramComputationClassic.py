@@ -45,11 +45,11 @@ class ParallelogramComputationClassic(Scene):
                 dir = LEFT
             item.align_to( eq2_mob[i], dir )
 
-        eq1=VGroup( *eq1_mob )
+        eq1 = VGroup( *eq1_mob )
         eq1.shift( 3*LEFT + 2*UP )
-        eq2=VGroup( *eq2_mob )
+        eq2 = VGroup( *eq2_mob )
         eq2.shift( UP + 3*LEFT )
-        eq3=VGroup( *eq3_mob )
+        eq3 = VGroup( *eq3_mob )
         eq3.shift( 3*LEFT )
         self.play( Write( eq1 ) )
         self.play( Write( eq2 ) )
