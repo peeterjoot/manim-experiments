@@ -1,10 +1,11 @@
-#all :: ManimCELogo 
+#all :: ManimCELogo
 #all :: SquareToCircle2
 #all :: BraceAnnotation
 #all :: VectorArrow
 #all :: NumberLineExample
-all :: parallelogram
+#all :: parallelogram
 #all :: q
+all :: ParallelogramComputationClassic
 
 % : %.py
 	#manim -pql $^ $@
