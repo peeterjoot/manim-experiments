@@ -1,0 +1,113 @@
+Just saw your latest video (The length of a vector and how to change it - From Zero to Geo 1.2).  Very nice use of color!
+
+Do you colorize the latex equations using xcolor latex commands, or is there a "manim" way to do it easily?
+sudgy — Today at 6:15 PM
+There's a manim way to do it:
+m = MathTex("a", "+", "b", "=", "b", "+", "a")
+m.set_color_by_tex_to_color_map({
+    "a": RED,
+    "b": YELLOW
+})
+I use set_color_by_tex_to_color_map so much that I renamed it set_colors
+PeeterJoot — Today at 6:15 PM
+and if you had \vec{a} in the latex, you can use that in the set_color_by_tex_to_color_map call?
+sudgy — Today at 6:16 PM
+Yep
+PeeterJoot — Today at 6:16 PM
+Nice.
+sudgy — Today at 6:16 PM
+note that having "a": color in the color map would catch \vec{a} as well
+The color map looks for substrings, not exact matches
+PeeterJoot — Today at 6:16 PM
+and the arrow over it as well?
+sudgy — Today at 6:17 PM
+Yeah, it will color the arrow as well
+PeeterJoot — Today at 6:19 PM
+If you colored "u", would it also do the surrounding norm bars in something like this:
+
+{\left\lVert{\vec{u}}\right\rVert}^2
+sudgy — Today at 6:19 PM
+If that was all in one string, then yes
+PeeterJoot — Today at 6:19 PM
+do things stop at space delimited intervals?
+sudgy — Today at 6:20 PM
+I would make it like MathTex("{\left\lVert", "{\vec{u}}", "\right\rVert}^2") or something similar to fix it
+Also I never knew about lVert and rVert.  Usually good old | is enough for me
+sudgy — Today at 6:21 PM
+So no, you have to make separate strings
+PeeterJoot — Today at 6:21 PM
+that's just part of a generic macro that I use, so that the size of the bars scales with the object in them.
+Okay, thanks for the tips.
+sudgy — Today at 6:21 PM
+You can still use \left| and \right|
+PeeterJoot — Today at 6:22 PM
+I forget if there was a reason for the difference.  I've done it that way for too long (and used a \newcommand so that I never had to think about it.)
+sudgy — Today at 6:23 PM
+Also, if all else fails with set_color_by_tex_to_color_map, you can set colors manually:
+m = MathTex("a", "+", "b", "=", "b", "+", "a")
+m[0].set_color(RED)
+m[2].set_color(YELLOW)
+m[4].set_color(YELLOW)
+m[6].set_color(RED)
+PeeterJoot — Today at 6:26 PM
+Okay, nice.  If you are using the implicit aligned environment with MathTex(), then I guess that it's harder to individually color things?  Or can you break up the MathTex per line strings into multiples?
+Let me try an experiment.
+sudgy — Today at 6:26 PM
+You can still break it up
+PeeterJoot — Today at 6:29 PM
+Okay, that works (but it takes a long time to self.play() the result if there are many parts.
+I removed all the string concatenation in a Scene so that I switched from 6 lines to many more, and it tripled the video length from 11 seconds to about 30.
+can you speed up play?
+sudgy — Today at 6:31 PM
+You can use run_time = n for n seconds
+You can also run multiple animations at once
+PeeterJoot — Today at 6:32 PM
+Is that mutliple simultaneous done with multiple arguments to play()?
+sudgy — Today at 6:32 PM
+Yes
+PeeterJoot — Today at 6:33 PM
+Okay, thanks.  That's enough to experiment with for now.
+
+
+PeeterJoot — Today at 6:56 PM
+Looks like a rule for coloring "v" also matches on the v of '\vec':
+
+from manim import *
+
+class ProjRej(Scene):
+    def construct(self):
+
+        eq = MathTex(
+'&',
+r'{\left\lVert{ \vec{v} }\right\rVert}^2',
+r'{\left\lVert{ \vec{u} }\right\rVert}^2',
+r'-{\left(\vec{ u } \cdot \vec{v} \right)}^2', r'\\',
+'&',
+r'{\left\lVert{ \vec{b} }\right\rVert}^2',
+r'{\left\lVert{ \vec{a} }\right\rVert}^2',
+r'-{\left( \vec{a} \cdot \vec{b} \right)}^2'
+                )
+        eq.set_color_by_tex_to_color_map( {
+                  "u": RED, "v": YELLOW,
+                  "a": RED, "b": YELLOW
+                  } )
+
+        for item in eq:
+           self.play( Write( item ) )
+
+        self.wait( )
+tricky.
+sudgy — Today at 6:59 PM
+I solve that by coloring "{v}"
+PeeterJoot — Today at 7:01 PM
+that works for some of it, but something like:
+
+"{\left(\vec{ u } \cdot \vec{v} \right)}^2"
+
+is still tricky.
+can work around by doing something like:
+
+'(', r'\vec{a}', r'\cdot', r'\vec{b}', '){}^2' 
+
+instead.  Not exactly natural, but it works.
+
