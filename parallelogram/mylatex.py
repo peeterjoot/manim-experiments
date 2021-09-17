@@ -39,6 +39,18 @@ class latex:
     def wedge( self, *args, sep = r' \wedge ' ):
         return sep.join( args )
 
+    def add( self, *args, sep = ' + ' ):
+        return sep.join( args )
+
+    def mult( self, *args, sep = '' ):
+        return sep.join( args )
+
+    def sub( self, *args, sep = ' - ' ):
+        return sep.join( args )
+
+    def neg( self, *args, sep = '' ):
+        return concat( '-', sep.join( args ) )
+
     def underbrace( self, *args, helptext = '', sep = '' ):
         return concat( r'\underbrace{', sep.join( args ), '}_{', helptext, '}' )
 
