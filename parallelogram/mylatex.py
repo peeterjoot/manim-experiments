@@ -6,11 +6,11 @@ class latex:
     rbr      = r'\right)'
     nextline = r'\\'
 
-    def mknorm( self, *args, sep = '' ):
+    def norm( self, *args, sep = '' ):
         return concat( r'\left\lVert{', sep.join( args ), r'}\right\rVert' )
 
-    def mknorm2( self, *args, sep = '' ):
-        return concat( '{', latex.mknorm( self, sep.join( args ) ), '}^2' )
+    def norm2( self, *args, sep = '' ):
+        return concat( '{', latex.norm( self, sep.join( args ) ), '}^2' )
 
     def lr( self, *args, sep = '' ):
         return concat( latex.lbr, sep.join( args ), latex.rbr )
