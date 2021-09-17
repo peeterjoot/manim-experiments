@@ -27,6 +27,8 @@ class latex:
         return sep.join(args)
     def wedge(self, *args, sep = r' \wedge '):
         return sep.join(args)
+    def underbrace(self, *args, helptext='', sep = ''):
+        return concat( r'\underbrace{', sep.join(args), '}_{', helptext, '}' )
     def gpgrade(self, *args, n=-1, sep = ''):
         return concat( r'{\left\langle{', sep.join(args), r'}\right\rangle}_{', n, '}' )
     def gpgradezero(self, *args, sep = ''):
