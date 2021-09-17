@@ -19,9 +19,15 @@ class latex:
         return concat( r'\vec{', v, r'}' )
     def hat(self, v):
         return concat( r'\hat{', v, r'}' )
+    def cancel(self, *args, sep = ''):
+        return concat( r'\cancel{', sep.join(args), r'}' )
     def text(self, *args, sep = ''):
         return concat( r'\text{', sep.join(args), r'}' )
     def dot(self, *args, sep = r' \cdot '):
         return sep.join(args)
     def wedge(self, *args, sep = r' \wedge '):
         return sep.join(args)
+    def gpgrade(self, *args, n=-1, sep = ''):
+        return concat( r'{\left\langle{', sep.join(args), r'}\right\rangle}_{', n, '}' )
+    def gpgradezero(self, *args, sep = ''):
+        return concat( r'\left\langle{', sep.join(args), r'}\right\rangle' )
