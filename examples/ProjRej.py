@@ -12,13 +12,13 @@ class ProjRej(Scene):
         eq = MathTex( concat( vecv, r' &= ', vecv, r'\times 1', l.nextline ),
                       concat( r' &= ', vecv, uhat, uhat, l.nextline ),
                       concat( r' &= ', l.lr(vecv, uhat), uhat, l.nextline ),
-                      concat( r' &= ', l.lr( concat( l.dot(vecv, uhat), ' + ', l.wedge(vecv, uhat) ) ), uhat, l.nextline ),
-                      concat( r' &= ', l.lr( l.dot(vecv, uhat) ), uhat, ' + ', l.lr(l.wedge(vecv, uhat)), uhat, l.nextline )
+                      concat( r' &= ', l.lr( l.dot(vecv, uhat), ' + ', l.wedge(vecv, uhat) ), uhat, l.nextline ),
+                      concat( r' &= ', l.lr( l.dot(vecv, uhat) ), uhat, ' + ', l.lr(l.wedge(vecv, uhat)), uhat, l.nextline ),
+                      concat( r'{', l.text('Proj'), r'}_{\vec{u}}(\vec{v}) &\equiv ', l.lr( l.dot(vecv, uhat) ), uhat, l.nextline ),
+                      concat( r'{', l.text('Rej'), r'}_{\vec{u}}(\vec{v}) &\equiv ', l.lr( l.wedge(vecv, uhat) ), uhat, l.nextline )
                     )
 
-        self.play( Write( eq[0] ) )
-        self.play( Write( eq[1] ) )
-        self.play( Write( eq[2] ) )
-        self.play( Write( eq[3] ) )
-        self.play( Write( eq[4] ) )
+        for item in eq:
+           self.play( Write( item ) )
+
         self.wait( )

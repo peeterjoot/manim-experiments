@@ -20,9 +20,6 @@ class ParallelogramComputationClassic(Scene):
                       concat( '&= ', squ, sqv, ' - ', l.lrsq( l.dot( vecv, vecu ) ), l.nextline )
                     )
 
-        self.play( Write( eq[0] ) )
-        self.play( Write( eq[1] ) )
-        self.play( Write( eq[2] ) )
-        self.play( Write( eq[3] ) )
-        self.play( Write( eq[4] ) )
+        for item in eq:
+            self.play( Write( item ) )
         self.wait( )
