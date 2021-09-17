@@ -15,8 +15,12 @@ class latex:
         return concat( r'{', latex.lr( self, sep.join(args) ), r'}^2' )
     def sq(self, *args, sep = ''):
         return concat( r'{', sep.join(args), r'}^2' )
-    #def binaryop(self, *args, sep = ''):
-    #    return sep.join(args)
+    def vec(self, v):
+        return concat( r'\vec{', v, r'}' )
+    def hat(self, v):
+        return concat( r'\hat{', v, r'}' )
+    def text(self, *args, sep = ''):
+        return concat( r'\text{', sep.join(args), r'}' )
     def dot(self, *args, sep = r' \cdot '):
         return sep.join(args)
     def wedge(self, *args, sep = r' \wedge '):
