@@ -1,0 +1,20 @@
+
+PeeterJoot — Today at 7:17 PM
+At around 11:06 of your latest video you simultaneously transform a number of terms in various latex objects, without fade-out, in.  How do you do that?
+sudgy — Today at 7:19 PM
+I used several ReplacementTransforms
+Probably my most used animation
+
+
+
+PeeterJoot — 09/15/2021
+Is there a way to just move things without drawing in real time?
+sudgy — 09/15/2021
+You could run self.play(a.animate.shift(LEFT)) or something like that
+Another option is
+b = a.copy()
+b.shift(LEFT)
+self.play(ReplacementTransform(a, b))
+I generally use the second option when doing something more complicated than just moving, though
+PeeterJoot — 09/15/2021
+
