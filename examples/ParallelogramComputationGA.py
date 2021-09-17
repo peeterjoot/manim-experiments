@@ -1,43 +1,27 @@
 from manim import *
 import numpy as np
-
-def concat(*args, sep=''):
-    return sep.join(args)
-def mknorm(*args, sep=''):
-    return concat( r'\left\lVert{', sep.join(args), r'}\right\rVert' )
-def mknorm2(*args, sep=''):
-    return concat( r'{', mknorm( sep.join(args) ), r'}^2' )
-def lr(*args, sep=''):
-    return concat( r'\left( ', sep.join(args), r' \right)' )
-def lrsq(*args, sep=''):
-    return concat( r'{', lr( sep.join(args) ), r'}^2' )
-def sq(*args, sep=''):
-    return concat( r'{', sep.join(args), r'}^2' )
-def dot(a, b):
-    return a + r' \cdot ' + b
+from mylatex import *
 
 class ParallelogramComputationGA(Scene):
     def construct(self):
+        l = latex()
         vecu = r'\vec{u}'
         uhat = r'\hat{u}'
         vecv = r'\vec{v}'
-        squ = sq( vecu )
-        sqv = sq( vecv )
-        lbr  = r'\left('
-        rbr  = r'\right)'
-        vdotusq = lrsq( dot( vecv, uhat ) )
-        nextline = r'\\'
-        vwedgeuhat = concat( vecv, r'\wedge', uhat )
-        vwedgeu = concat( vecv, r'\wedge', vecu )
-        uwedgev = concat( vecu, r'\wedge', vecv )
-        rej = concat( lr( vwedgeuhat ), uhat )
+        squ = l.sq( vecu )
+        sqv = l.sq( vecv )
+        vdotusq = l.lrsq( l.dot( vecv, uhat ) )
+        vwedgeuhat = l.wedge( vecv, uhat )
+        vwedgeu = l.wedge( vecv, vecu )
+        uwedgev = l.wedge( vecu, vecv )
+        rej = concat( l.lr( vwedgeuhat ), uhat )
 
         eq = MathTex( r'\text{Area} &= \text{base} \times \text{height} \\',
-                      concat( r'{\text{Area}}^2 &= ', squ, lrsq( rej ), nextline ),
-                      concat( '&= -', squ, lrsq( vwedgeuhat ), nextline ),
-                      concat( '&= - ', lrsq( vwedgeu ), nextline ),
-                      concat( '&= ', dot( lr(vwedgeu), lr(uwedgev) ), nextline ),
-                      concat( '&= ', squ, sqv, '-', lrsq( dot( vecv, vecu ) ), nextline )
+                      concat( r'{\text{Area}}^2 &= ', squ, l.lrsq( rej ), l.nextline ),
+                      concat( '&= -', squ, l.lrsq( vwedgeuhat ), l.nextline ),
+                      concat( '&= - ', l.lrsq( vwedgeu ), l.nextline ),
+                      concat( '&= ', l.dot( l.lr(vwedgeu), l.lr(uwedgev) ), l.nextline ),
+                      concat( '&= ', squ, sqv, '-', l.lrsq( l.dot( vecv, vecu ) ), l.nextline )
                     )
 
         self.play( Write( eq[0] ) )
