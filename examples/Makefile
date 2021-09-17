@@ -5,7 +5,8 @@
 #all :: NumberLineExample
 #all :: parallelogram
 #all :: q
-all :: ParallelogramComputationClassic
+#all :: ParallelogramComputationClassic
+all :: ParallelogramComputationGA
 
 % : %.py
 	#manim -pql $^ $@
