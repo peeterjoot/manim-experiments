@@ -33,9 +33,9 @@ class ParallelogramComputationGA(Scene):
         rej = concat( lr( vwedgeuhat ), uhat )
 
         eq = MathTex( r'\text{Area} &= \text{base} \times \text{height} \\',
-                      concat( r'{\text{Area}}^2 &= ', squ, mknorm2( rej ), nextline ),
-                      concat( '&= ', squ, mknorm2( vwedgeuhat ), nextline ),
-                      concat( '&= ', mknorm2( vwedgeu ), nextline ),
+                      concat( r'{\text{Area}}^2 &= ', squ, lrsq( rej ), nextline ),
+                      concat( '&= -', squ, lrsq( vwedgeuhat ), nextline ),
+                      concat( '&= - ', lrsq( vwedgeu ), nextline ),
                       concat( '&= ', dot( lr(vwedgeu), lr(uwedgev) ), nextline ),
                       concat( '&= ', squ, sqv, '-', lrsq( dot( vecv, vecu ) ), nextline )
                     )
