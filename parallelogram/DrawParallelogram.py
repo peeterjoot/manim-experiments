@@ -1,5 +1,6 @@
 from manim import *
 import numpy as np
+from mylatex import *
 
 #   p1 + p2
 #     /\
@@ -11,17 +12,22 @@ import numpy as np
 
 class DrawParallelogram(Scene):
     def construct(self):
+        l = latex()
+        u          = l.vec('u')
+        uhat       = l.hat('u')
+        v          = l.vec('v')
+
         o = np.array([0, -2, 0])
-        p1 = np.array([2, 1, 0])
-        p2 = np.array([-0.5, 3, 0])
+        p1 = np.array([3, 1, 0])
+        p2 = np.array([1, 3, 0])
         op1 = o + p1
         op2 = o + p2
 
         v1 = Arrow(start=o, end=op1, buff=0)
         v2 = Arrow(start=o, end=op2, buff=0)
 
-        v1l = Tex(r'$\vec{u}$').scale(1)
-        v2l = Tex(r'$\vec{v}$').scale(1)
+        v1l = MathTex( u )
+        v2l = MathTex( v )
         v1l.next_to(v1, RIGHT)
         v2l.next_to(v2, UP)
 
@@ -29,14 +35,14 @@ class DrawParallelogram(Scene):
         proj = np.dot(p2, p1cap) * p1cap
         oproj = o + proj
         vproj = Line(start=o, end=oproj, color=RED)
-        vprojl = Tex(r'$\left(\vec{v} \cdot \hat{u}\right) \hat{u}$').scale(1)
+        vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
         vprojl.next_to(vproj, DOWN)
         v1g = VGroup(v1, v1l)
         vprojg = VGroup(vproj, vprojl)
 
         rej = p2 - proj
         vrej = Line(start=oproj, end=op2, color=RED)
-        vrejl = Tex(r'$\vec{v} - \left(\vec{v} \cdot \hat{u}\right) \hat{u}$').scale(1)
+        vrejl = MathTex( concat( v, ' - ', l.lr( l.dot( v, uhat ) ), uhat ) )
         vrejl.next_to(vrej, RIGHT)
         vrejl.shift((-0.5,0,0))
         v2g = VGroup(v2, v2l)

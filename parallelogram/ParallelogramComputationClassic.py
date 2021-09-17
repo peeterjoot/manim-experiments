@@ -5,19 +5,19 @@ from mylatex import *
 class ParallelogramComputationClassic(Scene):
     def construct(self):
         l = latex()
-        vecu       = l.vec('u')
+        u          = l.vec('u')
         uhat       = l.hat('u')
-        vecv       = l.vec('v')
-        squ        = l.mknorm2( vecu )
-        sqv        = l.mknorm2( vecv )
-        vdotuhatsq = l.lrsq( l.dot( vecv, uhat ) )
-        rej        = concat( vecv, '-', l.lbr, l.dot( vecv, uhat ), l.rbr, uhat )
+        v          = l.vec('v')
+        squ        = l.mknorm2( u )
+        sqv        = l.mknorm2( v )
+        vdotuhatsq = l.lrsq( l.dot( v, uhat ) )
+        rej        = concat( v, '-', l.lbr, l.dot( v, uhat ), l.rbr, uhat )
 
         eq = MathTex( concat( l.text('Area'), r' &= ', l.text('base'), r' \times ', l.text('height'), l.nextline ),
                       concat( l.sq(l.text('Area')), r' &= ', squ, l.mknorm2( rej ), l.nextline ),
                       concat( '&= ', squ, l.lbr, sqv, ' + ', vdotuhatsq, '- 2 ', vdotuhatsq, l.rbr, l.nextline ),
                       concat( '&= ', squ, l.lbr, sqv, ' - ', vdotuhatsq, l.rbr, l.nextline ),
-                      concat( '&= ', squ, sqv, ' - ', l.lrsq( l.dot( vecv, vecu ) ), l.nextline )
+                      concat( '&= ', squ, sqv, ' - ', l.lrsq( l.dot( v, u ) ), l.nextline )
                     )
 
         for item in eq:
