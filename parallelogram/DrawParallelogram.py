@@ -10,65 +10,110 @@ from mylatex import *
 #     \ /
 #      o
 
-class DrawParallelogram(Scene):
-    def construct(self):
-        l = latex()
-        u          = l.vec('u')
-        uhat       = l.hat('u')
-        v          = l.vec('v')
+class DrawParallelogram( Scene ):
+    def construct( self ):
+        l = latex( )
+        u          = l.vec( 'u' )
+        uhat       = l.hat( 'u' )
+        v          = l.vec( 'v' )
 
-        o = np.array([0, -2, 0])
-        p1 = np.array([3, 1, 0])
-        p2 = np.array([1, 3, 0])
+        o = np.array( [0, -2, 0] )
+        p1 = np.array( [3, 1, 0] )
+        p2 = np.array( [1, 3, 0] )
         op1 = o + p1
         op2 = o + p2
 
-        v1 = Arrow(start=o, end=op1, buff=0)
-        v2 = Arrow(start=o, end=op2, buff=0)
+        v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
+        v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
 
         v1l = MathTex( u )
         v2l = MathTex( v )
-        v1l.next_to(v1, RIGHT)
-        v2l.next_to(v2, UP)
+        v1l.set_color( RED )
+        v1l.next_to( v1, RIGHT )
+        v2l.next_to( v2, UP )
+        v2l.set_color( YELLOW )
 
-        p1cap = p1/ np.linalg.norm(p1)
-        proj = np.dot(p2, p1cap) * p1cap
+        p1cap = p1/ np.linalg.norm( p1 )
+        proj = np.dot( p2, p1cap ) * p1cap
         oproj = o + proj
-        vproj = Line(start=o, end=oproj, color=RED)
+        vproj = Line( start = o, end = oproj, color = RED )
         vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
-        vprojl.next_to(vproj, DOWN)
-        v1g = VGroup(v1, v1l)
-        vprojg = VGroup(vproj, vprojl)
+        vprojl.next_to( vproj, DOWN )
+        v1g = VGroup( v1, v1l )
+        vprojg = VGroup( vproj, vprojl )
 
         rej = p2 - proj
-        vrej = Line(start=oproj, end=op2, color=RED)
+        vrej = Line( start = oproj, end = op2, color = RED )
         vrejl = MathTex( concat( v, ' - ', l.lr( l.dot( v, uhat ) ), uhat ) )
-        vrejl.next_to(vrej, RIGHT)
-        vrejl.shift((-0.5,0,0))
-        v2g = VGroup(v2, v2l)
-        vrejg = VGroup(vrej, vrejl)
+        vrejl.next_to( vrej, RIGHT )
+        vrejl.shift( (-0.5,0,0 ))
+        v2g = VGroup( v2, v2l )
+        vrejg = VGroup( vrej, vrejl )
 
         op3 = op1 + p2
         parallelogram = [o, op1, op3, op2]
-        poly = Polygon(*parallelogram)
+        poly = Polygon( *parallelogram )
 
         cut = op1 + rej
         recttop = cut - p1
-        dashrej = DashedLine(start=op1, end=cut)
-        dashtop = DashedLine(start=cut, end=recttop)
-        dashside = DashedLine(start=recttop, end=o)
+        dashrej = DashedLine( start = op1, end = cut )
+        dashtop = DashedLine( start = cut, end = recttop )
+        dashside = DashedLine( start = recttop, end = o )
 
-        self.play(Create(v1g))
-        self.play(Create(v2g))
-        self.play(Create(poly))
-        self.play(Create(vprojg))
-        self.play(Create(vrejg))
-        self.play(Create(dashrej))
-        self.play(Create(dashtop))
-        self.play(Create(dashside))
-        self.play(FadeOut(vprojg, vrejg))
+        self.play( Create( v1g ))
+        self.play( Create( v2g ))
+        self.play( Create( poly ))
+        self.play( Create( vprojg ))
+        self.play( Create( vrejg ))
+        self.play( Create( dashrej ))
+        self.play( Create( dashtop ))
+        self.play( Create( dashside ))
+        self.play( FadeOut( vprojg, vrejg ))
 
-        move = (-5, 1, 0)
-        a = VGroup(dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly)
-        self.play(a.animate.shift(move))
-        self.wait(1)
+        move = ( -6, 1, 0 )
+        a = VGroup( dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly )
+        self.play( a.animate.shift( move ))
+        self.wait( 1 )
+
+        squ        = l.norm2( u )
+        sqv        = l.norm2( v )
+        vdotuhatsq = l.lrsq( l.dot( v, uhat ) )
+        rej        = l.sub( v, l.mult( l.lr( l.dot( v, uhat ) ), uhat ) )
+
+        eq2 = MathTex( l.text( 'base' ), r'& = \Vert', u, concat( r'\Vert', l.nextline ),
+                       l.text( 'height' ), '& = ', concat( l.norm( rej ), l.nextline ) )
+
+        eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.nextline ), # 0
+                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ, l.norm2( rej ), l.nextline ), # 1
+                      concat( '&= ', squ ), concat( l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ), l.nextline ), # 2,3
+                      concat( '&= ', squ ), concat( l.lr( l.sub( sqv, vdotuhatsq ) ), l.nextline ), # 4,5
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( l.dot( v, u ) ) ), l.nextline ) # 6
+                    )
+
+        eq.shift( 2.4 * RIGHT )
+        eq2.shift( 3 * DOWN + 3 * LEFT )
+        eq2[0].set_color( RED )
+        eq2[2].set_color( RED )
+        eq2[4].set_color( GREEN )
+        self.play( Write( eq[0] ),
+                   Write( eq2[0] ),
+                   Write( eq2[1] ),
+                   Write( eq2[2] ),
+                   Write( eq2[3] ),
+                   Write( eq2[4] ),
+                   Write( eq2[5] ),
+                   Write( eq2[6] ) )
+
+        for i in range( 1, 4 ):
+            self.play( Write( eq[i] ) )
+        self.wait( )
+        eq[5].shift( 1.1 * UP )
+
+        self.play( ReplacementTransform( eq[3], eq[5] ) )
+        self.wait( 2 )
+
+        i = 6
+        eq[i].shift( UP )
+        self.play( Write( eq[i] ) )
+
+        self.wait( )
