@@ -11,19 +11,33 @@ class ParallelogramComputationGA(Scene):
         squ        = l.sq( u )
         sqv        = l.sq( v )
         vdotuhatsq = l.lrsq( l.dot( v, uhat ) )
-        vwedgeuhat = l.wedge( v, uhat )
         vwedgeu    = l.wedge( v, u )
         uwedgev    = l.wedge( u, v )
-        rej        = l.mult( l.lr( vwedgeuhat ), uhat )
+        rej        = l.mult( l.lr( l.wedge( v, uhat ) ), uhat )
+        rrej       = l.mult( uhat, l.lr( l.wedge( uhat, v ) ) )
 
-        eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.nextline ),
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ, l.lrsq( rej ), l.nextline ),
-                      concat( '&= ', l.neg( squ ), l.lrsq( vwedgeuhat ), l.nextline ),
-                      concat( '&= ', l.neg( l.lrsq( vwedgeu )), l.nextline ),
+        eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.nextline ), # 0
+                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( l.lrsq( rej ), l.nextline ), # 1,2
+                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( rej, rrej, l.nextline ), # 3,4
+                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( l.lr( l.wedge( v, uhat ) ), l.lr( l.wedge( uhat, v ) ), l.nextline ), # 5,6
+                      concat( '&= ', l.lr( l.wedge( v, u ) ), l.lr( l.wedge( u, v ) ), ' = ', l.neg( l.lrsq( l.wedge( v, u ) ) ), l.nextline ),
+                      #concat( '&= ', l.neg( l.lrsq( vwedgeu )), l.nextline ),
                       concat( '&= ', l.dot( l.lr( vwedgeu ), l.lr( uwedgev ) ), l.nextline ),
                       concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( l.dot( v, u ) ) ), l.nextline )
                     )
 
-        for item in eq:
-            self.play( Write( item ) )
+        for i in range( 3 ):
+            self.play( Write( eq[i] ) )
+        eq[4].shift( 0.8 * UP )
+        eq[6].shift( 2 * 0.8 * UP )
+
+        self.play( ReplacementTransform( eq[2], eq[4] ) )
+        self.wait( )
+        self.play( ReplacementTransform( eq[4], eq[6] ) )
+        self.wait( )
+
+        for i in range( 7, 10 ):
+            eq[i].shift( 2 * 0.8 * UP )
+            self.play( Write( eq[i] ) )
+
         self.wait( )
