@@ -1,3 +1,4 @@
+* Put mylatex in common directory, remove ../examples/ symlink, and adjust the imports accordingly.
 * Put the pieces together.
 * Script things.
 * Put in appropriate delays.
