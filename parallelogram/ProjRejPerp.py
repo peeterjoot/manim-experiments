@@ -1,5 +1,7 @@
 from manim import *
 import numpy as np
+from sys import *
+sys.path.append(r'../bin')
 from mylatex import *
 
 class ProjRejPerp(Scene):
@@ -13,14 +15,14 @@ class ProjRejPerp(Scene):
         myTemplate = TexTemplate()
         myTemplate.add_to_preamble(r'\usepackage{cancel}')
 
-        eq = MathTex( concat( '&', l.dot( l.Rej(u, v), l.Proj(u, v) ), l.nextline ),
+        eq = MathTex( concat( '&', l.dot( l.Rej(u, v), l.Proj(u, v) ), l.newline ),
                       concat( r'\quad&=', l.gpgradezero(
                           l.underbrace( rej, helptext=l.text('Rej') ),
                           l.underbrace( proj, helptext=l.text('Proj') ) ),
-                          l.nextline ),
-                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, uhat) ), l.lr( l.dot(v, uhat) ), l.nextline ),
-                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, uhat) )), l.lr( l.dot(v, uhat) ), l.nextline ),
-                      concat( r'\quad &= 0', l.nextline ),
+                          l.newline ),
+                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, uhat) ), l.lr( l.dot(v, uhat) ), l.newline ),
+                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, uhat) )), l.lr( l.dot(v, uhat) ), l.newline ),
+                      concat( r'\quad &= 0', l.newline ),
                       tex_template = myTemplate)
 
         for item in eq:

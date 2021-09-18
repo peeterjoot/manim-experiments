@@ -4,7 +4,7 @@ def concat( *args, sep = '' ):
 class latex:
     lbr      = r'\left('
     rbr      = r'\right)'
-    nextline = r'\\'
+    newline = r'\\'
 
     def norm( self, *args, sep = '' ):
         return concat( r'\left\lVert{', sep.join( args ), r'}\right\rVert' )
