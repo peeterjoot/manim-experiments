@@ -129,6 +129,84 @@ class DrawParallelogram( Scene ):
         self.wait( )
 
 
+class ProjRej( Scene ):
+    def construct( self ):
+        l = latex()
+        u          = l.vec( 'u' )
+        uhat       = l.hat( 'u' )
+        v          = l.vec( 'v' )
+        proj       = l.mult( l.lr( l.dot(v, uhat) ), uhat )
+        rej        = l.mult( l.lr( l.wedge(v, uhat) ), uhat )
+
+        eq = MathTex( concat( v, r' &= ', v, r'\times 1', l.newline ),
+                      concat( r' &= ', v, uhat, uhat, l.newline ),
+                      concat( r' &= ', l.lr(v, uhat), uhat, l.newline ),
+                      concat( r' &= ', l.lr( l.add( l.dot(v, uhat), l.wedge(v, uhat) ) ), uhat, l.newline ),
+                      concat( r' &= ', l.add( proj, rej ), l.newline ),
+                      concat( l.Proj(u, v), ' &\equiv ', proj, l.newline ),
+                      concat( l.Rej(u, v),  ' &\equiv ', rej, l.newline )
+                    )
+
+        for item in eq:
+           self.play( Write( item ) )
+
+        self.wait( )
+
+
+
+class ProjRejPerp(Scene):
+    def construct(self):
+        l = latex()
+        u          = l.vec('u')
+        uhat       = l.hat('u')
+        v          = l.vec('v')
+        proj       = l.mult( uhat, l.lr( l.wedge(v, uhat) ) )
+        rej        = l.mult( l.lr( l.wedge(v, uhat) ), uhat )
+        myTemplate = TexTemplate()
+        myTemplate.add_to_preamble(r'\usepackage{cancel}')
+
+        eq = MathTex( concat( '&', l.dot( l.Rej(u, v), l.Proj(u, v) ), l.newline ),
+                      concat( r'\quad&=', l.gpgradezero(
+                          l.underbrace( rej, helptext=l.text('Rej') ),
+                          l.underbrace( proj, helptext=l.text('Proj') ) ),
+                          l.newline ),
+                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, uhat) ), l.lr( l.dot(v, uhat) ), l.newline ),
+                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, uhat) )), l.lr( l.dot(v, uhat) ), l.newline ),
+                      concat( r'\quad &= 0', l.newline ),
+                      tex_template = myTemplate)
+
+        for item in eq:
+           self.play( Write( item ) )
+
+        self.wait( )
+
+
+
+class RejIsScalar(Scene):
+    def construct(self):
+        l = latex()
+        uhat       = l.hat( 'u' )
+        u          = l.vec( 'u' )
+        v          = l.vec( 'v' )
+        myTemplate = TexTemplate()
+        myTemplate.add_to_preamble( r'\usepackage{cancel}' )
+
+        eq = MathTex(
+                concat( l.Rej( u, v ), r' &\equiv ', l.lr( l.wedge( v, uhat ) ), uhat, l.newline ),
+                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, uhat ) ), uhat, l.wedge( l.lr( l.wedge( v, uhat ) ), uhat ) ) ), l.newline ),
+                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, uhat ) ), uhat), l.wedge( v, l.cancel( l.wedge( uhat, uhat ) ) ) ), l.newline ),
+                concat( r'&= ', l.dot( l.lr( l.wedge( v, uhat ) ), uhat ), l.newline ),
+                concat( r'&= ', v, l.sub( l.lr( l.dot( uhat, uhat ) ), l.mult( uhat, l.lr( l.dot( v, uhat) ) ) ), l.newline ),
+                concat( r'&= ', v, l.neg( uhat, l.lr( l.dot( v, uhat ) ) ), l.newline ),
+                      tex_template = myTemplate )
+
+        for item in eq:
+           self.play( Write( item ) )
+
+        self.wait( )
+
+
+
 class ParallelogramComputationGA(Scene):
     def construct(self):
         l = latex()

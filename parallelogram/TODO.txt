@@ -1,6 +1,5 @@
 * bullet points of what will be covered.
-* Put the rest of the pieces together.
-* Script things.
+* (audio) Script things.
 * Put in appropriate delays.
 * Switch to xcolor from set_color and color transformer (too painful to get right.)
   Q: what are the color codes for YELLOW, RED, ... and how do those map to xcolor definitions?  Can probably introduce .sty for color definitions if req'd.
