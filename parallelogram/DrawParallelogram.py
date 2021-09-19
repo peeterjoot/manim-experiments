@@ -38,14 +38,14 @@ class DrawParallelogram( Scene ):
         p1cap = p1/ np.linalg.norm( p1 )
         proj = np.dot( p2, p1cap ) * p1cap
         oproj = o + proj
-        vproj = Line( start = o, end = oproj, color = RED )
+        vproj = Line( start = o, end = oproj, color = PURPLE )
         vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
         vprojl.next_to( vproj, DOWN )
         v1g = VGroup( v1, v1l )
         vprojg = VGroup( vproj, vprojl )
 
         rej = p2 - proj
-        vrej = Line( start = oproj, end = op2, color = RED )
+        vrej = Line( start = oproj, end = op2, color = GREEN )
         vrejl = MathTex( concat( v, ' - ', l.lr( l.dot( v, uhat ) ), uhat ) )
         vrejl.next_to( vrej, RIGHT )
         vrejl.shift( (-0.5,0,0 ))
@@ -53,18 +53,26 @@ class DrawParallelogram( Scene ):
         vrejg = VGroup( vrej, vrejl )
 
         op3 = op1 + p2
-        parallelogram = [o, op1, op3, op2]
-        poly = Polygon( *parallelogram )
+        v1p = Arrow( start = op1, end = op3, buff = 0, color = YELLOW )
+        v2p = Arrow( start = op2, end = op3, buff = 0, color = RED )
+        #parallelogram = [o, op1, op3, op2]
+        #poly = Polygon( *parallelogram )
 
         cut = op1 + rej
         recttop = cut - p1
-        dashrej = DashedLine( start = op1, end = cut )
+        dashrej = DashedLine( start = op1, end = cut, color = BLUE )
         dashtop = DashedLine( start = cut, end = recttop )
-        dashside = DashedLine( start = recttop, end = o )
+        dashside = DashedLine( start = recttop, end = o, color = BLUE )
 
         self.play( Create( v1g ))
         self.play( Create( v2g ))
-        self.play( Create( poly ))
+        v1c = v1.copy()
+        v2c = v2.copy()
+        self.add( v1c )
+        self.add( v2c )
+        self.play( ReplacementTransform( v1c, v1p ) )
+        self.play( ReplacementTransform( v2c, v2p ) )
+        #self.play( Create( poly ))
         self.play( Create( vprojg ))
         self.play( Create( vrejg ))
         self.play( Create( dashrej ))
@@ -73,7 +81,7 @@ class DrawParallelogram( Scene ):
         self.play( FadeOut( vprojg, vrejg ))
 
         move = ( -6, 1, 0 )
-        a = VGroup( dashrej, dashtop, dashside, v1, v1l, v2, v2l, poly )
+        a = VGroup( dashrej, dashtop, dashside, v1, v1l, v2, v2l, v1p, v2p ) # , poly
         self.play( a.animate.shift( move ))
         self.wait( 1 )
 
@@ -94,9 +102,9 @@ class DrawParallelogram( Scene ):
 
         eq.shift( 2.4 * RIGHT )
         eq2.shift( 3 * DOWN + 3 * LEFT )
-        eq2[0].set_color( RED )
-        eq2[2].set_color( RED )
-        eq2[4].set_color( GREEN )
+        #eq2[0].set_color( RED )
+        ##eq2[2].set_color( RED )
+        #eq2[4].set_color( BLUE )
         self.play( Write( eq[0] ),
                    Write( eq2[0] ),
                    Write( eq2[1] ),

@@ -1,7 +1,6 @@
 * Put the pieces together.
 * Script things.
 * Put in appropriate delays.
-* Form parallelogram figure by coping vectors and transforming them to the final positions.
 * Switch to xcolor from set_color and color transformer (too painful to get right.)
   Q: what are the color codes for YELLOW, RED, ... and how do those map to xcolor definitions?  Can probably introduce .sty for color definitions if req'd.
 * Expand the wedge as a sum of bivector determinant scaled unit vectors.

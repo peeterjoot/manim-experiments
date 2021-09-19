@@ -2,8 +2,8 @@ from manim import *
 import numpy as np
 from sys import *
 sys.path.append(r'../bin')
-#from mylatex import *
-from listlatex import *
+from mylatex import *
+#from listlatex import *
 
 class foo( Scene ):
     def construct( self ):
