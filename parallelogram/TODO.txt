@@ -1,3 +1,4 @@
+* bullet points of what will be covered.
 * Put the rest of the pieces together.
 * Script things.
 * Put in appropriate delays.

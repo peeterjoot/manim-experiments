@@ -1,4 +1,4 @@
-HIGHRES := 1
+#HIGHRES := 1
 
 ifdef HIGHRES
 	RESOLUTION := 1080p60
