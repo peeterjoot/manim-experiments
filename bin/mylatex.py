@@ -21,6 +21,9 @@ class latex:
     def sq( self, *args, sep = '' ):
         return concat( '{', sep.join( args ), '}^2' )
 
+    def frac( self, num, den ):
+        return concat( r'\frac{ ', num, ' }{ ', den, ' }' )
+
     def vec( self, v ):
         return concat( r'\vec{', v, '}' )
 

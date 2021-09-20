@@ -12,6 +12,7 @@ ALL += Overview
 ALL += DrawParallelogram
 ALL += ProjRej
 ALL += ProjRej2
+ALL += RejRotate
 ALL += ProjRejPerp
 ALL += RejIsVector
 ALL += RejIsVector2
