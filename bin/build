@@ -1,0 +1,81 @@
+#!/usr/bin/perl
+
+#-----------------------------------------------------------------------------
+# POD Format Documentation.  Read "perldoc perlpod" for an example.
+# When done, check syntax with "podchecker".
+
+=head1 NAME
+
+build - <one-line-description>
+
+=head1 SYNOPSIS
+
+build [--help] [<options>]
+
+=head1 DESCRIPTION
+
+It looks like somebody used the perl skeleton without filling in the POD
+documentation for their particular script.  Shame on them!!!
+
+Options:
+
+=over 4
+
+=item --foo=bar
+
+Blah.
+
+=back
+
+=head1 SUPPORTED PLATFORMS
+
+ Unix (Linux verified)
+
+=head1 SUPPORT
+
+ Send email to peeter.joot@lzlabs.com
+
+=head1 AUTHORS
+
+ Peeter Joot
+
+=cut
+
+#-----------------------------------------------------------------------------
+
+use strict ;
+use warnings ;
+use Getopt::Long ;
+use Pod::Usage ;
+
+# Suppress sourcing of users' .bashrc files in invoked shells
+delete $ENV{'ENV'} ;
+delete $ENV{'BASH_ENV'} ;
+
+# Set STDOUT and STDERR to unbuffered
+select STDERR ; $| = 1 ;
+select STDOUT ; $| = 1 ;
+
+my $myName = '' ;
+my $main = 'parallelogram.py';
+($myName = $0) =~ s@.*[/\\]@@ ;
+
+Getopt::Long::Configure( 'pass_through' ) ;
+GetOptions (
+   'help'               => sub { pod2usage(-verbose => 2) ; },
+   'main=s'             => \$main
+) or pod2usage(-verbose => 0) ;
+
+open my $fh, "ps -ef | grep 'QuickTime Player' | grep -v grep|" or die;
+while (<$fh>)
+{
+   chomp;
+   s/^ *//;
+
+   my ($ppid, $pid, @rest) = split( /\s+/ );
+   #print( "pid: $pid\n" );  
+   system( "kill -9 $pid" );  
+}
+close $fh;
+
+system( qq(manim -pql $main @ARGV) );

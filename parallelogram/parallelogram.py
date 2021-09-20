@@ -139,6 +139,58 @@ class DrawParallelogram( Scene ):
         self.wait( )
 
 
+def DrawVectorsAndProjRej(self, prlabels):
+    l = latex()
+    u          = l.vec( 'u' )
+    invu       = l.inv( u )
+    v          = l.vec( 'v' )
+
+    o = np.array( [0, -2, 0] )
+    p1 = np.array( [3, 1, 0] )
+    p2 = np.array( [1, 3, 0] )
+    op1 = o + p1
+    op2 = o + p2
+
+    p1cap = p1/ np.linalg.norm( p1 )
+    proj = np.dot( p2, p1cap ) * p1cap
+    oproj = o + proj
+
+    vproj = Line( start = o, end = oproj, color = PURPLE )
+    if prlabels:
+        vprojl = MathTex( concat( l.lr( l.dot( v, u ) ), invu ) )
+    else:
+        vprojl = Text( 'Proj' )
+    vprojl.set_color( PURPLE )
+    vprojl.next_to( vproj, DOWN )
+
+    rej = p2 - proj
+    vrej = Line( start = oproj, end = op2, color = GREEN )
+    if prlabels:
+        vrejl = MathTex( concat( l.lr( l.wedge( v, u ) ), invu ) )
+    else:
+        vrejl = Text( 'Rej' )
+    vrejl.set_color( GREEN )
+    vrejl.next_to( vrej, 0.2 * RIGHT )
+
+    v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
+    v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
+    v1l = MathTex( u )
+    v1l.set_color( RED )
+    v1l.next_to( v1, RIGHT )
+    v2l = MathTex( v )
+    v2l.set_color( YELLOW )
+    v2l.next_to( v2, UP )
+
+    all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
+
+    move = ( -6.5, 2, 0 )
+    all.shift( move )
+
+    self.add( all )
+
+    return ( vprojl, vrejl )
+
+
 class ProjRej( Scene ):
     def construct( self ):
         l = latex()
@@ -148,16 +200,32 @@ class ProjRej( Scene ):
         proj       = l.mult( l.lr( l.dot(v, u) ), invu )
         rej        = l.mult( l.lr( l.wedge(v, u) ), invu )
 
+        labels = DrawVectorsAndProjRej( self, 0 )
+
         eq = MathTex( concat( v, r' &= ', v, r'\times 1', l.newline ),
                       concat( r' &= ', v, u, invu, l.newline ),
                       concat( r' &= ', l.lr(v, u), invu, l.newline ),
                       concat( r' &= ', l.lr( l.add( l.dot(v, u), l.wedge(v, u) ) ), invu, l.newline ),
                       concat( r' &= ', l.add( proj, rej ), l.newline ) )
 
+        eq.shift( 2 * RIGHT )
         for item in eq:
            self.play( Write( item ) )
-
         self.wait( )
+
+        projl = MathTex( proj )
+        projl.set_color( PURPLE )
+        projl.move_to( labels[0] )
+        rejl = MathTex( rej )
+        rejl.set_color( GREEN )
+        rejl.move_to( labels[1] )
+        rejl.shift( 0.25 * RIGHT )
+        oldlabels = VGroup( labels[0], labels[1] )
+        newlabels = VGroup( projl, rejl )
+        self.play( ReplacementTransform( oldlabels, newlabels ) )
+        self.wait( )
+
+
 
 class ProjRej2( Scene ):
     def construct( self ):
@@ -178,12 +246,7 @@ class ProjRej2( Scene ):
 
         for item in eq:
             self.play( Write( item ) )
-        #for i in range(2):
-        #   self.play( Write( eq[i] ) )
-#
-#        tb = VGroup( eq[0], eq[1] )
-#        tn = VGroup( eq[2], eq[3] )
-#        self.play( ReplacementTransform( tb, tn ) )
+
         self.play( ReplacementTransform( eq, eq2 ) )
 
         self.wait( )
@@ -260,48 +323,6 @@ class RejIsVector2(Scene):
         self.wait( )
 
 
-def DrawVectorsAndProjRej(self):
-    l = latex()
-    u          = l.vec( 'u' )
-    invu       = l.inv( u )
-    v          = l.vec( 'v' )
-
-    o = np.array( [0, -2, 0] )
-    p1 = np.array( [3, 1, 0] )
-    p2 = np.array( [1, 3, 0] )
-    op1 = o + p1
-    op2 = o + p2
-
-    p1cap = p1/ np.linalg.norm( p1 )
-    proj = np.dot( p2, p1cap ) * p1cap
-    oproj = o + proj
-
-    vproj = Line( start = o, end = oproj, color = PURPLE )
-    vprojl = MathTex( concat( l.lr( l.dot( v, u ) ), invu ) )
-    vprojl.set_color( PURPLE )
-    vprojl.next_to( vproj, DOWN )
-
-    rej = p2 - proj
-    vrej = Line( start = oproj, end = op2, color = GREEN )
-    vrejl = MathTex( concat( l.lr( l.wedge( v, u ) ), invu ) )
-    vrejl.set_color( GREEN )
-    vrejl.next_to( vrej, 0.2 * RIGHT )
-
-    v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
-    v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
-    v1l = MathTex( u )
-    v1l.set_color( RED )
-    v1l.next_to( v1, RIGHT )
-    v2l = MathTex( v )
-    v2l.set_color( YELLOW )
-    v2l.next_to( v2, UP )
-
-    all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
-    move = ( -6.5, 2, 0 )
-    all.shift( move )
-
-    self.add( all )
-
 class ParallelogramComputationGA(Scene):
     def construct(self):
         l = latex()
@@ -310,7 +331,7 @@ class ParallelogramComputationGA(Scene):
         invu       = l.inv( u )
         v          = l.vec( 'v' )
 
-        DrawVectorsAndProjRej( self )
+        DrawVectorsAndProjRej( self, 1 )
 
         uu         = l.sq( u )
         vv         = l.sq( v )
