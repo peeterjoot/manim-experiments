@@ -291,22 +291,28 @@ class RejRotate( Scene ):
         rej = p2 - proj
         rejcap = rej/ np.linalg.norm( rej )
         rot = [o, o + p1cap, o + p1cap + rejcap, o + rejcap]
+        rot2 = [o, o + p1cap, o + p1cap + rej, o + rej]
 
         self.add( all )
         self.play( ReplacementTransform( v1g, q1g ) )
         self.wait( )
         bi = np.empty(4, dtype=object)
+        bi2 = np.empty(4, dtype=object)
         for i in range(3):
             bi[i] = Arrow( rot[i], rot[(i + 1) % 4], buff = 0 )
+            bi2[i] = Arrow( rot2[i], rot2[(i + 1) % 4], buff = 0 )
             self.play( Write( bi[i] ) )
 
         i=3
         bi[i] = Arrow( rot[3], o + 0.1 * rejcap, buff = 0 )
+        bi2[i] = Arrow( rot2[3], o + 0.1 * rejcap, buff = 0 )
         self.play( Write( bi[i] ) )
 
         uhatwedgev = l.wedge( uhat, v )
         bil = MathTex( concat( 'i = ', l.frac( uhatwedgev, l.norm( uhatwedgev ) ) ) )
         bil.next_to( bi[1], RIGHT )
+        bi2l = MathTex( uhatwedgev )
+        bi2l.next_to( bi2[1], RIGHT )
         self.add( bil )
         self.wait( )
 
@@ -324,10 +330,10 @@ class RejRotate( Scene ):
         x1ppl = MathTex( concat( uhat, l.lr( l.wedge( uhat, v ) ) ) )
         x1ppl.next_to( x1pp, LEFT )
         x1ppl.set_color( PURPLE )
-        xg2 = VGroup( x1pp, x1ppl )
-        self.play( ReplacementTransform( xg, xg2 ) )
-        self.wait( )
-
+        x1 = VGroup( bi[1], bi[2], bi[3], bil, x1p, x1pl )
+        xg2 = VGroup( bi2[1], bi2[2], bi2[3], bi2l, x1pp, x1ppl )
+        self.play( ReplacementTransform( x1, xg2 ) )
+        self.wait( 2 )
 
 
 class ProjRejPerp(Scene):

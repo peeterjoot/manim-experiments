@@ -1,8 +1,8 @@
-* Titlepage
-* (audio) Script things.
-* Put in appropriate delays.
-* Expand the wedge as a sum of bivector determinant scaled unit vectors.
-* Expand || u ^ v ||^2 in terms of determinants.
+1) Expand the wedge as a sum of bivector determinant scaled unit vectors.
+2) Expand || u ^ v ||^2 in terms of determinants.
+3) Titlepage: 1 sec.
+4) (audio) Script things.
+5) Put in appropriate delays.
 
 nice to have:
 =============
