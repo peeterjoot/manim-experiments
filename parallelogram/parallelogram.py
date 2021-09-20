@@ -258,18 +258,17 @@ class ProjRejPerp(Scene):
         u          = l.vec('u')
         invu       = l.inv(u)
         v          = l.vec('v')
-        proj       = l.mult( u, l.lr( l.dot(v, invu) ) )
-        rej        = l.mult( l.lr( l.wedge(v, u) ), invu )
+        vdotu      = l.dot(v, u)
+        vwedgeu    = l.wedge(v, u)
+        proj       = l.mult( l.lr( vdotu ), invu )
+        rej        = l.mult( l.lr( vwedgeu ), invu )
         myTemplate = TexTemplate()
         myTemplate.add_to_preamble(r'\usepackage{cancel}')
 
         eq = MathTex( concat( '&', l.dot( l.Rej(u, v), l.Proj(u, v) ), l.newline ),
-                      concat( r'\quad&=', l.gpgradezero(
-                          l.underbrace( rej, helptext=l.text('Rej') ),
-                          l.underbrace( proj, helptext=l.text('Proj') ) ),
-                          l.newline ),
-                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, u) ), l.lr( l.dot(v, invu) ), l.newline ),
-                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, u) )), l.lr( l.dot(v, invu) ), l.newline ),
+                      concat( r'\quad&=', l.gpgradezero( rej, proj ), l.newline ),
+                      concat( r'\quad &=', l.gpgradezero( vwedgeu, invu, invu ), l.lr( vdotu ), l.newline ),
+                      concat( r'\quad &=', l.gpgradezero( vwedgeu ), l.inv( l.sq( u ) ), l.lr( vdotu ), l.newline ),
                       concat( r'\quad &= 0', l.newline ),
                       tex_template = myTemplate)
 

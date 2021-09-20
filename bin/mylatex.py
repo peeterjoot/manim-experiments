@@ -55,7 +55,7 @@ class latex:
         return concat( '{', sep.join( args ), '}^{', pow, '}' )
 
     def inv( self, *args, sep = '' ):
-        return concat( r'\frac{1}{', sep.join( args ), '}' )
+        return concat( r'\frac{1}{ ', sep.join( args ), ' }' )
 
     def underbrace( self, *args, helptext = '', sep = '' ):
         return concat( r'\underbrace{', sep.join( args ), '}_{', helptext, '}' )

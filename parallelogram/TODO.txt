@@ -5,7 +5,6 @@
 * Expand || u ^ v ||^2 in terms of determinants.
 * Add DrawVectorsAndProjRej: add into ProjRej (no labels until end)
 * Geometry of rejection: show area of rej * ucap and show how ucap is rotated and scaled to the length of rej by the bivector rej \wedge ucap.
-* get rid of underbraces in ProjRejPerp.  use lr(), and pull the dot product right out of the scalar selection first.
 
 nice to have:
 =============
