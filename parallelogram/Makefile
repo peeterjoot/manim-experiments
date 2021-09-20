@@ -7,10 +7,14 @@ else
    MANIMFLAGS := -pql
 endif
 
+#ALL += TitlePage
+ALL += Overview
 ALL += DrawParallelogram
 ALL += ProjRej
+ALL += ProjRej2
 ALL += ProjRejPerp
-ALL += RejIsScalar
+ALL += RejIsVector
+ALL += RejIsVector2
 ALL += ParallelogramComputationGA
 
 ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)

@@ -1,8 +1,14 @@
-* bullet points of what will be covered.
+* Titlepage
 * (audio) Script things.
 * Put in appropriate delays.
-* Switch to xcolor from set_color and color transformer (too painful to get right.)
-  Q: what are the color codes for YELLOW, RED, ... and how do those map to xcolor definitions?  Can probably introduce .sty for color definitions if req'd.
 * Expand the wedge as a sum of bivector determinant scaled unit vectors.
 * Expand || u ^ v ||^2 in terms of determinants.
+* Add DrawVectorsAndProjRej: add into ProjRej (no labels until end)
 * Geometry of rejection: show area of rej * ucap and show how ucap is rotated and scaled to the length of rej by the bivector rej \wedge ucap.
+* get rid of underbraces in ProjRejPerp.  use lr(), and pull the dot product right out of the scalar selection first.
+
+nice to have:
+=============
+* Add colors
+* Switch to xcolor from set_color and color transformer (too painful to get right.)
+   Q: what are the color codes for YELLOW, RED, ... and how do those map to xcolor definitions?  Can probably introduce .sty for color definitions if req'd.]

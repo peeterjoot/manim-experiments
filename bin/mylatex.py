@@ -51,6 +51,12 @@ class latex:
     def neg( self, *args, sep = '' ):
         return concat( '-', sep.join( args ) )
 
+    def power( self, *args, n='1', sep = '' ):
+        return concat( '{', sep.join( args ), '}^{', pow, '}' )
+
+    def inv( self, *args, sep = '' ):
+        return concat( r'\frac{1}{', sep.join( args ), '}' )
+
     def underbrace( self, *args, helptext = '', sep = '' ):
         return concat( r'\underbrace{', sep.join( args ), '}_{', helptext, '}' )
 

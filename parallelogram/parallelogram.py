@@ -4,6 +4,17 @@ from sys import *
 sys.path.append(r'../bin')
 from mylatex import *
 
+class Overview( Scene ):
+    def construct( self ):
+        blist = BulletedList( "Parallelogram Area (visually)",
+                              "Parallelogram Area (vector algebra)",
+                              "Projection and rejection (geometric algebra)",
+                              "Parallelogram Area (GA)",
+                              "Determinant structure of the wedge product",
+                              height=2 )
+        for item in blist:
+            self.play( Write( item ) )
+
 #   p1 + p2
 #     /\
 #    /  \
@@ -125,7 +136,6 @@ class DrawParallelogram( Scene ):
         i = 6
         eq[i].shift( UP )
         self.play( Write( eq[i] ) )
-
         self.wait( )
 
 
@@ -133,35 +143,60 @@ class ProjRej( Scene ):
     def construct( self ):
         l = latex()
         u          = l.vec( 'u' )
-        uhat       = l.hat( 'u' )
+        invu       = l.inv( u )
         v          = l.vec( 'v' )
-        proj       = l.mult( l.lr( l.dot(v, uhat) ), uhat )
-        rej        = l.mult( l.lr( l.wedge(v, uhat) ), uhat )
+        proj       = l.mult( l.lr( l.dot(v, u) ), invu )
+        rej        = l.mult( l.lr( l.wedge(v, u) ), invu )
 
         eq = MathTex( concat( v, r' &= ', v, r'\times 1', l.newline ),
-                      concat( r' &= ', v, uhat, uhat, l.newline ),
-                      concat( r' &= ', l.lr(v, uhat), uhat, l.newline ),
-                      concat( r' &= ', l.lr( l.add( l.dot(v, uhat), l.wedge(v, uhat) ) ), uhat, l.newline ),
-                      concat( r' &= ', l.add( proj, rej ), l.newline ),
-                      concat( l.Proj(u, v), ' &\equiv ', proj, l.newline ),
-                      concat( l.Rej(u, v),  ' &\equiv ', rej, l.newline )
-                    )
+                      concat( r' &= ', v, u, invu, l.newline ),
+                      concat( r' &= ', l.lr(v, u), invu, l.newline ),
+                      concat( r' &= ', l.lr( l.add( l.dot(v, u), l.wedge(v, u) ) ), invu, l.newline ),
+                      concat( r' &= ', l.add( proj, rej ), l.newline ) )
 
         for item in eq:
            self.play( Write( item ) )
 
         self.wait( )
 
+class ProjRej2( Scene ):
+    def construct( self ):
+        l = latex()
+        u          = l.vec( 'u' )
+        invu       = l.inv( u )
+        uhat       = l.hat( 'u' )
+        v          = l.vec( 'v' )
+        proj       = l.mult( l.lr( l.dot(v, u) ), invu )
+        rej        = l.mult( l.lr( l.wedge(v, u) ), invu )
+        proj2      = l.mult( l.lr( l.dot(v, uhat) ), uhat )
+        rej2       = l.mult( l.lr( l.wedge(v, uhat) ), uhat )
+
+        eq = MathTex( concat( l.Proj(u, v), ' &\equiv ', proj, l.newline ),
+                      concat( l.Rej(u, v),  ' &\equiv ', rej, l.newline ) )
+        eq2 = MathTex( concat( l.Proj(u, v), ' &\equiv ', proj, ' = ', proj2, l.newline ),
+                       concat( l.Rej(u, v),  ' &\equiv ', rej, ' = ', rej2, l.newline ) )
+
+        for item in eq:
+            self.play( Write( item ) )
+        #for i in range(2):
+        #   self.play( Write( eq[i] ) )
+#
+#        tb = VGroup( eq[0], eq[1] )
+#        tn = VGroup( eq[2], eq[3] )
+#        self.play( ReplacementTransform( tb, tn ) )
+        self.play( ReplacementTransform( eq, eq2 ) )
+
+        self.wait( )
 
 
 class ProjRejPerp(Scene):
     def construct(self):
         l = latex()
         u          = l.vec('u')
-        uhat       = l.hat('u')
+        invu       = l.inv(u)
         v          = l.vec('v')
-        proj       = l.mult( uhat, l.lr( l.wedge(v, uhat) ) )
-        rej        = l.mult( l.lr( l.wedge(v, uhat) ), uhat )
+        proj       = l.mult( u, l.lr( l.dot(v, invu) ) )
+        rej        = l.mult( l.lr( l.wedge(v, u) ), invu )
         myTemplate = TexTemplate()
         myTemplate.add_to_preamble(r'\usepackage{cancel}')
 
@@ -170,8 +205,8 @@ class ProjRejPerp(Scene):
                           l.underbrace( rej, helptext=l.text('Rej') ),
                           l.underbrace( proj, helptext=l.text('Proj') ) ),
                           l.newline ),
-                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, uhat) ), l.lr( l.dot(v, uhat) ), l.newline ),
-                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, uhat) )), l.lr( l.dot(v, uhat) ), l.newline ),
+                      concat( r'\quad &=', l.gpgradezero( l.wedge(v, u) ), l.lr( l.dot(v, invu) ), l.newline ),
+                      concat( r'\quad &=', l.cancel(l.gpgradezero( l.wedge(v, u) )), l.lr( l.dot(v, invu) ), l.newline ),
                       concat( r'\quad &= 0', l.newline ),
                       tex_template = myTemplate)
 
@@ -182,22 +217,21 @@ class ProjRejPerp(Scene):
 
 
 
-class RejIsScalar(Scene):
+class RejIsVector(Scene):
     def construct(self):
         l = latex()
-        uhat       = l.hat( 'u' )
         u          = l.vec( 'u' )
+        invu       = l.inv( u )
+        uhat       = l.hat( 'u' )
         v          = l.vec( 'v' )
         myTemplate = TexTemplate()
         myTemplate.add_to_preamble( r'\usepackage{cancel}' )
 
         eq = MathTex(
-                concat( l.Rej( u, v ), r' &\equiv ', l.lr( l.wedge( v, uhat ) ), uhat, l.newline ),
-                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, uhat ) ), uhat, l.wedge( l.lr( l.wedge( v, uhat ) ), uhat ) ) ), l.newline ),
-                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, uhat ) ), uhat), l.wedge( v, l.cancel( l.wedge( uhat, uhat ) ) ) ), l.newline ),
-                concat( r'&= ', l.dot( l.lr( l.wedge( v, uhat ) ), uhat ), l.newline ),
-                concat( r'&= ', v, l.sub( l.lr( l.dot( uhat, uhat ) ), l.mult( uhat, l.lr( l.dot( v, uhat) ) ) ), l.newline ),
-                concat( r'&= ', v, l.neg( uhat, l.lr( l.dot( v, uhat ) ) ), l.newline ),
+                concat( l.Rej( u, v ), r' &\equiv ', l.lr( l.wedge( v, u ) ), invu, l.newline ),
+                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, u ) ), invu, l.wedge( l.lr( l.wedge( v, u ) ), invu ) ) ), l.newline ),
+                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, u ) ), invu), l.wedge( v, l.cancel( l.wedge( u, invu ) ) ) ), l.newline ),
+                concat( r'&= ', l.dot( l.lr( l.wedge( v, u ) ), invu ), l.newline ),
                       tex_template = myTemplate )
 
         for item in eq:
@@ -207,81 +241,124 @@ class RejIsScalar(Scene):
 
 
 
+class RejIsVector2(Scene):
+    def construct(self):
+        l = latex()
+        u          = l.vec( 'u' )
+        invu       = l.inv( u )
+        uhat       = l.hat( 'u' )
+        v          = l.vec( 'v' )
+
+        eq = MathTex( concat( l.Rej( u, v ), r' &= ', l.dot( l.lr( l.wedge( v, u ) ), invu ), l.newline ),
+                concat( r'&= ', v, l.sub( l.lr( l.dot( u, invu ) ), l.mult( u, l.lr( l.dot( v, invu) ) ) ), l.newline ),
+                concat( r'&= ', v, l.neg( u, l.lr( l.dot( v, invu ) ) ), l.newline ),
+                concat( r'&= ', v, l.neg( uhat, l.lr( l.dot( v, uhat ) ) ), l.newline ) )
+
+        for item in eq:
+           self.play( Write( item ) )
+
+        self.wait( )
+
+
+def DrawVectorsAndProjRej(self):
+    l = latex()
+    u          = l.vec( 'u' )
+    invu       = l.inv( u )
+    v          = l.vec( 'v' )
+
+    o = np.array( [0, -2, 0] )
+    p1 = np.array( [3, 1, 0] )
+    p2 = np.array( [1, 3, 0] )
+    op1 = o + p1
+    op2 = o + p2
+
+    p1cap = p1/ np.linalg.norm( p1 )
+    proj = np.dot( p2, p1cap ) * p1cap
+    oproj = o + proj
+
+    vproj = Line( start = o, end = oproj, color = PURPLE )
+    vprojl = MathTex( concat( l.lr( l.dot( v, u ) ), invu ) )
+    vprojl.set_color( PURPLE )
+    vprojl.next_to( vproj, DOWN )
+
+    rej = p2 - proj
+    vrej = Line( start = oproj, end = op2, color = GREEN )
+    vrejl = MathTex( concat( l.lr( l.wedge( v, u ) ), invu ) )
+    vrejl.set_color( GREEN )
+    vrejl.next_to( vrej, 0.2 * RIGHT )
+
+    v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
+    v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
+    v1l = MathTex( u )
+    v1l.set_color( RED )
+    v1l.next_to( v1, RIGHT )
+    v2l = MathTex( v )
+    v2l.set_color( YELLOW )
+    v2l.next_to( v2, UP )
+
+    all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
+    move = ( -6.5, 2, 0 )
+    all.shift( move )
+
+    self.add( all )
+
 class ParallelogramComputationGA(Scene):
     def construct(self):
         l = latex()
         u          = l.vec( 'u' )
-        uhat       = l.hat( 'u' )
+        #uhat       = l.hat( 'u' )
+        invu       = l.inv( u )
         v          = l.vec( 'v' )
 
-        o = np.array( [0, -2, 0] )
-        p1 = np.array( [3, 1, 0] )
-        p2 = np.array( [1, 3, 0] )
-        op1 = o + p1
-        op2 = o + p2
+        DrawVectorsAndProjRej( self )
 
-        p1cap = p1/ np.linalg.norm( p1 )
-        proj = np.dot( p2, p1cap ) * p1cap
-        oproj = o + proj
-
-        vproj = Line( start = o, end = oproj, color = PURPLE )
-        vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
-        vprojl.set_color( PURPLE )
-        vprojl.next_to( vproj, DOWN )
-
-        rej = p2 - proj
-        vrej = Line( start = oproj, end = op2, color = GREEN )
-        vrejl = MathTex( concat( l.lr( l.wedge( v, uhat ) ), uhat ) )
-        vrejl.set_color( GREEN )
-        vrejl.next_to( vrej, 0.2 * RIGHT )
-
-        v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
-        v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
-        v1l = MathTex( u )
-        v1l.set_color( RED )
-        v1l.next_to( v1, RIGHT )
-        v2l = MathTex( v )
-        v2l.set_color( YELLOW )
-        v2l.next_to( v2, UP )
-
-        all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
-        move = ( -6.5, 2, 0 )
-        all.shift( move )
-
-        self.add( all )
-
-
-        squ        = l.sq( u )
-        sqv        = l.sq( v )
-        vdotuhatsq = l.lrsq( l.dot( v, uhat ) )
+        uu         = l.sq( u )
+        vv         = l.sq( v )
+        vdotusq    = l.lrsq( l.dot( v, u ) )
         vwedgeu    = l.wedge( v, u )
         uwedgev    = l.wedge( u, v )
-        rej        = l.mult( l.lr( l.wedge( v, uhat ) ), uhat )
-        rrej       = l.mult( uhat, l.lr( l.wedge( uhat, v ) ) )
+        rej        = l.mult( l.lr( l.wedge( v, u ) ), invu )
+        rrej       = l.mult( invu, l.lr( l.wedge( u, v ) ) )
         eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( l.lrsq( rej ), l.newline ), # 1,2
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( rej, rrej, l.newline ), # 3,4
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ ), concat( l.lr( l.wedge( v, uhat ) ), l.lr( l.wedge( uhat, v ) ), l.newline ), # 5,6
-                      concat( '&= ', l.lr( l.wedge( v, u ) ), l.lr( l.wedge( u, v ) ), ' = ', l.neg( l.lrsq( l.wedge( v, u ) ) ), l.newline ),
-                      #concat( '&= ', l.neg( l.lrsq( vwedgeu )), l.newline ),
-                      concat( '&= ', l.dot( l.lr( vwedgeu ), l.lr( uwedgev ) ), l.newline ),
-                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( l.dot( v, u ) ) ), l.newline )
+                      concat( l.sq( l.text( 'Area' ) ), r' &= ' ), concat( uu, l.lrsq( rej ), l.newline ), # 1,2
+                      concat( '&= ' ), concat( uu, rej, rrej, l.newline ), # 3,4
+                      concat( '&= ' ), concat( rej, uu, rrej, l.newline ), # 5,6
+                      concat( '&= ' ), concat( l.lr(vwedgeu), l.lr(uwedgev), l.newline ), # 7,8
+                      concat( '&= ', l.neg( l.lrsq( vwedgeu )), l.newline ),
                     )
 
-        eq.shift( 2.4 * RIGHT )
+        eq.shift( 2 * RIGHT )
 
         for i in range( 3 ):
             self.play( Write( eq[i] ) )
-        eq[4].shift( 0.8 * UP )
-        eq[6].shift( 2 * 0.8 * UP )
 
+        eq[4].shift( 1.35 * UP )
         self.play( ReplacementTransform( eq[2], eq[4] ) )
         self.wait( )
+
+        eq[6].shift( 2.5 * UP )
         self.play( ReplacementTransform( eq[4], eq[6] ) )
         self.wait( )
 
-        for i in range( 7, 10 ):
-            eq[i].shift( 2 * 0.8 * UP )
-            self.play( Write( eq[i] ) )
-
+        eq[8].shift( 3.5 * UP )
+        self.play( ReplacementTransform( eq[6], eq[8] ) )
         self.wait( )
+
+        i = 9
+        eq[i].shift( 3.5 * UP )
+        self.play( Write( eq[i] ) )
+        self.wait( )
+
+        eq2 = MathTex(
+                concat( l.lrsq( vwedgeu ), '&=', l.dot( l.lr(vwedgeu), l.lr(vwedgeu) ), l.newline ),
+                concat( '&=', l.dot( v, l.lr( l.dot( u, l.lr(vwedgeu) ) ) ), l.newline ),
+                concat( '&=', l.dot( v, l.lr( l.sub(
+                    l.mult( l.lr( l.dot(u, v) ), u ),
+                    l.mult(uu, v)
+                    ) ) ), l.newline ),
+                concat( '&=', l.sub( vdotusq, l.mult( uu, vv ) ), l.newline ) )
+        eq2.shift( 1.5 * DOWN + 2 * RIGHT )
+
+        for item in eq2:
+            self.play( Write( item ) )
+
