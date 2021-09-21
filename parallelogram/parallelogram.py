@@ -375,7 +375,7 @@ class RejIsVector(Scene):
 
         eq = MathTex(
                 concat( l.Rej( u, v ), r' &\equiv ', l.lr( l.wedge( v, u ) ), invu, l.newline ),
-                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, u ) ), invu, l.wedge( l.lr( l.wedge( v, u ) ), invu ) ) ), l.newline ),
+                concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, u ) ), invu), l.wedge( l.lr( l.wedge( v, u ) ), invu ) ), l.newline ),
                 concat( r'&= ', l.add( l.dot( l.lr( l.wedge( v, u ) ), invu), l.wedge( v, l.cancel( l.wedge( u, invu ) ) ) ), l.newline ),
                 concat( r'&= ', l.dot( l.lr( l.wedge( v, u ) ), invu ), l.newline ),
                       tex_template = myTemplate )
