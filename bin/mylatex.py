@@ -25,10 +25,11 @@ class latex:
         return concat( r'\frac{ ', num, ' }{ ', den, ' }' )
 
     def vec( self, v ):
-        return concat( r'\vec{', v, '}' )
+        #return concat( r'\vec{', v, '}' )
+        return concat( r'\mathbf{', v, '}' )
 
     def hat( self, v ):
-        return concat( r'\hat{', v, '}' )
+        return concat( r'\hat{ \mathbf{', v, '} }' )
 
     def cancel( self, *args, sep = '' ):
         return concat( r'\cancel{', sep.join( args ), '}' )
@@ -40,6 +41,9 @@ class latex:
         return sep.join( args )
 
     def wedge( self, *args, sep = r' \wedge ' ):
+        return sep.join( args )
+
+    def cross( self, *args, sep = r' \times ' ):
         return sep.join( args )
 
     def add( self, *args, sep = ' + ' ):

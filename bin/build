@@ -10,7 +10,7 @@ build - <one-line-description>
 
 =head1 SYNOPSIS
 
-build [--help] [<options>]
+build [--help] [--killonly]
 
 =head1 DESCRIPTION
 
@@ -58,12 +58,14 @@ select STDOUT ; $| = 1 ;
 
 my $myName = '' ;
 my $main = 'parallelogram.py';
+my $killonly = 0;
 ($myName = $0) =~ s@.*[/\\]@@ ;
 
 Getopt::Long::Configure( 'pass_through' ) ;
 GetOptions (
    'help'               => sub { pod2usage(-verbose => 2) ; },
-   'main=s'             => \$main
+   'main=s'             => \$main,
+   'killonly!'          => \$killonly
 ) or pod2usage(-verbose => 0) ;
 
 open my $fh, "ps -ef | grep 'QuickTime Player' | grep -v grep|" or die;
@@ -78,4 +80,7 @@ while (<$fh>)
 }
 close $fh;
 
-system( qq(manim -pql $main @ARGV) );
+unless ( $killonly )
+{
+   system( qq(manim -pql $main @ARGV) );
+}

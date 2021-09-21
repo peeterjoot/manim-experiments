@@ -17,6 +17,8 @@ ALL += ProjRejPerp
 ALL += RejIsVector
 ALL += RejIsVector2
 ALL += ParallelogramComputationGA
+ALL += WedgeToDet
+ALL += WedgeR3
 
 ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
 
@@ -33,6 +35,8 @@ parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
 	for i in $(ALL) ; do echo file media/videos/parallelogram/$(RESOLUTION)/$$i.mp4 >> concat.in ; done
 	ffmpeg -f concat -safe 0 -i concat.in -c copy $@
+	../bin/build --killonly
+	open $@
 
 clean:
 	rm -rf __pycache__ media *.mp4 concat.in

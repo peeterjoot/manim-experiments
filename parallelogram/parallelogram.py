@@ -467,3 +467,180 @@ class ParallelogramComputationGA(Scene):
             self.play( Write( item ) )
 
         self.wait( )
+
+
+
+class WedgeToDet(Scene):
+    def construct(self):
+        l = latex()
+        u          = l.vec( 'u' )
+        v          = l.vec( 'v' )
+
+        eq = MathTex( concat( r'\text{Let}\,', u, '= \sum_{i=1}^N u_i \mathbf{e}_i, \quad ', v, '= \sum_{i=1}^N v_i \mathbf{e}_i' ) )
+
+        eq2 = MathTex( concat( l.wedge(u, v), r'= '),
+                       l.wedge( l.lr( r'\sum_{i=1}^N u_i \mathbf{e}_i' ), l.lr( r'\sum_{j=1}^N v_i \mathbf{e}_j' ) ) )
+        eq2.shift( 2 * LEFT )
+
+        eq3 = MathTex(
+                concat( r' \sum_{ij=1}^N u_i v_j', l.lr( r'\mathbf{e}_i \wedge \mathbf{e}_j' ) ),
+                concat( r' \sum_{i \ne j} u_i v_j', l.lr( r'\mathbf{e}_i \wedge \mathbf{e}_j' ) ),
+                concat( r' \sum_{i \ne j} u_i v_j', r'\mathbf{e}_i \mathbf{e}_j' ),
+                concat( l.lr( l.add( r' \sum_{i < j}', r' \sum_{i > j}' ) ), r' u_i v_j', r'\mathbf{e}_i \mathbf{e}_j' ),
+                concat( l.add( l.mult( r' \sum_{i < j} u_i v_j', r'\mathbf{e}_i \mathbf{e}_j' ),
+                               l.mult( r' \sum_{j > i} u_j u_i', r'\mathbf{e}_j \mathbf{e}_i' ) ) ),
+                concat( r' \sum_{i < j} (u_i v_j - u_j v_i)', r'\mathbf{e}_i \mathbf{e}_j' ),
+                concat( r' \sum_{i < j} \begin{vmatrix} u_i & v_i \\ u_j & v_j \end{vmatrix}', r'\mathbf{e}_i \mathbf{e}_j' ) )
+        shifts = [ LEFT,
+                   0.2 * DOWN,
+                   0.5 * LEFT,
+                   0.2 * UP + 1.0 * RIGHT,
+                   0.2 * DOWN + 0.5 * RIGHT,
+                   0.5 * LEFT,
+                   0.5 * LEFT + 0.15 * UP ]
+
+        eq4 = MathTex( concat( l.neg( l.lrsq( l.wedge(u, v) ) ), r'= ', r' \sum_{i < j} {\begin{vmatrix} u_i & v_i \\ u_j & v_j \end{vmatrix} }^2' ) )
+
+        for item in eq:
+            self.play( Write( item ) )
+        self.wait( )
+        self.play( FadeOut( eq ) )
+
+        for item in eq2:
+            self.play( Write( item ) )
+        self.wait( )
+
+        last = eq2[1]
+        i = 0
+        for item in eq3:
+            item.move_to( last )
+            item.shift( shifts[i] )
+            self.play( ReplacementTransform( last, item ) )
+            self.wait( )
+            last = item
+            i = i + 1
+
+        self.wait( )
+
+        g = VGroup( eq2[0], last )
+        gc = g.copy()
+        gc.shift( 1 * UP + 3 * RIGHT )
+
+        self.play( ReplacementTransform( g, gc ) )
+        self.wait( 2 )
+
+        eq4.move_to( gc )
+        eq4.shift( 2 * DOWN )
+        self.play( Write( eq4 ) )
+        self.wait( )
+
+
+def playAndFadeOut( self, eq, pos ):
+    eq[0].move_to( pos )
+    eq[0].shift( 2 * DOWN )
+    eq[1].move_to( eq[0] )
+    eq[0].shift( 3 * LEFT )
+    eq[1].shift( RIGHT )
+    self.play( Write( eq[0] ), Write( eq[1] ) )
+
+    n=len(eq)
+
+    last=eq[1]
+    for i in range( 1, n-1 ):
+        eq[i+1].move_to( last )
+        self.play( ReplacementTransform( last, eq[i+1] ) )
+        last = eq[i+1]
+        self.wait( )
+
+    g = VGroup( eq[0], last )
+    self.play( FadeOut( g ) )
+
+class WedgeR3(Scene):
+    def construct(self):
+        l = latex()
+        u          = l.vec( 'u' )
+        v          = l.vec( 'v' )
+
+        t = MathTex( r'\mathbb{R}^3' ).scale(2)
+        t.shift( 2 * UP )
+        t.set_color( RED )
+        self.add( t )
+
+        eqa = MathTex( concat( l.wedge(u, v), r'= \sum_{i < j} \begin{vmatrix} u_i & v_i \\ u_j & v_j \end{vmatrix} \mathbf{e}_i \mathbf{e}_j' ) )
+        for item in eqa:
+            self.play( Write( item ) )
+
+        t12 = MathTex( r'i,j = 1,2:\quad',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_2 & v_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_2 & v_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 (\mathbf{e}_3 \mathbf{e}_3)',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_2 & v_2 \end{vmatrix} (\mathbf{e}_1 \mathbf{e}_2 \mathbf{e}_3) \mathbf{e}_3',
+                       r'I \begin{vmatrix} u_1 & v_1 \\ u_2 & v_2 \end{vmatrix} \mathbf{e}_3' )
+        playAndFadeOut( self, t12, eqa )
+
+        t13 = MathTex( r'i,j = 1,3:\quad',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_3',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1 (\mathbf{e}_2 \mathbf{e}_2) \mathbf{e}_3',
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 (-\mathbf{e}_3 \mathbf{e}_2)',
+                       r'-\begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} (\mathbf{e}_1 \mathbf{e}_2 \mathbf{e}_3) \mathbf{e}_2',
+                       r'- I \begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_2' )
+        playAndFadeOut( self, t13, eqa )
+
+        t23 = MathTex( r'i,j = 2,3:\quad',
+                       r'\begin{vmatrix} u_2 & v_2 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_2 \mathbf{e}_3',
+                       r'\begin{vmatrix} u_2 & v_2 \\ u_3 & v_3 \end{vmatrix} (\mathbf{e}_1 \mathbf{e}_1) \mathbf{e}_2 \mathbf{e}_3',
+                       r'\begin{vmatrix} u_2 & v_2 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1 (\mathbf{e}_1 \mathbf{e}_2 \mathbf{e}_3)',
+                       r'I \begin{vmatrix} u_2 & v_2 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1' )
+        playAndFadeOut( self, t23, eqa )
+
+        eqb = MathTex( concat( l.wedge(u, v), r'= I ', l.lr(
+                       r'\begin{vmatrix} u_1 & v_1 \\ u_2 & v_2 \end{vmatrix} \mathbf{e}_3',
+                       r'- \begin{vmatrix} u_1 & v_1 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_2',
+                       r'+ \begin{vmatrix} u_2 & v_2 \\ u_3 & v_3 \end{vmatrix} \mathbf{e}_1' ) ) )
+
+        eqc = MathTex( concat( l.wedge(u, v), r'= I ',
+                       r'\begin{vmatrix}',
+                       r'\mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\',
+                       r'u_1 & u_2 & u_3 \\',
+                       r'v_1 & v_2 & v_3',
+                       r'\end{vmatrix}' ) )
+
+        eqd = MathTex( concat( l.wedge(u, v), r'= I ', l.lr( l.cross( u, v ) ) ) )
+
+        self.play( ReplacementTransform( eqa, eqb ) )
+        self.wait( )
+        self.play( ReplacementTransform( eqb, eqc ) )
+        self.wait( )
+        self.play( ReplacementTransform( eqc, eqd ) )
+        self.wait( )
+
+        o = np.array( [0, -2, 0] )
+        p1 = np.array( [3, 1, 0] )
+        p2 = np.array( [1, 3, 0] )
+        p1 = 0.6 * p1
+        p2 = 0.6 * p2
+        op1 = o + p1
+        op2 = o + p2
+        op3 = op1 + p2
+
+        v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
+        v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
+        v1p = Arrow( start = op1, end = op3, buff = 0, color = YELLOW )
+        v2p = Arrow( start = op2, end = op3, buff = 0, color = RED )
+
+        v1l = MathTex( u )
+        v2l = MathTex( v )
+        v1l.next_to( v1, RIGHT )
+        v2l.next_to( v2, UP )
+        v1l.set_color( RED )
+        v2l.set_color( YELLOW )
+
+        g = VGroup( v1, v2, v1p, v2p, v1l, v2l )
+        g.move_to( -4 * RIGHT - 1.5 * UP )
+
+        self.play( Write( g ) )
+
+        eqe = MathTex( concat( r'{\text{Area} }^2 = ', l.neg( l.lrsq( l.wedge( u, v ) ) ), ' = ', l.norm2( l.cross( u, v ) ) ) )
+        eqe.move_to( g )
+        eqe.shift( 5 * RIGHT )
+        self.play( Write( eqe ) )
+        self.wait( )
