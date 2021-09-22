@@ -19,6 +19,7 @@ ALL += RejIsVector2
 ALL += ParallelogramComputationGA
 ALL += WedgeToDet
 ALL += WedgeR3
+ALL += Areas
 
 ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
 
