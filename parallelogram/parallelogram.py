@@ -544,9 +544,9 @@ def playAndFadeOut( self, eq, pos ):
     eq[1].shift( RIGHT )
     self.play( Write( eq[0] ), Write( eq[1] ) )
 
-    n=len(eq)
+    n = len( eq )
 
-    last=eq[1]
+    last = eq[1]
     for i in range( 1, n-1 ):
         eq[i+1].move_to( last )
         self.play( ReplacementTransform( last, eq[i+1] ) )
@@ -685,7 +685,7 @@ class Areas(Scene):
         #self.add( parallelogram )
         #self.wait( )
 
-        rest = [parallelogram, hexagon, circle, ellipse ]
+        rest = [ parallelogram, hexagon, circle, ellipse ]
         ac = CurvedArrow( [r, 0, 0], [0, r, 0] )
         ac.move_to( square )
         ac.shift( 0.1 * DOWN + 0.1 * LEFT )
@@ -699,3 +699,102 @@ class Areas(Scene):
             self.play( FadeIn( ac ) )
             self.wait( )
             last=item
+
+def OrientedPolygon( *vertices, c, f, d1, d2 ):
+    n = len( vertices )
+    l = latex()
+
+    print( vertices )
+
+    poly = Polygon( *vertices, color = c , fill_opacity = f )
+    v1 = MathTex( concat( r'{ ', l.vec('v'), r' }_1' ) )
+    v2 = MathTex( concat( r'{ ', l.vec('v'), r' }_2' ) )
+    v1.set_color( RED )
+    v2.set_color( BLUE )
+    g = VGroup( poly, v1, v2 )
+
+    for i in range( n ):
+        a = Arrow( vertices[ i ], vertices[ (i + 1 ) % n ], buff = 0 )
+        if i == 0:
+            v1.next_to( a, d1 )
+            a.set_color( RED )
+        elif i == 1:
+            v2.next_to( a, d2 )
+            a.set_color( BLUE )
+        else:
+            a.set_color( c )
+
+        g.add( a )
+
+    return g
+
+def unitParallelogram(o, v1, v2, scale):
+        v1cap = v1/ np.linalg.norm( v1 )
+        cross = np.cross( v2, v1cap )
+
+        v1 = scale * v1cap / np.linalg.norm( cross )
+        v2 = scale * v2
+        ov1 = o + v1
+        ov2 = o + v2
+        ov12 = ov1 + v2
+
+        ppoints = [ o, ov1, ov12, ov2 ]
+
+        return ppoints
+
+#class Polygon(Polygram):
+#    def __init__(self, *vertices: Sequence[float], **kwargs):
+#        super().__init__(vertices, **kwargs)
+
+class BivectorAddition( Scene ):
+    def construct( self ):
+        number_plane = NumberPlane(
+            x_range = [-10, 10, 1],
+            y_range = [-10, 10, 1],
+
+            background_line_style={
+                "stroke_color": TEAL,
+                "stroke_width": 4,
+                "stroke_opacity": 0.6
+            }
+        )
+
+        o = np.array( [0, 0, 0] )
+        p1 = [ np.array( [ 1, 1/3, 0 ] ), np.array( [ -1/4, 1, 0 ] ), np.array( [-1, -1/2, 0] ),  np.array( [ 1/4, -1, 0 ] ) ]
+        p2 = [ np.array( [ 1/3, 1, 0 ] ), np.array( [-0.8, 1/3, 0 ] ), np.array( [-1/2, -1.25, 0] ), np.array( [ 1, -2/7, 0 ] ) ]
+
+        self.add( number_plane )
+        l = latex()
+        v1t = concat( l.vec('v'), r'_1' )
+        v2t = concat( l.vec('v'), r'_2' )
+        e1t = concat( l.vec('e'), r'_1' )
+        e2t = concat( l.vec('e'), r'_2' )
+        print( v1t )
+        v1 = MathTex( v1t )
+        v2 = MathTex( v2t )
+        e1 = MathTex( concat( l.vec('e'), r'_1' ) )
+        e2 = MathTex( concat( l.vec('e'), r'_2' ) )
+        p = MathTex( v1t, r' \wedge ', v2t, ' = 4', e1t, e2t )
+        p[0].set_color( RED )
+        p[2].set_color( BLUE )
+
+        dir1 = ( RIGHT, UP, LEFT, DOWN )
+        dir2 = ( RIGHT + 0.5 * UP, LEFT, LEFT + 0.25 * DOWN, DOWN + 0.25 * RIGHT )
+
+        for i in range(4):
+            ppoints = unitParallelogram( o, p1[i], p2[i], 2 )
+            pg = OrientedPolygon( *ppoints, c = PURPLE, f = 0.5, d1 = dir1[i], d2 = dir2[i] )
+
+            if i == 0:
+                p.move_to( pg )
+                p.shift( 3 * RIGHT )
+                self.play( Write( pg ) )
+                self.play( Write( p ) )
+                self.wait( )
+            else:
+                self.play( FadeOut( p ) )
+                self.play( ReplacementTransform( last, pg ) )
+                self.play( FadeIn( p ) )
+                self.wait( )
+
+            last = pg
