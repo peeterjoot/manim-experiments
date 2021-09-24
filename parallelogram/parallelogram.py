@@ -647,104 +647,78 @@ class WedgeR3(Scene):
         self.wait( )
 
 
-class Areas(Scene):
-    def construct(self):
-
-        square = Square(color = MAROON_A, fill_opacity = 0.5)
-
-        hexwidth = np.sqrt( 2 * np.sqrt(3) ) * 2/3
-        hexagon = RegularPolygon( n = 6, start_angle = 30 * DEGREES, color = GREEN, fill_opacity = 0.5)
-        hexagon.scale( hexwidth )
-
-        r = 1/np.sqrt( math.pi )
-        #circle = Circle( color = RED, fill_opacity = 0.5)
-        #circle.scale( circlewidth )
-        circle = Ellipse( width = 2*r, height = 2*r, color = RED, fill_opacity = 0.5 )
-        circle.scale( 2 ) # why?
-
-        a = 1.3/np.sqrt( math.pi )
-        b = 1/( math.pi * a )
-        ellipse = Ellipse( width = 2*a, height = 2*b, color = BLUE_B, fill_opacity = 0.5 )
-        ellipse.scale( 2 ) # why?
-
-        o = np.array( [0, 0, 0] )
-        p1 = np.array( [1, 1/3, 0] )
-        p2 = np.array( [1/3, 1, 0] )
-
-        p1cap = p1/ np.linalg.norm( p1 )
-        cross = np.cross( p2, p1cap )
-
-        p1 = p1cap / np.linalg.norm( cross )
-        op1 = o + p1
-        op2 = o + p2
-
-        ppoints = [ o, op1, op1 + p2, op2 ]
-        parallelogram = Polygon( *ppoints, color = PURPLE, fill_opacity = 0.5 )
-        parallelogram.scale( 2 )
-        parallelogram.shift( 1.0 * DOWN + 1.0 * LEFT )
-        #self.add( parallelogram )
-        #self.wait( )
-
-        rest = [ parallelogram, hexagon, circle, ellipse ]
-        ac = CurvedArrow( [r, 0, 0], [0, r, 0] )
-        ac.move_to( square )
-        ac.shift( 0.1 * DOWN + 0.1 * LEFT )
-        g = VGroup( square, ac )
-        self.play( Write( g ) )
-        self.wait( )
-        last=square
-        for item in rest:
-            self.play( FadeOut( ac ) )
-            self.play( ReplacementTransform( last, item ) )
-            self.play( FadeIn( ac ) )
-            self.wait( )
-            last=item
-
-def OrientedPolygon( *vertices, c, f, d1, d2 ):
+def OrientedPolygon( *vertices, c0, c1, c2, f, d1, d2, tex ):
     n = len( vertices )
     l = latex()
 
-    print( vertices )
+    #print( vertices )
 
-    poly = Polygon( *vertices, color = c , fill_opacity = f )
-    v1 = MathTex( concat( r'{ ', l.vec('v'), r' }_1' ) )
-    v2 = MathTex( concat( r'{ ', l.vec('v'), r' }_2' ) )
-    v1.set_color( RED )
-    v2.set_color( BLUE )
-    g = VGroup( poly, v1, v2 )
+    poly = Polygon( *vertices, color = c0 , fill_opacity = f )
+    g = VGroup( poly )
+
+    if tex:
+        v1 = MathTex( concat( r'{ ', l.vec('v'), r' }_1' ) )
+        v1.set_color( c1 )
+        v2 = MathTex( concat( r'{ ', l.vec('v'), r' }_2' ) )
+        v2.set_color( c2 )
+        g = g + VGroup( v1, v2 )
 
     for i in range( n ):
-        a = Arrow( vertices[ i ], vertices[ (i + 1 ) % n ], buff = 0 )
+        a = Arrow( vertices[ i ], vertices[ (i + 1 ) % n ], buff = 0, max_tip_length_to_length_ratio = 0.1 )
         if i == 0:
-            v1.next_to( a, d1 )
-            a.set_color( RED )
+            if tex:
+                v1.next_to( a, d1 )
+            a.set_color( c1 )
         elif i == 1:
-            v2.next_to( a, d2 )
-            a.set_color( BLUE )
+            if tex:
+                v2.next_to( a, d2 )
+            a.set_color( c2 )
         else:
-            a.set_color( c )
-
+            a.set_color( c0 )
         g.add( a )
 
     return g
 
-def unitParallelogram(o, v1, v2, scale):
-        v1cap = v1/ np.linalg.norm( v1 )
-        cross = np.cross( v2, v1cap )
 
-        v1 = scale * v1cap / np.linalg.norm( cross )
-        v2 = scale * v2
-        ov1 = o + v1
-        ov2 = o + v2
-        ov12 = ov1 + v2
+def OrientedRegularPolygon( num, r, c, f ):
+    x = np.array( [r, 0, 0] )
+    pts = [ x ]
+    theta = math.pi * 2 / num
+    for i in range(1, num):
+        y = np.array( [ r * math.cos( i * theta ), r * math.sin( i * theta ), 0 ] )
+        direction = x - y
+        x = y
+        last = pts[i-1]
+        pts.append( last + direction )
 
-        ppoints = [ o, ov1, ov12, ov2 ]
+    sq = OrientedPolygon( *pts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
 
-        return ppoints
+    return sq
+
+class test( Scene ):
+    def construct( self ):
+        print( 'hi' )
+
+
+
+def unitParallelogram( o, v1, v2, scale ):
+    v1cap = v1/ np.linalg.norm( v1 )
+    cross = np.cross( v2, v1cap )
+
+    v1 = scale * v1cap / np.linalg.norm( cross )
+    v2 = scale * v2
+    ov1 = o + v1
+    ov2 = o + v2
+    ov12 = ov1 + v2
+
+    ppoints = [ o, ov1, ov12, ov2 ]
+
+    return ppoints
 
 #class Polygon(Polygram):
 #    def __init__(self, *vertices: Sequence[float], **kwargs):
 #        super().__init__(vertices, **kwargs)
+
 
 class BivectorAddition( Scene ):
     def construct( self ):
@@ -769,7 +743,7 @@ class BivectorAddition( Scene ):
         v2t = concat( l.vec('v'), r'_2' )
         e1t = concat( l.vec('e'), r'_1' )
         e2t = concat( l.vec('e'), r'_2' )
-        print( v1t )
+        #print( v1t )
         v1 = MathTex( v1t )
         v2 = MathTex( v2t )
         e1 = MathTex( concat( l.vec('e'), r'_1' ) )
@@ -780,21 +754,98 @@ class BivectorAddition( Scene ):
 
         dir1 = ( RIGHT, UP, LEFT, DOWN )
         dir2 = ( RIGHT + 0.5 * UP, LEFT, LEFT + 0.25 * DOWN, DOWN + 0.25 * RIGHT )
+        shift = 4
+        pos = ( shift * LEFT, shift * RIGHT, shift * RIGHT, shift * LEFT )
 
         for i in range(4):
             ppoints = unitParallelogram( o, p1[i], p2[i], 2 )
-            pg = OrientedPolygon( *ppoints, c = PURPLE, f = 0.5, d1 = dir1[i], d2 = dir2[i] )
+            pg = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = RED, c2 = BLUE, f = 0.5, d1 = dir1[i], d2 = dir2[i], tex = 1 )
 
+            p.move_to( pg )
+            p.shift( pos[i] )
+            totx = VGroup( pg, p )
             if i == 0:
-                p.move_to( pg )
-                p.shift( 3 * RIGHT )
-                self.play( Write( pg ) )
-                self.play( Write( p ) )
+                self.play( Write( totx ) )
                 self.wait( )
             else:
-                self.play( FadeOut( p ) )
-                self.play( ReplacementTransform( last, pg ) )
-                self.play( FadeIn( p ) )
+                self.play( ReplacementTransform( fromtx, totx ) )
                 self.wait( )
 
-            last = pg
+            fromtx = totx
+
+        i = 3
+        add1 = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
+        self.play( ReplacementTransform( fromtx, add1 ) )
+        p1 = MathTex( v1t, r' \wedge ', v2t, ' = 4', e1t, e2t )
+        p1.move_to( add1 )
+        p1.shift( 4 * LEFT )
+        self.play( ReplacementTransform( p, p1 ) )
+        self.wait( )
+
+        add2 = add1.copy();
+        add2.shift( 2 * UP )
+        self.play( FadeOut( p1 ) )
+        self.play( Write( add2 ) )
+        p2 = MathTex( r'2 ', l.lr( v1t, r' \wedge ', v2t ), ' = 8', e1t, e2t )
+        p2.move_to( VGroup( add1, add2 ) )
+        p2.shift( 4 * LEFT + 2 * UP )
+        self.play( Write( p2 ) )
+        self.wait( )
+
+        add3 = add1.copy();
+        add3.shift( 2 * LEFT + 0.55 * UP )
+        self.play( FadeOut( p2 ) )
+        self.play( Write( add3 ) )
+        p3 = MathTex( '3 ', l.lr( v1t, r' \wedge ', v2t ), ' = 12 ', e1t, e2t )
+        p3.move_to( add2 )
+        p3.shift( 4 * LEFT + 1 * UP )
+        self.play( Write( p3 ) )
+        self.wait( )
+
+        add4 = add3.copy();
+        add4.shift( 2 * UP )
+        self.play( FadeOut( p3 ) )
+        self.play( Write( add4 ) )
+        p4 = MathTex( '4 ', l.lr( v1t, r' \wedge ', v2t ), ' = 16 ', e1t, e2t )
+        p4.move_to( VGroup( add2, add4 ) )
+        p4.shift( 1.8 * UP + 3 * RIGHT )
+        self.play( Write( p4 ) )
+        self.wait( )
+
+        o2 = np.array( [-2, -2, 0] )
+        p1s = np.array( [1, 0, 0] )
+        p2s = np.array( [0, 1, 0] )
+        sqpts = unitParallelogram( o2, p1s, p2s, 4 )
+        sq = OrientedPolygon( *sqpts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
+        self.play( ReplacementTransform( VGroup( add1, add2, add3, add4 ), sq ) )
+
+        pentwidth = np.sqrt( 2/(5 * math.sin( 2 * math.pi / 5 ) ) )
+        pentagon = OrientedRegularPolygon( 5, pentwidth, PURPLE, 0.5 )
+        pentagon.scale( 4 )
+        pentagon.shift( 2 * LEFT * pentwidth )
+        self.play( ReplacementTransform( sq, pentagon ) )
+        self.wait( )
+
+        hexwidth = np.sqrt( 2 * np.sqrt(3) ) * 2/3
+        hexagon = OrientedRegularPolygon( 6, hexwidth, PURPLE, 0.5 )
+        hexagon.scale( 2 )
+        hexagon.shift( 2 * LEFT * hexwidth )
+        self.play( ReplacementTransform( pentagon, hexagon ) )
+        self.wait( )
+
+        r = 1/np.sqrt( math.pi )
+        circle = Ellipse( width = 2*r, height = 2*r, color = PURPLE, fill_opacity = 0.5 )
+        circle.scale( 4 )
+        ac = CurvedArrow( [2 * r, 0, 0], [0, 2 * r, 0] )
+        ac.move_to( circle )
+        ac.set_color( PURPLE )
+        self.play( ReplacementTransform( hexagon, circle ) )
+        self.add( ac )
+        self.wait( )
+
+        a = 1.3/np.sqrt( math.pi )
+        b = 1/( math.pi * a )
+        ellipse = Ellipse( width = 2*a, height = 2*b, color = PURPLE, fill_opacity = 0.5 )
+        ellipse.scale( 4 )
+        self.play( ReplacementTransform( circle, ellipse ) )
+        self.wait( )

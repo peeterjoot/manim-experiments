@@ -1,7 +1,6 @@
 3) Titlepage: 1 sec.
 4) (audio) Script things.
 5) Put in appropriate delays.
-6) Merge BivectorAddition w/ Areas, with Addition illustrated.
 
 nice to have:
 =============
