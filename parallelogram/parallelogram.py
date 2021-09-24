@@ -729,7 +729,7 @@ class BivectorAddition( Scene ):
             background_line_style={
                 "stroke_color": TEAL,
                 "stroke_width": 4,
-                "stroke_opacity": 0.6
+                "stroke_opacity": 0.4
             }
         )
 
@@ -817,7 +817,11 @@ class BivectorAddition( Scene ):
         p2s = np.array( [0, 1, 0] )
         sqpts = unitParallelogram( o2, p1s, p2s, 4 )
         sq = OrientedPolygon( *sqpts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
-        self.play( ReplacementTransform( VGroup( add1, add2, add3, add4 ), sq ) )
+        p5 = MathTex( '16 ', e1t, e2t ).scale( 2 )
+        p5.move_to( sq )
+        p5.shift( 2 * UP + 4 * RIGHT )
+        g = VGroup( sq, p5 )
+        self.play( ReplacementTransform( VGroup( add1, add2, add3, add4, p4 ), g ) )
 
         pentwidth = np.sqrt( 2/(5 * math.sin( 2 * math.pi / 5 ) ) )
         pentagon = OrientedRegularPolygon( 5, pentwidth, PURPLE, 0.5 )
