@@ -7,7 +7,7 @@ else
    MANIMFLAGS := -pql
 endif
 
-#ALL += TitlePage
+ALL += TitlePage
 ALL += Overview
 ALL += DrawParallelogram
 ALL += ProjRej
@@ -36,8 +36,8 @@ parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
 	for i in $(ALL) ; do echo file media/videos/parallelogram/$(RESOLUTION)/$$i.mp4 >> concat.in ; done
 	ffmpeg -f concat -safe 0 -i concat.in -c copy $@
-	../bin/build --killonly
-	open $@
+	#../bin/build --killonly
+	#open $@
 
 clean:
 	rm -rf __pycache__ media *.mp4 concat.in
