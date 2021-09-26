@@ -143,15 +143,9 @@ def unitParallelogram( o, v1, v2, scale ):
     return ppoints
 
 
-#class TitlePage( Scene ):
-#    def construct( self ):
-#        t = Text( "Geometric algebra, wedge products and area." )
-#
-#        self.add( t )
-#        self.wait( 2 )
 class TitlePage(ThreeDScene):
     def construct(self):
-        t = Text( "Geometric algebra, wedge products and area." )
+        t = Text( "Geometric algebra: wedge products and area." )
         t.shift( 3 * DOWN )
 
         self.add_fixed_in_frame_mobjects( t )
@@ -194,13 +188,12 @@ class TitlePage(ThreeDScene):
 
 class Overview( Scene ):
     def construct( self ):
-        blist = BulletedList( "Parallelogram Area (visually)",
-                              "Parallelogram Area (vector algebra)",
+        blist = BulletedList( "Parallelogram area (visually, algebraic)",
                               "Projection and rejection (geometric algebra)",
-                              "Parallelogram Area (GA)",
+                              "Parallelogram area (GA)",
                               "Determinant structure of the wedge product",
                               "Oriented areas illustrated",
-                              height = 2 )
+                              height = 3 )
         for item in blist:
             self.play( Write( item ) )
 
