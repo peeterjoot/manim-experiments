@@ -9,7 +9,13 @@ class ThreeDSurfacePlot(ThreeDScene):
         def param_gauss(u, v):
             x = u
             y = v
-            sigma, mu = 0.4, [0.0, 0.0]
+
+            # what were the python language designs smoking to allow assignment syntax like this:
+            #sigma, mu = 0.4, [0.0, 0.0]
+
+            sigma = 0.4
+            mu = [0.0, 0.0]
+
             d = np.linalg.norm(np.array([x - mu[0], y - mu[1]]))
             z = np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
             return np.array([x, y, z])
