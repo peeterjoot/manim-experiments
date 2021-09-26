@@ -1,13 +1,15 @@
-#all :: ManimCELogo
-#all :: SquareToCircle2
-#all :: BraceAnnotation
-#all :: VectorArrow
-#all :: NumberLineExample
-#all :: parallelogram
-#all :: q
-#all :: ParallelogramComputationClassic
-#all :: ParallelogramComputationGA
-all :: 3D
+#WHAT := ManimCELogo
+#WHAT := SquareToCircle2
+#WHAT := BraceAnnotation
+#WHAT := VectorArrow
+#WHAT := NumberLineExample
+#WHAT := parallelogram
+#WHAT := q
+#WHAT := ParallelogramComputationClassic
+#WHAT := ParallelogramComputationGA
+WHAT := 3D
+
+all :: $(WHAT)
 
 QUALITY_LOW := -ql
 QUALITY_MEDIUM := -qm
@@ -19,7 +21,8 @@ MFLAGS += $(QUALITY_LOW)
 
 % : %.py
 	#manim -pql $^ $@
-	manim $(MFLAGS) $^
+	#manim $(MFLAGS) $^
+	../bin/build --preview --main $^
 
 clean:
 	rm -rf __pycache__ media

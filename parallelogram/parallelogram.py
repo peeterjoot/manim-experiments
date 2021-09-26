@@ -6,12 +6,190 @@ sys.path.append( r'../bin' )
 from mylatex import *
 
 
-class TitlePage( Scene ):
-    def construct( self ):
-        t = Text( "Geometric algebra, wedge products and area." )
+def DrawVectorsAndProjRej( self, prlabels ):
+    l = latex( )
+    u          = l.vec( 'u' )
+    invu       = l.inv( u )
+    v          = l.vec( 'v' )
 
-        self.add( t )
-        self.wait( 2 )
+    o = np.array( [ 0, -2, 0 ] )
+    p1 = np.array( [ 3, 1, 0 ] )
+    p2 = np.array( [ 1, 3, 0 ] )
+    op1 = o + p1
+    op2 = o + p2
+
+    p1cap = p1/ np.linalg.norm( p1 )
+    proj = np.dot( p2, p1cap ) * p1cap
+    oproj = o + proj
+
+    vproj = Line( start = o, end = oproj, color = PURPLE )
+    if prlabels:
+        vprojl = MathTex( concat( l.lr( l.dot( v, u ) ), invu ) )
+    else:
+        vprojl = Text( 'Proj' )
+    vprojl.set_color( PURPLE )
+    vprojl.next_to( vproj, DOWN )
+
+    rej = p2 - proj
+    vrej = Line( start = oproj, end = op2, color = GREEN )
+    if prlabels:
+        vrejl = MathTex( concat( l.lr( l.wedge( v, u ) ), invu ) )
+    else:
+        vrejl = Text( 'Rej' )
+    vrejl.set_color( GREEN )
+    vrejl.next_to( vrej, 0.2 * RIGHT )
+
+    v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
+    v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
+    v1l = MathTex( u )
+    v1l.set_color( RED )
+    v1l.next_to( v1, RIGHT )
+    v2l = MathTex( v )
+    v2l.set_color( YELLOW )
+    v2l.next_to( v2, UP )
+
+    all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
+
+    move = ( -6.5, 2, 0 )
+    all.shift( move )
+
+    self.add( all )
+
+    return ( vprojl, vrejl )
+
+
+def OrientedPolygon( *vertices, c0, c1, c2, f, d1, d2, tex, r ):
+    n = len( vertices )
+    l = latex( )
+
+    #print( vertices )
+
+    poly = Polygon( *vertices, color = c0 , fill_opacity = f )
+    g = VGroup( poly )
+
+    if tex:
+        v1 = MathTex( concat( r'{ ', l.vec( 'v' ), r' }_1' ) )
+        v1.set_color( c1 )
+        v2 = MathTex( concat( r'{ ', l.vec( 'v' ), r' }_2' ) )
+        v2.set_color( c2 )
+        g = g + VGroup( v1, v2 )
+
+    for i in range( n ):
+        a = Arrow( vertices[ i ], vertices[ ( i + 1 ) % n ], buff = 0, max_tip_length_to_length_ratio = r )
+        if i == 0:
+            if tex:
+                v1.next_to( a, d1 )
+            a.set_color( c1 )
+        elif i == 1:
+            if tex:
+                v2.next_to( a, d2 )
+            a.set_color( c2 )
+        else:
+            a.set_color( c0 )
+        g.add( a )
+
+    return g
+
+
+def OrientedRegularPolygon( num, r, c, f ):
+    x = np.array( [ r, 0, 0 ] )
+    pts = [ x ]
+    theta = math.pi * 2 / num
+    for i in range( 1, num ):
+        y = np.array( [ r * math.cos( i * theta ), r * math.sin( i * theta ), 0 ] )
+        direction = x - y
+        x = y
+        last = pts[ i - 1 ]
+        pts.append( last + direction )
+
+    sq = OrientedPolygon( *pts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
+
+    return sq
+
+
+def playAndFadeOut( self, eq, pos ):
+    eq[ 0 ].move_to( pos )
+    eq[ 0 ].shift( 2 * DOWN )
+    eq[ 1 ].move_to( eq[ 0 ] )
+    eq[ 0 ].shift( 3 * LEFT )
+    eq[ 1 ].shift( RIGHT )
+    self.play( Write( eq[ 0 ] ), Write( eq[ 1 ] ) )
+
+    n = len( eq )
+
+    last = eq[ 1 ]
+    for i in range( 1, n - 1 ):
+        eq[ i + 1 ].move_to( last )
+        self.play( ReplacementTransform( last, eq[ i + 1 ] ) )
+        last = eq[ i + 1 ]
+        self.wait( )
+
+    g = VGroup( eq[ 0 ], last )
+    self.play( FadeOut( g ) )
+
+
+def unitParallelogram( o, v1, v2, scale ):
+    v1cap = v1/ np.linalg.norm( v1 )
+    cross = np.cross( v2, v1cap )
+
+    v1 = scale * v1cap / np.linalg.norm( cross )
+    v2 = scale * v2
+    ov1 = o + v1
+    ov2 = o + v2
+    ov12 = ov1 + v2
+
+    ppoints = [ o, ov1, ov12, ov2 ]
+
+    return ppoints
+
+
+#class TitlePage( Scene ):
+#    def construct( self ):
+#        t = Text( "Geometric algebra, wedge products and area." )
+#
+#        self.add( t )
+#        self.wait( 2 )
+class TitlePage(ThreeDScene):
+    def construct(self):
+        t = Text( "Geometric algebra, wedge products and area." )
+        t.shift( 3 * DOWN )
+
+        self.add_fixed_in_frame_mobjects( t )
+        #self.wait( )
+        #self.play( FadeOut( t ) )
+
+        #t2 = t.copy()
+        #self.play( ReplacementTransform( t, t2 ) )
+        #self.remove( t2 )
+        #self.add_fixed_in_frame_mobjects( t2 )
+
+        axes = ThreeDAxes()
+
+        o0 = np.array( [ -2, -2, -1 ] )
+        p1 = np.array( [ 1, 1, 1 ] )
+        p2 = np.array( [ -1, 1, 0.5 ] )
+        sq1 = unitParallelogram( o0, p1, p2, 4 )
+        s1 = OrientedPolygon( *sq1, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.3 )
+
+        o1 = np.array( [ 0, 0, -1 ] )
+        q1 = np.array( [ 1, -1, 1 ] )
+        q2 = np.array( [ 0, 1, 1 ] )
+        sq2 = unitParallelogram( o1, q1, q2, 2 )
+        s2 = OrientedPolygon( *sq2, c0 = RED, c1 = RED, c2 = RED, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.2 )
+
+        o2 = np.array( [ 0, 0, -2 ] )
+        r1 = np.array( [ 1, -0.5, 0 ] )
+        r2 = np.array( [ 0, -0.5, 1 ] )
+        sq3 = unitParallelogram( o2, r1, r2, 3 )
+        s3 = OrientedPolygon( *sq3, c0 = GREEN, c1 = GREEN, c2 = GREEN, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.2 )
+
+        self.set_camera_orientation( phi = 75 * DEGREES, theta = 180 * DEGREES )
+        self.add( axes, s1, s2, s3 )
+        self.begin_ambient_camera_rotation( rate = 0.2 )
+        self.wait( )
+        self.stop_ambient_camera_rotation( )
+        self.move_camera( phi = 75 * DEGREES, theta = 240 * DEGREES )
+        self.wait( )
 
 
 class Overview( Scene ):
@@ -150,58 +328,6 @@ class DrawParallelogram( Scene ):
         eq[ i ].shift( UP )
         self.play( Write( eq[ i ] ) )
         self.wait( )
-
-
-def DrawVectorsAndProjRej( self, prlabels ):
-    l = latex( )
-    u          = l.vec( 'u' )
-    invu       = l.inv( u )
-    v          = l.vec( 'v' )
-
-    o = np.array( [ 0, -2, 0 ] )
-    p1 = np.array( [ 3, 1, 0 ] )
-    p2 = np.array( [ 1, 3, 0 ] )
-    op1 = o + p1
-    op2 = o + p2
-
-    p1cap = p1/ np.linalg.norm( p1 )
-    proj = np.dot( p2, p1cap ) * p1cap
-    oproj = o + proj
-
-    vproj = Line( start = o, end = oproj, color = PURPLE )
-    if prlabels:
-        vprojl = MathTex( concat( l.lr( l.dot( v, u ) ), invu ) )
-    else:
-        vprojl = Text( 'Proj' )
-    vprojl.set_color( PURPLE )
-    vprojl.next_to( vproj, DOWN )
-
-    rej = p2 - proj
-    vrej = Line( start = oproj, end = op2, color = GREEN )
-    if prlabels:
-        vrejl = MathTex( concat( l.lr( l.wedge( v, u ) ), invu ) )
-    else:
-        vrejl = Text( 'Rej' )
-    vrejl.set_color( GREEN )
-    vrejl.next_to( vrej, 0.2 * RIGHT )
-
-    v1 = Arrow( start = o, end = op1, buff = 0, color = RED )
-    v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
-    v1l = MathTex( u )
-    v1l.set_color( RED )
-    v1l.next_to( v1, RIGHT )
-    v2l = MathTex( v )
-    v2l.set_color( YELLOW )
-    v2l.next_to( v2, UP )
-
-    all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
-
-    move = ( -6.5, 2, 0 )
-    all.shift( move )
-
-    self.add( all )
-
-    return ( vprojl, vrejl )
 
 
 class ProjRej( Scene ):
@@ -546,26 +672,6 @@ class WedgeToDet( Scene ):
         self.wait( )
 
 
-def playAndFadeOut( self, eq, pos ):
-    eq[ 0 ].move_to( pos )
-    eq[ 0 ].shift( 2 * DOWN )
-    eq[ 1 ].move_to( eq[ 0 ] )
-    eq[ 0 ].shift( 3 * LEFT )
-    eq[ 1 ].shift( RIGHT )
-    self.play( Write( eq[ 0 ] ), Write( eq[ 1 ] ) )
-
-    n = len( eq )
-
-    last = eq[ 1 ]
-    for i in range( 1, n - 1 ):
-        eq[ i + 1 ].move_to( last )
-        self.play( ReplacementTransform( last, eq[ i + 1 ] ) )
-        last = eq[ i + 1 ]
-        self.wait( )
-
-    g = VGroup( eq[ 0 ], last )
-    self.play( FadeOut( g ) )
-
 class WedgeR3( Scene ):
     def construct( self ):
         l = latex( )
@@ -657,73 +763,10 @@ class WedgeR3( Scene ):
         self.wait( )
 
 
-def OrientedPolygon( *vertices, c0, c1, c2, f, d1, d2, tex ):
-    n = len( vertices )
-    l = latex( )
-
-    #print( vertices )
-
-    poly = Polygon( *vertices, color = c0 , fill_opacity = f )
-    g = VGroup( poly )
-
-    if tex:
-        v1 = MathTex( concat( r'{ ', l.vec( 'v' ), r' }_1' ) )
-        v1.set_color( c1 )
-        v2 = MathTex( concat( r'{ ', l.vec( 'v' ), r' }_2' ) )
-        v2.set_color( c2 )
-        g = g + VGroup( v1, v2 )
-
-    for i in range( n ):
-        a = Arrow( vertices[ i ], vertices[ ( i + 1 ) % n ], buff = 0, max_tip_length_to_length_ratio = 0.1 )
-        if i == 0:
-            if tex:
-                v1.next_to( a, d1 )
-            a.set_color( c1 )
-        elif i == 1:
-            if tex:
-                v2.next_to( a, d2 )
-            a.set_color( c2 )
-        else:
-            a.set_color( c0 )
-        g.add( a )
-
-    return g
-
-
-def OrientedRegularPolygon( num, r, c, f ):
-    x = np.array( [ r, 0, 0 ] )
-    pts = [ x ]
-    theta = math.pi * 2 / num
-    for i in range( 1, num ):
-        y = np.array( [ r * math.cos( i * theta ), r * math.sin( i * theta ), 0 ] )
-        direction = x - y
-        x = y
-        last = pts[ i - 1 ]
-        pts.append( last + direction )
-
-    sq = OrientedPolygon( *pts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
-
-    return sq
-
 class test( Scene ):
     def construct( self ):
         print( 'hi' )
 
-
-
-def unitParallelogram( o, v1, v2, scale ):
-    v1cap = v1/ np.linalg.norm( v1 )
-    cross = np.cross( v2, v1cap )
-
-    v1 = scale * v1cap / np.linalg.norm( cross )
-    v2 = scale * v2
-    ov1 = o + v1
-    ov2 = o + v2
-    ov12 = ov1 + v2
-
-    ppoints = [ o, ov1, ov12, ov2 ]
-
-    return ppoints
 
 #class Polygon( Polygram ):
 #    def __init__( self, *vertices: Sequence[ float ], **kwargs ):
@@ -769,7 +812,7 @@ class BivectorAddition( Scene ):
 
         for i in range( 4 ):
             ppoints = unitParallelogram( o, p1[ i ], p2[ i ], 2 )
-            pg = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = RED, c2 = BLUE, f = 0.5, d1 = dir1[ i ], d2 = dir2[ i ], tex = 1 )
+            pg = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = RED, c2 = BLUE, f = 0.5, d1 = dir1[ i ], d2 = dir2[ i ], tex = 1, r = 0.1 )
 
             p.move_to( pg )
             p.shift( pos[ i ] )
@@ -784,7 +827,7 @@ class BivectorAddition( Scene ):
             fromtx = totx
 
         i = 3
-        add1 = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
+        add1 = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
         self.play( ReplacementTransform( fromtx, add1 ) )
         p1 = MathTex( v1t, r' \wedge ', v2t, ' = 4', e1t, e2t )
         p1.move_to( add1 )
@@ -826,7 +869,7 @@ class BivectorAddition( Scene ):
         p1s = np.array( [ 1, 0, 0 ] )
         p2s = np.array( [ 0, 1, 0 ] )
         sqpts = unitParallelogram( o2, p1s, p2s, 4 )
-        sq = OrientedPolygon( *sqpts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0 )
+        sq = OrientedPolygon( *sqpts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
         p5 = MathTex( '16 ', e1t, e2t ).scale( 2 )
         p5.move_to( sq )
         p5.shift( 2 * UP + 4 * RIGHT )

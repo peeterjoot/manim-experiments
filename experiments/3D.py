@@ -4,7 +4,6 @@ from manim import *
 class ThreeDSurfacePlot(ThreeDScene):
     def construct(self):
         resolution_fa = 42
-        self.set_camera_orientation(phi=75 * DEGREES, theta=-30 * DEGREES)
 
         def param_gauss(u, v):
             x = u
