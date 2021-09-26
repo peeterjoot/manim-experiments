@@ -10,7 +10,7 @@ build - <one-line-description>
 
 =head1 SYNOPSIS
 
-build [--help] [--killonly]
+build [--help] [--killonly] [--quality] [--preview]
 
 =head1 DESCRIPTION
 
@@ -21,9 +21,7 @@ Options:
 
 =over 4
 
-=item --foo=bar
-
-Blah.
+=item --quality [l | m | h | k]
 
 =back
 
@@ -33,7 +31,7 @@ Blah.
 
 =head1 SUPPORT
 
- Send email to peeter.joot@lzlabs.com
+ Send email to peeterjoot@pm.me
 
 =head1 AUTHORS
 
@@ -59,14 +57,26 @@ select STDOUT ; $| = 1 ;
 my $myName = '' ;
 my $main = 'parallelogram.py';
 my $killonly = 0;
+my $preview = 0;
+my $quality = 'l';
 ($myName = $0) =~ s@.*[/\\]@@ ;
 
 Getopt::Long::Configure( 'pass_through' ) ;
 GetOptions (
    'help'               => sub { pod2usage(-verbose => 2) ; },
    'main=s'             => \$main,
-   'killonly!'          => \$killonly
+   'killonly!'          => \$killonly,
+   'preview!'           => \$preview,
+   'quality=s'          => \$quality,
 ) or pod2usage(-verbose => 0) ;
+
+my %q = map { $_ => 1 } (qw(l m h k));
+die "$myName: usage: --quality l | m | h | k" unless ( defined $q{$quality} );
+
+my $MFLAGS = "-q${quality}";
+if ( $preview ) {
+   $MFLAGS .= ' -p';
+}
 
 open my $fh, "ps -ef | grep 'QuickTime Player' | grep -v grep|" or die;
 while (<$fh>)
@@ -82,5 +92,8 @@ close $fh;
 
 unless ( $killonly )
 {
-   system( qq(manim -pql $main @ARGV) );
+   my $cmd = qq(manim ${MFLAGS} $main @ARGV);
+
+   print( qq(# $cmd\n) );
+   system( $cmd );
 }
