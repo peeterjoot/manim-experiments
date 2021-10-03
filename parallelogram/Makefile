@@ -37,6 +37,7 @@ ALL += ParallelogramComputationGA
 ALL += WedgeToDet
 ALL += WedgeR3
 ALL += BivectorAddition
+ALL += ScalarMultiplicationSign
 
 ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
 
