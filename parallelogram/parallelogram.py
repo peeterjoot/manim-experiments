@@ -252,8 +252,8 @@ def write_area_products( self, n1, n2, ar, o ):
 
 
 
-class TitlePage(ThreeDScene):
-    def construct(self):
+class TitlePage( ThreeDScene ):
+    def construct( self ):
         t = Text( "Geometric algebra: wedge products and area." )
         t.shift( 3 * DOWN )
 
@@ -266,7 +266,7 @@ class TitlePage(ThreeDScene):
         #self.remove( t2 )
         #self.add_fixed_in_frame_mobjects( t2 )
 
-        axes = ThreeDAxes()
+        axes = ThreeDAxes( )
 
         o0 = np.array( [ -2, -2, -1 ] )
         p1 = np.array( [ 1, 1, 1 ] )
@@ -424,6 +424,7 @@ class DrawParallelogram( Scene ):
         vrejl.shift( ( -0.5, 0, 0 ) )
 
         self.play( Write( VGroup( vproj, vprojl ) ) )
+        self.wait( )
         self.play( Write( VGroup( vrej, vrejl ) ) )
         self.wait( )
         eq.shift( 2.4 * RIGHT )
@@ -887,14 +888,163 @@ class WedgeR3( Scene ):
         self.wait( )
 
 
-class test( Scene ):
+class WedgeChangeOfBasisPartI( ThreeDScene ):
     def construct( self ):
-        print( 'hi' )
+        l = latex( )
+        u          = l.vec( 'u' )
+        v          = l.vec( 'v' )
+
+        axes = ThreeDAxes()
+        self.set_camera_orientation( phi = 70 * DEGREES, theta = 90 * DEGREES )
+
+        o = ORIGIN
+        s = 2
+        p1 = np.array( [ 1, 1, 0 ] )
+        p2 = np.array( [ 0, 1, 1 ] )
+        e1 = np.array( [ 1, 0, 0 ] )
+        e2 = np.array( [ 0, 1, 0 ] )
+        e3 = np.array( [ 0, 0, 1 ] )
+        ve1 = Arrow( start = o, end = e1, buff = 0, color = RED )
+        ve2 = Arrow( start = o, end = e2, buff = 0, color = GREEN )
+        ve3 = Arrow( start = o, end = e3, buff = 0, color = BLUE )
+        e1t = MathTex( concat( l.vec( 'e' ), '_1' ) )
+        e1t.move_to( e1 )
+        e2t = MathTex( concat( l.vec( 'e' ), '_2' ) )
+        e2t.move_to( e2 )
+        e3t = MathTex( concat( l.vec( 'e' ), '_3' ) )
+        e3t.move_to( e3 )
+        bases = VGroup( ve1, ve2, ve3, e1t, e2t, e3t )
+        ul = MathTex( u )
+        ul.move_to( s * p1 )
+        vl = MathTex( v )
+        vl.move_to( o + s* (p1 + p2) )
+
+        sq1 = [ o, o + s * p1, o + s *( p1 + p2), o + s * p2 ]
+        s1 = OrientedPolygon( *sq1, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.3 )
+
+        p = -np.arccos( math.sqrt( 2/5 ) )
+        g = bases + s1 + VGroup( axes )
+        self.add( g )
+        self.begin_ambient_camera_rotation( rate = 1.0 )
+        self.wait( 4 )
+        self.stop_ambient_camera_rotation( )
+        self.wait( 1 )
 
 
-#class Polygon( Polygram ):
-#    def __init__( self, *vertices: Sequence[ float ], **kwargs ):
-#        super( ).__init__( vertices, **kwargs )
+class WedgeChangeOfBasisPartII( Scene ):
+    def construct( self ):
+        l = latex( )
+        u          = l.vec( 'u' )
+        v          = l.vec( 'v' )
+
+        o = 2 * UP + 6 * LEFT
+        alpha = math.sqrt(2)
+        beta = 1/math.sqrt(2)
+        gamma = math.sqrt(6)/2
+        a1 = np.array( [ alpha, 0, 0 ] )
+        a2 = np.array( [ beta, gamma, 0 ] )
+        vf1 = np.array( [ 1, 0, 0 ] )
+        vf2 = np.array( [ 0, 1, 0 ] )
+        pts = [ o, o + a1, o + a1 + a2, o + a2 ]
+        p = OrientedPolygon( *pts, c0 = PURPLE, c1 = RED, c2 = GREEN, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.3 )
+        self.add( p )
+        self.wait( )
+
+        e1 = concat( l.vec( 'e' ), '_1' )
+        e2 = concat( l.vec( 'e' ), '_2' )
+        e3 = concat( l.vec( 'e' ), '_3' )
+        eq = MathTex( u, ' &= ', l.add( e1, e2 ), l.newline,
+                      v, ' &= ', l.add( e2, e3 ), l.newline )
+
+        ul = MathTex( u )
+        ul.move_to( o + 1.2 * a1 )
+        ul.set_color( RED )
+        vl = MathTex( v )
+        vl.set_color( GREEN )
+        vl.move_to( o + 1.1 * (a1 + a2) )
+        eg1 = VGroup( ul )
+        eg2 = VGroup( vl )
+        for i in range( 4 ):
+            eg1 += eq[i]
+            eq[i].set_color( RED )
+        for i in range( 4, 8 ):
+            eg2 += eq[i]
+            eq[i].set_color( GREEN )
+        eq.shift( 5 * LEFT + 0.5 * DOWN )
+        self.play( Write( eg1 ) )
+        self.wait( )
+        self.play( Write( eg2 ) )
+        self.wait( )
+
+        f1 = concat( l.vec( 'f' ), '_1' )
+        f2 = concat( l.vec( 'f' ), '_2' )
+        uv = l.wedge( u, v )
+        uhat = l.hat( 'u' )
+        f2e = l.dot( uhat, l.frac( uv, l.norm( uv ) ) )
+        #              0               1   2       3     4      5                                       6
+        eq2 = MathTex( l.text('Let '), f1, ' &= ', uhat, ' = ', l.frac( l.add( e1, e2 ), r'\sqrt{2}' ), l.newline,
+                       l.text('Let '), f2, ' &= ', f2e,  ' = ', concat( l.frac('1', r'\sqrt{6}'), l.lr( l.sub( l.add( e1, l.mult( '2', e2 ) ), e1 ) ) ), l.newline )
+        #              7               8   9       10    11     12                                      13
+        eq2.shift( 2.0 * UP + 2.0 * RIGHT )
+        eq2[1].set_color( BLUE )
+        eq2[2].set_color( BLUE )
+        eq2[3].set_color( BLUE )
+        eq2[8].set_color( YELLOW )
+        eq2[9].set_color( YELLOW )
+        eq2[10].set_color( YELLOW )
+        f1g = VGroup( Arrow( start = o, end = o + vf1, buff = 0, color = BLUE ), MathTex( f1 ).set_color( BLUE ).move_to( o + vf1 + 0.3 * DOWN ) )
+        f2g = VGroup( Arrow( start = o, end = o + vf2, buff = 0, color = YELLOW ), MathTex( f2 ).set_color( YELLOW ).move_to( o + vf2 + 0.3 * LEFT ) )
+        self.play( Write( eq2[0:6] ), Write( f1g ) )
+        self.wait( )
+        self.play( Write( eq2[7:13] ), Write( f2g ) )
+        self.wait( )
+
+        eqp = MathTex( concat( u, ' &= ', l.mult( r'\sqrt{2}', f1 ), l.newline ),
+                       concat( v, ' &= ', l.add( l.mult( r'\frac{\sqrt{2}}{2}', f1 ),
+                                                 l.mult( r'\frac{\sqrt{6}}{2}', f2 ) ), l.newline ) )
+        eqp[0].set_color( RED )
+        eqp[1].set_color( GREEN )
+        eqp.move_to( eq )
+        eqp.shift( 2 * DOWN + 0.5 * RIGHT )
+        self.play( Write( eqp ) )
+        self.wait( )
+
+        e12 = concat( l.vec( 'e' ), '_{12}' )
+        e13 = concat( l.vec( 'e' ), '_{13}' )
+        e23 = concat( l.vec( 'e' ), '_{23}' )
+        eq3 = MathTex( concat( l.wedge( u, v ), ' &= ', l.add( e12, e13, e23 ), l.newline ),
+                       concat( l.lrsq( l.wedge( u, v ) ), ' &= - 3', l.newline ),
+                       concat( l.wedge( u, v ), r' &= \sqrt{(2 \times 6)/4}', f1, f2, l.newline ),
+                       concat( l.lrsq( l.wedge( u, v ) ), ' &= - 3', l.newline ) )
+        eq3.shift( DOWN + 2 * RIGHT )
+        for i in eq3:
+            self.play( Write( i ) )
+            self.wait( )
+
+        self.play( FadeOut( VGroup( eq3, eqp, eq, eq2 ) ) )
+        t = Text( 'General wedge diagonalization' )
+        b1 = l.dot( v, f1 )
+        b2 = l.frac( l.norm( uv ), l.norm( u ) )
+        eq = MathTex( concat( l.setlr( f1, f2 ), ' &= ', l.setlr( uhat, f2e ), l.newline ),
+                      concat( u, ' &= ', l.norm( u ), f1, l.newline ),
+                      concat( v, ' &= ', l.add( l.mult( l.lr( l.dot( v, f1 ) ), f1 ), l.mult( l.frac( l.norm( uv ), l.norm( u ) ), f2 ) ), l.newline ), 
+                      concat( uv, r'&='),
+                      concat( r'\sum_{i < j} ', l.det22( 'u_i', 'v_i', 'u_j', 'v_j' ), r'\mathbf{e}_i \mathbf{e}_j', l.newline ),
+                          r'&= ', concat( l.det22( l.norm( u ), '0', b1, b2 ), f1, f2, l.newline ),
+                          r'&= ', concat( l.norm( uv ), f1, f2, l.newline ) )
+        t.move_to( 3 * UP + 1 * RIGHT ) 
+        t.set_color( BLUE )
+        self.play( Write( t ) )
+        eq.shift( 1.25 * DOWN )
+        for i in range( 5 ):
+            self.play( Write( eq[i] ) )
+        self.wait( 2 )
+        eq[6].shift( 1.5 * UP )
+        self.play( ReplacementTransform( eq[4], eq[6] ) )
+        self.wait( 2 )
+        eq[8].shift( 3 * UP )
+        self.play( ReplacementTransform( eq[6], eq[8] ) )
+        self.wait( )
 
 
 class BivectorAddition( Scene ):
@@ -916,15 +1066,15 @@ class BivectorAddition( Scene ):
 
         self.add( number_plane )
         l = latex( )
-        v1t = concat( l.vec( 'v' ), r'_1' )
-        v2t = concat( l.vec( 'v' ), r'_2' )
-        e1t = concat( l.vec( 'e' ), r'_1' )
-        e2t = concat( l.vec( 'e' ), r'_2' )
+        v1t = concat( l.vec( 'v' ), '_1' )
+        v2t = concat( l.vec( 'v' ), '_2' )
+        e1t = concat( l.vec( 'e' ), '_1' )
+        e2t = concat( l.vec( 'e' ), '_2' )
         #print( v1t )
         v1 = MathTex( v1t )
         v2 = MathTex( v2t )
-        e1 = MathTex( concat( l.vec( 'e' ), r'_1' ) )
-        e2 = MathTex( concat( l.vec( 'e' ), r'_2' ) )
+        e1 = MathTex( concat( l.vec( 'e' ), '_1' ) )
+        e2 = MathTex( concat( l.vec( 'e' ), '_2' ) )
         p = MathTex( v1t, r' \wedge ', v2t, ' = 4', e1t, e2t )
         p[ 0 ].set_color( RED )
         p[ 2 ].set_color( BLUE )
@@ -1160,6 +1310,11 @@ class Finale( Scene ):
             FadeIn(url),
             lag_ratio = 0.5
         ))
+
+
+class test( Scene ):
+    def construct( self ):
+        print( 'hi' )
 
 
 def foo():

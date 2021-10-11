@@ -15,6 +15,9 @@ class latex:
     def lr( self, *args, sep = '' ):
         return concat( latex.lbr, sep.join( args ), latex.rbr )
 
+    def setlr( self, *args, sep = ',' ):
+        return concat( r'\left\{ ', sep.join( args ), r'\right\}' )
+
     def lrsq( self, *args, sep = '' ):
         return concat( '{', latex.lr( self, sep.join( args ) ), '}^2' )
 
@@ -39,6 +42,9 @@ class latex:
 
     def dot( self, *args, sep = r' \cdot ' ):
         return sep.join( args )
+
+    def det22( self, a, b, c, d ):
+        return concat( r'\begin{vmatrix} ', a, ' & ', b, r' \\ ', c, '&', d, r'\end{vmatrix}' )
 
     def wedge( self, *args, sep = r' \wedge ' ):
         return sep.join( args )
