@@ -1,8 +1,28 @@
-3) Titlepage: 1 sec.
 4) (audio) Script things.
 5) Put in appropriate delays.
-6) oriented multiplication.
 7) Some sort of conclusion.
+8) rejection in 3D VA:
+
+ucap \cross (\ucap \cross v)
+
+9) wedge product structure of determinant:
+
+show how the right basis choice reduces the wedge to:
+
+\vmatrix{ a & 0 \\ 0 & b } \Be_1 \Be_2 = a b \Be_1 \Be_2
+
+Illustrate this in 3D as an animation, changing parallelogram to a rectange, and finally a square.
+
+Then, since
+
+Area^2 = \lr{ \vmatrix{ a & 0 \\ 0 & b } }^2  = \norm{ a \wedge b }^2
+
+We can say that 
+a \wedge b = \pm Area e_1 e_2
+
+(with that basis choice.)
+
+10) Probably want a summary that relates any GA formulas to their VA equivalents.
 
 nice to have:
 =============

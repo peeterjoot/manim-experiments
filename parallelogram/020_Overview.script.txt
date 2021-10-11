@@ -1,0 +1,15 @@
+
+We will by computing the area of a parallelogram first geometrically, and then
+  using traditional vector algebra, we compute the area of an n-dimensional parallelogram.
+
+To perform the same computation using geometric algebra (GA), we want projection and rejection operations in our toolbox.
+  We derive the GA projection and rejection expressions, and discuss some of the subtlies of those expressions.
+
+We then attack the parallelogram area problem anew,
+  and find that parallelogram area is inherently related to the wedge product of two vectors.
+
+Next we will show that the wedge product has a determinant representation,
+  and show how the wedge product is related to the 3D cross product, which also has a determinant structure.
+
+We will finish off with a discussion of why we consider the wedge product (or 2-blades) to be a representation of an
+  oriented (or signed) area.

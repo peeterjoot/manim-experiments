@@ -286,13 +286,14 @@ class TitlePage(ThreeDScene):
         sq3 = unitParallelogram( o2, r1, r2, 3 )
         s3 = OrientedPolygon( *sq3, c0 = GREEN, c1 = GREEN, c2 = GREEN, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.2 )
 
-        self.set_camera_orientation( phi = 75 * DEGREES, theta = 180 * DEGREES )
+        self.set_camera_orientation( phi = 75 * DEGREES, theta = 0 * DEGREES )
         self.add( axes, s1, s2, s3 )
-        self.begin_ambient_camera_rotation( rate = 0.2 )
-        self.wait( )
+        self.begin_ambient_camera_rotation( rate = 0.5 )
+        self.wait( 8 ) # how long to animate the motion.
+        # This results in a zippy move at the very end of the smooth rotation:
+        #self.move_camera( phi = 75 * DEGREES, theta = 360 * DEGREES )
         self.stop_ambient_camera_rotation( )
-        self.move_camera( phi = 75 * DEGREES, theta = 240 * DEGREES )
-        self.wait( )
+        self.wait( 1 )
 
 
 class Overview( Scene ):
@@ -301,7 +302,7 @@ class Overview( Scene ):
                               "Projection and rejection (geometric algebra)",
                               "Parallelogram area (GA)",
                               "Determinant structure of the wedge product",
-                              "Oriented areas illustrated",
+                              "Orientation and signed areas",
                               height = 3 )
         for item in blist:
             self.play( Write( item ) )
@@ -336,25 +337,18 @@ class DrawParallelogram( Scene ):
         v2l = MathTex( v )
         v1l.set_color( RED )
         v1l.next_to( v1, RIGHT )
+        v1l.shift( - 0.3 * p1 )
         v2l.next_to( v2, UP )
+        v2l.shift( - 0.3 * p2 )
         v2l.set_color( YELLOW )
 
         p1cap = p1/ np.linalg.norm( p1 )
         proj = np.dot( p2, p1cap ) * p1cap
-        oproj = o + proj
-        vproj = Line( start = o, end = oproj, color = PURPLE )
-        vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
-        vprojl.next_to( vproj, DOWN )
-        v1g = VGroup( v1, v1l )
-        vprojg = VGroup( vproj, vprojl )
 
         rej = p2 - proj
-        vrej = Line( start = oproj, end = op2, color = GREEN )
-        vrejl = MathTex( concat( v, ' - ', l.lr( l.dot( v, uhat ) ), uhat ) )
-        vrejl.next_to( vrej, RIGHT )
-        vrejl.shift( ( -0.5, 0, 0 ) )
+
+        v1g = VGroup( v1, v1l )
         v2g = VGroup( v2, v2l )
-        vrejg = VGroup( vrej, vrejl )
 
         op3 = op1 + p2
         v1p = Arrow( start = op1, end = op3, buff = 0, color = YELLOW )
@@ -377,12 +371,12 @@ class DrawParallelogram( Scene ):
         self.play( ReplacementTransform( v1c, v1p ) )
         self.play( ReplacementTransform( v2c, v2p ) )
         #self.play( Create( poly ) )
-        self.play( Create( vprojg ) )
-        self.play( Create( vrejg ) )
+        #self.play( Create( vprojg ) )
+        #self.play( Create( vrejg ) )
         self.play( Create( dashrej ) )
         self.play( Create( dashtop ) )
         self.play( Create( dashside ) )
-        self.play( FadeOut( vprojg, vrejg ) )
+        #self.play( FadeOut( vprojg, vrejg ) )
 
         move = ( -6, 1, 0 )
         a = VGroup( dashrej, dashtop, dashside, v1, v1l, v2, v2l, v1p, v2p ) # , poly
@@ -396,6 +390,15 @@ class DrawParallelogram( Scene ):
 
         eq2 = MathTex( l.text( 'base' ), r'& = \Vert', u, concat( r'\Vert', l.newline ),
                        l.text( 'height' ), '& = ', concat( l.norm( rej ), l.newline ) )
+        #eq2 = MathTex( concat( l.text( 'base' ), '& = ', l.norm( u ), l.newline ),
+        #               concat( l.text( 'height' ), '& = ', l.norm( rej ), l.newline ) )
+        eq2[0].set_color( RED )
+        eq2[1].set_color( RED )
+        eq2[2].set_color( RED )
+        eq2[3].set_color( RED )
+        eq2[4].set_color( GREEN )
+        eq2[5].set_color( GREEN )
+        eq2[6].set_color( GREEN )
 
         eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
                       concat( l.sq( l.text( 'Area' ) ), r' &= ', squ, l.norm2( rej ), l.newline ), # 1
@@ -404,6 +407,25 @@ class DrawParallelogram( Scene ):
                       concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( l.dot( v, u ) ) ), l.newline ) # 6
                     )
 
+        oproj = o + proj
+        vproj = Arrow( start = o, end = oproj, color = PURPLE, buff = 0 )
+        vproj.shift( move )
+        vprojl = MathTex( concat( l.lr( l.dot( v, uhat ) ), uhat ) )
+        vprojl.set_color( PURPLE )
+        vprojl.next_to( vproj, DOWN )
+        vprojl.shift( 0.2 * ( UP + RIGHT ) )
+
+        vrej = Arrow( start = oproj, end = op2, color = GREEN, buff = 0 )
+        vrej.shift( move )
+        vrejl = MathTex( concat( v, ' - ', l.lr( l.dot( v, uhat ) ), uhat ) )
+        vrejl.set_color( GREEN )
+        vrejl.next_to( vrej, RIGHT )
+        vrejl.shift( 2.0 * UP + 1.5 * LEFT )
+        vrejl.shift( ( -0.5, 0, 0 ) )
+
+        self.play( Write( VGroup( vproj, vprojl ) ) )
+        self.play( Write( VGroup( vrej, vrejl ) ) )
+        self.wait( )
         eq.shift( 2.4 * RIGHT )
         eq2.shift( 3 * DOWN + 3 * LEFT )
         #eq2[ 0 ].set_color( RED )

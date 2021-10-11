@@ -1,0 +1,7 @@
+
+
+In this video we will discuss the geometric algebra wedge product of two vectors,
+called bivectors (or 2-blades),
+oriented areas, and some related concepts.
+
+

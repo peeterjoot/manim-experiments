@@ -40,13 +40,18 @@ ALL += BivectorAddition
 ALL += ScalarMultiplicationSign
 ALL += Finale
 
-ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
+#ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
+ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(p).mp4)
 
-all :: parallelogram.mp4
+#all :: parallelogram.mp4
 all :: $(ALLPATHS)
 
 % : %.py
 	manim $(MANIMFLAGS) $^
+
+$(HOME)/parallelogram/%.mp4 : media/videos/parallelogram/$(RESOLUTION)/%.mp4
+	mkdir -p $(dir $@)
+	cp $^ $@
 
 media/videos/parallelogram/$(RESOLUTION)/%.mp4 : parallelogram.py
 	manim $(MANIMFLAGS) $^ $(notdir $(basename $@))
