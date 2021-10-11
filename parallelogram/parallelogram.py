@@ -929,6 +929,7 @@ class WedgeChangeOfBasisPartI( ThreeDScene ):
         self.wait( 4 )
         self.stop_ambient_camera_rotation( )
         self.wait( 1 )
+        self.play( FadeOut( g ) )
 
 
 class WedgeChangeOfBasisPartII( Scene ):
@@ -946,9 +947,18 @@ class WedgeChangeOfBasisPartII( Scene ):
         vf1 = np.array( [ 1, 0, 0 ] )
         vf2 = np.array( [ 0, 1, 0 ] )
         pts = [ o, o + a1, o + a1 + a2, o + a2 ]
-        p = OrientedPolygon( *pts, c0 = PURPLE, c1 = RED, c2 = GREEN, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.3 )
-        self.add( p )
+        #self.play( FadeIn( p ) )
         self.wait( )
+
+        x1 = Arrow( pts[ 0 ], pts[ 1 ], buff = 0, max_tip_length_to_length_ratio = 0.3 )
+        x1.set_color( RED )
+        x2 = Arrow( pts[ 1 ], pts[ 2 ], buff = 0, max_tip_length_to_length_ratio = 0.3 )
+        x2.set_color( GREEN )
+        x3 = Arrow( pts[ 2 ], pts[ 3 ], buff = 0, max_tip_length_to_length_ratio = 0.3 )
+        x3.set_color( PURPLE )
+        x4 = Arrow( pts[ 3 ], pts[ 0 ], buff = 0, max_tip_length_to_length_ratio = 0.3 )
+        x4.set_color( PURPLE )
+        poly = Polygon( *pts, color = PURPLE, fill_opacity = 0.5 )
 
         e1 = concat( l.vec( 'e' ), '_1' )
         e2 = concat( l.vec( 'e' ), '_2' )
@@ -962,19 +972,22 @@ class WedgeChangeOfBasisPartII( Scene ):
         vl = MathTex( v )
         vl.set_color( GREEN )
         vl.move_to( o + 1.1 * (a1 + a2) )
-        eg1 = VGroup( ul )
-        eg2 = VGroup( vl )
+        eg1 = VGroup( ul, x1 )
+        eg2 = VGroup( vl, x2 )
         for i in range( 4 ):
             eg1 += eq[i]
             eq[i].set_color( RED )
         for i in range( 4, 8 ):
             eg2 += eq[i]
             eq[i].set_color( GREEN )
+        eg3 = VGroup( poly, x3, x4 )
+
         eq.shift( 5 * LEFT + 0.5 * DOWN )
-        self.play( Write( eg1 ) )
-        self.wait( )
-        self.play( Write( eg2 ) )
-        self.wait( )
+        self.play( AnimationGroup( Write( eg1 ) ) )
+        self.play( AnimationGroup( Write( eg2 ) ) )
+        self.play( Write( poly ) )
+        self.play( AnimationGroup( Write( VGroup( x1, x2, x3, x4 ) ) ) )
+
 
         f1 = concat( l.vec( 'f' ), '_1' )
         f2 = concat( l.vec( 'f' ), '_2' )
@@ -1014,12 +1027,13 @@ class WedgeChangeOfBasisPartII( Scene ):
         e23 = concat( l.vec( 'e' ), '_{23}' )
         eq3 = MathTex( concat( l.wedge( u, v ), ' &= ', l.add( e12, e13, e23 ), l.newline ),
                        concat( l.lrsq( l.wedge( u, v ) ), ' &= - 3', l.newline ),
-                       concat( l.wedge( u, v ), r' &= \sqrt{(2 \times 6)/4}', f1, f2, l.newline ),
+                       concat( l.wedge( u, v ), r' &= \sqrt{\frac{2 \times 6}{4}}', f1, f2, l.newline ),
                        concat( l.lrsq( l.wedge( u, v ) ), ' &= - 3', l.newline ) )
-        eq3.shift( DOWN + 2 * RIGHT )
+        eq3.shift( 1.5 * DOWN + 2 * RIGHT )
         for i in eq3:
             self.play( Write( i ) )
             self.wait( )
+        self.wait( 2 )
 
         self.play( FadeOut( VGroup( eq3, eqp, eq, eq2 ) ) )
         t = Text( 'General wedge diagonalization' )

@@ -60,7 +60,7 @@ media/videos/parallelogram/$(RESOLUTION)/%.mp4 : parallelogram.py
 
 parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
-	for i in $(ALL) ; do echo file media/videos/parallelogram/$(RESOLUTION)/$$i.mp4 >> concat.in ; done
+	for i in $(ALL) ; do echo file $(HOME)/parallelogram/$$i.mp4 >> concat.in ; done
 	ffmpeg -f concat -safe 0 -i concat.in -c copy $@
 	#../bin/build --killonly
 	#open $@
