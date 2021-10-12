@@ -1,0 +1,11 @@
+We construct a parallelogram from two vectors, u and v, by lining them up tail to tail, and then translating a copy of each to the tip of the other.
+
+The area of this parallelogram can be computed by dropping a perpendicular, and multiplying the width of that base by this perpendicular height.  This is illustrated by the dotted area.
+
+This perpendicular, as a vector, can be computed by resolving the vector v into it's projection onto u, and subtracting that from v, a quantity that we call the rejection of u from v, or just the rejection.
+
+The area is then just the length of u (the base), times the length of the rejection (the height).  Squaring the area, and expanding the rejection squared by dotting it with itself yields.
+
+Now group our terms, and distribute the u-length squared, noting that u-hat times length u equals u.
+
+We have now calculated the area of the parallelogram formed by two vectors in an n-dimensional Euclidean space.

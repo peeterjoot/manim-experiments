@@ -2,8 +2,8 @@ def concat( *args, sep = '' ):
     return sep.join( args )
 
 class latex:
-    lbr      = r'\left('
-    rbr      = r'\right)'
+    lbr     = r'\left('
+    rbr     = r'\right)'
     newline = r'\\'
 
     def norm( self, *args, sep = '' ):
