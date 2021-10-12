@@ -42,11 +42,11 @@ ALL += BivectorAddition
 ALL += ScalarMultiplicationSign
 ALL += Finale
 
-#ALLPATHS := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
+ALLPATHS2 := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
 ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(p).mp4)
 
+all :: $(ALLPATHS2) $(ALLPATHS)
 #all :: parallelogram.mp4
-all :: $(ALLPATHS)
 
 % : %.py
 	manim $(MANIMFLAGS) $^

@@ -1301,7 +1301,10 @@ class Finale( Scene ):
         t.move_to( 2.5 * UP + 4 * LEFT )
         t2 = Text( 'sudgylacmoe' )
         t2.next_to( t, DOWN )
-        g = VGroup( t, t2 )
+        t3 = Text( '(who generously hand held me through my first manim baby steps.)' ).scale( 0.6 )
+        t3.next_to( t2, DOWN )
+        t3.shift( 3 * RIGHT )
+        g = VGroup( t, t2, t3 )
         t.set_color( TEAL )
         self.add( g )
 
