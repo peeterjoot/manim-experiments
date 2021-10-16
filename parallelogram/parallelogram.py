@@ -32,8 +32,9 @@ lr_vwedgeu = l.lr( vwedgeu )
 lr_udotv   = l.lr( udotv )
 lr_vdotu   = l.lr( vdotu )
 detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
+normu      = l.norm( vecu )
 
-vec_v1, r' \wedge ', vec_v2 
+vec_v1, r' \wedge ', vec_v2
 
 def DrawVectorsAndProjRej( self, prlabels ):
 
@@ -337,7 +338,7 @@ class Overview( Scene ):
 
 class DrawParallelogram( Scene ):
     def construct( self ):
-        o = np.array( [ 0, -2, 0 ] )
+        o = np.array( [ -2, -2, 0 ] )
         p1 = np.array( [ 3, 1, 0 ] ) # u
         p2 = np.array( [ 1, 3, 0 ] ) # v
         op1 = o + p1
@@ -366,8 +367,8 @@ class DrawParallelogram( Scene ):
 
         v1p = Arrow( start = op2, end = op3, buff = 0, color = RED ) # u'
         v2p = Arrow( start = op1, end = op3, buff = 0, color = YELLOW ) # v'
-        #parallelogram = [ o, op1, op3, op2 ]
-        #poly = Polygon( *parallelogram )
+        parallelogram = [ o, op1, op3, op2 ]
+        poly = Polygon( *parallelogram, color = PURPLE, fill_opacity = 0.5 )
 
         cut = op1 + rej
         recttop = cut - p1
@@ -375,23 +376,38 @@ class DrawParallelogram( Scene ):
         dashtop = DashedLine( start = cut, end = recttop )
         dashside = DashedLine( start = recttop, end = o, color = BLUE )
 
-        self.play( Create( v1g ) )
-        self.play( Create( v2g ) )
+        self.play( AnimationGroup( Write( v1g ) ) )
+        self.play( AnimationGroup( Write( v2g ) ) )
+        self.wait( )
         v1c = v1.copy( )
         v2c = v2.copy( )
         self.add( v1c )
         self.add( v2c )
         self.play( ReplacementTransform( v1c, v1p ) )
+        self.wait( )
         self.play( ReplacementTransform( v2c, v2p ) )
-        #self.play( Create( poly ) )
-        #self.play( Create( vprojg ) )
-        #self.play( Create( vrejg ) )
-        self.play( Create( dashrej ) )
-        self.play( Create( dashtop ) )
-        self.play( Create( dashside ) )
-        #self.play( FadeOut( vprojg, vrejg ) )
+        self.wait( 2 )
+        # audio: 08:00: +08s
 
-        move = ( -6, 1, 0 )
+        fromg = v1g + v2g + VGroup( v1p, v2p )
+        self.play( FadeOut( fromg ) )
+        self.play( FadeIn( poly ) )
+        self.play( FadeIn( fromg ) )
+        self.wait( 2 )
+
+        self.play( Write( dashrej ) )
+        self.play( Write( dashtop ) )
+        self.play( Write( dashside ) )
+        self.wait( 2 )
+        self.play( FadeOut( poly ) )
+        rectpoints = [ o, op1, op1 + rej, o + rej ]
+        rect = Polygon( *rectpoints, color = PURPLE, fill_opacity = 0.5 )
+        self.play( FadeIn( rect ) )
+        self.wait( 1 )
+        # audio: 23:00: +15s
+
+        self.play( FadeOut( rect ) )
+        move = ( -4, 1, 0 )
         a = VGroup( dashrej, dashtop, dashside, v1, v1l, v2, v2l, v1p, v2p ) # , poly
         self.play( a.animate.shift( move ) )
         self.wait( 1 )
@@ -403,8 +419,6 @@ class DrawParallelogram( Scene ):
 
         eq2 = MathTex( l.text( 'base' ), r'& = \Vert', vecu, concat( r'\Vert', l.newline ),
                        l.text( 'height' ), '& = ', concat( l.norm( rej ), l.newline ) )
-        #eq2 = MathTex( concat( l.text( 'base' ), '& = ', l.norm( vecu ), l.newline ),
-        #               concat( l.text( 'height' ), '& = ', l.norm( rej ), l.newline ) )
         eq2[0].set_color( RED )
         eq2[1].set_color( RED )
         eq2[2].set_color( RED )
@@ -413,11 +427,14 @@ class DrawParallelogram( Scene ):
         eq2[5].set_color( GREEN )
         eq2[6].set_color( GREEN )
 
+        vdotuhatsq_dist = l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) )
         eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
                       concat( l.sq( l.text( 'Area' ) ), r' &= ', squ, l.norm2( rej ), l.newline ), # 1
                       concat( '&= ', squ ), concat( l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ), l.newline ), # 2, 3
                       concat( '&= ', squ ), concat( l.lr( l.sub( sqv, vdotuhatsq ) ), l.newline ), # 4, 5
-                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ), l.newline ) # 6
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ), l.newline ), # 6
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ), l.newline ), # 7
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ), l.newline ) # 8
                     )
 
         oproj = o + proj
@@ -440,32 +457,38 @@ class DrawParallelogram( Scene ):
         self.wait( )
         self.play( Write( VGroup( vrej, vrejl ) ) )
         self.wait( )
-        eq.shift( 2.4 * RIGHT )
         eq2.shift( 3 * DOWN + 3 * LEFT )
-        #eq2[ 0 ].set_color( RED )
-        ##eq2[ 2 ].set_color( RED )
-        #eq2[ 4 ].set_color( BLUE )
-        self.play( Write( eq[ 0 ] ),
-                   Write( eq2[ 0 ] ),
-                   Write( eq2[ 1 ] ),
-                   Write( eq2[ 2 ] ),
-                   Write( eq2[ 3 ] ),
-                   Write( eq2[ 4 ] ),
-                   Write( eq2[ 5 ] ),
-                   Write( eq2[ 6 ] ) )
+        self.play( Write( eq2 ) )
+        self.wait( 4 )
+        # audio: 35:00: +12s
+
+        eq.shift( 2 * DOWN + 2.4 * RIGHT )
+        self.play( Write( eq[ 0 ] ) )
+        self.wait( 2 )
 
         for i in range( 1, 4 ):
             self.play( Write( eq[ i ] ) )
-        self.wait( )
+            self.wait( 2 )
+        self.wait( 2 )
         eq[ 5 ].shift( 1.1 * UP )
 
         self.play( ReplacementTransform( eq[ 3 ], eq[ 5 ] ) )
-        self.wait( 2 )
+        self.wait( 3 )
 
         i = 6
-        eq[ i ].shift( UP )
+        eq[ i ].shift( 1.1 * UP )
         self.play( Write( eq[ i ] ) )
-        self.wait( )
+        self.wait( 3 )
+
+        i = 7
+        eq[ i ].shift( 1.95 * UP )
+        self.play( ReplacementTransform( eq[ 6 ], eq[ 7 ] ) )
+        self.wait( 3 )
+
+        i = 8
+        eq[ i ].shift( 2.8 * UP )
+        self.play( ReplacementTransform( eq[ 7 ], eq[ 8 ] ) )
+        self.wait( 3 )
 
 
 class ProjRej( Scene ):
@@ -985,15 +1008,15 @@ class WedgeChangeOfBasisPartII( Scene ):
         self.play( FadeOut( VGroup( eq3, eqp, eq, eq2 ) ) )
         t = Text( 'General wedge diagonalization' )
         b1 = l.dot( vecv, vec_f1 )
-        b2 = l.frac( l.norm( uwedgev ), l.norm( vecu ) )
+        b2 = l.frac( l.norm( uwedgev ), normu )
         eq = MathTex( concat( l.setlr( vec_f1, vec_f2 ), ' &= ', l.setlr( hatu, f2e ), l.newline ),
-                      concat( vecu, ' &= ', l.norm( vecu ), vec_f1, l.newline ),
-                      concat( vecv, ' &= ', l.add( l.mult( l.lr( l.dot( vecv, vec_f1 ) ), vec_f1 ), l.mult( l.frac( l.norm( uwedgev ), l.norm( vecu ) ), vec_f2 ) ), l.newline ), 
+                      concat( vecu, ' &= ', normu, vec_f1, l.newline ),
+                      concat( vecv, ' &= ', l.add( l.mult( l.lr( l.dot( vecv, vec_f1 ) ), vec_f1 ), l.mult( l.frac( l.norm( uwedgev ), normu ), vec_f2 ) ), l.newline ),
                       concat( uwedgev, r'&='),
                       concat( r'\sum_{i < j} ', l.det22( 'u_i', 'v_i', 'u_j', 'v_j' ), r'\mathbf{e}_i \mathbf{e}_j', l.newline ),
-                          r'&= ', concat( l.det22( l.norm( vecu ), '0', b1, b2 ), vec_f1, vec_f2, l.newline ),
+                          r'&= ', concat( l.det22( normu, '0', b1, b2 ), vec_f1, vec_f2, l.newline ),
                           r'&= ', concat( l.norm( uwedgev ), vec_f1, vec_f2, l.newline ) )
-        t.move_to( 3 * UP + 1 * RIGHT ) 
+        t.move_to( 3 * UP + 1 * RIGHT )
         t.set_color( BLUE )
         self.play( Write( t ) )
         eq.shift( 1.25 * DOWN )
