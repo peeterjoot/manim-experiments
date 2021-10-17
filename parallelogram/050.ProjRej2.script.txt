@@ -2,7 +2,7 @@ To summarize,
  the projection of v onto u is the dot product of v and u, all multiplied by u-inverse,
 # 07: +7s
  and the rejection of u from v is the wedge product of v and u, all multiplied by u-inverse.
-# 12: +7s
+# 12: +5s
 
 For the multivector products in the rejection operator, order matters,
  but we could equivalently write the rejection as u-inverse times the wedge of u with v.
