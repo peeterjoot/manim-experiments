@@ -1,0 +1,20 @@
+To summarize,
+ the projection of v onto u is the dot product of v and u, all multiplied by u-inverse,
+# 07: +7s
+ and the rejection of u from v is the wedge product of v and u, all multiplied by u-inverse.
+# 12: +7s
+
+For the multivector products in the rejection operator, order matters,
+ but we could equivalently write the rejection as u-inverse times the wedge of u with v.
+ To demonstrate that to yourself, try expanding v as u-inverse u v instead, as we just did before.
+# 29: +15s
+
+This is the most general form to express the projection and rejection operators, and applies to Euclidean and
+ also non-Euclidian spaces (i.e. like the relativistic four-vector spaces that we use in physics.)
+ However, for Euclidean spaces (like R3), where any unit vector is it's own inverse, we can write these
+ as:
+# 45: +16s
+ (v dot u-hat) all times u-hat, and
+# 50: +6s
+ (v wedge u-hat) all times u-hat.
+# 54: +4s
