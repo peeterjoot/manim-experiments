@@ -24,7 +24,7 @@ Finally, we distribute the u-inverse.
  On the other hand, the v-wedge-u term lies perpendicular to u,
   since v-wedge-u times u-inverse,
   rotates u-inverse by 90 degrees from u towards v.
-# 0:49    +23s -- need more animation here.
+# 0:49    +23s -- split this up: need more animation here to highlight what is said.
 
 
 We have blundered upon a decomposition of v, into components that are directed parallel and perpendicular to u.

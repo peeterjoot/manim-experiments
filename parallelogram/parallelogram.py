@@ -509,20 +509,21 @@ class ProjRej( Scene ):
         eq.shift( 2 * RIGHT )
         for item in eq:
            self.play( Write( item ) )
-           self.wait( 1 )
-        self.wait( 1 )
+           self.wait( 7 )
+        self.wait( 7 )
 
         projl = MathTex( proj )
         projl.set_color( PURPLE )
         projl.move_to( labels[ 0 ] )
+        self.play( ReplacementTransform( labels[0], projl ) )
+        self.wait( 7 )
+
         rejl = MathTex( rej )
         rejl.set_color( GREEN )
         rejl.move_to( labels[ 1 ] )
         rejl.shift( 0.5 * RIGHT )
-        oldlabels = VGroup( labels[ 0 ], labels[ 1 ] )
-        newlabels = VGroup( projl, rejl )
-        self.play( ReplacementTransform( oldlabels, newlabels ) )
-        self.wait( 1 )
+        self.play( ReplacementTransform( labels[1], rejl ) )
+        self.wait( 3 )
 
 
 
