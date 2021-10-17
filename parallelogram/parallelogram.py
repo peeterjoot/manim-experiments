@@ -729,6 +729,27 @@ class RejRotate( Scene ):
 
 class ProjRejPerp( Scene ):
     def construct( self ):
+        labels = DrawVectorsAndProjRej( self, 1 )
+
+        eqga = MathTex( l.mult( vecu, vecv ), ' &= ', l.dot( vecu, vecv ), ' + ', l.wedge( vecu, vecv ), l.newline,
+                                              ' &= ', l.gpgradezero( vecu, vecv ), ' + ', l.gpgradetwo( vecu, vecv ) )
+        eqga[2].set_color( BLUE )
+        eqga[4].set_color( RED )
+        eqga[7].set_color( BLUE )
+        eqga[9].set_color( RED )
+
+        for i in range(0, 5):
+           self.play( Write( eqga[i] ) )
+        self.wait( )
+        for i in range(5, 10):
+           self.play( Write( eqga[i] ) )
+        self.wait( 2 )
+        self.play( AnimationGroup( Indicate( eqga[2] ), Indicate( eqga[7] ) ) )
+        self.play( AnimationGroup( Indicate( eqga[4] ), Indicate( eqga[9] ) ) )
+        self.wait( 1 )
+        self.play( FadeOut( eqga ) )
+        self.wait( 1 )
+
         proj       = l.mult( lr_vdotu, invu )
         rej        = l.mult( lr_vwedgeu, invu )
         myTemplate = TexTemplate( )
@@ -741,6 +762,7 @@ class ProjRejPerp( Scene ):
                       concat( r'\quad &= 0', l.newline ),
                       tex_template = myTemplate )
 
+        eq.shift( RIGHT )
         for item in eq:
            self.play( Write( item ) )
 

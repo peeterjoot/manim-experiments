@@ -74,10 +74,16 @@ class latex:
         return concat( r'\underbrace{', sep.join( args ), '}_{', helptext, '}' )
 
     def gpgrade( self, *args, n = -1, sep = '' ):
-        return concat( r'{\left\langle{', sep.join( args ), r'}\right\rangle}_{', n, '}' )
+        return concat( r'{\left\langle{', sep.join( args ), r'}\right\rangle}_{', str(n), '}' )
 
     def gpgradezero( self, *args, sep = '' ):
         return concat( r'\left\langle{', sep.join( args ), r'}\right\rangle' )
+
+    def gpgradeone( self, *args, sep = '' ):
+        return concat( r'{ \left\langle{', sep.join( args ), r'}\right\rangle }_{1}' )
+
+    def gpgradetwo( self, *args, sep = '' ):
+        return concat( r'{ \left\langle{', sep.join( args ), r'}\right\rangle }_{2}' )
 
     def Proj( self, u, v, op = 'Proj' ):
         return concat( '{', latex.text( self, op ), '}_{', u, '}', latex.lr( self, v ) )
