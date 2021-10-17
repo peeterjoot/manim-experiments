@@ -48,7 +48,7 @@ def DrawVectorsAndProjRej( self, prlabels ):
     proj = np.dot( p2, p1cap ) * p1cap
     oproj = o + proj
 
-    vproj = Line( start = o, end = oproj, color = PURPLE )
+    vproj = Arrow( start = o, end = oproj, color = PURPLE, buff = 0 )
     if prlabels:
         vprojl = MathTex( concat( lr_vdotu, invu ) )
     else:
@@ -57,7 +57,7 @@ def DrawVectorsAndProjRej( self, prlabels ):
     vprojl.next_to( vproj, DOWN )
 
     rej = p2 - proj
-    vrej = Line( start = oproj, end = op2, color = GREEN )
+    vrej = Arrow( start = oproj, end = op2, color = GREEN, buff = 0 )
     if prlabels:
         vrejl = MathTex( concat( lr_vwedgeu, invu ) )
     else:
@@ -70,9 +70,11 @@ def DrawVectorsAndProjRej( self, prlabels ):
     v1l = MathTex( vecu )
     v1l.set_color( RED )
     v1l.next_to( v1, RIGHT )
+    v1l.shift( 0.5 * LEFT )
     v2l = MathTex( vecv )
     v2l.set_color( YELLOW )
     v2l.next_to( v2, UP )
+    v2l.shift( 0.5 * DOWN )
 
     all = VGroup( v1, v1l, v2, v2l, vproj, vrej, vprojl, vrejl )
 
@@ -499,7 +501,7 @@ class ProjRej( Scene ):
         labels = DrawVectorsAndProjRej( self, 0 )
 
         eq = MathTex( concat( vecv, r' &= ', vecv, r'\times 1', l.newline ),
-                      concat( r' &= ', vecv, vecu, invu, l.newline ),
+                      concat( r' &= ', vecv, l.lr( vecu, invu ), l.newline ),
                       concat( r' &= ', l.lr( vecv, vecu ), invu, l.newline ),
                       concat( r' &= ', l.lr( l.add( vdotu, vwedgeu ) ), invu, l.newline ),
                       concat( r' &= ', l.add( proj, rej ), l.newline ) )
@@ -507,7 +509,8 @@ class ProjRej( Scene ):
         eq.shift( 2 * RIGHT )
         for item in eq:
            self.play( Write( item ) )
-        self.wait( )
+           self.wait( 1 )
+        self.wait( 1 )
 
         projl = MathTex( proj )
         projl.set_color( PURPLE )
@@ -515,11 +518,11 @@ class ProjRej( Scene ):
         rejl = MathTex( rej )
         rejl.set_color( GREEN )
         rejl.move_to( labels[ 1 ] )
-        rejl.shift( 0.25 * RIGHT )
+        rejl.shift( 0.5 * RIGHT )
         oldlabels = VGroup( labels[ 0 ], labels[ 1 ] )
         newlabels = VGroup( projl, rejl )
         self.play( ReplacementTransform( oldlabels, newlabels ) )
-        self.wait( )
+        self.wait( 1 )
 
 
 

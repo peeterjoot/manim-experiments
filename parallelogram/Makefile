@@ -62,8 +62,7 @@ parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
 	for i in $(ALL) ; do echo file $(HOME)/parallelogram/$$i.mp4 >> concat.in ; done
 	ffmpeg -f concat -safe 0 -i concat.in -c copy $@
-	#../bin/build --killonly
-	#open $@
+	open $@
 
 clean:
 	rm -rf __pycache__ media *.mp4 concat.in
