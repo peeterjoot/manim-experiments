@@ -29,7 +29,7 @@ ALL += Overview
 ALL += DrawParallelogram
 ALL += ProjRej
 ALL += ProjRej2
-ALL += RejRotate
+#ALL += RejRotate
 ALL += ProjRejPerp
 ALL += RejIsVector
 ALL += RejIsVector2
@@ -46,7 +46,7 @@ ALLPATHS2 := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp
 ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(p).mp4)
 
 all :: $(ALLPATHS2) $(ALLPATHS)
-#all :: parallelogram.mp4
+all :: parallelogram.mp4
 
 % : %.py
 	manim $(MANIMFLAGS) $^
