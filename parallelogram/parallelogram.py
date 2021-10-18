@@ -752,21 +752,46 @@ class ProjRejPerp( Scene ):
 
         proj       = l.mult( lr_vdotu, invu )
         rej        = l.mult( lr_vwedgeu, invu )
-        myTemplate = TexTemplate( )
-        myTemplate.add_to_preamble( r'\usepackage{cancel}' )
+        #myTemplate = TexTemplate( )
+        #myTemplate.add_to_preamble( r'\usepackage{cancel}' )
 
         eq = MathTex( concat( '&', l.dot( l.Rej( vecu, vecv ), l.Proj( vecu, vecv ) ), l.newline ),
-                      concat( r'\quad&=', l.gpgradezero( rej, proj ), l.newline ),
-                      concat( r'\quad &=', l.gpgradezero( vwedgeu, invu, invu ), lr_vdotu, l.newline ),
-                      concat( r'\quad &=', l.gpgradezero( vwedgeu ), l.inv( l.sq( vecu ) ), lr_vdotu, l.newline ),
-                      concat( r'\quad &= 0', l.newline ),
-                      tex_template = myTemplate )
+                      concat( r'\quad&=', l.Bigl, l.lgr, rej), lr_vdotu, concat( invu, l.Bigr, l.rgr, l.newline ),
+                      concat( r'\quad &=', l.Bigl, l.lgr, vwedgeu), concat( invu, invu ), concat( l.Bigr, l.rgr, lr_vdotu, l.newline ),
+                              r'\quad &=', l.gpgradezero( vwedgeu ), concat( l.inv( l.sq( vecu ) ), lr_vdotu, l.newline ),
+                      concat( r'\quad &= 0', l.newline ) )
+                      #tex_template = myTemplate 
 
         eq.shift( RIGHT )
-        for item in eq:
-           self.play( Write( item ) )
+        self.play( Write( eq[0] ) )
+        self.wait( 2 )
+        i = 1
+        self.play( AnimationGroup( Write( eq[i+0] ),
+                                   Write( eq[i+1] ),
+                                   Write( eq[i+2] ) ) )
+        self.wait( 2 )
+        self.play( Indicate( eq[i+1] ) ) # vdotu
 
-        self.wait( )
+        i += 3
+        self.play( AnimationGroup( Write( eq[i+0] ),
+                                   Write( eq[i+1] ),
+                                   Write( eq[i+2] ) ) )
+        self.wait( 2 )
+        self.play( Indicate( eq[i+1] ) ) # 1/u 1/u
+
+        i += 3
+        self.play( AnimationGroup( Write( eq[i+0] ), 
+                                   Write( eq[i+1] ),
+                                   Write( eq[i+2] ) ) )
+        self.wait( 2 )
+        self.play( Indicate( eq[i+1] ) ) # vwedgeu
+
+        i += 3
+        self.wait( 2 )
+        self.play( Write( eq[i+0] ) )
+
+        # done.
+        self.wait( 2 )
 
 
 

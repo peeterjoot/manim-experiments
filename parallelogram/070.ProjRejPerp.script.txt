@@ -1,4 +1,19 @@
 If we know a-priori that the bivector u-wedge-v for the plane rotates any vector in the plane by 90 degrees,
  then it is obvious geometrically that the projection and rejection are perpendicular.
 
-We can show this is the case algebraically by dotting the two, expressing the dot product as the scalar grade selection of the product of the two.
+The product of two vectors can be expressed as the sum of the dot and wedge products of those vectors.
+ Equivalently, the product of two vectors can be expressed as the grade-0 and grade-2 components of that product,
+ which are designated with angle brackets.
+
+ This equivalence allows us to write the dot product as the scalar grade (grade 0) selection of the product of two vectors,
+ and write the wedge product as the grade-2 selection of the product of two vectors.
+
+We use scalar grade selection to compute the dot product of the rejection and projection.
+
+We can pull the dot product, as it is a scalar, right out of the grade selection operator.
+
+That leaves us with the product of the two u-inverses, which is also a scalar, and can be pulled out.
+
+We are left selecting the grade-zero portion of a wedge product, which is grade two, so the dot product is zero.
+
+We have verified algebraically that the projection and rejection expressions we have found are perpendicuar, as expected.

@@ -4,6 +4,10 @@ def concat( *args, sep = '' ):
 class latex:
     lbr     = r'\left('
     rbr     = r'\right)'
+    Bigl    = r'\Bigl'
+    Bigr    = r'\Bigr'
+    lgr     = r'\langle'
+    rgr     = r'\rangle'
     newline = r'\\'
 
     def norm( self, *args, sep = '' ):
