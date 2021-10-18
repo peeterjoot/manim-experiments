@@ -1,0 +1,14 @@
+Our decomposition of v into components parallel and perpendicular to u gave us a perfectly normal vector expression for the projection, but a multivector expression for the rejection.
+
+The product of a bivector and a vector, in general has vector and trivector components, but the rejection must be a vector.
+
+Let's see why the trivector term, in this case, is zero.
+
+We first expand the multivector product in terms of its dot and wedge product components.
+
+Since the wedge product is associative, we can opt to wedge the u and u-inverse terms first.
+ Because u-inverse is parallel to u, this wedge product is zero.
+
+We are left with a bivector-vector dot product, which is a vector.
+
+Specifically, this vector is v, minus the projection of v on u.

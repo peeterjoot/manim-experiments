@@ -801,15 +801,31 @@ class RejIsVector( Scene ):
         myTemplate.add_to_preamble( r'\usepackage{cancel}' )
 
         eq = MathTex(
-                concat( l.Rej( vecu, vecv ), r' &\equiv ', lr_vwedgeu, invu, l.newline ),
+                concat( l.Rej( vecu, vecv ), r' &= ', lr_vwedgeu, invu, l.newline ),
                 concat( r'&= ', l.add( l.dot( lr_vwedgeu, invu ), l.wedge( lr_vwedgeu, invu ) ), l.newline ),
-                concat( r'&= ', l.add( l.dot( lr_vwedgeu, invu ), l.wedge( vecv, l.cancel( l.wedge( vecu, invu ) ) ) ), l.newline ),
+                concat( r'&= ', l.dot( lr_vwedgeu, invu ), ' + ', vecv, r'\wedge' ), concat( l.lr( l.wedge( vecu, invu ) ), l.newline ),
                 concat( r'&= ', l.dot( lr_vwedgeu, invu ), l.newline ),
-                      tex_template = myTemplate )
+                concat( r'&= ', vecv, ' - ', l.lr( l.dot( vecv, vecu ) ), invu ) )
 
-        for item in eq:
-           self.play( Write( item ) )
+        cancel = MathTex( l.lr( l.cancel( l.wedge( vecu, invu ) ) ), tex_template = myTemplate )
 
+        for i in range(2):
+           self.play( Write( eq[i] ) )
+           self.wait( )
+        i = 2
+        self.play( AnimationGroup( Write( eq[i] ), Write( eq[i+1] ) ) )
+        self.wait( )
+        cancel.move_to( eq[i+1] )
+
+        self.play( ReplacementTransform( eq[i+1], cancel ) )
+        self.wait( )
+
+        i += 2
+        self.play( Write( eq[i] ) )
+        self.wait( )
+
+        i += 1
+        self.play( Write( eq[i] ) )
         self.wait( )
 
 
