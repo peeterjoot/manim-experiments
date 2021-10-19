@@ -4,8 +4,11 @@ from sys import *
 sys.path.append(r'../bin')
 from mylatex import *
 
-# also:
+# references:
 # https://infograph.tistory.com/27
+# https://www.reddit.com/r/manim/comments/bct15r/why_does_the_set_color_method_not_work_on_latex/
+# https://docs.manim.community/en/stable/tutorials/using_text.html
+# https://docs.manim.community/en/stable/reference/manim.animation.transform_matching_parts.TransformMatchingTex.html#manim.animation.transform_matching_parts.TransformMatchingTex
 
 class MatchingEquationParts(Scene):
     def construct(self):
