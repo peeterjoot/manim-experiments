@@ -10,6 +10,9 @@ class latex:
     rgr     = r'\rangle'
     newline = r'\\'
 
+    def doublebr( self, *args, sep = '' ):
+        return concat( '{{ ', sep.join( args ), ' }}' )
+
     def norm( self, *args, sep = '' ):
         return concat( r'\left\lVert{', sep.join( args ), r'}\right\rVert' )
 
