@@ -394,11 +394,10 @@ class DrawParallelogram( Scene ):
         self.wait( 2 )
         # audio: 08:00: +08s
 
-        fromg = v1g + v2g + VGroup( v1p, v2p )
-        self.play( FadeOut( fromg ) )
+        # https://stackoverflow.com/a/69668382/189270
+        poly.set_z_index( v1.z_index - 1 )
         self.play( FadeIn( poly ) )
-        self.play( FadeIn( fromg ) )
-        self.wait( 2 )
+        self.wait( 4 )
 
         self.play( Write( dashrej ) )
         self.play( Write( dashtop ) )
@@ -407,6 +406,7 @@ class DrawParallelogram( Scene ):
         self.play( FadeOut( poly ) )
         rectpoints = [ o, op1, op1 + rej, o + rej ]
         rect = Polygon( *rectpoints, color = PURPLE, fill_opacity = 0.5 )
+        rect.set_z_index( v1.z_index - 1 )
         self.play( FadeIn( rect ) )
         self.wait( 1 )
         # audio: 23:00: +15s
