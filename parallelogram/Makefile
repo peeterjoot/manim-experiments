@@ -58,7 +58,7 @@ SEQUENCE_BivectorAddition            := 130
 SEQUENCE_ScalarMultiplicationSign    := 140
 SEQUENCE_Finale                      := 150
 
-ALLPATHS2 := $(foreach p,$(ALL),media/videos/$(SEQUENCE_$(p))_$(p)/$(RESOLUTION)/$(SEQUENCE_$(p))_$(p).mp4)
+ALLPATHS2 := $(foreach p,$(ALL),media/videos/$(SEQUENCE_$(p))_$(p)/$(RESOLUTION)/$(p).mp4)
 ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(SEQUENCE_$(p))_$(p).mp4)
 
 all :: $(ALLPATHS2) $(ALLPATHS)
@@ -75,7 +75,7 @@ $(HOME)/parallelogram/$(SEQUENCE_$(1))_$(1).mp4 : media/videos/$(SEQUENCE_$(1))_
 endef
 
 define MANIM_template
-media/videos/$(SEQUENCE_$(1))_$(1)/$(RESOLUTION)/%.mp4 : $(SEQUENCE_$(1))_$(1).py helper.py ../bin/mylatex.py
+media/videos/$(SEQUENCE_$(1))_$(1)/$(RESOLUTION)/$(1).mp4 : $(SEQUENCE_$(1))_$(1).py helper.py ../bin/mylatex.py
 	manim $(MANIMFLAGS) $(SEQUENCE_$(1))_$(1).py $(1)
 endef
 
