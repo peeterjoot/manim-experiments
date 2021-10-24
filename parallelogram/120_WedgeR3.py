@@ -1,5 +1,26 @@
 from helper import *
 
+def playAndFadeOut( self, eq, pos ):
+    eq[ 0 ].move_to( pos )
+    eq[ 0 ].shift( 2 * DOWN )
+    eq[ 1 ].move_to( eq[ 0 ] )
+    eq[ 0 ].shift( 3 * LEFT )
+    eq[ 1 ].shift( RIGHT )
+    self.play( Write( eq[ 0 ] ), Write( eq[ 1 ] ) )
+
+    n = len( eq )
+
+    last = eq[ 1 ]
+    for i in range( 1, n - 1 ):
+        eq[ i + 1 ].move_to( last )
+        self.play( ReplacementTransform( last, eq[ i + 1 ] ) )
+        last = eq[ i + 1 ]
+        self.wait( )
+
+    g = VGroup( eq[ 0 ], last )
+    self.play( FadeOut( g ) )
+
+
 class WedgeR3( Scene ):
     def construct( self ):
         t = MathTex( r'\mathbb{R}^3' ).scale( 2 )

@@ -1,5 +1,22 @@
 from helper import *
 
+
+def OrientedRegularPolygon( num, r, c, f ):
+    x = np.array( [ r, 0, 0 ] )
+    pts = [ x ]
+    theta = math.pi * 2 / num
+    for i in range( 1, num ):
+        y = np.array( [ r * math.cos( i * theta ), r * math.sin( i * theta ), 0 ] )
+        direction = x - y
+        x = y
+        last = pts[ i - 1 ]
+        pts.append( last + direction )
+
+    sq = OrientedPolygon( *pts, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
+
+    return sq
+
+
 class BivectorAddition( Scene ):
     def construct( self ):
         number_plane = NumberPlane(
