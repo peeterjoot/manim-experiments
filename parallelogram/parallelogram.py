@@ -4,6 +4,7 @@ import math
 from sys import *
 sys.path.append( r'../bin' )
 from mylatex import *
+#from mylatex2 import *
 import enum # IntFlag
 
 l          = latex( )
@@ -33,6 +34,7 @@ lr_udotv   = l.lr( udotv )
 lr_vdotu   = l.lr( vdotu )
 detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
 normu      = l.norm( vecu )
+uvcolors   = { l.vec('u'): RED, l.vec('v'): YELLOW }
 
 vec_v1, r' \wedge ', vec_v2
 
@@ -760,7 +762,7 @@ class ProjRejPerp( Scene ):
                       concat( r'\quad &=', l.Bigl, l.lgr, vwedgeu), concat( invu, invu ), concat( l.Bigr, l.rgr, lr_vdotu, l.newline ),
                               r'\quad &=', l.gpgradezero( vwedgeu ), concat( l.inv( l.sq( vecu ) ), lr_vdotu, l.newline ),
                       concat( r'\quad &= 0', l.newline ) )
-                      #tex_template = myTemplate 
+                      #tex_template = myTemplate
 
         eq.shift( RIGHT )
         self.play( Write( eq[0] ) )
@@ -780,7 +782,7 @@ class ProjRejPerp( Scene ):
         self.play( Indicate( eq[i+1] ) ) # 1/u 1/u
 
         i += 3
-        self.play( AnimationGroup( Write( eq[i+0] ), 
+        self.play( AnimationGroup( Write( eq[i+0] ),
                                    Write( eq[i+1] ),
                                    Write( eq[i+2] ) ) )
         self.wait( 2 )
@@ -851,13 +853,22 @@ class ParallelogramComputationGA( Scene ):
         vdotusq    = l.lrsq( vdotu )
         rej        = l.mult( lr_vwedgeu, invu )
         rrej       = l.mult( invu, lr_uwedgev )
+        #d0 = concat( l.sq( l.text( 'Area' ) ), r' &= ' )
+        #print( d0 )
+        #d1 = concat( uu, l.lrsq( rej ), l.newline )
+        #print( d1 )
+        #d2 = concat( uu, rej, rrej, l.newline )
+        #print( d2 )
         eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
+                      #concat( l.sq( l.text( 'Area' ) ), r' &= ' ), concat( uu, l.lrsq( rej, big = 1 ), l.newline ), # 1, 2
                       concat( l.sq( l.text( 'Area' ) ), r' &= ' ), concat( uu, l.lrsq( rej ), l.newline ), # 1, 2
-                      concat( '&= ' ), concat( uu, rej, rrej, l.newline ), # 3, 4
-                      concat( '&= ' ), concat( rej, uu, rrej, l.newline ), # 5, 6
-                      concat( '&= ' ), concat( lr_vwedgeu, lr_uwedgev, l.newline ), # 7, 8
-                      concat( '&= ', l.neg( l.lrsq( vwedgeu ) ), l.newline ),
-                    )
+                      #r'& { 1', r' \over ', r'\mathbf{u}', ' } ', '{', '1', r' \over ', r'\mathbf{u}', r' } \\',
+                      '&= ', concat( uu, rej, rrej, l.newline ), # 3, 4
+                      '&= ', concat( rej, uu, rrej, l.newline ), # 5, 6
+                      '&= ', concat( lr_vwedgeu, lr_uwedgev, l.newline ), # 7, 8
+                      concat( '&= ', l.neg( l.lrsq( vwedgeu ) ), l.newline )
+                      #, tex_to_color_map = uvcolors
+                      )
 
         eq.shift( 2 * RIGHT )
 

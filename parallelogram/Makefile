@@ -42,8 +42,24 @@ ALL += BivectorAddition
 ALL += ScalarMultiplicationSign
 ALL += Finale
 
+SEQUENCE_TitlePage                   := 010
+SEQUENCE_Overview                    := 020
+SEQUENCE_DrawParallelogram           := 030
+SEQUENCE_ProjRej                     := 040
+SEQUENCE_ProjRej2                    := 050
+SEQUENCE_ProjRejPerp                 := 070
+SEQUENCE_RejIsVector                 := 080
+SEQUENCE_ParallelogramComputationGA  := 100
+SEQUENCE_WedgeToDet                  := 110
+SEQUENCE_WedgeR3                     := 120
+SEQUENCE_WedgeChangeOfBasisPartI     := 123
+SEQUENCE_WedgeChangeOfBasisPartII    := 127
+SEQUENCE_BivectorAddition            := 130
+SEQUENCE_ScalarMultiplicationSign    := 140
+SEQUENCE_Finale                      := 150
+
 ALLPATHS2 := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
-ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(p).mp4)
+ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(SEQUENCE_$(p))_$(p).mp4)
 
 all :: $(ALLPATHS2) $(ALLPATHS)
 all :: parallelogram.mp4
@@ -51,18 +67,23 @@ all :: parallelogram.mp4
 % : %.py
 	manim $(MANIMFLAGS) $^
 
-$(HOME)/parallelogram/%.mp4 : media/videos/parallelogram/$(RESOLUTION)/%.mp4
-	mkdir -p $(dir $@)
-	cp $^ $@
+# copy to a path that is more easily accessible by Mac tools (iMovie, ...), and also include the sequence in the filename.
+define CP_template
+$(HOME)/parallelogram/$(SEQUENCE_$(1))_$(1).mp4 : media/videos/parallelogram/$(RESOLUTION)/$(1).mp4
+	mkdir -p $$(dir $$@)
+	cp $$^ $$@
+endef
+
+$(foreach p,$(ALL),$(eval $(call CP_template,$(p))))
 
 media/videos/parallelogram/$(RESOLUTION)/%.mp4 : parallelogram.py
 	manim $(MANIMFLAGS) $^ $(notdir $(basename $@))
 
 parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
-	for i in $(ALL) ; do echo file $(HOME)/parallelogram/$$i.mp4 >> concat.in ; done
+	ls $(HOME)/parallelogram/*mp4 | sed 's/^/file /' > concat.in
 	ffmpeg -f concat -safe 0 -i concat.in -c copy $@
 	open $@
 
 clean:
-	rm -rf __pycache__ media *.mp4 concat.in
+	rm -rf __pycache__ media *.mp4 concat.in $(HOME)/parallelogram/*.mp4
