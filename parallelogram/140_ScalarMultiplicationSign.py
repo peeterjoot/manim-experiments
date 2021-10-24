@@ -1,4 +1,6 @@
 from helper import *
+from OrientedPolygon import *
+import enum # IntFlag
 
 
 def int2str( v ):

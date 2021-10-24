@@ -1,4 +1,6 @@
 from helper import *
+from unitParallelogram import *
+from OrientedPolygon import *
 
 class TitlePage( ThreeDScene ):
     def construct( self ):

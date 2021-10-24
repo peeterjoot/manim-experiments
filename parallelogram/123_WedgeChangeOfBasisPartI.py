@@ -1,4 +1,5 @@
 from helper import *
+from OrientedPolygon import *
 
 class WedgeChangeOfBasisPartI( ThreeDScene ):
     def construct( self ):

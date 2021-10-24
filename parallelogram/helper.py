@@ -5,7 +5,6 @@ from sys import *
 sys.path.append( r'../bin' )
 from mylatex import *
 #from mylatex2 import *
-import enum # IntFlag
 
 l          = latex( )
 vecu       = l.vec( 'u' )
@@ -89,55 +88,6 @@ def DrawVectorsAndProjRej( self, prlabels ):
     self.add( all )
 
     return ( vprojl, vrejl )
-
-
-def OrientedPolygon( *vertices, c0, c1, c2, f, d1, d2, tex, r ):
-    n = len( vertices )
-
-    #print( vertices )
-
-    poly = Polygon( *vertices, color = c0 , fill_opacity = f )
-    g = VGroup( poly )
-
-    if tex:
-        v1 = MathTex( vec_v1 )
-        v1.set_color( c1 )
-        v2 = MathTex( vec_v2 )
-        v2.set_color( c2 )
-        g = g + VGroup( v1, v2 )
-
-    for i in range( n ):
-        a = Arrow( vertices[ i ], vertices[ ( i + 1 ) % n ], buff = 0, max_tip_length_to_length_ratio = r )
-        if i == 0:
-            if tex:
-                v1.next_to( a, d1 )
-            a.set_color( c1 )
-        elif i == 1:
-            if tex:
-                v2.next_to( a, d2 )
-            a.set_color( c2 )
-        else:
-            a.set_color( c0 )
-        g.add( a )
-
-    return g
-
-
-
-
-def unitParallelogram( o, v1, v2, scale ):
-    v1cap = v1/ np.linalg.norm( v1 )
-    cross = np.cross( v2, v1cap )
-
-    v1 = scale * v1cap / np.linalg.norm( cross )
-    v2 = scale * v2
-    ov1 = o + v1
-    ov2 = o + v2
-    ov12 = ov1 + v2
-
-    ppoints = [ o, ov1, ov12, ov2 ]
-
-    return ppoints
 
 
 

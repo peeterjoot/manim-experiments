@@ -1,5 +1,6 @@
 from helper import *
-
+from unitParallelogram import *
+from OrientedPolygon import *
 
 def OrientedRegularPolygon( num, r, c, f ):
     x = np.array( [ r, 0, 0 ] )
