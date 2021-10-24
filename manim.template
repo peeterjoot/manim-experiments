@@ -11,4 +11,9 @@ class foo( Scene ):
 
         self.wait( )
 
+def foo():
+    if 0:
+        #self.play( Write( number_line ) )
+        return 0
+
 # vim: et sw=4 ts=4

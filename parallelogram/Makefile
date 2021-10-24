@@ -58,7 +58,7 @@ SEQUENCE_BivectorAddition            := 130
 SEQUENCE_ScalarMultiplicationSign    := 140
 SEQUENCE_Finale                      := 150
 
-ALLPATHS2 := $(foreach p,$(ALL),media/videos/parallelogram/$(RESOLUTION)/$(p).mp4)
+ALLPATHS2 := $(foreach p,$(ALL),media/videos/$(SEQUENCE_$(p))_$(p)/$(RESOLUTION)/$(SEQUENCE_$(p))_$(p).mp4)
 ALLPATHS := $(foreach p,$(ALL),$(HOME)/parallelogram/$(SEQUENCE_$(p))_$(p).mp4)
 
 all :: $(ALLPATHS2) $(ALLPATHS)
@@ -69,15 +69,19 @@ all :: parallelogram.mp4
 
 # copy to a path that is more easily accessible by Mac tools (iMovie, ...), and also include the sequence in the filename.
 define CP_template
-$(HOME)/parallelogram/$(SEQUENCE_$(1))_$(1).mp4 : media/videos/parallelogram/$(RESOLUTION)/$(1).mp4
+$(HOME)/parallelogram/$(SEQUENCE_$(1))_$(1).mp4 : media/videos/$(SEQUENCE_$(1))_$(1)/$(RESOLUTION)/$(1).mp4
 	mkdir -p $$(dir $$@)
 	cp $$^ $$@
 endef
 
+define MANIM_template
+media/videos/$(SEQUENCE_$(1))_$(1)/$(RESOLUTION)/%.mp4 : $(SEQUENCE_$(1))_$(1).py helper.py ../bin/mylatex.py
+	manim $(MANIMFLAGS) $(SEQUENCE_$(1))_$(1).py $(1)
+endef
+
 $(foreach p,$(ALL),$(eval $(call CP_template,$(p))))
 
-media/videos/parallelogram/$(RESOLUTION)/%.mp4 : parallelogram.py
-	manim $(MANIMFLAGS) $^ $(notdir $(basename $@))
+$(foreach p,$(ALL),$(eval $(call MANIM_template,$(p))))
 
 parallelogram.mp4: $(ALLPATHS)
 	rm -f concat.in $@
