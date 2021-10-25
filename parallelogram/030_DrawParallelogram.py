@@ -100,14 +100,17 @@ class DrawParallelogram( Scene ):
         eq2[6].set_color( GREEN )
 
         vdotuhatsq_dist = l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) )
-        eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ', squ, l.norm2( rej ), l.newline ), # 1
-                      concat( '&= ', squ ), concat( l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ), l.newline ), # 2, 3
-                      concat( '&= ', squ ), concat( l.lr( l.sub( sqv, vdotuhatsq ) ), l.newline ), # 4, 5
-                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ), l.newline ), # 6
-                      concat( '&= ', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ), l.newline ), # 7
-                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ), l.newline ) # 8
+        eq = MathTex( l.text( 'Area' ), ' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline, # [0,5]
+                      concat( l.sq( l.text( 'Area' ) ), ' &= ', squ, l.norm2( rej ), l.newline ), # 1 + 6
+                      concat( '&= ', squ ), concat( l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ), l.newline ), # 2 + 6, 3 + 6
+                      concat( '&= ', squ ), concat( l.lr( l.sub( sqv, vdotuhatsq ) ), l.newline ), # 4 + 6, 5 + 6
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ), l.newline ), # 6 + 6
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ), l.newline ), # 7 + 6
+                      concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ), l.newline ) # 8 + 6
                     )
+        eq[0].set_color( BLUE )
+        eq[2].set_color( RED )
+        eq[4].set_color( GREEN )
 
         oproj = o + proj
         vproj = Arrow( start = o, end = oproj, color = PURPLE, buff = 0 )
@@ -135,31 +138,32 @@ class DrawParallelogram( Scene ):
         # audio: 35:00: +12s
 
         eq.shift( 2 * DOWN + 2.4 * RIGHT )
-        self.play( Write( eq[ 0 ] ) )
+        self.play( AnimationGroup( Write( eq[ 0 ] ), Write( eq[ 1 ] ), Write( eq[ 2 ] ), Write( eq[ 3 ] ), Write( eq[ 4 ] ), Write( eq[ 5 ] ) ) )
         self.wait( 2 )
 
-        for i in range( 1, 4 ):
+        ii = 6 - 1
+        for i in range( 1 + ii, 4 + ii ):
             self.play( Write( eq[ i ] ) )
             self.wait( 2 )
         self.wait( 2 )
-        eq[ 5 ].shift( 1.1 * UP )
+        eq[ 5 + ii ].shift( 1.1 * UP )
 
-        self.play( ReplacementTransform( eq[ 3 ], eq[ 5 ] ) )
+        self.play( ReplacementTransform( eq[ 3 + ii ], eq[ 5 + ii ] ) )
         self.wait( 3 )
 
-        i = 6
+        i = 6 + ii
         eq[ i ].shift( 1.1 * UP )
         self.play( Write( eq[ i ] ) )
         self.wait( 3 )
 
-        i = 7
+        i = 7 + ii
         eq[ i ].shift( 1.95 * UP )
-        self.play( ReplacementTransform( eq[ 6 ], eq[ 7 ] ) )
+        self.play( ReplacementTransform( eq[ i - 1 ], eq[ i ] ) )
         self.wait( 3 )
 
-        i = 8
+        i = 8 + ii
         eq[ i ].shift( 2.8 * UP )
-        self.play( ReplacementTransform( eq[ 7 ], eq[ 8 ] ) )
+        self.play( ReplacementTransform( eq[ i - 1 ], eq[ i ] ) )
         self.wait( 3 )
 
 
