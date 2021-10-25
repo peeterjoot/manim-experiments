@@ -138,7 +138,8 @@ class DrawParallelogram( Scene ):
         # audio: 35:00: +12s
 
         eq.shift( 2 * DOWN + 2.4 * RIGHT )
-        self.play( AnimationGroup( Write( eq[ 0 ] ), Write( eq[ 1 ] ), Write( eq[ 2 ] ), Write( eq[ 3 ] ), Write( eq[ 4 ] ), Write( eq[ 5 ] ) ) )
+        #self.play( AnimationGroup( Write( eq[ 0 ] ), Write( eq[ 1 ] ), Write( eq[ 2 ] ), Write( eq[ 3 ] ), Write( eq[ 4 ] ), Write( eq[ 5 ] ) ) )
+        self.play( AnimationGroup( *[Write( eq[ i ] ) for i in range(6)] ) )
         self.wait( 2 )
 
         ii = 6 - 1

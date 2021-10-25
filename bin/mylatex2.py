@@ -51,13 +51,13 @@ class latex:
         return concat( r'\mathbf{', v, '}' )
 
     def hat( self, v ):
-        return concat( r'\hat{ \mathbf{ ', v, ' } }' )
+        return concat( r'\hat{', v, '}' )
 
     def cancel( self, *args, sep = '' ):
         return concat( r'\cancel{ ', sep.join( args ), ' }' )
 
     def text( self, *args, sep = '' ):
-        return concat( r'\text{ ', sep.join( args ), ' }' )
+        return concat( r'\text{', sep.join( args ), '}' )
 
     def dot( self, *args, sep = r' \cdot ' ):
         return sep.join( args )

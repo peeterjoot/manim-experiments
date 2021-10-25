@@ -55,7 +55,7 @@ select STDERR ; $| = 1 ;
 select STDOUT ; $| = 1 ;
 
 my $myName = '' ;
-my $main = 'parallelogram.py';
+my $main = '';
 my $killonly = 0;
 my $preview = 0;
 my $quality = 'l';
