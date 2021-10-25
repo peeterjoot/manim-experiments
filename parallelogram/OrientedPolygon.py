@@ -1,4 +1,4 @@
-from manim import *
+from helper import *
 
 
 def OrientedPolygon( *vertices, c0, c1, c2, f, d1, d2, tex, r ):

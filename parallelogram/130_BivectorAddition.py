@@ -1,4 +1,3 @@
-from helper import *
 from unitParallelogram import *
 from OrientedPolygon import *
 
