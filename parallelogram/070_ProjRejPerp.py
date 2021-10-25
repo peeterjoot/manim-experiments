@@ -39,23 +39,17 @@ class ProjRejPerp( Scene ):
         self.play( Write( eq[0] ) )
         self.wait( 2 )
         i = 1
-        self.play( AnimationGroup( Write( eq[i+0] ),
-                                   Write( eq[i+1] ),
-                                   Write( eq[i+2] ) ) )
+        self.play( AnimationGroup( *[Write( eq[ i + j ] ) for j in range(3)] ) )
         self.wait( 2 )
         self.play( Indicate( eq[i+1] ) ) # vdotu
 
         i += 3
-        self.play( AnimationGroup( Write( eq[i+0] ),
-                                   Write( eq[i+1] ),
-                                   Write( eq[i+2] ) ) )
+        self.play( AnimationGroup( *[Write( eq[ i + j ] ) for j in range(3)] ) )
         self.wait( 2 )
         self.play( Indicate( eq[i+1] ) ) # 1/u 1/u
 
         i += 3
-        self.play( AnimationGroup( Write( eq[i+0] ),
-                                   Write( eq[i+1] ),
-                                   Write( eq[i+2] ) ) )
+        self.play( AnimationGroup( *[Write( eq[ i + j ] ) for j in range(3)] ) )
         self.wait( 2 )
         self.play( Indicate( eq[i+1] ) ) # vwedgeu
 
