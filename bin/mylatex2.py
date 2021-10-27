@@ -32,26 +32,23 @@ class latex:
         return concat( r'\{ ', sep.join( args ), r' \}' )
 
     def lrsq( self, *args, big = 0, sep = '' ):
-        #return concat( '{ ', latex.lr( self, sep.join( args ) ), ' }^2' )
-        #if big:
         return concat( latex.lr( self, sep.join( args ), big = big ), '{}^2' )
-        #else:
-        #    return concat( latex.lr( self, sep.join( args ) ), '{}^2' )
 
     def sq( self, *args, sep = '' ):
-        #return concat( '{ ', sep.join( args ), ' }^2' )
         return concat( sep.join( args ), '{}^2' )
 
     def frac( self, num, den ):
-        #return concat( r'\frac{ ', num, ' }{ ', den, ' }' )
         return concat( ' { ', num, r' \over ', den, ' } ' )
 
     def vec( self, v ):
-        #return concat( r'\vec{', v, '}' )
         return concat( r'\mathbf{', v, '}' )
 
     def hat( self, v ):
-        return concat( r'\hat{', v, '}' )
+        return concat( r'\mathbf{\hat{', v, '} }' )
+        #if v[-1] == '}':
+        #    return concat( r'\hat{', v, ' }' )
+        #else:
+        #    return concat( r'\hat{', v, '}' )
 
     def cancel( self, *args, sep = '' ):
         return concat( r'\cancel{ ', sep.join( args ), ' }' )
@@ -87,7 +84,6 @@ class latex:
         return concat( '{ ', sep.join( args ), ' }^{ ', pow, ' }' )
 
     def inv( self, *args, sep = '' ):
-        #return concat( r'\frac{1}{ ', sep.join( args ), ' }' )
         return concat( r' { 1 \over ', sep.join( args ), ' } ' )
 
     def underbrace( self, *args, helptext = '', sep = '' ):
