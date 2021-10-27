@@ -45,11 +45,12 @@ vdotuhatsq_dist = l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) )
 
 # new:
 #    ' = ', 'stuff'
-def write_aligned( self, ref, new, sh, m ):
-    new.move_to( ref )
+def write_aligned( s, ref, new, sh, m ):
+    where = ref.get_part_by_tex( '=' )
+    new.move_to( where, LEFT )
     new.shift( sh )
     new.set_color_by_tex_to_color_map( m )
-    self.play( Write( new ) )
+    s.play( Write( new ) )
 
 
 class foo( Scene ):
@@ -58,52 +59,69 @@ class foo( Scene ):
         uvcolors = { l.vec('u'): RED, l.vec('v'): YELLOW }
         acolors = { 'Area': PURPLE, 'base': RED, 'height': GREEN }
 
-        #eq0 = [ l.text( 'Area' ), ' = ', l.text( 'base' ), r' \times ', l.text( 'height' ) ]
-        #eq1 = [ l.sq( l.text( 'Area' ) ), ' = ', squ, l.norm2( rej ) ]
-        #eq2 = [ '= ', squ, l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ) ]
-        #eq3 = [ '= ', squ, l.lr( l.sub( sqv, vdotuhatsq ) ) ]
-        #eq4 = [ '= ', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ) ]
-        #eq5 = [ '= ', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ) ]
-        #eq6 = [ '= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ) ]
-        eq_0  = [ r'{{ \text{Area} }}', ' = ', r'{{ \text{base} }} \times {{ \text{height} }}' ]
-        eq_0s = [ r'{{ \text{Area} }} {}^2', ' = ', r'{{ \text{base} }} {}^2 \times {{ \text{height} }} {}^2' ]
-        eq_1  = [ ' = ',
+        #eq0 = [ l.text( 'Area' ), '=', l.text( 'base' ), r' \times ', l.text( 'height' ) ]
+        #eq1 = [ l.sq( l.text( 'Area' ) ), '=', squ, l.norm2( rej ) ]
+        #eq2 = [ '=', squ, l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ) ]
+        #eq3 = [ '=', squ, l.lr( l.sub( sqv, vdotuhatsq ) ) ]
+        #eq4 = [ '=', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ) ]
+        #eq5 = [ '=', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ) ]
+        #eq6 = [ '=', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ) ]
+        ar_area_equals_base_times_height  = [ r'{{ \text{Area} }}', '=', r'{{ \text{base} }} \times {{ \text{height} }}' ]
+        ar_sq_area_equals_base_times_height = [ r'{{ \text{Area} }} {}^2', '=', r'{{ \text{base} }} {}^2 \times {{ \text{height} }} {}^2' ]
+        ar_sq_norms  = [ '=',
                   r'\lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} - ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ) {{ \hat{\mathbf{u} } }} \rVert {}^2' ]
-        eq0 = MathTex( *eq_0 )
-        eq0sq = MathTex( *eq_0s )
-        eq1 = MathTex( *eq_1 )
-        eq0.set_color_by_tex_to_color_map( acolors )
-        eq0sq.set_color_by_tex_to_color_map( acolors )
-        print( eq1 )
-        write_aligned( self, eq0sq[1], eq1, DOWN, uvcolors )
-        
-        #, tex_to_color_map = acolors )
-
-        
-        eq2 = [ '= ',
-                r' \lVert {{\mathbf{u} }} \rVert {}^2', r'\Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 + ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ) {}^2 - 2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2 \Bigr)' ]
-        
-        eq3 = [ '= ',
+        ar_2 = [ '=',
+                r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 + ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ) {}^2 - 2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2 \Bigr)' ]
+        ar_3 = [ '=',
                 r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2 \Bigr)' ]
-        
-        eq4 = [ '= ',
-                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \lVert {{ \mathbf{u} }} \rVert {}^2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2' ]
-        eq5 = [ '= ',
-                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \Bigl( {{ \mathbf{v} }} \cdot ( \lVert {{ \mathbf{u} }} \rVert {{ \hat{\mathbf{u} } }} ) \Bigr){}^2' ]
-        eq6 = [ '= ',
-                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \mathbf{u} }} ){}^2' ]
-        
-        #print( eq0 )
-        #print( eq1 )
-        #print( eq2 )
-        #print( eq3 )
-        #print( eq4 )
-        #print( eq5 )
-        #print( eq6 )
 
-        self.play( Write( eq0 ) )
+        ar_4 = [ '=',
+                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \lVert {{ \mathbf{u} }} \rVert {}^2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2' ]
+        ar_5 = [ '=',
+                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \Bigl( {{ \mathbf{v} }} \cdot ( \lVert {{ \mathbf{u} }} \rVert {{ \hat{\mathbf{u} } }} ) \Bigr){}^2' ]
+        ar_6 = [ '=',
+                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \mathbf{u} }} ){}^2' ]
+
+        eq_area_text = MathTex( *ar_area_equals_base_times_height )
+        eq_area_text.set_color_by_tex_to_color_map( acolors )
+        eq_area_text.shift( 2 * UP )
+
+        eq_area_squared_text = MathTex( *ar_sq_area_equals_base_times_height )
+        eq_area_squared_text.set_color_by_tex_to_color_map( acolors )
+        eq_area_squared_text.shift( 2 * UP )
+
+        eq_sq_norms = MathTex( *ar_sq_norms )
+        eq_2 = MathTex( *ar_2 )
+        eq_3 = MathTex( *ar_3 )
+        eq_4 = MathTex( *ar_4 )
+        eq_5 = MathTex( *ar_5 )
+        eq_6 = MathTex( *ar_6 )
+
+        self.play( Write( eq_area_text ) )
         self.wait( )
-        self.play( TransformMatchingTex( eq0, eq0sq ) )
+        self.play( TransformMatchingTex( eq_area_text, eq_area_squared_text ) )
+        self.wait( )
+        write_aligned( self, eq_area_squared_text, eq_sq_norms, 0.75 * DOWN, uvcolors )
+        self.wait( )
+        write_aligned( self, eq_sq_norms, eq_2, 0.75 * DOWN, uvcolors )
+        self.wait( )
+
+        eq_3.move_to( eq_2, LEFT )
+        eq_3.set_color_by_tex_to_color_map( uvcolors )
+        eq_4.move_to( eq_3, LEFT )
+        eq_4.set_color_by_tex_to_color_map( uvcolors )
+        eq_5.move_to( eq_4, LEFT )
+        eq_5.set_color_by_tex_to_color_map( uvcolors )
+        eq_6.move_to( eq_5, LEFT )
+        eq_6.set_color_by_tex_to_color_map( uvcolors )
+        self.play( TransformMatchingTex( eq_2, eq_3 ) )
+        self.wait( )
+        self.play( TransformMatchingTex( eq_3, eq_4 ) )
+        self.wait( )
+        self.play( TransformMatchingTex( eq_4, eq_5 ) )
+        self.wait( )
+        self.play( TransformMatchingTex( eq_5, eq_6 ) )
+        self.wait( )
 
 
 # vim: et sw=4 ts=4
