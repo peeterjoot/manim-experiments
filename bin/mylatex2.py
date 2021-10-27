@@ -17,10 +17,10 @@ class latex:
         return concat( '{{ ', sep.join( args ), ' }}' )
 
     def norm( self, *args, sep = '' ):
-        return concat( r'\lVert{ ', sep.join( args ), r' }\rVert' )
+        return concat( r'\lVert ', sep.join( args ), r' \rVert' )
 
     def norm2( self, *args, sep = '' ):
-        return concat( '{ ', latex.norm( self, sep.join( args ) ), ' }^2' )
+        return concat( latex.norm( self, sep.join( args ) ), ' {}^2' )
 
     def lr( self, *args, sep = '', big = 0 ):
         if big:

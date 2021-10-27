@@ -4,37 +4,6 @@ from sys import *
 sys.path.append(r'../bin')
 from mylatex2 import *
 
-l          = latex( )
-#invu       = l.inv( vecu )
-vec_v1     = concat( l.vec( 'v' ), '_1' )
-vec_v2     = concat( l.vec( 'v' ), '_2' )
-vec_e1     = concat( l.vec( 'e' ), '_1' )
-vec_e2     = concat( l.vec( 'e' ), '_2' )
-vec_e3     = concat( l.vec( 'e' ), '_3' )
-vec_f1     = concat( l.vec( 'f' ), '_1' )
-vec_f2     = concat( l.vec( 'f' ), '_2' )
-vec_e12    = concat( l.vec( 'e' ), '_{12}' )
-vec_e13    = concat( l.vec( 'e' ), '_{13}' )
-vec_e23    = concat( l.vec( 'e' ), '_{23}' )
-#uu         = l.sq( vecu )
-#vv         = l.sq( vecv )
-#uwedgev    = l.wedge( vecu, vecv )
-#vwedgeu    = l.wedge( vecv, vecu )
-#udotv      = l.dot( vecu, vecv )
-#vdotu      = l.dot( vecv, vecu )
-#lr_uwedgev = l.lr( uwedgev )
-#lr_vwedgeu = l.lr( vwedgeu )
-#lr_udotv   = l.lr( udotv )
-#lr_vdotu   = l.lr( vdotu )
-#detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
-
-#vdotuhatsq = l.lrsq( l.dot( vecv, hatu ) )
-#rej        = l.sub( vecv, l.mult( l.lr( l.dot( vecv, hatu ) ), hatu ) )
-#vdotuhatsq_dist = l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) )
-
-
-# new:
-#    ' = ', 'stuff'
 def write_aligned( s, ref, new, sh, m ):
     where = ref.get_part_by_tex( '=' )
     new.move_to( where, LEFT )
@@ -42,12 +11,11 @@ def write_aligned( s, ref, new, sh, m ):
     new.set_color_by_tex_to_color_map( m )
     s.play( Write( new ) )
 
-
 class foo( Scene ):
     def construct( self ):
 
-        uvcolors = { l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
-        acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN }
+        l = latex( )
+        acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
 
         t_area = l.doublebr( l.text( 'Area' ) )
         t_base = l.doublebr( l.text( 'base' ) )
@@ -59,6 +27,15 @@ class foo( Scene ):
         sqv   = l.norm2( vecv )
         hatu  = l.doublebr( l.hat( 'u' ) )
         normu = l.norm( vecu )
+
+        eq2 = MathTex( concat( t_base, '&=', normu, l.newline ),
+                       concat( t_height, '&= ', l.norm( l.sub( vecv, l.mult( l.lr( l.dot( vecv, hatu ) ), hatu ) ) ), l.newline ) )
+        eq2.set_color_by_tex_to_color_map( acolors )
+        eq2.move_to( 2.5 * DOWN + 2 * LEFT )
+        self.play( Write( eq2 ) )
+        self.wait( )
+        #return
+
 
         #ar_a  = [ r'{{ \text{Area} }}', '=', r'{{ \text{base} }} \times {{ \text{height} }}' ]
         ar_a = [ t_area, '=', t_base, r' \times ', t_height ]
@@ -105,25 +82,27 @@ class foo( Scene ):
         self.wait( )
         self.play( TransformMatchingTex( eq_a, eq_0 ) )
         self.wait( )
-        write_aligned( self, eq_0, eq_1, 0.75 * DOWN, uvcolors )
+        write_aligned( self, eq_0, eq_1, 0.75 * DOWN, acolors )
         self.wait( )
-        write_aligned( self, eq_1, eq_2, 0.75 * DOWN, uvcolors )
+        write_aligned( self, eq_1, eq_2, 0.75 * DOWN, acolors )
         self.wait( )
 
         eq_3.move_to( eq_2, LEFT )
-        eq_3.set_color_by_tex_to_color_map( uvcolors )
+        eq_3.set_color_by_tex_to_color_map( acolors )
         eq_4.move_to( eq_3, LEFT )
-        eq_4.set_color_by_tex_to_color_map( uvcolors )
+        eq_4.set_color_by_tex_to_color_map( acolors )
         #eq_5.move_to( eq_4, LEFT )
-        #eq_5.set_color_by_tex_to_color_map( uvcolors )
+        #eq_5.set_color_by_tex_to_color_map( acolors )
         eq_6.move_to( eq_4, LEFT )
-        eq_6.set_color_by_tex_to_color_map( uvcolors )
+        eq_6.set_color_by_tex_to_color_map( acolors )
         self.play( TransformMatchingTex( eq_2, eq_3 ) )
         self.wait( )
         self.play( TransformMatchingTex( eq_3, eq_4 ) )
         self.wait( )
         self.play( TransformMatchingTex( eq_4, eq_6 ) )
         self.wait( )
+
+
 
 
 # vim: et sw=4 ts=4
