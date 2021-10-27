@@ -35,8 +35,6 @@ detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
 normu      = l.norm( vecu )
 uvcolors   = { l.vec('u'): RED, l.vec('v'): YELLOW }
 
-vec_v1, r' \wedge ', vec_v2
-
 dv_p1 = np.array( [ 3, 1, 0 ] )
 dv_p2 = np.array( [ 1, 3, 0 ] )
 

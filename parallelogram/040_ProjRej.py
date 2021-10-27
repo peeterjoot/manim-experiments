@@ -1,7 +1,9 @@
 from helper import *
+from helper2 import *
 
 class ProjRej( Scene ):
     def construct( self ):
+
         proj       = l.mult( lr_vdotu, invu )
         rej        = l.mult( lr_vwedgeu, invu )
 
@@ -12,6 +14,7 @@ class ProjRej( Scene ):
                       concat( r' &= ', l.lr( vecv, vecu ), invu, l.newline ),
                       concat( r' &= ', l.lr( l.add( vdotu, vwedgeu ) ), invu, l.newline ),
                       concat( r' &= ', l.add( proj, rej ), l.newline ) )
+        eq.set_color_by_tex_to_color_map( acolors )
 
         eq.shift( 2 * RIGHT )
         for item in eq:
