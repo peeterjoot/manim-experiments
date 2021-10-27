@@ -46,7 +46,7 @@ def write_aligned( s, ref, new, sh, m ):
 class foo( Scene ):
     def construct( self ):
 
-        uvcolors = { l.vec('u'): RED, l.vec('v'): YELLOW }
+        uvcolors = { l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
         acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN }
 
         t_area = l.doublebr( l.text( 'Area' ) )
@@ -57,7 +57,7 @@ class foo( Scene ):
         vecv  = l.doublebr( l.vec( 'v' ) )
         squ   = l.norm2( vecu )
         sqv   = l.norm2( vecv )
-        hatu  = l.doublebr( l.hat( l.vec( 'u' ) ) )
+        hatu  = l.doublebr( l.hat( 'u' ) )
         normu = l.norm( vecu )
 
         #ar_a  = [ r'{{ \text{Area} }}', '=', r'{{ \text{base} }} \times {{ \text{height} }}' ]
@@ -72,16 +72,16 @@ class foo( Scene ):
         eq5 = [ '=', l.sub( l.mult( squ, sqv ), l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) ) ) ]
 
         #ar_1  = [ '=',
-        #          r'\lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} - ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ) {{ \hat{\mathbf{u} } }} \rVert {}^2' ]
+        #          r'\lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} - ( {{ \mathbf{v} }} \cdot {{ \mathbf{\hat{u} } }} ) {{ \mathbf{\hat{u} } }} \rVert {}^2' ]
         ar_2 = [ '=',
-                r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 + ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ) {}^2 - 2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2 \Bigr)' ]
+                r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 + ( {{ \mathbf{v} }} \cdot {{ \mathbf{\hat{u} } }} ) {}^2 - 2 ( {{ \mathbf{v} }} \cdot {{ \mathbf{\hat{u} } }} ){}^2 \Bigr)' ]
         ar_3 = [ '=',
-                r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2 \Bigr)' ]
+                r' \lVert {{\mathbf{u} }} \rVert {}^2 \Bigl( \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \mathbf{\hat{u} } }} ){}^2 \Bigr)' ]
 
         ar_4 = [ '=',
-                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \lVert {{ \mathbf{u} }} \rVert {}^2 ( {{ \mathbf{v} }} \cdot {{ \hat{\mathbf{u} } }} ){}^2' ]
+                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \lVert {{ \mathbf{u} }} \rVert {}^2 ( {{ \mathbf{v} }} \cdot {{ \mathbf{\hat{u} } }} ){}^2' ]
         ar_5 = [ '=',
-                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \Bigl( {{ \mathbf{v} }} \cdot ( \lVert {{ \mathbf{u} }} \rVert {{ \hat{\mathbf{u} } }} ) \Bigr){}^2' ]
+                r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - \Bigl( {{ \mathbf{v} }} \cdot ( \lVert {{ \mathbf{u} }} \rVert {{ \mathbf{\hat{u} } }} ) \Bigr){}^2' ]
         ar_6 = [ '=',
                 r' \lVert {{ \mathbf{u} }} \rVert {}^2 \lVert {{ \mathbf{v} }} \rVert {}^2 - ( {{ \mathbf{v} }} \cdot {{ \mathbf{u} }} ){}^2' ]
         #ar_6 = [ '=', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ) ]
