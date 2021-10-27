@@ -7,11 +7,9 @@ ucap \cross (\ucap \cross v)
 
 10) Probably want a summary that relates any GA formulas to their VA equivalents.
 
-11) working on
+11) restore 17s of delay to:
 
-030.experiment.py FOR:
 030_DrawParallelogram.py
-
 
 nice to have:
 =============

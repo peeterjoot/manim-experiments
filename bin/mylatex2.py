@@ -1,7 +1,8 @@
-def concat( *args, sep = '' ):
-    return sep.join( args )
+#from sys import *
+#sys.path.append(r'../bin')
+from concat import *
 
-class latex:
+class latex2:
     # these used to have \left \right's in them, but that causes havoc with manim's colorizer
     # will probably have to adjust with a 'big' command line option instead:
     lbr     = r'('
@@ -20,7 +21,7 @@ class latex:
         return concat( r'\lVert ', sep.join( args ), r' \rVert' )
 
     def norm2( self, *args, sep = '' ):
-        return concat( latex.norm( self, sep.join( args ) ), ' {}^2' )
+        return concat( latex2.norm( self, sep.join( args ) ), ' {}^2' )
 
     def lr( self, *args, sep = '', big = 0 ):
         if big:
@@ -32,7 +33,7 @@ class latex:
         return concat( r'\{ ', sep.join( args ), r' \}' )
 
     def lrsq( self, *args, big = 0, sep = '' ):
-        return concat( latex.lr( self, sep.join( args ), big = big ), '{}^2' )
+        return concat( latex2.lr( self, sep.join( args ), big = big ), '{}^2' )
 
     def sq( self, *args, sep = '' ):
         return concat( sep.join( args ), '{}^2' )
@@ -96,15 +97,15 @@ class latex:
         return concat( r'\langle{ ', sep.join( args ), r' }\rangle' )
 
     def gpgradeone( self, *args, sep = '' ):
-        return latex.gpgrade( self, sep.join( args ), n = 1 )
+        return latex2.gpgrade( self, sep.join( args ), n = 1 )
 
     def gpgradetwo( self, *args, sep = '' ):
-        return latex.gpgrade( self, sep.join( args ), n = 2 )
+        return latex2.gpgrade( self, sep.join( args ), n = 2 )
 
     def Proj( self, u, v, op = 'Proj' ):
-        return concat( '{ ', latex.text( self, op ), ' }_{ ', u, ' }', latex.lr( self, v ) )
+        return concat( '{ ', latex2.text( self, op ), ' }_{ ', u, ' }', latex2.lr( self, v ) )
 
     def Rej( self, u, v):
-        return latex.Proj( self, u, v, op = 'Rej' )
+        return latex2.Proj( self, u, v, op = 'Rej' )
 
 # vim: et sw=4 ts=4

@@ -1,5 +1,6 @@
-def concat( *args, sep = '' ):
-    return sep.join( args )
+#from sys import *
+#sys.path.append(r'../bin')
+from concat import *
 
 class latex:
     lbr     = r'\left('

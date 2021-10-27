@@ -14,7 +14,7 @@ def write_aligned( s, ref, new, sh, m ):
 class foo( Scene ):
     def construct( self ):
 
-        l = latex( )
+        l = latex2( )
         acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
 
         t_area = l.doublebr( l.text( 'Area' ) )
