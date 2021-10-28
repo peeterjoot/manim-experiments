@@ -1,4 +1,5 @@
 from helper import *
+from helper2 import *
 
 class ParallelogramComputationGA( Scene ):
     def construct( self ):
@@ -7,58 +8,63 @@ class ParallelogramComputationGA( Scene ):
         vdotusq    = l.lrsq( vdotu )
         rej        = l.mult( lr_vwedgeu, invu )
         rrej       = l.mult( invu, lr_uwedgev )
-        #d0 = concat( l.sq( l.text( 'Area' ) ), r' &= ' )
-        #print( d0 )
-        #d1 = concat( uu, l.lrsq( rej ), l.newline )
-        #print( d1 )
-        #d2 = concat( uu, rej, rrej, l.newline )
-        #print( d2 )
-        eq = MathTex( concat( l.text( 'Area' ), r' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline ), # 0
-                      #concat( l.sq( l.text( 'Area' ) ), r' &= ' ), concat( uu, l.lrsq( rej, big = 1 ), l.newline ), # 1, 2
-                      concat( l.sq( l.text( 'Area' ) ), r' &= ' ), concat( uu, l.lrsq( rej ), l.newline ), # 1, 2
-                      #r'& { 1', r' \over ', r'\mathbf{u}', ' } ', '{', '1', r' \over ', r'\mathbf{u}', r' } \\',
-                      '&= ', concat( uu, rej, rrej, l.newline ), # 3, 4
-                      '&= ', concat( rej, uu, rrej, l.newline ), # 5, 6
-                      '&= ', concat( lr_vwedgeu, lr_uwedgev, l.newline ), # 7, 8
-                      concat( '&= ', l.neg( l.lrsq( vwedgeu ) ), l.newline )
-                      #, tex_to_color_map = uvcolors
-                      )
+        ar_a = [ t_area, '=', t_base, r' \times ', t_height ]
+        ar_0 = [ l.sq( t_area ), '=', l.sq( t_base ), r' \times ', l.sq( t_height ) ]
+        eq_a = MathTex( *ar_a )
+        eq_a.set_color_by_tex_to_color_map( acolors )
+        eq_a.shift( 2.0 * UP + 2.0 * RIGHT )
 
-        eq.shift( 2 * RIGHT )
+        eq_0 = MathTex( *ar_0 )
+        eq_0.set_color_by_tex_to_color_map( acolors )
+        eq_0.shift( 2.05 * UP + 2.0 * RIGHT )
 
-        for i in range( 3 ):
-            self.play( Write( eq[ i ] ) )
-
-        eq[ 4 ].shift( 1.35 * UP )
-        self.play( ReplacementTransform( eq[ 2 ], eq[ 4 ] ) )
+        self.play( Write( eq_a ) )
+        self.wait( )
+        self.play( TransformMatchingTex( eq_a, eq_0 ) )
         self.wait( )
 
-        eq[ 6 ].shift( 2.5 * UP )
-        self.play( ReplacementTransform( eq[ 4 ], eq[ 6 ] ) )
+        eq_1 = MathTex( '=', uu, l.lrsq( rej, big = 1 ) )
+        write_aligned( self, eq_0, eq_1, 1.0 * DOWN, acolors )
         self.wait( )
 
-        eq[ 8 ].shift( 3.5 * UP )
-        self.play( ReplacementTransform( eq[ 6 ], eq[ 8 ] ) )
+        eq_2 = MathTex( '=', uu, rej, rrej )
+        tx_aligned( self, eq_1, eq_2, 0 * UP, acolors )
         self.wait( )
 
-        i = 9
-        eq[ i ].shift( 3.5 * UP )
-        self.play( Write( eq[ i ] ) )
+        eq_3 = MathTex( '=', rej, uu, rrej )
+        tx_aligned( self, eq_2, eq_3, 0 * UP, acolors )
         self.wait( )
 
-        eq2 = MathTex(
-                concat( l.lrsq( vwedgeu ), '&=', l.dot( lr_vwedgeu, lr_vwedgeu ), l.newline ),
-                concat( '&=', l.dot( vecv, l.lr( l.dot( vecu, lr_vwedgeu ) ) ), l.newline ),
-                concat( '&=', l.dot( vecv, l.lr( l.sub(
-                    l.mult( lr_udotv, vecu ),
-                    l.mult( uu, vecv )
-                    ) ) ), l.newline ),
-                concat( '&=', l.sub( vdotusq, l.mult( uu, vv ) ), l.newline ) )
-        eq2.shift( 1.5 * DOWN + 2 * RIGHT )
 
-        for item in eq2:
-            self.play( Write( item ) )
+        eq_4 = MathTex( '=', l.neg( l.lrsq( vwedgeu ) ) )
+        tx_aligned( self, eq_3, eq_4, 0.1 * UP, acolors )
+        self.wait( )
 
+
+        eq_5 = MathTex( l.lrsq( vwedgeu ), '=', l.dot( lr_vwedgeu, lr_vwedgeu ) )
+        eq_5.set_color_by_tex_to_color_map( acolors )
+        eq_5.move_to( eq_a, LEFT )
+        eq_5.shift( 3 * DOWN + 0.8 * LEFT )
+        self.play( Write( eq_5 ) )
+        self.wait( )
+
+        eq_6 = MathTex( '=', l.dot( vecv, l.lr( l.dot( vecu, lr_vwedgeu ) ) ) )
+        write_aligned( self, eq_5, eq_6, 0.75 * DOWN, acolors )
+        self.wait( )
+
+        eq_7 = MathTex( '=', l.dot( vecv, l.lr( l.sub( l.mult( lr_udotv, vecu ), l.mult( uu, vecv ) ) ) ) )
+        tx_aligned( self, eq_6, eq_7, 0 * DOWN, acolors )
+        self.wait( )
+
+        eq_8 = MathTex( '=', l.sub( vdotusq, l.mult( uu, vv ) ) )
+        tx_aligned( self, eq_7, eq_8, 0 * DOWN, acolors )
+        self.wait( )
+
+        self.play( FadeOut( VGroup( eq_5, eq_8 ) ) )
+        self.wait( )
+
+        eq_9 = MathTex( '=', l.sub( l.mult( uu, vv ), vdotusq ) )
+        write_aligned( self, eq_4, eq_9, 0.75 * DOWN, acolors )
         self.wait( )
 
 

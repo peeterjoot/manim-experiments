@@ -1,5 +1,5 @@
 from helper import *
-from mylatex2 import *
+from helper2 import *
 
 #   p1 + p2
 #     /\
@@ -11,20 +11,6 @@ from mylatex2 import *
 
 class DrawParallelogram( Scene ):
     def construct( self ):
-        l = latex2( )
-        acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
-
-        t_area = l.doublebr( l.text( 'Area' ) )
-        t_base = l.doublebr( l.text( 'base' ) )
-        t_height = l.doublebr( l.text( 'height' ) )
-
-        vecu  = l.doublebr( l.vec( 'u' ) )
-        vecv  = l.doublebr( l.vec( 'v' ) )
-        squ   = l.norm2( vecu )
-        sqv   = l.norm2( vecv )
-        hatu  = l.doublebr( l.hat( 'u' ) )
-        normu = l.norm( vecu )
-
         o = np.array( [ -2, -2, 0 ] )
         p1 = np.array( [ 3, 1, 0 ] ) # u
         p2 = np.array( [ 1, 3, 0 ] ) # v
@@ -115,20 +101,6 @@ class DrawParallelogram( Scene ):
         vrejl.shift( 2.0 * UP + 1.5 * LEFT )
         vrejl.shift( ( -0.5, 0, 0 ) )
 
-        #squ        = l.norm2( vecu )
-        #sqv        = l.norm2( vecv )
-        #vdotuhatsq = l.lrsq( l.dot( vecv, hatu ) )
-        #rej        = l.sub( vecv, l.mult( l.lr( l.dot( vecv, hatu ) ), hatu ) )
-
-        #eq2 = MathTex( l.text( 'base' ), r'& = \Vert', vecu, concat( r'\Vert', l.newline ),
-        #               l.text( 'height' ), '& = ', concat( l.norm( rej ), l.newline ) )
-        #eq2[0].set_color( RED )
-        #eq2[1].set_color( RED )
-        #eq2[2].set_color( RED )
-        #eq2[3].set_color( RED )
-        #eq2[4].set_color( GREEN )
-        #eq2[5].set_color( GREEN )
-        #eq2[6].set_color( GREEN )
         eq2 = MathTex( concat( t_base, '&=', normu, l.newline ),
                        concat( t_height, '&= ', l.norm( l.sub( vecv, l.mult( l.lr( l.dot( vecv, hatu ) ), hatu ) ) ), l.newline ) )
         eq2.set_color_by_tex_to_color_map( acolors )
@@ -142,53 +114,6 @@ class DrawParallelogram( Scene ):
         self.play( Write( eq2 ) )
         self.wait( 4 )
         # audio: 35:00: +12s
-
-
-
-        #vdotuhatsq_dist = l.lrsq( l.dot( vecv, l.lr( normu, hatu ) ) )
-        #eq = MathTex( l.text( 'Area' ), ' &= ', l.text( 'base' ), r' \times ', l.text( 'height' ), l.newline, # [0,5]
-        #              concat( l.sq( l.text( 'Area' ) ), ' &= ', squ, l.norm2( rej ), l.newline ), # 1 + 6
-        #              concat( '&= ', squ ), concat( l.lr( l.add( sqv, vdotuhatsq ), l.neg( l.mult( '2', vdotuhatsq ) ) ), l.newline ), # 2 + 6, 3 + 6
-        #              concat( '&= ', squ ), concat( l.lr( l.sub( sqv, vdotuhatsq ) ), l.newline ), # 4 + 6, 5 + 6
-        #              concat( '&= ', l.sub( l.mult( squ, sqv ), l.mult( squ, vdotuhatsq ) ), l.newline ), # 6 + 6
-        #              concat( '&= ', l.sub( l.mult( squ, sqv ), vdotuhatsq_dist ), l.newline ), # 7 + 6
-        #              concat( '&= ', l.sub( l.mult( squ, sqv ), l.lrsq( vdotu ) ), l.newline ) # 8 + 6
-        #            )
-        #eq[0].set_color( BLUE )
-        #eq[2].set_color( RED )
-        #eq[4].set_color( GREEN )
-
-        #eq.shift( 2 * DOWN + 2.4 * RIGHT )
-        ##self.play( AnimationGroup( Write( eq[ 0 ] ), Write( eq[ 1 ] ), Write( eq[ 2 ] ), Write( eq[ 3 ] ), Write( eq[ 4 ] ), Write( eq[ 5 ] ) ) )
-        #self.play( AnimationGroup( *[Write( eq[ i ] ) for i in range(6)] ) )
-        #self.wait( 2 )
-
-        #ii = 6 - 1
-        #for i in range( 1 + ii, 4 + ii ):
-        #    self.play( Write( eq[ i ] ) )
-        #    self.wait( 2 )
-        #self.wait( 2 )
-        #eq[ 5 + ii ].shift( 1.1 * UP )
-
-        #self.play( ReplacementTransform( eq[ 3 + ii ], eq[ 5 + ii ] ) )
-        #self.wait( 3 )
-
-        #i = 6 + ii
-        #eq[ i ].shift( 1.1 * UP )
-        #self.play( Write( eq[ i ] ) )
-        #self.wait( 3 )
-
-        #i = 7 + ii
-        #eq[ i ].shift( 1.95 * UP )
-        #self.play( ReplacementTransform( eq[ i - 1 ], eq[ i ] ) )
-        #self.wait( 3 )
-
-        #i = 8 + ii
-        #eq[ i ].shift( 2.8 * UP )
-        #self.play( ReplacementTransform( eq[ i - 1 ], eq[ i ] ) )
-        #self.wait( 3 )
-
-
 
         ar_a = [ t_area, '=', t_base, r' \times ', t_height ]
         ar_0 = [ l.sq( t_area ), '=', l.sq( t_base ), r' \times ', l.sq( t_height ) ]
@@ -204,7 +129,7 @@ class DrawParallelogram( Scene ):
 
         eq_0 = MathTex( *ar_0 )
         eq_0.set_color_by_tex_to_color_map( acolors )
-        eq_0.shift( 1.0 * UP + 0.5 * RIGHT )
+        eq_0.shift( 1.05 * UP + 0.5 * RIGHT )
 
         eq_1 = MathTex( *ar_1 )
         eq_2 = MathTex( *ar_2 )

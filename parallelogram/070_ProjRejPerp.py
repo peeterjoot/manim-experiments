@@ -51,8 +51,8 @@ class ProjRejPerp( Scene ):
         self.wait( 2 )
 
         eq4 = MathTex( *['=', l.gpgradezero( rej, invu, big = 1 ), lr_vdotu ] )
-        eq4.set_color_by_tex_to_color_map( acolors )
         where = eq3a.get_part_by_tex( '=' )
+        eq4.set_color_by_tex_to_color_map( acolors )
         eq4.move_to( where, LEFT )
         self.play( ReplacementTransform( g, eq4 ) )
         self.wait( 2 )
