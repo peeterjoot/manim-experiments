@@ -20,8 +20,5 @@ ucap \cross (\ucap \cross v)
 123_WedgeChangeOfBasisPartI.py
 127_WedgeChangeOfBasisPartII.py
 
-nice to have:
-=============
-* Add colors
-* Switch to xcolor from set_color and color transformer (too painful to get right.)
-   Q: what are the color codes for YELLOW, RED, ... and how do those map to xcolor definitions?  Can probably introduce .sty for color definitions if req'd.]
+14) once colorizing is done, switch unconditionally to mylatex2.py and simplify.
+
