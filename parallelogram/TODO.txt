@@ -11,6 +11,15 @@ ucap \cross (\ucap \cross v)
 
 030_DrawParallelogram.py
 
+12) review all delays after color rework.
+
+13) colorize:
+
+110_WedgeToDet.py
+120_WedgeR3.py
+123_WedgeChangeOfBasisPartI.py
+127_WedgeChangeOfBasisPartII.py
+
 nice to have:
 =============
 * Add colors

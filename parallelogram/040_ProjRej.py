@@ -10,7 +10,7 @@ class ProjRej( Scene ):
         labels = DrawVectorsAndProjRej( self, 0 )
 
         eq = MathTex( concat( vecv, r' &= ', vecv, r'\times 1', l.newline ),
-                      concat( r' &= ', vecv, l.lr( vecu, invu ), l.newline ),
+                      concat( r' &= ', vecv, l.lr( vecu, invu, big = 1 ), l.newline ),
                       concat( r' &= ', l.lr( vecv, vecu ), invu, l.newline ),
                       concat( r' &= ', l.lr( l.add( vdotu, vwedgeu ) ), invu, l.newline ),
                       concat( r' &= ', l.add( proj, rej ), l.newline ) )
