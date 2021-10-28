@@ -1,13 +1,6 @@
 from helper import *
 from mylatex2 import *
 
-def write_aligned( s, ref, new, sh, m ):
-    where = ref.get_part_by_tex( '=' )
-    new.move_to( where, LEFT )
-    new.shift( sh )
-    new.set_color_by_tex_to_color_map( m )
-    s.play( Write( new ) )
-
 #   p1 + p2
 #     /\
 #    /  \

@@ -23,6 +23,11 @@ vdotu      = l.dot( vecv, vecu )
 lr_vdotu   = l.lr( vdotu )
 lr_vwedgeu = l.lr( vwedgeu )
 
-
+def write_aligned( s, ref, new, sh, m, what = '=' ):
+    where = ref.get_part_by_tex( what )
+    new.move_to( where, LEFT )
+    new.shift( sh )
+    new.set_color_by_tex_to_color_map( m )
+    s.play( Write( new ) )
 
 # vim: et sw=4 ts=4

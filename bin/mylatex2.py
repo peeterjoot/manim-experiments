@@ -91,10 +91,13 @@ class latex2:
         return concat( r'\underbrace{ ', sep.join( args ), ' }_{ ', helptext, ' }' )
 
     def gpgrade( self, *args, n = -1, sep = '' ):
-        return concat( r'{ \langle{ ', sep.join( args ), r' }\rangle }_{ ', str(n), ' }' )
+        return concat( r'\langle ', sep.join( args ), r' \rangle', '{}_{ ', str(n), ' }' )
 
-    def gpgradezero( self, *args, sep = '' ):
-        return concat( r'\langle{ ', sep.join( args ), r' }\rangle' )
+    def gpgradezero( self, *args, sep = '', big = 0 ):
+        if big:
+            return concat( latex2.Bigl, r'\langle ', sep.join( args ), latex2.Bigr, r'\rangle' )
+        else:
+            return concat( r'\langle ', sep.join( args ), r' \rangle' )
 
     def gpgradeone( self, *args, sep = '' ):
         return latex2.gpgrade( self, sep.join( args ), n = 1 )
