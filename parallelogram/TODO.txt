@@ -15,7 +15,6 @@ ucap \cross (\ucap \cross v)
 
 13) colorize:
 
-110_WedgeToDet.py
 120_WedgeR3.py
 123_WedgeChangeOfBasisPartI.py
 127_WedgeChangeOfBasisPartII.py

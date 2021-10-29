@@ -9,6 +9,8 @@ class latex2:
     rbr     = r')'
     Bigl    = r'\Bigl'
     Bigr    = r'\Bigr'
+    Biggl   = r'\Biggl'
+    Biggr   = r'\Biggr'
     lgr     = r'\langle'
     rgr     = r'\rangle'
 
@@ -24,8 +26,10 @@ class latex2:
         return concat( latex2.norm( self, sep.join( args ) ), ' {}^2' )
 
     def lr( self, *args, sep = '', big = 0 ):
-        if big:
-            return concat( r'\Bigl( ', sep.join( args ), r' \Bigr)' )
+        if big > 1:
+            return concat( latex2.Biggl, '( ', sep.join( args ), ' ', latex2.Biggr, ')' )
+        elif big:
+            return concat( latex2.Bigl, '( ', sep.join( args ), ' ', latex2.Bigr, ')' )
         else:
             return concat( '( ', sep.join( args ), ' )' )
 
@@ -94,7 +98,9 @@ class latex2:
         return concat( r'\langle ', sep.join( args ), r' \rangle', '{}_{ ', str(n), ' }' )
 
     def gpgradezero( self, *args, sep = '', big = 0 ):
-        if big:
+        if big > 1:
+            return concat( latex2.Biggl, r'\langle ', sep.join( args ), latex2.Biggr, r'\rangle' )
+        elif big:
             return concat( latex2.Bigl, r'\langle ', sep.join( args ), latex2.Bigr, r'\rangle' )
         else:
             return concat( r'\langle ', sep.join( args ), r' \rangle' )
