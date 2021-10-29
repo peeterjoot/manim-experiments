@@ -33,8 +33,13 @@ class latex2:
         else:
             return concat( '( ', sep.join( args ), ' )' )
 
-    def setlr( self, *args, sep = ',' ):
-        return concat( r'\{ ', sep.join( args ), r' \}' )
+    def setlr( self, *args, sep = ',', big = 0 ):
+        if big > 1:
+            return concat( latex2.Biggl, r'\{ ', sep.join( args ), ' ', latex2.Biggr, r'\}' )
+        elif big:
+            return concat( latex2.Bigl, r'\{ ', sep.join( args ), ' ', latex2.Bigr, r'\}' )
+        else:
+            return concat( r'\{ ', sep.join( args ), r' \}' )
 
     def lrsq( self, *args, big = 0, sep = '' ):
         return concat( latex2.lr( self, sep.join( args ), big = big ), '{}^2' )
@@ -65,7 +70,7 @@ class latex2:
         return sep.join( args )
 
     def det22( self, a, b, c, d ):
-        return concat( r'\begin{vmatrix} ', a, ' & ', b, r' \\ ', c, '&', d, r'\end{vmatrix}' )
+        return concat( r'\begin{vmatrix}', a, '&', b, r'\\', c, '&', d, r'\end{vmatrix}' )
 
     def wedge( self, *args, sep = r' \wedge ' ):
         return sep.join( args )

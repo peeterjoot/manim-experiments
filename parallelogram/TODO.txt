@@ -9,14 +9,9 @@ ucap \cross (\ucap \cross v)
 
 11) restore 17s of delay to:
 
-030_DrawParallelogram.py
+    030_DrawParallelogram.py
 
 12) review all delays after color rework.
 
-13) colorize:
-
-123_WedgeChangeOfBasisPartI.py
-127_WedgeChangeOfBasisPartII.py
-
-14) once colorizing is done, switch unconditionally to mylatex2.py and simplify.
+14) switch unconditionally to mylatex2.py and simplify.
 
