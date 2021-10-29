@@ -1,4 +1,5 @@
 from helper import *
+from helper2 import *
 
 def playAndFadeOut( self, eq, pos ):
     eq[ 0 ].move_to( pos )
@@ -29,6 +30,7 @@ class WedgeR3( Scene ):
         self.add( t )
 
         eqa = MathTex( concat( uwedgev, r'= \sum_{i < j} ', detuivj, r' \mathbf{e}_i \mathbf{e}_j' ) )
+        eqa.set_color_by_tex_to_color_map( acolors )
         for item in eqa:
             self.play( Write( item ) )
 
@@ -58,6 +60,7 @@ class WedgeR3( Scene ):
                        concat( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), vec_e3 ),
                        concat( '- ', l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e2 ),
                        concat( '+ ', l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), vec_e1 ) ) ) )
+        eqb.set_color_by_tex_to_color_map( acolors )
 
         eqc = MathTex( concat( uwedgev, r'= I ',
                        r'\begin{vmatrix}',
@@ -65,8 +68,10 @@ class WedgeR3( Scene ):
                        r'u_1 & u_2 & u_3 \\',
                        r'v_1 & v_2 & v_3',
                        r'\end{vmatrix}' ) )
+        eqc.set_color_by_tex_to_color_map( acolors )
 
         eqd = MathTex( concat( uwedgev, r'= I ', l.lr( l.cross( vecu, vecv ) ) ) )
+        eqd.set_color_by_tex_to_color_map( acolors )
 
         self.play( ReplacementTransform( eqa, eqb ) )
         self.wait( )
@@ -102,6 +107,7 @@ class WedgeR3( Scene ):
         self.play( Write( g ) )
 
         eqe = MathTex( concat( r'{\text{Area} }^2 = ', l.neg( l.lrsq( uwedgev ) ), ' = ', l.norm2( l.cross( vecu, vecv ) ) ) )
+        eqe.set_color_by_tex_to_color_map( acolors )
         eqe.move_to( g )
         eqe.shift( 5 * RIGHT )
         self.play( Write( eqe ) )
