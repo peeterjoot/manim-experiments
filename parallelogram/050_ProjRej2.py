@@ -7,6 +7,8 @@ class ProjRej2( Scene ):
         projr      = l.mult( invu, lr_udotv )
         rejr       = l.mult( invu, lr_uwedgev )
 
+        labels = DrawVectorsAndProjRej( self, 0 )
+
         howorig = MathTex( concat( vecv, ' = ', vecv, vecu, invu ) )
         howorig.set_color_by_tex_to_color_map( acolors )
         howorig.move_to( 2 * UP + 1.0 * LEFT )
@@ -18,7 +20,7 @@ class ProjRej2( Scene ):
 
         eqa = MathTex( l.Proj( vecu, vecv ), ' \equiv ', proj )
         eqa.set_color_by_tex_to_color_map( acolors )
-        eqa.shift( 2 * LEFT )
+        eqa.shift( 2 * LEFT + 1 * DOWN )
         self.play( AnimationGroup( FadeIn( howorig ), Write( eqa ) ) )
 
         eqb = MathTex( l.Rej( vecu, vecv ),  ' \equiv ', rej )
