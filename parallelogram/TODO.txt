@@ -14,4 +14,3 @@ ucap \cross (\ucap \cross v)
 12) review all delays after color rework.
 
 14) switch unconditionally to mylatex2.py and simplify.
-

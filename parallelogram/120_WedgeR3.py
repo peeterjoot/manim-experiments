@@ -3,18 +3,16 @@ from helper2 import *
 
 def playAndFadeOut( self, eq, pos ):
     eq[ 0 ].move_to( pos )
-    eq[ 0 ].shift( 2 * DOWN )
-    eq[ 1 ].move_to( eq[ 0 ] )
-    eq[ 0 ].shift( 3 * LEFT )
-    eq[ 1 ].shift( RIGHT )
-    self.play( Write( eq[ 0 ] ), Write( eq[ 1 ] ) )
+    eq[ 0 ].shift( 2 * DOWN + 2 * RIGHT )
+    eq[ 1 ].next_to( eq[ 0 ], RIGHT )
+    self.play( AnimationGroup( Write( eq[ 0 ] ), Write( eq[ 1 ] ) ) )
 
     n = len( eq )
 
     last = eq[ 1 ]
     for i in range( 1, n - 1 ):
-        eq[ i + 1 ].move_to( last )
-        self.play( ReplacementTransform( last, eq[ i + 1 ] ) )
+        eq[ i + 1 ].next_to( eq[ 0 ], RIGHT )
+        self.play( TransformMatchingTex( last, eq[ i + 1 ] ) )
         last = eq[ i + 1 ]
         self.wait( )
 
@@ -29,56 +27,65 @@ class WedgeR3( Scene ):
         t.set_color( RED )
         self.add( t )
 
-        eqa = MathTex( concat( uwedgev, r'= \sum_{i < j} ', detuivj, r' \mathbf{e}_i \mathbf{e}_j' ) )
-        eqa.set_color_by_tex_to_color_map( acolors )
-        for item in eqa:
-            self.play( Write( item ) )
+        vec_e1 = l.doublebr( l.vec( 'e' ), '_1' )
+        vec_e2 = l.doublebr( l.vec( 'e' ), '_2' )
+        vec_e3 = l.doublebr( l.vec( 'e' ), '_3' )
+        vec_ei = l.doublebr( l.vec( 'e' ), '_i' )
+        vec_ej = l.doublebr( l.vec( 'e' ), '_j' )
+        eqa1 = MathTex( uwedgev, '=' )
+        eqa1.shift( 4 * LEFT )
+        eqa2 = MathTex( concat( r'\sum_{i < j} ', detuivj, vec_ei, vec_ej ) )
+        eqa1.set_color_by_tex_to_color_map( acolors )
+        eqa2.next_to( eqa1, RIGHT )
+        self.play( AnimationGroup( Write( eqa1 ), Write( eqa2 ) ) )
 
-        t12 = MathTex( r'i, j = 1, 2:\quad',
-                       concat( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), r' \mathbf{e}_1 \mathbf{e}_2' ),
-                       concat( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), r' \mathbf{e}_1 \mathbf{e}_2 ( \mathbf{e}_3 \mathbf{e}_3 )' ),
-                       concat( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), r' ( \mathbf{e}_1 \mathbf{e}_2 \mathbf{e}_3 ) \mathbf{e}_3' ),
-                       concat( 'I ', l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), vec_e3 ) )
-        playAndFadeOut( self, t12, eqa )
+        d12 = l.doublebr( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ) )
+        t12 = [ MathTex( r'i, j = 1, 2:\quad' ),
+                MathTex( d12,  vec_e1,  vec_e2 ),
+                MathTex( d12,  vec_e1,  vec_e2, r' ( ', vec_e3,  vec_e3, r' )' ),
+                MathTex( d12, r' ( ', vec_e1,  vec_e2,  vec_e3, r' ) ', vec_e3 ),
+                MathTex( d12, 'I', vec_e3 ) ]
+        playAndFadeOut( self, t12, eqa1 )
 
-        t13 = MathTex( r'i, j = 1, 3:\quad',
-                       concat( l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e1, vec_e3 ),
-                       concat( l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e1, l.lr( vec_e2, vec_e2 ), vec_e3 ),
-                       concat( l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e1, vec_e2, l.lr( l.neg( l.mult( vec_e3, vec_e2 ) ) ) ),
-                       concat( '-', l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), l.lr( vec_e1, vec_e2, vec_e3 ), vec_e2 ),
-                       concat( '-I ', l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e2 ) )
-        playAndFadeOut( self, t13, eqa )
+        d13 = l.doublebr( l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ) )
+        t13 = [ MathTex( r'i, j = 1, 3:\quad' ),
+                MathTex( d13, vec_e1, vec_e3 ),
+                MathTex( d13, vec_e1, l.lr( vec_e2, vec_e2 ), vec_e3 ),
+                MathTex( d13, vec_e1, vec_e2, l.lr( l.neg( l.mult( vec_e3, vec_e2 ) ) ) ),
+                MathTex( '-', d13, l.lr( vec_e1, vec_e2, vec_e3 ), vec_e2 ),
+                MathTex( '-', d13, 'I', vec_e2 ) ]
+        playAndFadeOut( self, t13, eqa1 )
 
-        t23 = MathTex( r'i, j = 2, 3:\quad',
-                       concat( l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), vec_e2, vec_e3 ),
-                       concat( l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), l.lr( vec_e1, vec_e1 ), vec_e2, vec_e3 ),
-                       concat( l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), vec_e1, l.lr( vec_e1, vec_e2, vec_e3 ) ),
-                       concat( 'I ', l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), vec_e1 ) )
-        playAndFadeOut( self, t23, eqa )
+        d23 = l.doublebr( l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ) )
+        t23 = [ MathTex( r'i, j = 2, 3:\quad' ),
+                MathTex( d23, vec_e2, vec_e3 ),
+                MathTex( d23, l.lr( vec_e1, vec_e1 ), vec_e2, vec_e3 ),
+                MathTex( d23, vec_e1, l.lr( vec_e1, vec_e2, vec_e3 ) ),
+                MathTex( d23, vec_e1, 'I' ) ]
+        playAndFadeOut( self, t23, eqa1 )
 
-        eqb = MathTex( concat( uwedgev, r'= I ', l.lr(
-                       concat( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ), vec_e3 ),
-                       concat( '- ', l.det22( 'u_1', 'v_1', 'u_3', 'v_3' ), vec_e2 ),
-                       concat( '+ ', l.det22( 'u_2', 'v_2', 'u_3', 'v_3' ), vec_e1 ) ) ) )
+        eqb = MathTex( concat( 'I', l.lr( d12, vec_e3, '-', d13, vec_e2, '+', d23, vec_e1, big = 2 ) ) )
         eqb.set_color_by_tex_to_color_map( acolors )
+        eqb.next_to( eqa1, RIGHT )
+        self.play( TransformMatchingTex( eqa2, eqb ) )
+        self.wait( )
 
-        eqc = MathTex( concat( uwedgev, r'= I ',
-                       r'\begin{vmatrix}',
-                       r'\mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\',
-                       r'u_1 & u_2 & u_3 \\',
-                       r'v_1 & v_2 & v_3',
-                       r'\end{vmatrix}' ) )
-        eqc.set_color_by_tex_to_color_map( acolors )
+        eqc = MathTex( concat( 'I',
+                               r'\begin{vmatrix}',
+                               r'\mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\',
+                               r'u_1 & u_2 & u_3 \\',
+                               r'v_1 & v_2 & v_3',
+                               r'\end{vmatrix}' ) )
+        eqc.next_to( eqa1, RIGHT )
+        self.play( TransformMatchingTex( eqb, eqc ) )
+        self.wait( )
+        a = VGroup( eqa1, eqc )
+        self.play( a.animate.shift( 3 * RIGHT ) )
 
-        eqd = MathTex( concat( uwedgev, r'= I ', l.lr( l.cross( vecu, vecv ) ) ) )
+        eqd = MathTex( concat( 'I', l.lr( l.cross( vecu, vecv ) ) ) )
+        eqd.next_to( eqa1 )
         eqd.set_color_by_tex_to_color_map( acolors )
-
-        self.play( ReplacementTransform( eqa, eqb ) )
-        self.wait( )
-        self.play( ReplacementTransform( eqb, eqc ) )
-        self.wait( )
-        self.play( ReplacementTransform( eqc, eqd ) )
-        self.wait( )
+        self.play( TransformMatchingTex( eqc, eqd ) )
 
         o = np.array( [ 0, -2, 0 ] )
         p1 = np.array( [ 3, 1, 0 ] )
@@ -106,12 +113,14 @@ class WedgeR3( Scene ):
 
         self.play( Write( g ) )
 
-        eqe = MathTex( concat( r'{\text{Area} }^2 = ', l.neg( l.lrsq( uwedgev ) ), ' = ', l.norm2( l.cross( vecu, vecv ) ) ) )
+        eqe = MathTex( concat( l.sq(t_area), ' = ', l.neg( l.lrsq( uwedgev ) ), ' = ', l.norm2( l.cross( vecu, vecv ) ) ) )
         eqe.set_color_by_tex_to_color_map( acolors )
         eqe.move_to( g )
         eqe.shift( 5 * RIGHT )
         self.play( Write( eqe ) )
         self.wait( )
+
+
 
 
 # vim: et sw=4 ts=4
