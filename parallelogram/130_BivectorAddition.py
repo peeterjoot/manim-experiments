@@ -34,7 +34,7 @@ class BivectorAddition( Scene ):
         p1 = [ np.array( [ 1, 1/3, 0 ] ), np.array( [ -1/4, 1, 0 ] ), np.array( [ -1, -1/2, 0 ] ),  np.array( [ 1/4, -1, 0 ] ) ]
         p2 = [ np.array( [ 1/3, 1, 0 ] ), np.array( [ -0.8, 1/3, 0 ] ), np.array( [ -1/2, -1.25, 0 ] ), np.array( [ 1, -2/7, 0 ] ) ]
 
-        self.add( number_plane )
+        self.play( FadeIn( number_plane ) )
         v1 = MathTex( vec_v1 )
         v2 = MathTex( vec_v2 )
         e1 = MathTex( vec_e1 )

@@ -12,3 +12,7 @@ ucap \cross (\ucap \cross v)
     030_DrawParallelogram.py
 
 12) review all delays after color rework.
+
+13) 130_BivectorAddition.py: has a weird transform of colored vectors to non-colored.  do that differently.  Also: fade in the grid.
+
+14) start the intro rotation at about the 1s viewpoint so the purple parallelogram isn't seen edge on.
