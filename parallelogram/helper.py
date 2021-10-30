@@ -3,15 +3,9 @@ import numpy as np
 import math
 from sys import *
 sys.path.append( '../bin' )
-#from mylatex import *
 from mylatex2 import *
 
-#l          = latex( )
 l          = latex2( )
-vecu       = l.vec( 'u' )
-invu       = l.inv( vecu )
-hatu       = l.hat( vecu )
-vecv       = l.vec( 'v' )
 vec_v1     = concat( l.vec( 'v' ), '_1' )
 vec_v2     = concat( l.vec( 'v' ), '_2' )
 vec_e1     = concat( l.vec( 'e' ), '_1' )
@@ -22,24 +16,12 @@ vec_f2     = concat( l.vec( 'f' ), '_2' )
 vec_e12    = concat( l.vec( 'e' ), '_{12}' )
 vec_e13    = concat( l.vec( 'e' ), '_{13}' )
 vec_e23    = concat( l.vec( 'e' ), '_{23}' )
-uu         = l.sq( vecu )
-vv         = l.sq( vecv )
-uwedgev    = l.wedge( vecu, vecv )
-vwedgeu    = l.wedge( vecv, vecu )
-udotv      = l.dot( vecu, vecv )
-vdotu      = l.dot( vecv, vecu )
-lr_uwedgev = l.lr( uwedgev )
-lr_vwedgeu = l.lr( vwedgeu )
-lr_udotv   = l.lr( udotv )
-lr_vdotu   = l.lr( vdotu )
 detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
-normu      = l.norm( vecu )
 uvcolors   = { l.vec('u'): RED, l.vec('v'): YELLOW }
+acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
 
 dv_p1 = np.array( [ 3, 1, 0 ] )
 dv_p2 = np.array( [ 1, 3, 0 ] )
-
-acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
 
 vecu  = l.doublebr( l.vec( 'u' ) )
 vecv  = l.doublebr( l.vec( 'v' ) )
