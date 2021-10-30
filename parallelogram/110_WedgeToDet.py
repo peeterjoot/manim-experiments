@@ -48,16 +48,20 @@ class WedgeToDet( Scene ):
         self.play( ReplacementTransform( eq6b, eq6c ) )
         self.wait( )
 
-        eq7 = MathTex( r' {=} \sum_{ {{i}} < {{j}} } ( u_{{i}} v_{{j}} - u_{{j}} v_{{i}} )', r'\mathbf{e}_{{i}} \mathbf{e}_{{j}}' )
+        eq7a = MathTex( r' {=} \sum_{ {{i}} < {{j}} } ( u_{{i}} v_{{j}}', r'\mathbf{e}_{{i}} \mathbf{e}_{{j}} + u_{{j}} v_{{i}}', r'\mathbf{e}_{{j}} \mathbf{e}_{{i}} )' )
         where = eq6a.get_part_by_tex( '{=}' )
-        eq7.move_to( where, LEFT )
-        eq7.shift( 0.2 * DOWN )
-        eq7.set_color_by_tex_to_color_map( icolors )
-        self.play( ReplacementTransform( VGroup( eq6a, eq6c ), eq7 ) )
+        eq7a.move_to( where, LEFT )
+        eq7a.shift( 0.2 * DOWN )
+        eq7a.set_color_by_tex_to_color_map( icolors )
+        self.play( ReplacementTransform( VGroup( eq6a, eq6c ), eq7a ) )
+        self.wait( )
+
+        eq7b = MathTex( r' {=} \sum_{ {{i}} < {{j}} } ( u_{{i}} v_{{j}} - u_{{j}} v_{{i}} )', r'\mathbf{e}_{{i}} \mathbf{e}_{{j}}' )
+        tx_aligned( self, eq7a, eq7b, 0.2 * DOWN, icolors, '{=}' )
         self.wait( )
 
         eq8 = MathTex( r' {=} \sum_{ i < j } \begin{vmatrix} u_i & v_i \\ u_j & v_j \end{vmatrix} \mathbf{e}_i \mathbf{e}_j' )
-        write_aligned( self, eq7, eq8, 1.5 * DOWN, nocolors, '{=}' )
+        write_aligned( self, eq7b, eq8, 1.5 * DOWN, nocolors, '{=}' )
         self.wait( )
 
 

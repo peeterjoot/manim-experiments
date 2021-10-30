@@ -4,3 +4,16 @@ We've seen that we can identify the squared wedge product of two vectors as the 
 
 For this coordinate expansion, we will use u_i and v_i as the coordinates with respect to a standard basis with elements e_i.
  We must switch the dummy index for one of these vectors so that we can merge the sums.
+ The coordinates can all be factored out of the wedge products.
+ Since the wedge of e_i, e_j is zero any time that i equals j, we only need to include the i not-equal j terms in the sum.
+ For example, in R^3, this would be the 1,2 2,1 1,3 3,1 and 2,3 3,2 pairs of indexes.
+ We can break up these sums into two sets, one with all the indexes for which i < j, and another where i > j.
+ Since the indexes are dummy indexes, we can rename them if desired, opting to swap the index names in the second sum,
+  after which we have two sums over i < j.
+ Because e_i and e_j are perpendicular, we can swap them (with a corresponding toggle of the sign), reducing the sum
+  to one term per unique i < j, e_i e_j.
+ Each of the scalar coefficients to these unit bivectors is, in fact, a determinant, and
+  we can write that out explicitly.
+
+Observe that the determinants highlights the antisymmetry of the wedge product,
+ as swapping the u,v's toggles the sign of each determinant, resulting in an overall negation of the product.
