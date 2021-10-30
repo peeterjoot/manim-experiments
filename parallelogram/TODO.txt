@@ -13,4 +13,6 @@ ucap \cross (\ucap \cross v)
 
 12) review all delays after color rework.
 
-14) switch unconditionally to mylatex2.py and simplify.
+13) Fix: 050_ProjRej2.py -- messed up by helper2 switch.
+
+14) helper.py has redundancies now.  clean up.

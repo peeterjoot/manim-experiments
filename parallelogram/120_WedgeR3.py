@@ -1,5 +1,4 @@
 from helper import *
-from helper2 import *
 
 def playAndFadeOut( self, eq, pos ):
     eq[ 0 ].move_to( pos )

@@ -1,5 +1,4 @@
 from helper import *
-from helper2 import *
 
 class ParallelogramComputationGA( Scene ):
     def construct( self ):
