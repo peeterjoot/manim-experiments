@@ -4,9 +4,9 @@ To summarize,
  and the rejection of u from v is the wedge product of v and u, all multiplied by u-inverse.
 # 12: +5s
 
-For the multivector products in the rejection operator, order matters,
- but we could equivalently write the rejection as u-inverse times the wedge of u with v.
- To demonstrate that to yourself, try expanding v as u-inverse u v instead, as we just did before.
+For the multivector products in the rejection operator, order matters.
+ This particular ordering was found by expanding v = v u u-inverse.
+ Had we expanded v = u-inverse u v (try this!) we would find the reverse ordering for the rejection.
 # 29: +15s
 
 This is the most general form to express the projection and rejection operators, and applies to Euclidean and
