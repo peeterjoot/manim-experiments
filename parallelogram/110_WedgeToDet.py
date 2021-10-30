@@ -19,7 +19,7 @@ class WedgeToDet( Scene ):
             self.play( Write( item ) )
         self.wait( )
 
-        eq3 = MathTex( r' {=} \sum_{ {{i}} , {{j}} < N} u_{{i}} v_{{j}}', l.lr( r'\mathbf{e}_{{i}} \wedge \mathbf{e}_{{j}}' ) )
+        eq3 = MathTex( r' {=} \sum_{ 1 \le {{i}} , {{j}} \le N} u_{{i}} v_{{j}}', l.lr( r'\mathbf{e}_{{i}} \wedge \mathbf{e}_{{j}}' ) )
         write_aligned( self, eq2, eq3, 1.5 * DOWN, icolors, '{=}' )
         self.wait( )
 

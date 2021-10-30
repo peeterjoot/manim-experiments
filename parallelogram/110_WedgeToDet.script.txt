@@ -1,0 +1,6 @@
+We've seen that we can identify the squared wedge product of two vectors as the squared area of the parallelogram spanned by those vectors.
+ We'd like to see what we can say about the wedge product itself (not it's square.)
+ As a first step to gaining this insight, let's expand such a wedge product in coordinates.
+
+For this coordinate expansion, we will use u_i and v_i as the coordinates with respect to a standard basis with elements e_i.
+ We must switch the dummy index for one of these vectors so that we can merge the sums.

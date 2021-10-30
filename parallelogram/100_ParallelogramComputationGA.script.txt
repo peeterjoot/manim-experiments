@@ -1,0 +1,22 @@
+With a geometric algebra formulation of the rejection operator, we can return to the parallelogram area computation, and 
+ see if we can gain any additional insight.
+
+As before, our area computation is base times height, and we compute the squared area to avoid square roots.
+
+Picking the base as the length of u, our squared height is the rejection squared.
+ We write that product as the rejection times it's reverse, since reversing all the factors in a multivector 
+  leaves the vector (and scalar) components invariant.
+ We are free to commute the u-squared term (a scalar), after which we may cancel all the non-wedge product u-terms.
+ Flipping the order of one of the wedges, we find that the area of the parallelogram formed by u and v,
+ is the (negative) square of the wedge product of those two vectors.
+
+This looks a little different from the result that we found previously, so let's show that they are actually the same.
+ Expanding the square by dotting it with itself, we can use the distributive identity, and then expand the dot products 
+ from the inside out.
+ Plugging this into our squared area expression above, we find that the negative squared wedge expands into the same
+ product of squares minus square of dots expression that we found before.
+
+We actually loose expressiveness by performing this expansion, as it is no longer clear that this has anything to do with the
+ squared wedge.
+ In the end, we will identify the wedge product itself as representation of a signed area element, but we are not quite there
+ yet.
