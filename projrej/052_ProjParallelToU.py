@@ -9,21 +9,22 @@ class ProjParallelToU( Scene ):
 
         labels = DrawVectorsAndProjRej( self, 0 )
 
-        what_to_prove = Tex( r'PROOF: $\text{Proj}$ is parallel to $\mathbf{u}$.' )
-        what_to_prove.move_to( 3 * UP )
-        what_to_prove.set_color( BLUE )
-        self.play( Write( what_to_prove ) )
+        title = Tex( r'PROOF: $\text{Proj}$ is parallel to $\mathbf{u}$.' )
+        title.move_to( 3 * UP )
+        title.set_color( BLUE )
+        self.play( Write( title ) )
 
         eq4 = [ MathTex( concat( l.Proj( vecu, vecv ), '=', lr_vdotu, invu ) ),
                 MathTex( concat( '=', lr_vdotu, hatu, l.pow( l.norm( vecu ), n = -1 ) ) ),
                 MathTex( concat( '=', l.lr( l.dot( vecv, hatu ) ), hatu ) ) ]
-        eq4[0].move_to( eq, DOWN )
-        eq4[0].shift( 0 * DOWN )
+        eq4[0].move_to( title, DOWN )
+        eq4[0].shift( 2 * DOWN )
         eq4[0].set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq4[0] ) )
         self.wait( 2 )
 
         for i in range(2):
+            eq4[i+1].shift( 2 * RIGHT )
             write_aligned( self, eq4[i], eq4[i+1], 1.25 * DOWN, acolors )
             self.wait( 2 )
 

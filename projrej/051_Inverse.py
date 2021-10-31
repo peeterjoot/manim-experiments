@@ -1,6 +1,6 @@
 from helper import *
 
-class 051_Inverse( Scene ):
+class Inverse( Scene ):
     def construct( self ):
 
         title = Tex( 'The vector inverse.' )
@@ -9,7 +9,7 @@ class 051_Inverse( Scene ):
         self.play( Write( title ) )
 
         eq = MathTex( concat( r'Lemma: ', invu, '=', l.frac( vecu, uu ) ) ) 
-        eq.move_to( what_to_prove, DOWN )
+        eq.move_to( title, DOWN )
         eq.shift( 2 * DOWN )
         eq.set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq ) )
@@ -44,10 +44,14 @@ class 051_Inverse( Scene ):
         self.wait( 2 )
         self.play( FadeOut( eqx ) )
 
-        eqy = MathTex( concat( invu, '=', vecu, l.pow( l.norm( vecu ), n = -2 ), '=', hatu, l.pow( l.norm( vecu ), n = -1 ) ) )
+        eqy = MathTex( concat( invu, '&=', l.frac( vecu, uu ), l.newline ),
+                       concat( '&=', vecu, l.pow( l.norm( vecu ), n = -2 ), l.newline ),
+                       concat( '&=', l.frac( hatu, l.norm( vecu ) ), l.newline ) )
         eqy.set_color_by_tex_to_color_map( acolors )
-        self.play( Write( eqy ) )
-        self.wait( 2 )
+        for i in eqy:
+            self.play( Write( i ) )
+            self.wait( 2 )
+
 
 
 # vim: et sw=4 ts=4
