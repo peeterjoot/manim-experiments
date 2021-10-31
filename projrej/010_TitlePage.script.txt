@@ -1,0 +1,3 @@
+
+In this video we will discuss the geometric algebra formulation of vector projection and rejection.
+

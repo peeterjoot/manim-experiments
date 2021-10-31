@@ -1,0 +1,13 @@
+We are able to obtain the same bivector value by wedging two vectors for many different sets of vectors.
+ We can illustrate this by picking different sets of vectors, of different lengths and orientations,
+ that when wedged all produce a value of 4 e1 e2.
+
+ Here's such an example in the first quadrant,
+  and the second,
+  and the third,
+  and the fourth.
+
+We are also able to add multiple wedge products together to construct any desired bivector value.
+ For example, to construct a 16 e1 e2 valued-bivector, we can add four 4-e1 e2 valued wedge products.
+ Clearly, this process could be repeated in the infinitesimal limit to form a region of any desired shape,
+ so provided the boundary has a given orientation, we say that a bivector is a shapeless entity.

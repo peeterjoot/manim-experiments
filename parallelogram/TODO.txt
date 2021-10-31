@@ -1,6 +1,5 @@
 *) rough script for all of:
 
-   130_BivectorAddition.script.txt
    140_ScalarMultiplicationSign.script.txt
    150_Finale.script.txt
 
@@ -11,6 +10,7 @@
    100_ParallelogramComputationGA.script.txt
    110_WedgeToDet.script.txt
    120_WedgeR3.script.txt
+   130_BivectorAddition.script.txt
 
 *) adjust scripts to match what I want in the recordings.
 
@@ -29,3 +29,9 @@
 *) start the intro rotation at about the 1s viewpoint so the purple parallelogram isn't seen edge on.
 
 *) 120: recast the rejection in cross product form. i.e.: ucap \cross (\ucap \cross v)
+
+*) 130: FIXME: Boundaries aren't explained well.  This needs to be illustrated better.
+
+   There's an attempt to do that in 140, but it's out of sequence.
+
+*) Remove sudgy from finale -- splitting first video into one on just projection and rejection.

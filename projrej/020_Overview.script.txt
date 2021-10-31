@@ -1,0 +1,3 @@
+
+We want projection and rejection operations in our toolbox.
+  We derive the GA projection and rejection expressions, and discuss some of the subtlies of those expressions.
