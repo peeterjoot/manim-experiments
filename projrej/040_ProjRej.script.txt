@@ -12,20 +12,20 @@ By switching the order of multiplication, we expand the product of v and u,
  replacing that product with it's dot and wedge components.
 # 0:26    +7s
 
-
 Finally, we distribute the u-inverse.
- Recall that u inverse is just u divided by it's square.
 
- This is a vector that is parallel to u.
+<TIMING?>
+ Note that we can perform the same computation by multiplying v by 1 = u u-inverse on the right.
 
- The v-dot-u term lies in the direction of u,
-  since u and u-inverse are parallel.
+We've managed to split v into two specific components.
+, the first of which, the u-dot-v term,
+ lies in the direction of u, since u and u-inverse are parallel (u-inverse is just u divided by it's square.)
+</TIMING?>
 
  On the other hand, the v-wedge-u term lies perpendicular to u,
-  since v-wedge-u times u-inverse,
+  since v-wedge-u times u-inverse
   rotates u-inverse by 90 degrees from u towards v.
 # 0:49    +23s -- split this up: need more animation here to highlight what is said.
-
 
 We have blundered upon a decomposition of v, into components that are directed parallel and perpendicular to u.
  These must neccessarily be the components of v that we have labelled the projection and rejection.
