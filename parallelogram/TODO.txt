@@ -1,18 +1,31 @@
-4) (audio) Script things.
-5) Put in appropriate delays.
-7) Some sort of conclusion.
-8) rejection in 3D VA:
+*) rough script for all of:
 
-ucap \cross (\ucap \cross v)
+   130_BivectorAddition.script.txt
+   140_ScalarMultiplicationSign.script.txt
+   150_Finale.script.txt
 
-10) Probably want a summary that relates any GA formulas to their VA equivalents.
+*) draft recording of each of:
 
-11) restore 17s of delay to:
+   070_ProjRejPerp.script.txt
+   080_RejIsVector.script.txt
+   100_ParallelogramComputationGA.script.txt
+   110_WedgeToDet.script.txt
+   120_WedgeR3.script.txt
+
+*) adjust scripts to match what I want in the recordings.
+
+*) Put in appropriate delays.  Will have to adjust some of the previous ones, as I've changes things (esp. color rework.)
+
+*) "final recording" for each segment.
+
+*) Some sort of conclusion.
+
+*) Probably want a summary that relates any GA formulas to their VA equivalents.
+
+*) restore 17s of delay to:
 
     030_DrawParallelogram.py
 
-12) review all delays after color rework.
+*) start the intro rotation at about the 1s viewpoint so the purple parallelogram isn't seen edge on.
 
-13) 130_BivectorAddition.py: has a weird transform of colored vectors to non-colored.  do that differently.  Also: fade in the grid.
-
-14) start the intro rotation at about the 1s viewpoint so the purple parallelogram isn't seen edge on.
+*) 120: recast the rejection in cross product form. i.e.: ucap \cross (\ucap \cross v)

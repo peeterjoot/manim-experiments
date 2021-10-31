@@ -64,9 +64,14 @@ class BivectorAddition( Scene ):
 
             fromtx = totx
 
-        i = 3
         add1 = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
-        self.play( ReplacementTransform( fromtx, add1 ) )
+        self.play( FadeOut( pg[1] ) )
+        for i in range(2, 4):
+            self.play( ReplacementTransform( pg[i], add1[i-1] ) )
+
+        #i = 3
+        #add1 = OrientedPolygon( *ppoints, c0 = PURPLE, c1 = PURPLE, c2 = PURPLE, f = 0.5, d1 = 0, d2 = 0, tex = 0, r = 0.1 )
+        #self.play( ReplacementTransform( fromtx, add1 ) )
         p1 = MathTex( vec_v1, r' \wedge ', vec_v2, ' = 4', vec_e1, vec_e2 )
         p1.move_to( add1 )
         p1.shift( 4 * LEFT )
@@ -112,7 +117,7 @@ class BivectorAddition( Scene ):
         p5.move_to( sq )
         p5.shift( 2 * UP + 4 * RIGHT )
         g = VGroup( sq, p5 )
-        self.play( ReplacementTransform( VGroup( add1, add2, add3, add4, p4 ), g ) )
+        self.play( ReplacementTransform( VGroup( pg, add1[1], add1[2], add2, add3, add4, p4 ), g ) )
 
         pentwidth = np.sqrt( 2/( 5 * math.sin( 2 * math.pi / 5 ) ) )
         pentagon = OrientedRegularPolygon( 5, pentwidth, PURPLE, 0.5 )
