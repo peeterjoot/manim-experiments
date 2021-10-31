@@ -18,3 +18,7 @@ We'll use u_i and v_i as the coordinates of these vectors with respect to an oth
 
 Observe that the determinants highlights the antisymmetry of the wedge product,
  as swapping the u,v's toggles the sign of each determinant, resulting in an overall negation of the product.
+
+We can also observe that the wedge product looks very much like the R^3 cross product.
+ We have the same sort of sum of determinants, but each determinant is scaled by a bivector, instead of a vector.
+ Let's see how the wedge product and the R3 cross product is related.

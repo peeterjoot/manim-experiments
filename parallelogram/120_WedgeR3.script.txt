@@ -1,0 +1,25 @@
+Having expanded the wedge product in coordinates, we encountered something that has a structure very much cross product like.
+
+Here we will see exactly how the two are related.
+
+Our sum runs over all pairs of indexes i < j, which are 12, 13, 23.
+
+Looking at each of the summands term by term,
+ - starting with 12, we are free to multiply by one, in the form of e3 squared.
+   Regrouping, we find that the 12 term can be expressed as the product of the R3 pseudoscalar (called I here),
+   and e3.
+ - For the 13 term, we can insert a 1 = e2-squared between the e1 and e3 vectors.  We can then permute the last two
+   terms, toggling the sign.  This leaves us with -I e2.
+ - Finally, for the 23 term, we pre-multiply by 1 = e1-squared, and regroup.  We are left with e1 I.
+
+Plugging back into the sum we have all our determinants, each one multiplied by a pseudoscalar-vector product.  The R3
+ pseudoscalar commutes with all grades, so we can factor it out.
+
+ Looking closely, we can recognize the vector factor as the cross product, expecially if we put it into the 3x3 determant form.
+ We find that the R3 wedge product is a pseudoscalar scaled cross product.
+ Recall that the cross product of two vectors is a vector that has the area of the parallelogram spanned by those two vectors, but
+ lies normal two the plane that they lie in.
+ Multiplication of such a normal vector by the pseudoscalar maps that normal vector into a bivector that we can
+  say represents the plane itself.  We'll justify this claim and interpretation further as we go on.
+
+ Before we leave this R3 case, we can make a final note of how the squared-area is related to both the cross and wedge products.
