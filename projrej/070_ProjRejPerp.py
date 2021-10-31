@@ -4,6 +4,12 @@ class ProjRejPerp( Scene ):
     def construct( self ):
         labels = DrawVectorsAndProjRej( self, 1 )
 
+        title = Tex( 'Orthogonality.' )
+        title.move_to( 3 * UP )
+        title.set_color( BLUE )
+        title.scale( 1.5 )
+        self.add( title )
+
         eqga = MathTex( concat( l.mult( vecu, vecv ), ' &= ', l.dot( vecu, vecv ), ' + ', l.wedge( vecu, vecv ), l.newline ),
                                               concat( ' &= ', l.gpgradezero( vecu, vecv ), ' + ', l.gpgradetwo( vecu, vecv ) ) )
         eqga.set_color_by_tex_to_color_map( acolors )

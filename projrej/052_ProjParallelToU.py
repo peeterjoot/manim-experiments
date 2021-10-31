@@ -9,10 +9,11 @@ class ProjParallelToU( Scene ):
 
         labels = DrawVectorsAndProjRej( self, 0 )
 
-        title = Tex( r'PROOF: $\text{Proj}$ is parallel to $\mathbf{u}$.' )
+        title = Tex( r'$\text{Proj}$ parallel to $\mathbf{u}$.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.play( Write( title ) )
+        title.scale( 1.5 )
+        self.add( title )
 
         eq4 = [ MathTex( concat( l.Proj( vecu, vecv ), '=', lr_vdotu, invu ) ),
                 MathTex( concat( '=', lr_vdotu, hatu, l.pow( l.norm( vecu ), n = -1 ) ) ),

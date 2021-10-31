@@ -5,6 +5,12 @@ class RejIsVector( Scene ):
         myTemplate = TexTemplate( )
         myTemplate.add_to_preamble( r'\usepackage{cancel}' )
 
+        title = Tex( 'Rejection is a vector.' )
+        title.move_to( 3 * UP )
+        title.set_color( BLUE )
+        title.scale( 1.5 )
+        self.add( title )
+
         eq1 = MathTex( l.Rej( vecu, vecv ), '=', lr_vwedgeu, invu )
         eq2a = MathTex( '=', l.dot( lr_vwedgeu, invu ), '+' )
         eq2b = MathTex( l.wedge( lr_vwedgeu, invu ) )

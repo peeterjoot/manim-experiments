@@ -6,7 +6,8 @@ class Inverse( Scene ):
         title = Tex( 'The vector inverse.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.play( Write( title ) )
+        title.scale( 1.5 )
+        self.add( title )
 
         eq = MathTex( concat( r'Lemma: ', invu, '=', l.frac( vecu, uu ) ) ) 
         eq.move_to( title, DOWN )

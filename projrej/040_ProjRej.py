@@ -5,6 +5,12 @@ class ProjRej( Scene ):
 
         labels = DrawVectorsAndProjRej( self, 0 )
 
+        title = Text( 'The trick: multiply by one.' )
+        #.scale(0.75)
+        title.move_to( 3 * UP )
+        title.set_color( BLUE )
+        self.add( title )
+
         projr       = l.mult( invu, lr_udotv )
         rejr        = l.mult( invu, lr_uwedgev )
         eq2 = MathTex( concat( vecv, r' &= 1 \times ', vecv, l.newline ),
@@ -13,8 +19,7 @@ class ProjRej( Scene ):
                        concat( r' &= ', invu, l.lr( l.add( udotv, uwedgev ) ), l.newline ),
                        concat( r' &= ', l.add( projr, rejr ), l.newline ) )
         eq2.set_color_by_tex_to_color_map( acolors )
-
-        eq2.shift( 2 * RIGHT )
+        eq2.shift( 2 * RIGHT + 0.5 * DOWN )
         for item in eq2:
            self.play( Write( item ) )
            self.wait( 7 )
@@ -31,7 +36,7 @@ class ProjRej( Scene ):
                       concat( r' &= ', l.add( proj, rej ), l.newline ) )
         eq.set_color_by_tex_to_color_map( acolors )
 
-        eq.shift( 2 * RIGHT )
+        eq.shift( 2 * RIGHT + 0.5 * DOWN )
         for item in eq:
            self.play( Write( item ) )
            self.wait( 1 )
