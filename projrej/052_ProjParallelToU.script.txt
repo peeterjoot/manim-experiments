@@ -1,0 +1,9 @@
+We want to show that what we have claimed to be the projection of v on u, is parallel to u.
+
+We can do so by expanding u-inverse explicitly.
+
+As a side effect, this will show that our GA projection operator is equivalent to 
+ the projection operator from traditional vector algebra that we are all used to.
+
+In general the vector inverse has the following form
+

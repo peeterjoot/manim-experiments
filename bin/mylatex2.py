@@ -20,7 +20,10 @@ class latex2:
         return concat( '{{ ', sep.join( args ), ' }}' )
 
     def norm( self, *args, sep = '' ):
-        return concat( r'\lVert ', sep.join( args ), r' \rVert' )
+        return concat( r'\Vert ', sep.join( args ), r' \Vert' )
+
+    def sqrt( self, *args, sep = '' ):
+        return concat( r'\sqrt{', sep.join( args ), '}' )
 
     def norm2( self, *args, sep = '' ):
         return concat( latex2.norm( self, sep.join( args ) ), ' {}^2' )
@@ -46,6 +49,9 @@ class latex2:
 
     def sq( self, *args, sep = '' ):
         return concat( sep.join( args ), '{}^2' )
+
+    def pow( self, *args, n = 0, sep = '' ):
+        return concat( sep.join( args ), '{}^{', str(n), '}' )
 
     def frac( self, num, den ):
         return concat( ' { ', num, r' \over ', den, ' } ' )
