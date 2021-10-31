@@ -23,7 +23,7 @@ class WedgeR3( Scene ):
     def construct( self ):
         t = MathTex( r'\mathbb{R}^3' ).scale( 2 )
         t.shift( 2 * UP )
-        t.set_color( RED )
+        t.set_color( BLUE )
         self.add( t )
 
         vec_e1 = l.doublebr( l.vec( 'e' ), '_1' )
@@ -37,6 +37,13 @@ class WedgeR3( Scene ):
         eqa1.set_color_by_tex_to_color_map( acolors )
         eqa2.next_to( eqa1, RIGHT )
         self.play( AnimationGroup( Write( eqa1 ), Write( eqa2 ) ) )
+        setofij = MathTex( concat( l.setlr( 'i < j' ), ' = ', l.setlr( '(1,2), (1,3), (2,3)' ) ) )
+        setofij.next_to( eqa1, DOWN )
+        setofij.shift( DOWN + 4 * RIGHT )
+        self.play( Write( setofij ) )
+        self.wait( 2 )
+        self.play( FadeOut( setofij ) )
+        self.wait( 1 )
 
         d12 = l.doublebr( l.det22( 'u_1', 'v_1', 'u_2', 'v_2' ) )
         t12 = [ MathTex( r'i, j = 1, 2:\quad' ),
@@ -63,10 +70,13 @@ class WedgeR3( Scene ):
                 MathTex( d23, vec_e1, 'I' ) ]
         playAndFadeOut( self, t23, eqa1 )
 
+        eqb0 = MathTex( concat( '{}', d12, 'I', vec_e3, '-', d13, 'I', vec_e2, '+', d23, vec_e1, 'I' ) )
+        eqb0.set_color_by_tex_to_color_map( acolors )
+        eqb0.next_to( eqa1, RIGHT )
+        self.play( TransformMatchingTex( eqa2, eqb0 ) )
+        self.wait( )
         eqb = MathTex( concat( 'I', l.lr( d12, vec_e3, '-', d13, vec_e2, '+', d23, vec_e1, big = 2 ) ) )
-        eqb.set_color_by_tex_to_color_map( acolors )
-        eqb.next_to( eqa1, RIGHT )
-        self.play( TransformMatchingTex( eqa2, eqb ) )
+        tx_aligned( self, eqb0, eqb, 0.5 * DOWN, acolors, '{}' )
         self.wait( )
 
         eqc = MathTex( concat( 'I',
@@ -99,6 +109,9 @@ class WedgeR3( Scene ):
         v2 = Arrow( start = o, end = op2, buff = 0, color = YELLOW )
         v1p = Arrow( start = op1, end = op3, buff = 0, color = YELLOW )
         v2p = Arrow( start = op2, end = op3, buff = 0, color = RED )
+        pts = [ o, op1, op3, op2 ]
+        poly = Polygon( *pts, color = PURPLE, fill_opacity = 0.5 )
+        poly.set_z_index( v1.z_index - 1 )
 
         v1l = MathTex( vecu )
         v2l = MathTex( vecv )
@@ -107,7 +120,7 @@ class WedgeR3( Scene ):
         v1l.set_color( RED )
         v2l.set_color( YELLOW )
 
-        g = VGroup( v1, v2, v1p, v2p, v1l, v2l )
+        g = VGroup( v1, v2, v1p, v2p, v1l, v2l, poly )
         g.move_to( -4 * RIGHT - 1.5 * UP )
 
         self.play( Write( g ) )
