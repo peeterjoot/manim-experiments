@@ -1,4 +1,4 @@
-from acolorsmath import *
+from helper import *
 
 class SummaryTable( Scene ):
     def construct( self ):

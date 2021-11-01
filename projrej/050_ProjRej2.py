@@ -24,28 +24,28 @@ class ProjRej2( Scene ):
         #howreversed.move_to( 2 * UP + 1.8 * RIGHT )
 
 
-        eqa = MathTex( l.Proj( vecu, vecv ), ' \equiv ', proj )
-        eqa.set_color_by_tex_to_color_map( acolors )
+        eqa = AcolorsMathTex( l.Proj( vecu, vecv ), ' \equiv ', proj )
+        #eqa.set_color_by_tex_to_color_map( acolors )
         eqa.shift( 0 * LEFT + 1 * UP )
         #self.play( AnimationGroup( FadeIn( howorig ), Write( eqa ) ) )
         self.play( Write( eqa ) )
 
-        eqb = MathTex( l.Rej( vecu, vecv ),  ' \equiv ', rej )
-        write_aligned( self, eqa, eqb, 1.25 * DOWN, acolors, 'Proj' )
+        eqb = AcolorsMathTex( l.Rej( vecu, vecv ),  ' \equiv ', rej )
+        write_aligned( self, eqa, eqb, 1.25 * DOWN, None, 'Proj' )
 
         #self.wait(3)
         # +7s
         #self.wait(2)
         # +7s
 
-        eqreversed1 = MathTex( concat( '=', projr ) )
-        eqreversed2 = MathTex( concat( '=', rejr ) )
+        eqreversed1 = AcolorsMathTex( concat( '=', projr ) )
+        eqreversed2 = AcolorsMathTex( concat( '=', rejr ) )
 
         self.wait(5)
         eqreversed1.next_to( eqa, RIGHT );
-        eqreversed1.set_color_by_tex_to_color_map( acolors )
+        #eqreversed1.set_color_by_tex_to_color_map( acolors )
         eqreversed2.next_to( eqb, RIGHT );
-        eqreversed2.set_color_by_tex_to_color_map( acolors )
+        #eqreversed2.set_color_by_tex_to_color_map( acolors )
 
         #self.play( AnimationGroup( FadeIn( howreversed ), Write( eqreversed1 ), Write( eqreversed2 ) ) )
         self.play( Write( eqreversed1 ), Write( eqreversed2 ) )

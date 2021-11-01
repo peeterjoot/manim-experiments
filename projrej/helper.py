@@ -5,7 +5,8 @@ from sys import *
 sys.path.append( '../bin' )
 from mylatex2 import *
 
-l          = latex2( )
+l = latex2( )
+
 vec_v1     = concat( l.vec( 'v' ), '_1' )
 vec_v2     = concat( l.vec( 'v' ), '_2' )
 vec_e1     = concat( l.vec( 'e' ), '_1' )
@@ -18,7 +19,7 @@ vec_e13    = concat( l.vec( 'e' ), '_{13}' )
 vec_e23    = concat( l.vec( 'e' ), '_{23}' )
 detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
 uvcolors   = { l.vec('u'): RED, l.vec('v'): YELLOW }
-acolors = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
+acolors    = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
 
 dv_p1 = np.array( [ 3, 1, 0 ] )
 dv_p2 = np.array( [ 1, 3, 0 ] )
@@ -47,23 +48,39 @@ t_area = l.doublebr( l.text( 'Area' ) )
 t_base = l.doublebr( l.text( 'base' ) )
 t_height = l.doublebr( l.text( 'height' ) )
 
+class AcolorsMathTex(MathTex):
+    def __init__(
+        self,
+        *tex_strings,
+        arg_separator = " ",
+        **kwargs,
+    ):
+        myTemplate = TexTemplate( )
+        myTemplate.add_to_preamble( r'\usepackage{cancel}' )
+        super().__init__(
+                arg_separator.join( tex_strings ),
+                tex_template = myTemplate,
+                **kwargs,
+            )
+        self.set_color_by_tex_to_color_map( acolors )
 
-def align_it( s, ref, new, sh, m, what = '=' ):
+def align_it( s, ref, new, sh, m, what ):
     where = ref.get_part_by_tex( what )
     new.move_to( where, LEFT )
     new.shift( sh )
-    new.set_color_by_tex_to_color_map( m )
+    if m != None:
+        new.set_color_by_tex_to_color_map( m )
 
-def write_aligned( s, ref, new, sh, m, what = '=' ):
-    align_it( s, ref, new, sh, m, what = what )
+def write_aligned( s, ref, new, sh = 0 * DOWN, m = None, what = '=' ):
+    align_it( s, ref, new, sh = sh, m = m, what = what )
     s.play( Write( new ) )
 
-def tx_aligned( s, ref, new, sh, m, what = '=' ):
-    align_it( s, ref, new, sh, m, what = what )
+def tx_aligned( s, ref, new, sh = 0 * DOWN, m = None, what = '=' ):
+    align_it( s, ref, new, sh = sh, m = m, what = what )
     s.play( ReplacementTransform( ref, new ) )
 
-def tx_matching( s, ref, new, sh, m, what = '=' ):
-    align_it( s, ref, new, sh, m, what = what )
+def tx_matching( s, ref, new, sh = 0 * DOWN, m = None, what = '=' ):
+    align_it( s, ref, new, sh = sh, m = m, what = what )
     s.play( TransformMatchingTex( ref, new ) )
 
 def DrawVectorsAndProjRej( self, prlabels ):
