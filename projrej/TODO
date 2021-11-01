@@ -1,19 +1,27 @@
-*) rework ProjRej2 : 
+*) review scripts for:
 
-Claim: these are the projection and rejections.  Define them as such and then prove that they are correct.
+   010_TitlePage.script.txt
+   020_Overview.script.txt
+   040_ProjRej.script.txt
+   050_ProjRej2.script.txt
+   051_Inverse.script.txt
+   052_ProjParallelToU.script.txt
+   070_ProjRejPerp.script.txt
+   080_RejIsVector.script.txt
+   090_RejR3.script.txt
+   130_SummaryTable.script.txt
+   150_Finale.script.txt
 
-*) review scripts and make trial recordings.
+* 090_RejR3:
+
+ Probably want to visualize the respective rotations.
+
+*) make trial recordings.
 
 *) adjust scripts to match test recordings.
 
 *) Put in appropriate delays, adjusting any previous ones.
 
 *) "final recording" for each segment.
-
-*) Some sort of conclusion.
-
-*) Probably want a summary that relates any GA formulas to their VA equivalents.
-
-*) recast the rejection in cross product form. i.e.: ucap \cross (\ucap \cross v)
 
 *) final high-quality rendering and assembling the audio and video bits.

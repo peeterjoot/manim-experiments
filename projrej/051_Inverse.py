@@ -9,7 +9,7 @@ class Inverse( Scene ):
         title.scale( 1.5 )
         self.add( title )
 
-        eq = MathTex( concat( r'Lemma: ', invu, '=', l.frac( vecu, uu ) ) ) 
+        eq = MathTex( concat( r'Claim: ', invu, '=', l.frac( vecu, uu ) ) )
         eq.move_to( title, DOWN )
         eq.shift( 2 * DOWN )
         eq.set_color_by_tex_to_color_map( acolors )

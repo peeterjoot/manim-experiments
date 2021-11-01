@@ -1,0 +1,2 @@
+I'd like to thank Sudgy who is producing the 'From Zero to Geo' series, which will be linked to in the notes below.
+ When I was struggling with some of the most elementary Manim concepts, Sudgy provided me with a a number of very helpful tips and tricks.

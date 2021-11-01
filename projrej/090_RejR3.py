@@ -12,15 +12,15 @@ class RejR3( Scene ):
         eq = [ MathTex( concat( l.Rej( vecu, vecv ), '=', l.lr( l.wedge( vecv, hatu ) ), hatu ) ),
                MathTex( concat( '=', l.gpgradeone( l.lr( l.wedge( vecv, hatu ) ), hatu ) ) ),
                MathTex( concat( '=', l.gpgradeone( 'I', l.lr( l.cross( vecv, hatu ) ), hatu ) ) ),
-               MathTex( concat( '=', l.gpgradeone( 'I', 
-                          l.dot( l.lr( l.cross( vecv, hatu ) ), hatu ), '+',
-                          l.wedge( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ) ),
-               MathTex( concat( '=', l.gpgradeone( 'I', 
-                          l.wedge( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ) ),
-               MathTex( concat( '=', l.gpgradeone( 'I^2', 
-                          l.cross( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ) ),
+               MathTex( concat( '=', l.gpgradeone( 'I',
+                          l.lr( l.dot( l.lr( l.cross( vecv, hatu ) ), hatu ) ), '+',
+                          l.lr( l.wedge( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ) ) ),
+               MathTex( concat( '=', 'I',
+                          l.lr( l.wedge( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ) ),
+               MathTex( concat( '=', 'I^2',
+                          l.cross( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ),
                MathTex( concat( '= -', l.cross( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ),
-               MathTex( concat( '= ', l.cross( hatu, l.lr( l.cross( vecv, hatu ) ) ) ) ) ] 
+               MathTex( concat( '= ', l.cross( hatu, l.lr( l.cross( vecv, hatu ) ) ) ) ) ]
 
         eq[0].set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq[0] ) )

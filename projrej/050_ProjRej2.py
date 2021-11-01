@@ -12,7 +12,7 @@ class ProjRej2( Scene ):
         claim = Text( "Claim: " )
         claim.move_to( 3 * UP )
         claim.set_color( BLUE )
-        #These components of v are the projection and rejection." 
+        #These components of v are the projection and rejection."
         self.play( Write( claim ) )
 
         #howorig = MathTex( concat( vecv, ' = ', vecv, vecu, invu ) )
