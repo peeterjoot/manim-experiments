@@ -62,7 +62,9 @@ def tx_aligned( s, ref, new, sh, m, what = '=' ):
     align_it( s, ref, new, sh, m, what = what )
     s.play( ReplacementTransform( ref, new ) )
 
-
+def tx_matching( s, ref, new, sh, m, what = '=' ):
+    align_it( s, ref, new, sh, m, what = what )
+    s.play( TransformMatchingTex( ref, new ) )
 
 def DrawVectorsAndProjRej( self, prlabels ):
 

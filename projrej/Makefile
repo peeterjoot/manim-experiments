@@ -16,6 +16,7 @@ ALL += RejIsVector
 ALL += Finale
 ALL += Inverse
 ALL += ProjParallelToU
+ALL += RejR3
 
 SEQUENCE_TitlePage         := 010
 SEQUENCE_Overview          := 020
@@ -26,6 +27,7 @@ SEQUENCE_ProjParallelToU   := 052
 #SEQUENCE_ProjRejGraphical := 045
 SEQUENCE_ProjRejPerp       := 070
 SEQUENCE_RejIsVector       := 080
+SEQUENCE_RejR3             := 090
 SEQUENCE_Finale            := 150
 
 PROJECT := projrej
