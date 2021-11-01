@@ -12,7 +12,6 @@ class Inverse( Scene ):
         eq = AcolorsMathTex( concat( r'Claim: ', invu, '=', l.frac( vecu, uu ) ) )
         eq.move_to( title, DOWN )
         eq.shift( 2 * DOWN )
-        #eq.set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq ) )
         self.wait( 2 )
 
@@ -40,7 +39,6 @@ class Inverse( Scene ):
         self.wait( 2 )
 
         eqx = AcolorsMathTex( concat( uu, '=', l.dot( vecu, vecu ), '=', l.sq( l.norm( vecu ) ) ) )
-        #eqx.set_color_by_tex_to_color_map( acolors )
         self.play( Write( eqx ) )
         self.wait( 2 )
         self.play( FadeOut( eqx ) )

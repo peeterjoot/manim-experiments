@@ -12,7 +12,6 @@ class ProjRejPerp( Scene ):
 
         eqga = AcolorsMathTex( concat( l.mult( vecu, vecv ), ' &= ', l.dot( vecu, vecv ), ' + ', l.wedge( vecu, vecv ), l.newline ),
                                                      concat( ' &= ', l.gpgradezero( vecu, vecv ), ' + ', l.gpgradetwo( vecu, vecv ) ) )
-        #eqga.set_color_by_tex_to_color_map( acolors )
 
         i = 0
         self.play( Write( eqga[i] ) )
@@ -27,7 +26,6 @@ class ProjRejPerp( Scene ):
         rej        = l.mult( lr_vwedgeu, invu )
 
         eq = AcolorsMathTex( *[l.dot( l.Rej( vecu, vecv ), l.Proj( vecu, vecv ) )] )
-        #eq.set_color_by_tex_to_color_map( acolors )
         eq.shift( 2 * UP + 1 * RIGHT )
         self.play( Write( eq ) )
         self.wait( )
@@ -48,8 +46,6 @@ class ProjRejPerp( Scene ):
         eq3a.shift( DOWN )
         eq3b.next_to( eq3a, RIGHT )
         eq3c.next_to( eq3b, RIGHT )
-        #eq3a.set_color_by_tex_to_color_map( acolors )
-        #eq3c.set_color_by_tex_to_color_map( acolors )
         self.play( AnimationGroup( Write( eq3a ), Write( eq3b ), Write( eq3c ) ) )
         self.wait( 2 )
         self.play( Indicate( eq3b ) ) # vdotu
@@ -57,7 +53,6 @@ class ProjRejPerp( Scene ):
 
         eq4 = AcolorsMathTex( *['=', l.gpgradezero( rej, invu, big = 1 ), lr_vdotu ] )
         where = eq3a.get_part_by_tex( '=' )
-        #eq4.set_color_by_tex_to_color_map( acolors )
         eq4.move_to( where, LEFT )
         self.play( ReplacementTransform( g, eq4 ) )
         self.wait( 2 )
@@ -67,7 +62,6 @@ class ProjRejPerp( Scene ):
         eq5c = AcolorsMathTex( l.frac( vdotu, l.sq( vecu ) ) )
         eq5b[1].set_color( YELLOW )
         eq5b[3].set_color( RED )
-        #eq5c.set_color_by_tex_to_color_map( acolors )
         where = eq4.get_part_by_tex( '=' )
         eq5a.move_to( where, LEFT )
         eq5b.next_to( eq5a, RIGHT )
@@ -80,7 +74,6 @@ class ProjRejPerp( Scene ):
         self.wait( 1 )
         eq5bp = AcolorsMathTex( l.cancel( r'\langle', l.vec('v'), r'\wedge', l.vec('u'), r'\rangle' ) )
         eq5bp.move_to( eq5b )
-        #eq5bp.set_color_by_tex_to_color_map( acolors )
         self.play( ReplacementTransform( eq5b, eq5bp ) )
         self.wait( 1 )
 

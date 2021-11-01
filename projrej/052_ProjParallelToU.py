@@ -20,7 +20,6 @@ class ProjParallelToU( Scene ):
                 AcolorsMathTex( concat( '=', l.lr( l.dot( vecv, hatu ) ), hatu ) ) ]
         eq4[0].move_to( title, DOWN )
         eq4[0].shift( 2 * DOWN )
-        #eq4[0].set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq4[0] ) )
         self.wait( 2 )
 

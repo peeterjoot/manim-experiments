@@ -20,7 +20,6 @@ class RejR3( Scene ):
                AcolorsMathTex( concat( '= -', l.cross( l.lr( l.cross( vecv, hatu ) ), hatu ) ) ),
                AcolorsMathTex( concat( '= ', l.cross( hatu, l.lr( l.cross( vecv, hatu ) ) ) ) ) ]
 
-        #eq[0].set_color_by_tex_to_color_map( acolors )
         self.play( Write( eq[0] ) )
         i = 0
         write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN, None )

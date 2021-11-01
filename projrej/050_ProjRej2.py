@@ -25,7 +25,6 @@ class ProjRej2( Scene ):
 
 
         eqa = AcolorsMathTex( l.Proj( vecu, vecv ), ' \equiv ', proj )
-        #eqa.set_color_by_tex_to_color_map( acolors )
         eqa.shift( 0 * LEFT + 1 * UP )
         #self.play( AnimationGroup( FadeIn( howorig ), Write( eqa ) ) )
         self.play( Write( eqa ) )
@@ -43,9 +42,7 @@ class ProjRej2( Scene ):
 
         self.wait(5)
         eqreversed1.next_to( eqa, RIGHT );
-        #eqreversed1.set_color_by_tex_to_color_map( acolors )
         eqreversed2.next_to( eqb, RIGHT );
-        #eqreversed2.set_color_by_tex_to_color_map( acolors )
 
         #self.play( AnimationGroup( FadeIn( howreversed ), Write( eqreversed1 ), Write( eqreversed2 ) ) )
         self.play( Write( eqreversed1 ), Write( eqreversed2 ) )
@@ -72,16 +69,13 @@ class ProjRej2( Scene ):
         #proj2      = l.mult( l.lr( l.dot( vecv, hatu ) ), hatu )
         #rej2       = l.mult( l.lr( l.wedge( vecv, hatu ) ), hatu )
         #rej2r      = l.mult( hatu, l.lr( l.wedge( hatu, vecv ) ) )
-        #equnit1 = MathTex( concat( '=', proj2 ) )
-        #equnit2 = MathTex( concat( '=', rej2 ) )
-        #equnit2r = MathTex( concat( '=', rej2r ) )
+        #equnit1 = AcolorsMathTex( concat( '=', proj2 ) )
+        #equnit2 = AcolorsMathTex( concat( '=', rej2 ) )
+        #equnit2r = AcolorsMathTex( concat( '=', rej2r ) )
         #self.wait( 14 )
         #equnit1.next_to( eqreversed1, RIGHT )
         #equnit2.next_to( eqreversed2, RIGHT )
         #equnit2r.next_to( eqreversed2, RIGHT )
-        #equnit1.set_color_by_tex_to_color_map( acolors )
-        #equnit2.set_color_by_tex_to_color_map( acolors )
-        #equnit2r.set_color_by_tex_to_color_map( acolors )
         #self.play( AnimationGroup( Write( equnit1 ), Write( equnit2 ) ) )
         #self.wait( 1 )
         #self.play( TransformMatchingTex( equnit2, equnit2r ) )
