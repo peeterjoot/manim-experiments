@@ -1,27 +1,24 @@
-*) review scripts for:
 
-   010_TitlePage.script.txt
-   020_Overview.script.txt
-   040_ProjRej.script.txt
-   050_ProjRej2.script.txt
-   051_Inverse.script.txt
-   052_ProjParallelToU.script.txt
-   070_ProjRejPerp.script.txt
-   080_RejIsVector.script.txt
-   090_RejR3.script.txt
-   130_SummaryTable.script.txt
-   150_Finale.script.txt
+- Make trial recordings.
+- adjust scripts to match test recordings.
+- Put in appropriate delays, adjusting any previous ones.
+- "final recording" for each segment.
+- Final high-quality rendering and assembling the audio and video bits.
+
+   Name                 Scripted draft-recording timing-adjustments final-recording merge-audio-video
+   -------------------- -------- --------------- ------------------ --------------- -----------------
+   010_TitlePage        1        0               0                  0               0
+   020_Overview         1        0               0                  0               0
+   040_ProjRej          0        0               0                  0               0
+   050_ProjRej2         0        0               0                  0               0
+   051_Inverse          0        0               0                  0               0
+   052_ProjParallelToU  0        0               0                  0               0
+   070_ProjRejPerp      0        0               0                  0               0
+   080_RejIsVector      0        0               0                  0               0
+   090_RejR3            0        0               0                  0               0
+   130_SummaryTable     0        0               0                  0               0
+   150_Finale           0        0               0                  0               0
 
 * 090_RejR3:
 
- Probably want to visualize the respective rotations.
-
-*) make trial recordings.
-
-*) adjust scripts to match test recordings.
-
-*) Put in appropriate delays, adjusting any previous ones.
-
-*) "final recording" for each segment.
-
-*) final high-quality rendering and assembling the audio and video bits.
+ Probably want to visualize the respective rotations.  Would be good to do this for the GA rejection too.

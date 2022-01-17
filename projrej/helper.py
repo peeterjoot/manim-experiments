@@ -83,9 +83,10 @@ def tx_matching( s, ref, new, sh = 0 * DOWN, m = None, what = '=' ):
     align_it( s, ref, new, sh = sh, m = m, what = what )
     s.play( TransformMatchingTex( ref, new ) )
 
-def DrawVectorsAndProjRej( self, prlabels ):
+def DrawVectorsAndProjRej( self, prlabels, origin = [ 0, -2, 0 ] ):
 
-    o = np.array( [ 0, -2, 0 ] )
+    #o = np.array( [ 0, -2, 0 ] )
+    o = origin
     dv_p1 = np.array( [ 3, 1, 0 ] )
     dv_p2 = np.array( [ 1, 3, 0 ] )
     op1 = o + dv_p1

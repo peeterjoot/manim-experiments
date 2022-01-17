@@ -39,18 +39,18 @@ class foo( Scene ):
 
         v_proj = uinverse * n_udotv
         a_proj = Arrow( start = o, end = o + v_proj, buff = 0, color = PURPLE )
-        l_proj = MathTex( proj )
+        l_proj = MathTex( l.Proj( vecu, vecv ) )
         l_proj.move_to( l_u )
         l_proj.shift( LEFT )
         l_proj.set_color( PURPLE )
         g4 = VGroup( a_proj, l_proj )
         self.play( ReplacementTransform( g3, g4 ) )
         self.wait( 2 )
-        projl = MathTex( proj )
-        projl.set_color( PURPLE )
-        projl.move_to( labels[ 0 ] )
-        self.play( ReplacementTransform( VGroup( labels[0] ) + g4, projl ) )
-        self.wait( 7 )
+        #projl = MathTex( 'Proj' )
+        #projl.set_color( PURPLE )
+        #projl.move_to( labels[ 0 ] )
+        #self.play( ReplacementTransform( VGroup( labels[0] ) + g4, projl ) )
+        #self.wait( 7 )
 
         o2 = o + DOWN + RIGHT
         a_uinverse2 = Arrow( start = o2, end = o2 + uinverse, buff = 0, color = GREEN )
@@ -64,19 +64,19 @@ class foo( Scene ):
         self.wait( 1 )
         v_rej = p2 - v_proj
         a_rej = Arrow( start = o2, end = o2 + v_rej, buff = 0, color = GREEN )
-        l_rej = MathTex( rej )
+        l_rej = MathTex( l.Rej(vecu, vecv) )
         l_rej.move_to( a_rej )
         l_rej.shift( LEFT + DOWN )
         l_rej.set_color( GREEN )
         g5 = VGroup( a_rej, l_rej )
         self.play( ReplacementTransform( g3p, g5 ) )
         self.wait( 2 )
-        rejl = MathTex( rej )
-        rejl.set_color( GREEN )
-        rejl.move_to( labels[ 1 ] )
-        rejl.shift( 0.5 * RIGHT )
-        self.play( ReplacementTransform( VGroup( labels[1] ) + g5, rejl ) )
-        self.wait( 3 )
+        #rejl = MathTex( rej )
+        #rejl.set_color( GREEN )
+        #rejl.move_to( labels[ 1 ] )
+        #rejl.shift( 0.5 * RIGHT )
+        #self.play( ReplacementTransform( VGroup( labels[1] ) + g5, rejl ) )
+        #self.wait( 3 )
 
 
 # vim: et sw=4 ts=4
