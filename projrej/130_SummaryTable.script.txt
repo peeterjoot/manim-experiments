@@ -4,5 +4,4 @@ For the projection operator, the R^3 and R^N forms are identical.  The GA form t
 For the rejection operator, we have a ladder of increasing generality.
  The triple cross product form works only in R^3,
   the bivector-vector product with u-hats works in R^N for any N (including N = 2), and finally,
-  the most general form, where we write the rejection in terms of u and u-inverse, applies to all spaces, including 4-vector relativistic spaces that we will use in physics
-  and electromagnetism.
+  the most general form, where we write the rejection in terms of u and u-inverse, applies to all spaces, including 4-vector relativistic spaces that we will use in physics and electromagnetism.

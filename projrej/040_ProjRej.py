@@ -21,7 +21,7 @@ class ProjRej( Scene ):
         eq2.shift( 2 * RIGHT + 0.5 * DOWN )
         for item in eq2:
            self.play( Write( item ) )
-           self.wait( 7 )
+           #self.wait( 7 )
         self.wait( 1 )
         self.play( FadeOut( eq2 ) )
 
@@ -37,7 +37,7 @@ class ProjRej( Scene ):
         eq.shift( 2 * RIGHT + 0.5 * DOWN )
         for item in eq:
            self.play( Write( item ) )
-           self.wait( 1 )
+           #self.wait( 1 )
         self.wait( 1 )
 
 

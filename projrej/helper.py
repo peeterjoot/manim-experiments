@@ -20,6 +20,7 @@ vec_e23    = concat( l.vec( 'e' ), '_{23}' )
 detuivj    = l.det22( 'u_i', 'v_i', 'u_j', 'v_j' )
 uvcolors   = { l.vec('u'): RED, l.vec('v'): YELLOW }
 acolors    = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW }
+#acolors    = { 'Area': BLUE, 'base': RED, 'height': GREEN, l.hat('u'): PURPLE, l.vec('u'): RED, l.vec('v'): YELLOW, l.vec('a'): BLUE, l.vec('b'): PURPLE }
 
 dv_p1 = np.array( [ 3, 1, 0 ] )
 dv_p2 = np.array( [ 1, 3, 0 ] )
