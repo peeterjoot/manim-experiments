@@ -15,10 +15,11 @@
    052_ProjParallelToU  1        0               0                  0               0
    070_ProjRejPerp      1        0               0                  0               0
    080_RejIsVector      1        0               0                  0               0
-   090_RejR3            1        0               0                  0               0
+   090_RejR3            1        1               Try in post        1               0
    130_SummaryTable     1        0               0                  0               0
    150_Finale           1        0               0                  0               0
 
 * 090_RejR3:
 
- Probably want to visualize the respective rotations.  Would be good to do this for the GA rejection too.
+ Visualize the rotations (at least for the GA case.)
+ Want to use Indicate on the grade selection components -- tricky.

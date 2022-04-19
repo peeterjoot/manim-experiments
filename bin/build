@@ -58,6 +58,7 @@ my $myName = '' ;
 my $main = '';
 my $killonly = 0;
 my $preview = 0;
+my $dryrun = 0;
 my $quality = 'l';
 ($myName = $0) =~ s@.*[/\\]@@ ;
 
@@ -68,6 +69,7 @@ GetOptions (
    'killonly!'          => \$killonly,
    'preview!'           => \$preview,
    'quality=s'          => \$quality,
+   'dryrun!'            => \$dryrun,
 ) or pod2usage(-verbose => 0) ;
 
 my %q = map { $_ => 1 } (qw(l m h k));
@@ -95,5 +97,5 @@ unless ( $killonly )
    my $cmd = qq(manim ${MFLAGS} $main @ARGV);
 
    print( qq(# $cmd\n) );
-   system( $cmd );
+   system( $cmd ) unless ( $dryrun );
 }

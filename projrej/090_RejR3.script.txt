@@ -1,25 +1,25 @@
-The rejection operator can be cast into triple cross product form.  Let's see how this works.
+Now we will show that the rejection operator in R^3 can be expressed as a triple cross product.
 
-One very useful GA trick is to wrap an expression in a grade selection operator that does not change it.
- For example, we may write the rejection as the grade-1 selection of itself.
- Having done that, in R^3 we may use the cross product form of the wedge product (u-wedge-v = I u-cross-v).
- Now we have a vector-vector product, so may expand it as a dot product + wedge product, with each of these
-  multiplied by I, the R^3 pseudoscalar (a trivector.)
+To find the triple cross product form of the rejection,
+ first we enclose the rejection in a grade one selection operator,
+ which changes nothing since any vector has only grade-1 components.
 
- Trivector times scalar is a trivector, and the grade-1 selection of a trivector is zero.  That
- leaves us with a trivector-bivector product, which is always a vector in R^3.
+Next we expand u-hat wedge v as I times u-hat cross v.
 
- Once again the wedge product can be expanded as I times the cross product, leaving us with
- an I^2 = -1.
- One final permutation and sign change to tidy things up, and we find a compact representation of the R^3 rejection operator.
+Because the R^3 pseudoscalar commutes with all grades, u-hat I equals I u-hat.
 
-A comment on interpretation:
+We use the fundamental identity to expand the vector product factors as a dot-product and an I-times cross-product component.
 
- In GA, the wedge of v with uhat selects just the portion of v that has no component along the direction of u, but that
-  wedge produces a bivector.  However, this bivector, when multiplied by uhat rotates uhat 90 degrees.
+We now have two terms in our grade-1 selection, the first of which is
+- a pseudoscalar-scalar product, which is grade-3, so contributes nothing, and
+- a scalar-vector product (a vector),
+  for which we can drop the enclosing grade-1 selection.
 
- In the double cross product form, the first cross product produces a vector that has the magnitude of the rejection, but directed
-  normal to the plane of u and v.
- One additional cross product rotates this normal into the desired orientation.
- In both cases, we have a 90 degree rotation to orient the non-projective component of v, but in the GA case, that rotation is
- constrained to the plane of u and v, instead of utilizing a normal direction that is not well defined for N != 3.
+I^2 is just -1
+
+And finally, the anti-commutative property of the cross product can now be used for a final tidy up.
+
+Visualizing this triple cross product form of the rejection requires some uncomfortable right hand contortions.
+On the other hand,
+ the GA rejection is just a 90 degree rotation and scale, rotating u-hat 90 degrees in the direction of v,
+  and scaling that rotated vector by the length-of-v times sine-theta, where theta is the angle between u-hat and v.
