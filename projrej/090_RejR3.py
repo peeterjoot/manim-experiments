@@ -1,6 +1,6 @@
 from helper import *
 
-waittime = 5
+waittime = 4
 
 def explain(self, e):
     move = ( -4.0, -3, 0 )
@@ -10,10 +10,10 @@ def explain(self, e):
         g.set_color( RED )
         for t in g:
             self.play( FadeIn( t ) )
-        self.wait( waittime )
+        self.wait( 1 )
         for t in g:
             self.play( FadeOut( t ) )
-    self.wait( waittime )
+    self.wait( 1 )
 
 
 class RejR3( Scene ):
@@ -96,6 +96,8 @@ class RejR3( Scene ):
                                                           l.lr( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ) )  # 4
                ]
 
+        delays1 = [ waittime, 11, waittime, waittime, waittime ]
+
         eq3 = [
                AcolorsMathTex( '=' ),
                AcolorsMathTex( l.gpgradeone( 'I', l.lr( l.dot( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ),
@@ -107,6 +109,8 @@ class RejR3( Scene ):
                #AcolorsMathTex( concat( '=', 'I^2',        l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),           # 6
                AcolorsMathTex( concat( '= -', l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),                       # 7
                AcolorsMathTex( concat( '= ', l.cross( hatu, l.lr( l.cross( vecv, hatu ) ) ) ) ) ]                       # 8
+
+        delays2 = [ 6, 6 ]
 
         explainations1 = [ '',
                            concat( veca, '= ', l.gpgradeone( veca ) ),                                   # 1
@@ -124,7 +128,7 @@ class RejR3( Scene ):
         eq2[0].shift( DOWN + 1.25 * LEFT )
         eq3[0].shift( DOWN + 1.25 * LEFT )
         self.play( Write( eq1[0] ) )
-        self.wait( waittime )
+        self.wait( 9 )
         explain( self, explainations1[1] )
         i = 0
         write_aligned( self, eq1[i], eq1[i+1], 0.75 * DOWN, None )
@@ -134,7 +138,7 @@ class RejR3( Scene ):
         for i in range(1,4):
             explain( self, explainations1[i+1] )
             tx_matching( self, last, eq1[i+1], 0.00 * DOWN, None )
-            self.wait( waittime )
+            self.wait( delays1[i+1] )
             last = eq1[i+1]
 
         eq3[0].move_to( last )
@@ -143,34 +147,22 @@ class RejR3( Scene ):
         eq3[3].next_to( eq3[2], RIGHT )
         g = VGroup(*eq3)
         tx_matching( self, last, g, 0.00 * DOWN, None )
-        self.wait( waittime )
+        self.wait( 10 )
         self.play( Indicate( eq3[1] ) )
+        self.wait( 5 )
         transition = AcolorsMathTex( concat( '=', l.lr( l.dot( hatu, l.lr( l.cross( hatu, vecv ) ) ) ), l.gpgradeone( 'I' ), '+ I^2',
                                                           l.gpgradeone( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) )
         transition.next_to( last )
         transition.shift( 8 * LEFT )
         self.play( ReplacementTransform( g, transition ) )
-        #self.wait( waittime )
-        #self.play( Indicate( eq3[3] ) )
-        #self.wait( waittime )
-        #remainder = AcolorsMathTex( concat( '=', l.gpgradeone( 'I^2', l.lr( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ) )
-        #remainder.next_to( last )
-        #remainder.shift( 8 * LEFT )
-        #self.play( ReplacementTransform( transition, remainder ) )
         last = transition
 
         for i in range(2):
             explain( self, explainations2[i] )
             tx_matching( self, last, eq2[i], 0.00 * DOWN, None )
-            self.wait( waittime )
+            self.wait( delays2[i] )
             last = eq2[i]
 
-        #self.play( ReplacementTransform( VGroup(au, ul), VGroup(aucap, ucapl) ) )
-        #self.wait( waittime )
-        #self.play( ReplacementTransform( VGroup(aucap, ucapl, ltheta), VGroup(arejcap, rejcapl) ) )
-        #self.wait( waittime )
-        #self.play( ReplacementTransform( VGroup(arejcap, rejcapl), VGroup(arej, rejl) ) )
-        #self.wait( waittime )
 
 
 # vim: et sw=4 ts=4

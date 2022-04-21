@@ -1,20 +1,22 @@
-Now we will show that the rejection operator in R^3 can be expressed as a triple cross product.
+We will now show that the R^3 rejection operator can be expressed as a triple cross product.
++7
 
-To find the triple cross product form of the rejection,
- first we enclose the rejection in a grade one selection operator,
- which changes nothing since any vector has only grade-1 components.
+To show this,
+ first we enclose the rejection in a grade one selection operator.
+ This changes nothing since any vector has only grade-1 components.
++11
 
-Next we expand u-hat wedge v as I times u-hat cross v.
+Next we expand 'u-hat wedge v' as I times 'u-hat cross v'.
 
-Because the R^3 pseudoscalar commutes with all grades, u-hat I equals I u-hat.
+Because the R^3 pseudoscalar commutes with all grades, 'u-hat I' equals 'I u-hat'.
 
-We use the fundamental identity to expand the vector product factors as a dot-product and an I-times cross-product component.
+We use the fundamental identity to expand the vector product factors as a dot-product and an 'I-times cross-product' component.
 
-We split our grade selection operator into two terms, and factor out any scalar terms.
+We split our grade selection operator into two pieces,
+ and then factor out the scalar terms.
 
-In the first grade-1 selection, we are left selecting the vector component of a pseudoscalar, which is zero.
-The second grade-1 selection, contains just a vector, so we can drop the enclosing grade-1 selection.
+The first grade selection filters out the vector components of a pseudoscalar, so is zero.
 
-I^2 is just -1
+Our second selection is just the grade-1 components of a vector, so we can drop the enclosing grade selection.
 
-And finally, the anti-commutative property of the cross product can now be used for a final tidy up.
+Finally, we tidy up slightly, using the anti-commutative property of the cross product.
