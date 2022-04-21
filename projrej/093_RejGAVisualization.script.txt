@@ -1,0 +1,10 @@
+
+The action of the GA rejection operator can be visualized in two dimensions.
+
+We decompose 'uhat wedge v', into a unit bivector factor (say i), and a scaling factor.
+
+The actions are:
+
+- First rescale u to unit length, producing uhat.
+- Next, multiply uhat with i from the right, to rotate uhat towards v by 90 degrees.
+- Finally, rescale the rotated uhat by the length-of-v times sine-theta, to produce the rejection.

@@ -10,16 +10,11 @@ Because the R^3 pseudoscalar commutes with all grades, u-hat I equals I u-hat.
 
 We use the fundamental identity to expand the vector product factors as a dot-product and an I-times cross-product component.
 
-We now have two terms in our grade-1 selection, the first of which is
-- a pseudoscalar-scalar product, which is grade-3, so contributes nothing, and
-- a scalar-vector product (a vector),
-  for which we can drop the enclosing grade-1 selection.
+We split our grade selection operator into two terms, and factor out any scalar terms.
+
+In the first grade-1 selection, we are left selecting the vector component of a pseudoscalar, which is zero.
+The second grade-1 selection, contains just a vector, so we can drop the enclosing grade-1 selection.
 
 I^2 is just -1
 
 And finally, the anti-commutative property of the cross product can now be used for a final tidy up.
-
-Visualizing this triple cross product form of the rejection requires some uncomfortable right hand contortions.
-On the other hand,
- the GA rejection is just a 90 degree rotation and scale, rotating u-hat 90 degrees in the direction of v,
-  and scaling that rotated vector by the length-of-v times sine-theta, where theta is the angle between u-hat and v.

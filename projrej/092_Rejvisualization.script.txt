@@ -1,0 +1,11 @@
+Manually visualizing the triple cross product form of the rejection operator requires some uncomfortable right hand contortions.
+
+Here is an animation of the cross products that contribute to this rejection computation.
+
+In this animation, the vector u is in red, v is in yellow, and the rejection is in green.
+
+First we scale u down to unit length, finding u-hat directed along u.
+The v cross u-hat product is normal to the plane containing u-hat and v, 
+ but also scaled by length-of-v times sine theta.
+
+A final cross product rotates that normal back into the plane of u-hat and v, perpendicular to u.

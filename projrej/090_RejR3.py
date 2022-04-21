@@ -1,5 +1,7 @@
 from helper import *
 
+waittime = 5
+
 def explain(self, e):
     move = ( -4.0, -3, 0 )
     if e:
@@ -8,13 +10,10 @@ def explain(self, e):
         g.set_color( RED )
         for t in g:
             self.play( FadeIn( t ) )
-        self.wait( 1 )
+        self.wait( waittime )
         for t in g:
             self.play( FadeOut( t ) )
-    else:
-        self.wait( 1 )
-
-
+    self.wait( waittime )
 
 
 class RejR3( Scene ):
@@ -26,7 +25,7 @@ class RejR3( Scene ):
         title.scale( 1.5 )
         self.add( title )
 
-        o = [ -5.0, 0, 0 ]
+        o = [ -6.0, 0, 0 ]
         du = np.array( [ 3, 1, 0 ] )
         dv = np.array( [ 1, 3, 0 ] )
         ou = o + du
@@ -55,7 +54,7 @@ class RejR3( Scene ):
         ul      = MathTex( vecu )
         ucapl   = MathTex( hatu )
         rejcapl = MathTex( concat( hatu, 'i' ) )
-        rejl    = MathTex( concat( hatu, r' i \sin\theta' ) )
+        rejl    = MathTex( concat( hatu, r' i v \sin\theta' ) )
 
         ul.set_color( RED )
         ul.next_to( au, RIGHT )
@@ -99,13 +98,13 @@ class RejR3( Scene ):
 
         eq3 = [
                AcolorsMathTex( '=' ),
-               AcolorsMathTex( l.gpgradeone( 'I', l.dot( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),
+               AcolorsMathTex( l.gpgradeone( 'I', l.lr( l.dot( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ),
                AcolorsMathTex( '+' ),
                AcolorsMathTex( l.gpgradeone( 'I^2', l.lr( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) )
                ]
 
         eq2 = [
-               AcolorsMathTex( concat( '=', 'I^2',        l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),           # 6
+               #AcolorsMathTex( concat( '=', 'I^2',        l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),           # 6
                AcolorsMathTex( concat( '= -', l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ),                       # 7
                AcolorsMathTex( concat( '= ', l.cross( hatu, l.lr( l.cross( vecv, hatu ) ) ) ) ) ]                       # 8
 
@@ -116,26 +115,26 @@ class RejR3( Scene ):
                            concat( veca, vecb, ' = ', l.dot( veca, vecb ), '+', 'I', l.lr( l.cross( veca, vecb ) ) ), # 4
                            '' ]                                                                          # 5
 
-        explainations2 = [ '',                                                                           # 6
+        explainations2 = [ #'',                                                                           # 6
                            'I^2 = -1',                                                                   # 7
                            concat( l.cross( veca, vecb), '= -', l.lr( l.cross( vecb, veca ) ) ),         # 8
                            '' ]
 
-
-        eq1[0].shift( DOWN + LEFT )
-        eq2[0].shift( DOWN + LEFT )
-        eq3[0].shift( DOWN + LEFT )
+        eq1[0].shift( DOWN + 1.25 * LEFT )
+        eq2[0].shift( DOWN + 1.25 * LEFT )
+        eq3[0].shift( DOWN + 1.25 * LEFT )
         self.play( Write( eq1[0] ) )
-        self.wait( 2 )
+        self.wait( waittime )
         explain( self, explainations1[1] )
         i = 0
         write_aligned( self, eq1[i], eq1[i+1], 0.75 * DOWN, None )
+        self.wait( waittime )
         last = eq1[i+1]
 
         for i in range(1,4):
             explain( self, explainations1[i+1] )
             tx_matching( self, last, eq1[i+1], 0.00 * DOWN, None )
-            self.wait( 3 )
+            self.wait( waittime )
             last = eq1[i+1]
 
         eq3[0].move_to( last )
@@ -144,29 +143,34 @@ class RejR3( Scene ):
         eq3[3].next_to( eq3[2], RIGHT )
         g = VGroup(*eq3)
         tx_matching( self, last, g, 0.00 * DOWN, None )
-        self.wait(1)
+        self.wait( waittime )
         self.play( Indicate( eq3[1] ) )
-        self.wait(1)
-        self.play( Indicate( eq3[3] ) )
-        self.wait(1)
-        remainder = AcolorsMathTex( concat( '=', l.gpgradeone( 'I^2', l.lr( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ) )
-        remainder.next_to( last )
-        remainder.shift( 8 * LEFT )
-        self.play( ReplacementTransform( g, remainder ) )
-        last = remainder
+        transition = AcolorsMathTex( concat( '=', l.lr( l.dot( hatu, l.lr( l.cross( hatu, vecv ) ) ) ), l.gpgradeone( 'I' ), '+ I^2',
+                                                          l.gpgradeone( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) )
+        transition.next_to( last )
+        transition.shift( 8 * LEFT )
+        self.play( ReplacementTransform( g, transition ) )
+        #self.wait( waittime )
+        #self.play( Indicate( eq3[3] ) )
+        #self.wait( waittime )
+        #remainder = AcolorsMathTex( concat( '=', l.gpgradeone( 'I^2', l.lr( l.cross( hatu, l.lr( l.cross( hatu, vecv ) ) ) ) ) ) )
+        #remainder.next_to( last )
+        #remainder.shift( 8 * LEFT )
+        #self.play( ReplacementTransform( transition, remainder ) )
+        last = transition
 
-        for i in range(3):
+        for i in range(2):
             explain( self, explainations2[i] )
             tx_matching( self, last, eq2[i], 0.00 * DOWN, None )
-            self.wait( 1 )
+            self.wait( waittime )
             last = eq2[i]
 
-        self.play( ReplacementTransform( VGroup(au, ul), VGroup(aucap, ucapl) ) )
-        self.wait( 1 )
-        self.play( ReplacementTransform( VGroup(aucap, ucapl, ltheta), VGroup(arejcap, rejcapl) ) )
-        self.wait( 1 )
-        self.play( ReplacementTransform( VGroup(arejcap, rejcapl), VGroup(arej, rejl) ) )
-        self.wait( 1 )
+        #self.play( ReplacementTransform( VGroup(au, ul), VGroup(aucap, ucapl) ) )
+        #self.wait( waittime )
+        #self.play( ReplacementTransform( VGroup(aucap, ucapl, ltheta), VGroup(arejcap, rejcapl) ) )
+        #self.wait( waittime )
+        #self.play( ReplacementTransform( VGroup(arejcap, rejcapl), VGroup(arej, rejl) ) )
+        #self.wait( waittime )
 
 
 # vim: et sw=4 ts=4
