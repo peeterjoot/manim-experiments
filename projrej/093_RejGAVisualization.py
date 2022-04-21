@@ -80,6 +80,7 @@ class RejGAVisualization( Scene ):
         all = VGroup( au, ul, av, vl, vrej, vrejl, ltheta, *eq )
 
         self.add( all )
+        self.wait( 8 )
         self.play( Indicate( eq[1] ) )
         self.wait( waittime )
         self.play( Indicate( eq[2] ) )
