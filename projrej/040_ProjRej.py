@@ -10,38 +10,47 @@ class ProjRej( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.add( title )
+        self.wait( 7 )
 
         projr       = l.mult( invu, lr_udotv )
         rejr        = l.mult( invu, lr_uwedgev )
-        eq2 = AcolorsMathTex( concat( vecv, r' &= 1 \times ', vecv, l.newline ),
-                              concat( r' &= ', l.lr( invu, vecu, big = 1 ), vecv, l.newline ),
-                              concat( r' &= ', invu, l.lr( vecu, vecv ), l.newline ),
-                              concat( r' &= ', invu, l.lr( l.add( udotv, uwedgev ) ), l.newline ),
-                              concat( r' &= ', l.add( projr, rejr ), l.newline ) )
-        eq2.shift( 2 * RIGHT + 0.5 * DOWN )
-        for item in eq2:
-           self.play( Write( item ) )
-           #self.wait( 7 )
-        self.wait( 1 )
-        self.play( FadeOut( eq2 ) )
+        eq2 = [ AcolorsMathTex( concat( vecv, r' = 1 \times ', vecv, l.newline ) ),
+                AcolorsMathTex( concat( ' = ', l.lr( invu, vecu, big = 1 ), vecv, l.newline ) ),
+                AcolorsMathTex( concat( ' = ', invu, l.lr( vecu, vecv ), l.newline ) ),
+                AcolorsMathTex( concat( ' = ', invu, l.lr( l.add( udotv, uwedgev ) ), l.newline ) ),
+                AcolorsMathTex( concat( ' = ', l.add( projr, rejr ), l.newline ) ) ]
+        delays = [ 8, 5, 7, 4, 4 ]
+
+        eq2[0].shift( 0 * RIGHT + 2.0 * UP )
+        i = 0
+        self.play( Write( eq2[i]) )
+        self.wait( delays[i] )
+        for i in range(4):
+           write_aligned( self, eq2[i], eq2[i+1], 1.15 * DOWN, None )
+           self.wait( delays[i+1] )
+
+        self.wait( 4 )
+        self.play( FadeOut( *eq2 ) )
+        self.wait( 4 )
 
 
         proj       = l.mult( lr_vdotu, invu )
         rej        = l.mult( lr_vwedgeu, invu )
-        eq = AcolorsMathTex( concat( vecv, r' &= ', vecv, r'\times 1', l.newline ),
-                             concat( r' &= ', vecv, l.lr( vecu, invu, big = 1 ), l.newline ),
-                             concat( r' &= ', l.lr( vecv, vecu ), invu, l.newline ),
-                             concat( r' &= ', l.lr( l.add( vdotu, vwedgeu ) ), invu, l.newline ),
-                             concat( r' &= ', l.add( proj, rej ), l.newline ) )
+        eq = [ AcolorsMathTex( concat( vecv, ' = ', vecv, r'\times 1', l.newline ) ),
+               AcolorsMathTex( concat( ' = ', vecv, l.lr( vecu, invu, big = 1 ), l.newline ) ),
+               AcolorsMathTex( concat( ' = ', l.lr( vecv, vecu ), invu, l.newline ) ),
+               AcolorsMathTex( concat( ' = ', l.lr( l.add( vdotu, vwedgeu ) ), invu, l.newline ) ),
+               AcolorsMathTex( concat( ' = ', l.add( proj, rej ), l.newline ) ) ]
 
-        eq.shift( 2 * RIGHT + 0.5 * DOWN )
-        for item in eq:
-           self.play( Write( item ) )
-           #self.wait( 1 )
-        self.wait( 1 )
+        i = 0
+        eq[0].move_to( eq2[0] )
+        i = 0
+        self.play( Write( eq[i]) )
+        self.wait( delays[i] )
+        for i in range(4):
+           write_aligned( self, eq[i], eq[i+1], 1.15 * DOWN, None )
+           self.wait( delays[i+1] )
 
-
-
-
+        self.wait( 8 )
 
 # vim: et sw=4 ts=4

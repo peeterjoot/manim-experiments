@@ -3,7 +3,7 @@
 q='-q h'
 
 #../bin/build $q -p 010_TitlePage.py
-#../bin/build $q -p 020_Overview.py
+##../bin/build $q -p 020_Overview.py # skip.
 #../bin/build $q -p 040_ProjRej.py
 #../bin/build $q -p 045_ProjRejGraphical.py
 #../bin/build $q -p 050_ProjRej2.py
