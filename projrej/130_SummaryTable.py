@@ -23,4 +23,4 @@ class SummaryTable( Scene ):
         table.get_horizontal_lines()[:3].set_z_index( 1 )
 
         self.play( FadeIn( table ) )
-        self.wait( 10 )
+        self.wait( 47 )

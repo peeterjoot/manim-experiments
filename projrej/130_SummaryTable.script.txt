@@ -1,9 +1,13 @@
-For the projection operator, the R^3 and R^N forms are identical.  
- The GA form that we found by factoring v as v times u, u-inverse, is slightly more general, as it also
- works for non-Euclidean spaces (i.e. relativistic 4-vectors where the dot product of two vectors can be negative.)
+Here is a summary of the projection and rejection operators in increasing scales of generality.
+
+For the projection operator, the R^3 and R^N forms with u-hats are identical.  
+
+For non-Euclidean spaces, we must write the projection using pairs of u and u-inverse.
+  That is required, in particular, for relativistic spaces where vector dot products can be negative.
 
 For the rejection operator, we have a ladder of increasing generality.
  The triple cross product form works only in R^3,
-  the bivector-vector product with u-hats works in R^N for any N (including N = 2), and finally,
-  the most general form, where we write the rejection in terms of u and u-inverse, applies to all spaces, 
-  including 4-vector relativistic spaces that we will use in physics and electromagnetism.
+  the bivector-vector product with u-hats works in R^N for any N (including N = 2),
+  
+The general form of the rejection operator, again using pairs of u and u-inverse, applies to all spaces, 
+  including non-Euclidean relativistic spaces used in physics and electromagnetism.

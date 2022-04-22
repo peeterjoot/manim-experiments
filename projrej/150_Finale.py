@@ -9,7 +9,16 @@ class Finale( Scene ):
         t3 = Text( 'Who generously hand held me through my first Manim baby steps.' ).scale( 0.6 )
         t3.next_to( t2, DOWN )
         t3.shift( 3 * RIGHT )
-        g = VGroup( t, t2, t3 )
+
+        t4a = Text( 'Check out:' )
+        t4a.set_color( TEAL )
+        t4 = Tex("\\verb|http://peeterjoot.com/writing/geometric-algebra-for-electrical-engineers/|").scale( 0.7 )
+        t4a.next_to( t3, DOWN )
+        t4a.shift( 4 * LEFT )
+        t4.next_to( t4a, DOWN )
+        t4.shift( 5 * RIGHT )
+
+        g = VGroup( t, t2, t3, t4a, t4 )
         t.set_color( TEAL )
         self.add( g )
 
@@ -32,5 +41,7 @@ class Finale( Scene ):
             FadeIn(url),
             lag_ratio = 0.5
         ))
+
+        self.wait(41)
 
 # vim: et sw=4 ts=4

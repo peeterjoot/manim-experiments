@@ -11,9 +11,10 @@ q='-q h'
 #../bin/build $q -p 052_ProjParallelToU.py
 #../bin/build $q -p 070_ProjRejPerp.py
 #../bin/build $q -p 080_RejIsVector.py
+
 ##../bin/build $q -p 090_RejR3.py
 ##../bin/build $q -p 091_RejCross.py # skipping.
 ##../bin/build $q -p 092_Rejvisualization.py
 ##../bin/build $q -p 093_RejGAVisualization.py
-../bin/build $q -p 130_SummaryTable.py
-#../bin/build $q -p 150_Finale.py
+##../bin/build $q -p 130_SummaryTable.py
+##../bin/build $q -p 150_Finale.py

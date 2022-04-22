@@ -1,2 +1,14 @@
-I'd like to thank Sudgy who is producing the 'From Zero to Geo' series, which will be linked to in the notes below.
- When I was struggling with some of the most elementary Manim concepts, Sudgy provided me with a a number of very helpful tips and tricks.
+This video was produced using Manim, the python software system developed for 3-blue-1-brown's most awesome channel.
+
+I'd like to thank Sudgy Lacamo,
+ who provided me with some key guidance when I was struggling with some elementary Manim concepts.
+Please check out his channel and his 'From Zero to Geo' series.
+
+This video is a departure from my usual ad-hoc and casual "chalkboard" style videos.  
+
+If you made it this far, and would prefer more videos of this sort, 
+ please add a comment that includes 'More manim please...', and like and subscribe.
+
+If you enjoyed this video, you might be interested in my blog, peeterjoot.com
+or in my book 'Geometric Algebra for Electrical Engineers.'  
+A free pdf copy of that book and detailed notes for a number of physics courses can be found on my blog.
