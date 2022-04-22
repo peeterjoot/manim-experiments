@@ -1,0 +1,106 @@
+#!/usr/bin/perl
+
+#-----------------------------------------------------------------------------
+# POD Format Documentation.  Read "perldoc perlpod" for an example.
+# When done, check syntax with "podchecker".
+
+=head1 NAME
+
+timediff - <one-line-description>
+
+=head1 SYNOPSIS
+
+timediff [--help] [<options>]
+
+=head1 DESCRIPTION
+
+It looks like somebody used the perl skeleton without filling in the POD
+documentation for their particular script.  Shame on them!!!
+
+Options:
+
+=over 4
+
+=item --foo=bar
+
+Blah.
+
+=back
+
+=head1 SUPPORTED PLATFORMS
+
+ Unix (Linux verified)
+
+=head1 SUPPORT
+
+ Send email to peeterjoot@pm.me
+
+=head1 AUTHORS
+
+ Peeter Joot
+
+=cut
+
+#-----------------------------------------------------------------------------
+
+use strict ;
+use warnings ;
+use Getopt::Long ;
+use Pod::Usage ;
+
+# Suppress sourcing of users' .bashrc files in invoked shells
+delete $ENV{'ENV'} ;
+delete $ENV{'BASH_ENV'} ;
+
+# Set STDOUT and STDERR to unbuffered
+select STDERR ; $| = 1 ;
+select STDOUT ; $| = 1 ;
+
+my $myName = '' ;
+my $start;
+my $mid;
+my $end;
+
+($myName = $0) =~ s@.*[/\\]@@ ;
+
+#Getopt::Long::Configure( 'pass_through' ) ;
+GetOptions (
+   'help'               => sub { pod2usage(-verbose => 2) ; },
+   'start=s'            => \$start,
+   'mid=s'              => \$mid,
+   'end=s'              => \$end,
+) or pod2usage(-verbose => 0) ;
+
+# Validate/handle options, and everything else...
+
+die unless ( defined $start );
+die unless ( defined $end );
+
+my $s = splitss( $start );
+my $m = 0;
+#$m = splitss( $mid ) if ( defined $mid );
+my $e = splitss( $end );
+
+printdiff( $e - $s );
+
+exit 0;
+
+sub printdiff
+{
+   my ($in) = @_;
+
+   my $sec = int($in / 60);
+   my $ss = $in % 60;
+
+   printf( "$sec:%02d\n", $ss );
+}
+
+sub splitss
+{
+   my ($in) = @_;
+
+   $in =~ m/(\d+):(\d+)/;
+   my ($sec, $subsec) = ($1, $2);
+
+   return $sec * 60 + $subsec;
+}
