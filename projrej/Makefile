@@ -41,9 +41,10 @@ SEQUENCE_Finale                 := 150
 PROJECT := projrej
 
 ALLPATHS2 := $(foreach p,$(ALL),media/videos/$(SEQUENCE_$(p))_$(p)/$(RESOLUTION)/$(p).mp4)
-ALLPATHS := $(foreach p,$(ALL),$(HOME)/$(PROJECT)/$(SEQUENCE_$(p))_$(p).mp4)
+#ALLPATHS := $(foreach p,$(ALL),$(HOME)/$(PROJECT)/$(SEQUENCE_$(p))_$(p).mp4)
 
-all :: $(ALLPATHS2) $(ALLPATHS)
-all :: $(PROJECT).mp4
+all :: $(ALLPATHS2)
+#all :: $(ALLPATHS)
+#all :: $(PROJECT).mp4
 
 include ../manimrules.mk

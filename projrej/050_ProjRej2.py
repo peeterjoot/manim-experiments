@@ -41,11 +41,11 @@ class ProjRej2( Scene ):
 
         #self.play( AnimationGroup( FadeIn( howreversed ), Write( eqreversed1 ), Write( eqreversed2 ) ) )
         self.play( Write( eqreversed1 ), Write( eqreversed2 ) )
-        self.wait( 10 )
+        self.wait( 20 )
 
         blist = BulletedList( r'Must show that $\text{Proj}$ is parallel to $\mathbf{u}$,',
                               r'that $\text{Rej}$ is perpendicular to $\mathbf{u}$,',
-                              r'and that $\text{Rej}$ is is a vector.',
+                              r'and that $\text{Rej}$ is a vector.',
                               height = 1.5 )
         blist.next_to( eqa, DOWN )
         blist.shift( 1.5 * DOWN )

@@ -1,13 +1,12 @@
 
-In this video, we will
-  discover the GA form for vector projection and rejection, and discuss some of the subtlies of those expressions.
+In this video, we determine the geometric algebra form of the vector projection and rejection operators, and discuss some of the subtleties of those expressions.
 
-  We utilize the trick of multiplying by a special representation of one.
-   This lets us decompose a vector into a projective and rejective component,
-   and provides us with multivector expressions for the projection and rejection of one vector with respect to another.
-  We will justify the projection and rejection identifications of the decomposition that we find.
-  We will show that the rejection multivector expression is a vector (i.e: has no grade-3 component.)
-  We will find the R{3} form for rejection in conventional vector algebra, and finally
-   summarize everything that we found.
+We utilize the trick of multiplying by a special representation of one, which lets us decompose a vector into a projective and rejective component,
 
-# vim: et sw=4 ts=4
+This provides us with multivector expressions for the projection and rejection of one vector with respect to another.
+
+We will justify the projection and rejection identifications of the decomposition that we find, showing that the projection is the portion of the vector that lies in the direction of the reference vector, and that the rejection is the component of that vector perpendicular to the projection.
+
+We also derive the conventional (triple cross product) vector algebra form for the rejection.
+
+Finally, we summarize all the results.

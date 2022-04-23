@@ -21,27 +21,27 @@ class RejIsVector( Scene ):
         eq1.shift( 2 * UP + 2 * LEFT )
 
         self.play( Write( eq1 ) )
-        self.wait( )
+        self.wait( 10 )
         g = VGroup( eq2a, eq2b )
         where = eq1.get_part_by_tex( '=' )
         eq2a.move_to( where, LEFT )
         eq2a.shift( 1.25 * DOWN )
         eq2b.next_to( eq2a, RIGHT )
         self.play( AnimationGroup( Write( eq2a ), Write( eq2b ) ) )
-        self.wait( )
+        self.wait( 5 )
 
         eq3a.move_to( eq2b, LEFT )
         eq3b.next_to( eq3a, RIGHT )
         self.play( ReplacementTransform( eq2b, VGroup( eq3a, eq3b ) ) )
-        self.wait( )
+        self.wait( 5 )
         self.play( Indicate( eq3b ) )
-        self.wait( )
+        self.wait( 5 )
 
         write_aligned( self, eq2a, eq4, 1.25 * DOWN )
-        self.wait( )
+        self.wait( 5 )
 
         write_aligned( self, eq4, eq5, 1.25 * DOWN )
-        self.wait( )
+        self.wait( 5 )
 
         #myTemplate = TexTemplate( )
         #myTemplate.add_to_preamble( r'\usepackage{cancel}' )

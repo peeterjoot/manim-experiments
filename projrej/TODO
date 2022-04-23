@@ -10,11 +10,11 @@
    010_TitlePage     
    020_Overview         << Skip?
 
-   040_ProjRej          DONE.
-   050_ProjRej2         << recorded -- synch it up.
-   051_Inverse          << recorded.   "
-   052_ProjParallelToU  
-   070_ProjRejPerp     
+   040_ProjRej          REDO audio or audio synch -- messed it up somehow.
+   050_ProjRej2         << DONE
+   051_Inverse          << DONE
+   052_ProjParallelToU  << DONE
+   070_ProjRejPerp      << DONE
    080_RejIsVector    
 
    090_RejR3             << DONE

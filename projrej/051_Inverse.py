@@ -1,6 +1,6 @@
 from helper import *
 
-def writeem(self, eqref, eq, n):
+def writeem(self, eqref, eq, n, f = 1):
     eq[0].move_to( eqref, DOWN )
     eq[0].shift( 1.75 * DOWN )
     self.play( Write( eq[0] ) )
@@ -10,7 +10,8 @@ def writeem(self, eqref, eq, n):
         write_aligned( self, last, eq[i+1], 1.25 * DOWN, None )
         last = eq[i+1]
         self.wait( 5 )
-    self.play( FadeOut( *eq ) )
+    if f:
+        self.play( FadeOut( *eq ) )
     self.wait( 5 )
 
 class Inverse( Scene ):
@@ -40,13 +41,14 @@ class Inverse( Scene ):
 
         eqx = AcolorsMathTex( concat( uu, '=', l.dot( vecu, vecu ), '=', l.sq( l.norm( vecu ) ) ) )
         self.play( Write( eqx ) )
-        self.wait( 5 )
+        self.wait( 10 )
         self.play( FadeOut( eqx ) )
 
         eqy = [ AcolorsMathTex( concat( invu, '=', l.frac( vecu, uu ) ) ),
                 #AcolorsMathTex( concat( '=', vecu, l.pow( l.norm( vecu ), n = -2 ) ) ),
                 AcolorsMathTex( concat( '=', l.frac( hatu, l.norm( vecu ) ) ) ) ]
-        writeem( self, eq, eqy, 1 )
+        writeem( self, eq, eqy, 1, f = 0 )
+        self.wait( 10 )
 
 
 # vim: et sw=4 ts=4

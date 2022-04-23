@@ -10,17 +10,17 @@ class ProjRejPerp( Scene ):
         title.scale( 1.5 )
         self.add( title )
 
-        eqga = AcolorsMathTex( concat( l.mult( vecu, vecv ), ' &= ', l.dot( vecu, vecv ), ' + ', l.wedge( vecu, vecv ), l.newline ),
-                                                     concat( ' &= ', l.gpgradezero( vecu, vecv ), ' + ', l.gpgradetwo( vecu, vecv ) ) )
+        eqga = [ AcolorsMathTex( concat( l.mult( vecu, vecv ), ' = ', l.dot( vecu, vecv ), ' + ', l.wedge( vecu, vecv ) ) ),
+                 AcolorsMathTex( concat( ' = ', l.gpgradezero( vecu, vecv ), ' + ', l.gpgradetwo( vecu, vecv ) ) ) ]
 
         i = 0
-        self.play( Write( eqga[i] ) )
-        self.wait( )
-        i = 1
-        self.play( Write( eqga[i] ) )
-        self.wait( 2 )
-        self.play( FadeOut( eqga ) )
-        self.wait( 1 )
+        self.wait( 10 )
+        self.play( Write( eqga[0] ) )
+        self.wait( 10 )
+        write_aligned( self, eqga[0], eqga[1], 0.75 * DOWN, None )
+        self.wait( 10 )
+        self.play( FadeOut( *eqga ) )
+        self.wait( 10 )
 
         proj       = l.mult( lr_vdotu, invu )
         rej        = l.mult( lr_vwedgeu, invu )
@@ -28,12 +28,12 @@ class ProjRejPerp( Scene ):
         eq = AcolorsMathTex( *[l.dot( l.Rej( vecu, vecv ), l.Proj( vecu, vecv ) )] )
         eq.shift( 2 * UP + 1 * RIGHT )
         self.play( Write( eq ) )
-        self.wait( )
+        self.wait( 4 )
 
         where = eq.get_part_by_tex( r'\cdot' )
         eq2 = AcolorsMathTex( *['=', l.gpgradezero( l.Rej( vecu, vecv ), l.Proj( vecu, vecv ) )] )
         write_aligned( self, eq, eq2, 0.75 * DOWN + LEFT, None, r'\cdot' )
-        self.wait( )
+        self.wait( 4 )
 
         eq3a = AcolorsMathTex( '=', concat( l.Bigl, l.lgr, rej) )
         eq3b = MathTex( '{{ (', l.vec('v'), r'\cdot', l.vec('u'), ')}}' )
@@ -47,15 +47,15 @@ class ProjRejPerp( Scene ):
         eq3b.next_to( eq3a, RIGHT )
         eq3c.next_to( eq3b, RIGHT )
         self.play( AnimationGroup( Write( eq3a ), Write( eq3b ), Write( eq3c ) ) )
-        self.wait( 2 )
+        self.wait( 4 )
         self.play( Indicate( eq3b ) ) # vdotu
-        self.wait( 2 )
+        self.wait( 4 )
 
         eq4 = AcolorsMathTex( *['=', l.gpgradezero( rej, invu, big = 1 ), lr_vdotu ] )
         where = eq3a.get_part_by_tex( '=' )
         eq4.move_to( where, LEFT )
         self.play( ReplacementTransform( g, eq4 ) )
-        self.wait( 2 )
+        self.wait( 4 )
 
         eq5a = AcolorsMathTex( '=' )
         eq5b = MathTex( r'{{ \langle', l.vec('v'), r'\wedge', l.vec('u'), r'\rangle }}' )
@@ -68,18 +68,18 @@ class ProjRejPerp( Scene ):
         eq5c.next_to( eq5b, RIGHT )
         g = VGroup( eq5a, eq5b, eq5c )
         self.play( ReplacementTransform( eq4, g ) )
-        self.wait( 2 )
+        self.wait( 4 )
 
         self.play( Indicate( eq5b ) )
-        self.wait( 1 )
+        self.wait( 4 )
         eq5bp = AcolorsMathTex( l.cancel( r'\langle', l.vec('v'), r'\wedge', l.vec('u'), r'\rangle' ) )
         eq5bp.move_to( eq5b )
         self.play( ReplacementTransform( eq5b, eq5bp ) )
-        self.wait( 1 )
+        self.wait( 4 )
 
         eq6 = AcolorsMathTex( '= 0' )
         write_aligned( self, eq5a, eq6, 0.75 * DOWN, None )
-        self.wait( 2 )
+        self.wait( 10 )
 
         # done.
 

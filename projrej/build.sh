@@ -7,10 +7,10 @@ q='-q h'
 ##../bin/build $q -p 040_ProjRej.py
 ##../bin/build $q -p 045_ProjRejGraphical.py # skip
 ##../bin/build $q -p 050_ProjRej2.py
-../bin/build $q -p 051_Inverse.py
-#../bin/build $q -p 052_ProjParallelToU.py
-#../bin/build $q -p 070_ProjRejPerp.py
-#../bin/build $q -p 080_RejIsVector.py
+##../bin/build $q -p 051_Inverse.py
+##../bin/build $q -p 052_ProjParallelToU.py
+##../bin/build $q -p 070_ProjRejPerp.py
+../bin/build $q -p 080_RejIsVector.py
 
 ##../bin/build $q -p 090_RejR3.py
 ##../bin/build $q -p 091_RejCross.py # skipping.

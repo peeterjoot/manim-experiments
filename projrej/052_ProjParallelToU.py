@@ -21,12 +21,13 @@ class ProjParallelToU( Scene ):
         eq4[0].move_to( title, DOWN )
         eq4[0].shift( 2 * DOWN )
         self.play( Write( eq4[0] ) )
-        self.wait( 2 )
+        self.wait( 10 )
 
         for i in range(2):
             eq4[i+1].shift( 2 * RIGHT )
             write_aligned( self, eq4[i], eq4[i+1], 1.25 * DOWN, None )
-            self.wait( 2 )
+            self.wait( 10 )
+        self.wait( 5 )
 
 
 # vim: et sw=4 ts=4
