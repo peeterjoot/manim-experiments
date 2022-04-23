@@ -1,13 +1,10 @@
-The GA vector inverse is just the vector divided by that vector squared.
+To compute the geometric algebra vector inverse, we divide that vector by it's square.
 
-First we verify that this is a a right inverse.
-
-Now we check that it is also a left inverse.
+This is easily verified by substitution.
 
 The vector squared is defined (by the contraction axiom) as the dot of the vector with itself.
  In a Euclidean space, this also equals the norm-squared length of that vector.
 
 So, for a Euclidean space,
  we can write u-inverse as u divided by the norm-squared of u, or u-hat divided by the length of u.
- We will use this shortly to cast our projection and rejection operators into the conventional vector algebra
- form.
+ We will use this shortly to cast our projection and rejection operators into the conventional vector algebra form.

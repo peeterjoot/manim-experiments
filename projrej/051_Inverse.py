@@ -1,5 +1,18 @@
 from helper import *
 
+def writeem(self, eqref, eq, n):
+    eq[0].move_to( eqref, DOWN )
+    eq[0].shift( 1.75 * DOWN )
+    self.play( Write( eq[0] ) )
+    self.wait( 4 )
+    last = eq[0]
+    for i in range(n):
+        write_aligned( self, last, eq[i+1], 1.25 * DOWN, None )
+        last = eq[i+1]
+        self.wait( 5 )
+    self.play( FadeOut( *eq ) )
+    self.wait( 5 )
+
 class Inverse( Scene ):
     def construct( self ):
 
@@ -13,45 +26,27 @@ class Inverse( Scene ):
         eq.move_to( title, DOWN )
         eq.shift( 2 * DOWN )
         self.play( Write( eq ) )
-        self.wait( 2 )
+        self.wait( 8 )
 
-        eq2 = MathTex( concat( vecu, invu, '&=', vecu, l.frac( vecu, uu ), l.newline ),
-                       concat( '&=', l.frac( uu, uu ), l.newline ),
-                       concat( '&= 1', l.newline ) )
-        eq2.move_to( eq, DOWN )
-        eq2.shift( 4 * DOWN )
-        eq2.set_color_by_tex_to_color_map( acolors )
-        for i in eq2:
-            self.play( Write( i ) )
-            self.wait( 4 )
-        self.play( FadeOut( eq2 ) )
-        self.wait( 5 )
+        #eq2 = [ AcolorsMathTex( concat( vecu, invu, '=', vecu, r'\,', l.frac( vecu, uu ) ) ),
+        #        AcolorsMathTex( concat( '=', l.frac( uu, uu ) ) ),
+        #        AcolorsMathTex( concat( '= 1' ) ) ]
+        #writeem( self, eq, eq2, 2 )
 
-        eq3 = MathTex( concat( invu, vecu, '&=', vecu, l.frac( vecu, uu ), l.newline ),
-                       concat( '&=', l.frac( uu, uu ), l.newline ),
-                       concat( '&= 1', l.newline ) )
-        eq3.move_to( eq, DOWN )
-        eq3.shift( 4 * DOWN )
-        eq3.set_color_by_tex_to_color_map( acolors )
-        for i in eq3:
-            self.play( Write( i ) )
-            self.wait( 4 )
-        self.play( FadeOut( VGroup( eq3, eq ) ) )
-        self.wait( 5 )
+        eq3 = [ AcolorsMathTex( concat( invu, vecu, '=', l.frac( vecu, uu ), vecu ) ),
+                AcolorsMathTex( concat( '=', l.frac( uu, uu ) ) ),
+                AcolorsMathTex( concat( '= 1' ) ) ]
+        writeem( self, eq, eq3, 2 )
 
         eqx = AcolorsMathTex( concat( uu, '=', l.dot( vecu, vecu ), '=', l.sq( l.norm( vecu ) ) ) )
         self.play( Write( eqx ) )
         self.wait( 5 )
         self.play( FadeOut( eqx ) )
 
-        eqy = MathTex( concat( invu, '&=', l.frac( vecu, uu ), l.newline ),
-                       concat( '&=', vecu, l.pow( l.norm( vecu ), n = -2 ), l.newline ),
-                       concat( '&=', l.frac( hatu, l.norm( vecu ) ), l.newline ) )
-        eqy.set_color_by_tex_to_color_map( acolors )
-        for i in eqy:
-            self.play( Write( i ) )
-            self.wait( 4 )
-
+        eqy = [ AcolorsMathTex( concat( invu, '=', l.frac( vecu, uu ) ) ),
+                #AcolorsMathTex( concat( '=', vecu, l.pow( l.norm( vecu ), n = -2 ) ) ),
+                AcolorsMathTex( concat( '=', l.frac( hatu, l.norm( vecu ) ) ) ) ]
+        writeem( self, eq, eqy, 1 )
 
 
 # vim: et sw=4 ts=4

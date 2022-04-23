@@ -12,7 +12,7 @@
 
    040_ProjRej          DONE.
    050_ProjRej2         << recorded -- synch it up.
-   051_Inverse          << need to adjust to get the delays right (array of MathTex's instead of aligned env.)
+   051_Inverse          << recorded.   "
    052_ProjParallelToU  
    070_ProjRejPerp     
    080_RejIsVector    
