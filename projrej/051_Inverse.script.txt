@@ -1,7 +1,8 @@
 The GA vector inverse is just the vector divided by that vector squared.
 
-We can easily verify that this is a right inverse,
- and similarly, see that it is also a left inverse.
+First we verify that this is a a right inverse.
+
+Now we check that it is also a left inverse.
 
 The vector squared is defined (by the contraction axiom) as the dot of the vector with itself.
  In a Euclidean space, this also equals the norm-squared length of that vector.

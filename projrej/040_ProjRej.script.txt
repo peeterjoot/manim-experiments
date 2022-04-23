@@ -1,21 +1,27 @@
-The projection of v on u and the rejection of u from v are both illustrated in the figure.
-# 0:06   +6s.
+This figure shows the projective and rejective split 
+ of a vector v (in yellow) with respect a vector u (in red).
 
-Algebraically, we can find expressions for these vectors using a standard trick of mathematics,
- multiplying by one, but using a special form of one.
+The projection of v onto u is in shown in purple,
+  and the rejection of u from v is in green.
+
+We will use a standard trick of mathematics to find algebraic expressions for these vector components,
+ multiplying by a special form of one.
 # 0:14:   +8s.
 
 In this case, our special form of one, is u times it's inverse.
 # 0:19:   +5s
 
-By switching the order of multiplication, we expand the product of v and u,
- replacing that product with it's dot and wedge components.
+We switch the multiplicative grouping, expanding the product of u and v,
+ in terms of it's dot and wedge components.
 # 0:26    +7s
 
 Finally, we distribute the u-inverse.
+ We call the dot product term the projection and the wedge product term the rejection.
 
 We can perform the same computation by multiplying v by 1 = u u-inverse on the right.
 
-We've managed to split v into two specific components.
-Our claim is that these are the projection of v onto u, and the rejection of u from v.
+...
+
+We've managed to split v into two components two different ways.  
+ We must now demonstrate that these satisify our expectations for projection and rejection.
 

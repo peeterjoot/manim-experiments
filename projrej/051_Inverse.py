@@ -15,7 +15,7 @@ class Inverse( Scene ):
         self.play( Write( eq ) )
         self.wait( 2 )
 
-        eq2 = MathTex( concat( l.lr( vecu, invu, big = 2), '&=', vecu, l.frac( vecu, uu ), l.newline ),
+        eq2 = MathTex( concat( vecu, invu, '&=', vecu, l.frac( vecu, uu ), l.newline ),
                        concat( '&=', l.frac( uu, uu ), l.newline ),
                        concat( '&= 1', l.newline ) )
         eq2.move_to( eq, DOWN )
@@ -23,10 +23,11 @@ class Inverse( Scene ):
         eq2.set_color_by_tex_to_color_map( acolors )
         for i in eq2:
             self.play( Write( i ) )
-            self.wait( 2 )
+            self.wait( 4 )
         self.play( FadeOut( eq2 ) )
+        self.wait( 5 )
 
-        eq3 = MathTex( concat( l.lr( invu, vecu, big = 2), '&=', vecu, l.frac( vecu, uu ), l.newline ),
+        eq3 = MathTex( concat( invu, vecu, '&=', vecu, l.frac( vecu, uu ), l.newline ),
                        concat( '&=', l.frac( uu, uu ), l.newline ),
                        concat( '&= 1', l.newline ) )
         eq3.move_to( eq, DOWN )
@@ -34,13 +35,13 @@ class Inverse( Scene ):
         eq3.set_color_by_tex_to_color_map( acolors )
         for i in eq3:
             self.play( Write( i ) )
-            self.wait( 2 )
+            self.wait( 4 )
         self.play( FadeOut( VGroup( eq3, eq ) ) )
-        self.wait( 2 )
+        self.wait( 5 )
 
         eqx = AcolorsMathTex( concat( uu, '=', l.dot( vecu, vecu ), '=', l.sq( l.norm( vecu ) ) ) )
         self.play( Write( eqx ) )
-        self.wait( 2 )
+        self.wait( 5 )
         self.play( FadeOut( eqx ) )
 
         eqy = MathTex( concat( invu, '&=', l.frac( vecu, uu ), l.newline ),
@@ -49,7 +50,7 @@ class Inverse( Scene ):
         eqy.set_color_by_tex_to_color_map( acolors )
         for i in eqy:
             self.play( Write( i ) )
-            self.wait( 2 )
+            self.wait( 4 )
 
 
 

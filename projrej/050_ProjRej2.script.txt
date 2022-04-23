@@ -1,20 +1,10 @@
-To summarize,
+We claim that
  the projection of v onto u is the dot product of v and u, all multiplied by u-inverse,
-# 07: +7s
  and the rejection of u from v is the wedge product of v and u, all multiplied by u-inverse.
-# 12: +5s
 
 For the multivector products in the rejection operator, order matters.
- This particular ordering was found by expanding v = v u u-inverse.
- Had we expanded v = u-inverse u v (try this!) we would find the reverse ordering for the rejection.
-# 29: +15s
+ The left ordering was found by expanding v = v u u-inverse, and the
+ right ordering was found by expanding v = u-inverse u v
 
-This is the most general form to express the projection and rejection operators, and applies to Euclidean and
- also non-Euclidian spaces (i.e. like the relativistic four-vector spaces that we use in physics.)
- However, for Euclidean spaces (like R3), where any unit vector is it's own inverse, we can write these
- as:
-# 45: +16s
- (v dot u-hat) all times u-hat, and
-# 50: +6s
- (v wedge u-hat) all times u-hat.
-# 54: +4s
+To substantiate this claim, we need to
+... read text on screen.

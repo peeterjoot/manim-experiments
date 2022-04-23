@@ -7,14 +7,16 @@
 
    Name                 Scripted draft-recording timing-adjustments final-recording merge-audio-video
    -------------------- -------- --------------- ------------------ --------------- -----------------
-   010_TitlePage        1        0               0                  0               0
-   020_Overview         1        0               0                  0               0
-   040_ProjRej          (old?)   0               0                  0               0
-   050_ProjRej2         1        0               0                  0               0
-   051_Inverse          1        0               0                  0               0
-   052_ProjParallelToU  1        0               0                  0               0
-   070_ProjRejPerp      1        0               0                  0               0
-   080_RejIsVector      1        0               0                  0               0
+   010_TitlePage     
+   020_Overview         << Skip?
+
+   040_ProjRej          DONE.
+   050_ProjRej2         << recorded -- synch it up.
+   051_Inverse          << need to adjust to get the delays right (array of MathTex's instead of aligned env.)
+   052_ProjParallelToU  
+   070_ProjRejPerp     
+   080_RejIsVector    
+
    090_RejR3             << DONE
    091_RejCross  << DONE
    092_Rejvisualization  << DONE.

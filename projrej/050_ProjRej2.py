@@ -31,35 +31,30 @@ class ProjRej2( Scene ):
 
         eqb = AcolorsMathTex( l.Rej( vecu, vecv ),  ' \equiv ', rej )
         write_aligned( self, eqa, eqb, 1.25 * DOWN, None, 'Proj' )
-
-        #self.wait(3)
-        # +7s
-        #self.wait(2)
-        # +7s
+        self.wait(10)
 
         eqreversed1 = AcolorsMathTex( concat( '=', projr ) )
         eqreversed2 = AcolorsMathTex( concat( '=', rejr ) )
 
-        self.wait(5)
         eqreversed1.next_to( eqa, RIGHT );
         eqreversed2.next_to( eqb, RIGHT );
 
         #self.play( AnimationGroup( FadeIn( howreversed ), Write( eqreversed1 ), Write( eqreversed2 ) ) )
         self.play( Write( eqreversed1 ), Write( eqreversed2 ) )
-        self.wait( 5 )
+        self.wait( 10 )
 
-        blist = BulletedList( r'Must show that $\text{Proj}$ is parallel to $\mathbf{u}$.',
-                              r'Must show that $\text{Rej}$ is perpendicular to $\mathbf{u}$.',
-                              r'Must show that $\text{Rej}$ is is a vector.',
+        blist = BulletedList( r'Must show that $\text{Proj}$ is parallel to $\mathbf{u}$,',
+                              r'that $\text{Rej}$ is perpendicular to $\mathbf{u}$,',
+                              r'and that $\text{Rej}$ is is a vector.',
                               height = 1.5 )
         blist.next_to( eqa, DOWN )
         blist.shift( 1.5 * DOWN )
         blist.set_color( BLUE )
         for item in blist:
             self.play( Write( item ) )
-            self.wait( 2 )
+            self.wait( 12 )
 
-        self.wait( )
+        self.wait( 10 )
 
 
 
