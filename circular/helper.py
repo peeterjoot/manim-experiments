@@ -9,8 +9,9 @@ l = latex2( )
 
 vec_e1     = concat( l.vec( 'e' ), '_1' )
 vec_e2     = concat( l.vec( 'e' ), '_2' )
-acolors    = { l.vec('a'): GREEN, l.vec('r'): GREEN , l.vec('v'): GREEN, l.hat('r'): RED, l.hat(r'\theta'): YELLOW }
+acolors    = { l.vec('x'): GREEN, l.vec('a'): GREEN, l.vec('r'): GREEN , l.vec('v'): GREEN, l.hat('r'): RED, l.hat(r'\theta'): YELLOW }
 
+vec_x      = l.doublebr( l.vec( 'x' ) )
 vec_r      = l.doublebr( l.vec( 'r' ) )
 vec_v      = l.doublebr( l.vec( 'v' ) )
 vec_a      = l.doublebr( l.vec( 'a' ) )
