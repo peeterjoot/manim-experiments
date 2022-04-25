@@ -53,7 +53,7 @@ class Position_010( Scene ):
             include_numbers=True,
             label_direction=DOWN,
         )
-        rline.shift( 4 * LEFT + 2 * UP )
+        rline.shift( 4 * LEFT + 2.5 * UP )
         rtex = MathTex( 'r' )
         rtex.move_to( rline, LEFT )
         rtex.shift( 0.5 * LEFT )
@@ -65,9 +65,15 @@ class Position_010( Scene ):
             include_numbers=False,
             label_direction=DOWN,
         )
-        #tline.add_labels( {0: MathTex('0'), 0.5: MathTex(r'\pi/4'), 1: MathTex(r'\pi/2')} )
+        tline.add_labels( {
+            0: MathTex('0'),
+            1: MathTex(r'\pi/4'),
+            2: MathTex(r'\pi/2'),
+            3: MathTex(r'3\pi/4'),
+            4: MathTex(r'\pi/2')
+            } )
         tline.move_to( rline, DOWN )
-        tline.shift( 0.5 * DOWN )
+        tline.shift( 1.0 * DOWN )
         ttex = MathTex( r'\theta' )
         ttex.move_to( tline, LEFT )
         ttex.shift( 0.5 * LEFT )
@@ -77,14 +83,12 @@ class Position_010( Scene ):
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
         r1p = ValueTracker(0)
-        r1d = Dot(color=RED).add_updater(
-            lambda mob: mob.move_to(rline.number_to_point(1 + r1p.get_value())),
-        ).update()
+        r1u = lambda mob: mob.move_to(rline.number_to_point(1 + r1p.get_value()))
+        r1d = Dot(color=RED).add_updater(r1u).update()
 
         t1p = ValueTracker(0)
-        t1d = Dot(color=YELLOW).add_updater(
-            lambda mob: mob.move_to(tline.number_to_point(2 * t1p.get_value())),
-        ).update()
+        t1u = lambda mob: mob.move_to(tline.number_to_point(2 * t1p.get_value()))
+        t1d = Dot(color=YELLOW).add_updater(t1u).update()
 
         self.play( DrawBorderThenFill( VGroup( axes, r1d, rline, rtex, t1d, tline, ttex ) ), run_time = 2 )
         self.wait( )
@@ -93,49 +97,61 @@ class Position_010( Scene ):
                                    UpdateFromAlphaFunc( t1p, 
                                                         lambda mob, alpha: mob.set_value(alpha),
                                                         run_time=6 ),
-                                   #UpdateFromAlphaFunc( r1p, 
-                                   #                     lambda mob, alpha: mob.set_value(0),
-                                   #                     run_time=6 )
                                    ) )
-        self.wait( )
+        self.wait( 4 )
+
+        p = np.array( [ np.cos( 0.25 * PI ), np.sin( 0.25 * PI ) ] )
+        g2 = ParametricFunction( lambda t: axes.coords_to_point( (t+1) * p[0], (t+1) * p[1] ),
+                                 t_range=[0, 1],
+                                 scaling=axes.x_axis.scaling, color=RED )
+
+        self.play( AnimationGroup( Create( g2, run_time=6 ),
+                                   UpdateFromAlphaFunc( r1p, 
+                                                        lambda mob, alpha: mob.set_value(alpha),
+                                                        run_time=6 ),
+                                   ) )
+        self.wait( 4 )
+
+        def radius(x, y):
+            r = np.sqrt( x*x + y*y )
+            return r
+
+        def angle(x, y):
+            a = np.arctan2( y, x )
+            return a
+
+        p2 = 2 * p
+        f = lambda t: axes.coords_to_point( p2[0] + np.sin(10 * t), p2[1] + 1.0 * (np.exp(t)-1) )
+        g3 = ParametricFunction( f,
+                                 t_range=[0, 1],
+                                 scaling=axes.x_axis.scaling, color=GREEN )
+
+        # PI/4 => 2
+        # PI   => 8
+        # 2 PI => 16
+        t3a = lambda t: (8 / math.pi) * angle( p2[0] + np.sin(10 * t), p2[1] + 1.0 * ( np.exp(t)-1 ) )
+        t3r = lambda t: radius( p2[0] + np.sin(10 * t), p2[1] + 1.0 * ( np.exp(t)-1 ) )
+        t3u = lambda mob: mob.move_to(tline.number_to_point(t3a(t1p.get_value())))
+        r3u = lambda mob: mob.move_to(rline.number_to_point(t3r(r1p.get_value())))
+        t1d.remove_updater(t1u)
+        r1d.remove_updater(r1u)
+        t1d.add_updater(t3u).update()
+        r1d.add_updater(r3u).update()
+
+
+        self.play( AnimationGroup( Create( g3, run_time=6 ),
+                                   UpdateFromAlphaFunc( r1p, 
+                                                        lambda mob, alpha: mob.set_value(alpha),
+                                                        run_time=6 ),
+                                   UpdateFromAlphaFunc( t1p, 
+                                                        lambda mob, alpha: mob.set_value(alpha),
+                                                        run_time=6 ),
+                                   ) )
+        self.wait( 4 )
+
+
 
         if 0:
-            p = np.array( [ np.cos( 0.25 * PI ), np.sin( 0.25 * PI ) ] )
-            g2 = ParametricFunction( lambda t: axes.coords_to_point( (t+1) * p[0], (t+1) * p[1] ),
-                                     t_range=[0, 1],
-                                     scaling=axes.x_axis.scaling, color=RED )
-
-            #r2 = ParametricFunction( lambda t: rline.number_to_point(1 + t),
-            #                         t_range=[0, 1],
-            #                         scaling=rline.scaling, color=RED )
-
-            #t2 = ParametricFunction( lambda t: tline.number_to_point(0.25 * PI),
-            #                         t_range=[0, 1],
-            #                         scaling=tline.scaling, color=YELLOW )
-
-            def radius(x, y):
-                r = np.sqrt( x*x + y*y )
-                return r
-
-            def angle(x, y):
-                a = np.arctan2( x, y )
-                return a
-
-
-            p2 = 2 * p
-            f = lambda t: axes.coords_to_point( p2[0] + np.sin(10 * t), p2[1] + 1.0 * (np.exp(t)-1) )
-            g3 = ParametricFunction( f,
-                                     t_range=[0, 1],
-                                     scaling=axes.x_axis.scaling, color=GREEN )
-
-            #r3 = ParametricFunction( lambda t: rline.number_to_point( radius( p2[0] + np.sin(10 * t), p2[1] + 1.0 * ( np.exp(t)-1 ) ) ),
-            #                         t_range=[0, 1],
-            #                         scaling=rline.scaling, color=RED )
-
-            #t3 = ParametricFunction( lambda t: tline.number_to_point( angle(p2[0] + np.sin(10 * t), p2[1] + 1.0 * ( np.exp(t)-1 ) ) ),
-            #                         t_range=[0, 1],
-            #                         scaling=tline.scaling, color=YELLOW )
-
 
 
             #self.play( DrawBorderThenFill( VGroup( axes, rline, rtex, tline, ttex ) ), run_time = 2 )
