@@ -78,34 +78,25 @@ class Position_010( Scene ):
 
         r1p = ValueTracker(0)
         r1d = Dot(color=RED).add_updater(
-            lambda mob: mob.move_to(rline.number_to_point(r1p.get_value())),
+            lambda mob: mob.move_to(rline.number_to_point(1 + r1p.get_value())),
         ).update()
-        #r1 = ParametricFunction( lambda t: rline.number_to_point(1),
-        #                         t_range=[0, 1],
-        #                         scaling=rline.scaling, color=RED )
 
         t1p = ValueTracker(0)
         t1d = Dot(color=YELLOW).add_updater(
             lambda mob: mob.move_to(tline.number_to_point(2 * t1p.get_value())),
         ).update()
-        #t1 = ParametricFunction( lambda t: tline.number_to_point(t * 0.25 * PI),
-        #                         t_range=[0, 1],
-        #                         scaling=tline.scaling, color=YELLOW )
 
-
-        #self.play( DrawBorderThenFill( VGroup( axes, rline, rtex, tline, ttex ) ), run_time = 2 )
-        self.play( DrawBorderThenFill( VGroup( t1d, tline, ttex ) ), run_time = 2 )
+        self.play( DrawBorderThenFill( VGroup( axes, r1d, rline, rtex, t1d, tline, ttex ) ), run_time = 2 )
         self.wait( )
 
-        self.play( #AnimationGroup( #Create(g1),
+        self.play( AnimationGroup( Create( g1, run_time=6 ),
                                    UpdateFromAlphaFunc( t1p, 
                                                         lambda mob, alpha: mob.set_value(alpha),
                                                         run_time=6 ),
                                    #UpdateFromAlphaFunc( r1p, 
-                                   #                     lambda mob, alpha: mob.set_value(1),
+                                   #                     lambda mob, alpha: mob.set_value(0),
                                    #                     run_time=6 )
-                                   ) 
-                   #                )
+                                   ) )
         self.wait( )
 
         if 0:
