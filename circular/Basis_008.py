@@ -6,7 +6,7 @@ class Basis_008( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.add( title )
-        self.wait( 5 )
+        #self.wait( 5 )
 
         radius = 4
         axes = Axes( x_range = [0, 1, 1], y_range = [0, 1, 1], x_length = radius, y_length = radius,

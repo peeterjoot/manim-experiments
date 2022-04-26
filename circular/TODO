@@ -1,0 +1,7 @@
+- Merge into two columns:
+
+Derivatives_015.py
+Derivatives_016.py
+
+and change rhat' to just:
+   rhat i theta'
