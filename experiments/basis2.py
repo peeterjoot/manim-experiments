@@ -10,8 +10,6 @@ class basis2( Scene ):
                      axis_config = {"include_tip": True, "numbers_to_exclude": [0]} ).add_coordinates()
 
         origin = axes.coords_to_point( 0, 0 )
-        #e1dir = axes.coords_to_point( 0.25, 0 ) - origin
-        #e2dir = axes.coords_to_point( 0, 0.25 ) - origin
         e1dir = RIGHT
         e2dir = UP
 
@@ -19,12 +17,11 @@ class basis2( Scene ):
         x2 = origin + radius * e2dir
 
         r = lambda t: origin + radius * e1dir * np.cos( t * 0.5 * PI ) + radius * e2dir * np.sin( t * 0.5 * PI )
-        #rv = lambda t: e1dir * np.cos( t * 0.5 * PI ) + e2dir * np.sin( t * 0.5 * PI )
         tv = lambda t: - e1dir * np.sin( t * 0.5 * PI ) + e2dir * np.cos( t * 0.5 * PI )
 
         def rmove(a, t):
             p = r(t)
-            d = (p - origin)/4
+            d = (p - origin)/radius
             a.put_start_and_end_on( p, p + d )
 
         def tmove(a, t):
@@ -55,18 +52,3 @@ class basis2( Scene ):
                                         lambda mob, alpha: mob.set_value( alpha ) ),
                                         run_time=6 )
         self.wait( 1 )
-
-        #rmove(e1, 0.25)
-        #tmove(e2, 0.25)
-        #self.wait( 1 )
-        #rmove(e1, 0.5)
-        #tmove(e2, 0.5)
-        #self.wait( 1 )
-        #rmove(e1, 0.75)
-        #tmove(e2, 0.75)
-        #self.wait( 1 )
-        #rmove(e1, 1)
-        #tmove(e2, 1)
-        #self.wait( 1 )
-
-
