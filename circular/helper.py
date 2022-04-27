@@ -62,5 +62,6 @@ def dprime(v):
 r_prime    = prime('r')
 dr_prime   = dprime('r')
 rhat_prime = prime(hat_r)
+that_prime = prime(hat_theta)
 
 # vim: et sw=4 ts=4

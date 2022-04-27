@@ -1,7 +1,3 @@
-- Merge into two columns:
+- Velocity_and_acceleration_020: transform to summary, grouping terms in the acceleration.
 
-Derivatives_015.py
-Derivatives_016.py
 
-and change rhat' to just:
-   rhat i theta'

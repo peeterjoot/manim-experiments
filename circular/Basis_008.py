@@ -67,7 +67,8 @@ class Basis_008( Scene ):
         ttex = AcolorsMathTex( hat_theta ).add_updater(ut).update()
 
         eq = [ AcolorsMathTex( hat_r, ' = ', vec_e1, r'e^{i\theta}' ),
-               AcolorsMathTex( hat_theta, ' = ', hat_r, ' i' ) ]
+               AcolorsMathTex( hat_theta, ' = ', hat_r, ' i' ),
+               AcolorsMathTex( 'i = ', vec_e1, vec_e2 ) ]
         eq[0].move_to( 2 * RIGHT )
 
         g1 = ParametricFunction( r,
@@ -80,7 +81,10 @@ class Basis_008( Scene ):
         self.play( Write( eq[0] ) )
         i = 0
         # Fixme: write_aligned works for aligning to ' = ', but only when it starts a line.
-        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.45 * LEFT, None )
+        self.wait( 1 )
+        i = 1
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.33 * LEFT, None )
         self.wait( 1 )
 
         self.play( UpdateFromAlphaFunc( t_parameter, 
