@@ -7,5 +7,4 @@
 #../bin/build $q -p VisualizeDerivatives_009.py
 #../bin/build $q -p VisualizeDerivatives_009b.py
 #../bin/build $q -p GADecoding_010.py
-##../bin/build $q -p Derivatives_015.py # remove: to be merged into VisualizeDerivatives_009b.py
 #../bin/build $q -p Velocity_and_acceleration_020.py

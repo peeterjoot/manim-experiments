@@ -1,6 +1,6 @@
 from helper import *
 
-class Basis_008( Scene ):
+class VisualizeDerivatives_009( Scene ):
     def construct( self ):
         title = Text( 'Radial vector derivative.' )
         title.move_to( 3 * UP )
@@ -26,13 +26,15 @@ class Basis_008( Scene ):
         x2dir = (x2 - origin)/radius
 
         e1 = Arrow( start = x1, end = x1 + x1dir, color = GREEN, buff = 0 )
-        e1p = Arrow( start = x2, end = x2 + x2dir, color = GREEN, buff = 0 )
-        line = Line( start = origin, end = x1, color = RED, buff = 0 )
-        linep = Line( start = origin, end = x2, color = RED, buff = 0 )
-        rtex = AcolorsMathTex( hat_r, r'(\theta)' )
+        e1p = Arrow( start = x2, end = x2 + x2dir, color = RED, buff = 0 )
+        line = Line( start = origin, end = x1, color = BLUE, buff = 0 )
+        linep = Line( start = origin, end = x2, color = BLUE, buff = 0 )
+        rtex = MathTex( concat( hat_r, r'(\theta)' ) )
         rtex.move_to( x1 + 1.5 * x1dir )
-        rtexp = AcolorsMathTex( hat_r, r'(\theta + \Delta\theta)' )
+        rtex.set_color( GREEN )
+        rtexp = MathTex( concat( hat_r, r'(\theta + \Delta\theta)' ) )
         rtexp.move_to( x2 + 1.75 * x2dir )
+        rtexp.set_color( RED )
 
         g1 = ParametricFunction( r,
                                  t_range=[0, 1],
@@ -55,12 +57,13 @@ class Basis_008( Scene ):
         e3b = e1e
         e3e = e1e + slen * (x2dir - x1dir)
         r1  = Arrow( start = e1b, end = e1e, color = GREEN, buff = 0 )
-        r1p = Arrow( start = e2b, end = e2e, color = GREEN, buff = 0 )
+        r1p = Arrow( start = e2b, end = e2e, color = RED, buff = 0 )
         t1  = Arrow( start = e3b, end = e3e, color = YELLOW, buff = 0 )
         srtex = rtex.copy().move_to( origin2 + x1dir * slen/2 + 0.5 * DOWN )
         srtexp = rtexp.copy().move_to( origin2 + x2dir * slen/2 + 1.0 * LEFT + 0.5 * UP )
-        t1tex = AcolorsMathTex( hat_r, r'(\theta + \Delta \theta) - ', hat_r, r'(\theta) \approx', rhat_prime, r'\Delta\theta' )
+        t1tex = MathTex( concat( hat_r, r'(\theta + \Delta \theta) - ', hat_r, r'(\theta) \approx', rhat_prime, r'\Delta\theta' ) )
         t1tex.move_to( origin2 + 1.2 * slen * (x1dir + x2dir)/2 + 2.0 * RIGHT + 0.2 * DOWN ) 
+        t1tex.set_color( YELLOW )
 
         all3 = VGroup( r1, r1p, srtex, srtexp )
         self.play( Transform( all2, all3 ) )
