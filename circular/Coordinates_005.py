@@ -6,7 +6,7 @@ class Coordinates_005( Scene ):
         title = Text( 'Circular coordinates.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         self.wait( 5 )
 
         axes = Axes( x_range = [-1, 4, 1], y_range = [-1, 4, 1], x_length = 4, y_length = 4,

@@ -6,7 +6,7 @@ class Velocity_and_acceleration_020( Scene ):
         title = Text( 'Velocity and acceleration.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         self.wait( 5 )
 
         eq = [ AcolorsMathTex( concat( vec_v, " = ", r_prime, hat_r, ' + r ', rhat_prime ) ),

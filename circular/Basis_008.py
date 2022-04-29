@@ -5,7 +5,7 @@ class Basis_008( Scene ):
         title = Text( 'Circular basis vectors.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         #self.wait( 5 )
 
         radius = 4

@@ -5,7 +5,7 @@ class VisualizeDerivatives_009b( Scene ):
         title = Text( 'Tangential vector derivative.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         #self.wait( 5 )
 
         radius = 4
@@ -42,9 +42,13 @@ class VisualizeDerivatives_009b( Scene ):
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
-        all1 = VGroup( axes, g1, e1, e1p, ttex, ttexp, line, linep )
-        self.add( all1 )
-        self.wait( 1 )
+        #all1 = VGroup( axes, g1, e1, e1p, ttex, ttexp, line, linep )
+        self.play( AnimationGroup( Write( axes ), Write( g1 ) ) )
+        self.wait( 4 )
+        self.play( AnimationGroup( Write( e1 ), Write( ttex ), Write( line ) ) )
+        self.wait( 4 )
+        self.play( AnimationGroup( Write( e1p ), Write( ttexp ), Write( linep ) ) )
+        self.wait( 4 )
 
         self.play( FadeOut( axes, g1, line, linep ) )
         self.wait( 4 )

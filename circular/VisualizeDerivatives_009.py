@@ -5,7 +5,7 @@ class VisualizeDerivatives_009( Scene ):
         title = Text( 'Radial vector derivative.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         #self.wait( 5 )
 
         radius = 4
@@ -40,9 +40,13 @@ class VisualizeDerivatives_009( Scene ):
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
-        all1 = VGroup( axes, g1, e1, e1p, rtex, rtexp, line, linep )
-        self.add( all1 )
-        self.wait( 1 )
+        #all1 = VGroup( axes, g1, e1, e1p, rtex, rtexp, line, linep )
+        self.play( AnimationGroup( Write( axes ), Write( g1 ) ) )
+        self.wait( 4 )
+        self.play( AnimationGroup( Write( e1 ), Write( rtex ), Write( line ) ) )
+        self.wait( 4 )
+        self.play( AnimationGroup( Write( e1p ), Write( rtexp ), Write( linep ) ) )
+        self.wait( 4 )
 
         self.play( FadeOut( axes, g1, line, linep ) )
         self.wait( 4 )

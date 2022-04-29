@@ -6,7 +6,7 @@ class GADecoding_010( Scene ):
         title = Text( 'Unpacking the exponentials.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
-        self.add( title )
+        self.play( FadeIn( title ) )
         self.wait( 5 )
 
         eq = [ AcolorsMathTex( concat( vec_e1, vec_e1, ' = ', vec_e2, vec_e2, '= 1' ) ),
