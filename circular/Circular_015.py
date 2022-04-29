@@ -1,6 +1,6 @@
 # for Callable:
-from __future__ import annotations
-import typing
+#from __future__ import annotations
+#import typing
 
 from helper import *
 
@@ -56,33 +56,38 @@ class Circular_015( Scene ):
 
         scale = 0.25
         # v = r \omega \thetacap
-        def velocity(t, omegaf: Callable[[float], float]):
+        #def velocity(t, omegaf: Callable[[float], float]):
+        #    # logically, we are treating r = 1, but we have a scale factor for the rendering.
+        #    p = origin + radius * rv( t )
+        #    d = scale * omegaf( t ) * tv( t )
+        #    return [p, d]
+        def velocity(t):
             # logically, we are treating r = 1, but we have a scale factor for the rendering.
             p = origin + radius * rv( t )
-            d = scale * omegaf( t ) * tv( t )
+            d = scale * om( t ) * tv( t )
             return [p, d]
 
         def uv( mob ):
             t = t_parameter.get_value()
-            x = velocity( t, om )
+            x = velocity( t )
             mob.put_start_and_end_on( x[0], x[0] + x[1] )
 
         # a = -r \omega^2 \rcap + r \omega' \thetacap
-        def acceleration( t, omegaf: Callable[[float], float], omegapf: Callable[[float], float] ):
+        def acceleration( t ):
             rt = rv( t )
             tt = tv( t )
             p = origin + radius * rt
-            o = omegaf( t )
-            d = scale * (- o * o * rt + omegapf( t ) * tt)
+            o = om( t )
+            d = scale * (- o * o * rt + omp( t ) * tt)
             return [p, d]
 
         def ua( mob ):
             t = t_parameter.get_value()
-            x = acceleration( t, om, omp )
+            x = acceleration( t )
             mob.put_start_and_end_on( x[0], x[0] + x[1] )
 
-        v1_i = velocity( 0, om )
-        a1_i = acceleration( 0, om, omp )
+        v1_i = velocity( 0 )
+        a1_i = acceleration( 0 )
         v1 = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, stroke_width=20, max_stroke_width_to_length_ratio=10, max_tip_length_to_length_ratio=0.5, buff = 0 ).add_updater(uv).update()
         a1 = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = RED, buff = 0 ).add_updater(ua).update()
         #vtex = AcolorsMathTex( vec_v ).add_updater(uvt).update()
@@ -104,8 +109,8 @@ class Circular_015( Scene ):
         omp = lambda t: 0
         scale = 1
         t_parameter = ValueTracker(0)
-        v1_i = velocity( 0, om )
-        a1_i = acceleration( 0, om, omp )
+        v1_i = velocity( 0 )
+        a1_i = acceleration( 0 )
 
         eq3 = AcolorsMathTex( concat( vec_v, " = ", r" r \omega", hat_theta, r",\quad", vec_a, " = - r \omega^2", hat_r ) )
         eq3.move_to( eq2 )
