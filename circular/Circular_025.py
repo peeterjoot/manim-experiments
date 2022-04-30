@@ -4,7 +4,7 @@
 
 from helper import *
 
-class Circular_015( Scene ):
+class Circular_025( Scene ):
     def construct( self ):
         title = Text( 'Circular velocity and acceleration.' )
         title.move_to( 3 * UP )

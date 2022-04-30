@@ -8,3 +8,5 @@
 #../bin/build $q -p VisualizeDerivatives_009b.py
 #../bin/build $q -p GADecoding_010.py
 #../bin/build $q -p Velocity_and_acceleration_020.py
+#../bin/build $q -p Circular_025.py
+#../bin/build $q -p Finale_150.py
