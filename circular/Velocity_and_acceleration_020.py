@@ -64,6 +64,6 @@ class Velocity_and_acceleration_020( Scene ):
         self.play( TransformMatchingTex( all, eq5 ) )
         self.wait( 5 )
 
-
+        fadeall(self)
 
 # vim: et sw=4 ts=4

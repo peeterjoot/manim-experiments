@@ -62,4 +62,6 @@ class GADecoding_010( Scene ):
             write_aligned( self, eq3[i], eq3[i+1], 0.75 * DOWN + 0.00 * LEFT, None )
             self.wait( 4 )
 
+        fadeall(self)
+
 # vim: et sw=4 ts=4

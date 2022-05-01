@@ -116,4 +116,6 @@ class Coordinates_005( Scene ):
                                    ) )
         self.wait( 4 )
 
+        fadeall(self)
+
 # vim: et sw=4 ts=4

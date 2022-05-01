@@ -1,4 +1,5 @@
-from manim import *
+#from manim import *
+from helper import *
 
 class Finale_150( Scene ):
     def construct( self ):
@@ -38,5 +39,7 @@ class Finale_150( Scene ):
         g = VGroup( t4, t4a, t4b )
         self.play( FadeIn( g ) )
         self.wait( 4 )
+
+        fadeall(self)
 
 # vim: et sw=4 ts=4

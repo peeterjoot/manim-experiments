@@ -104,5 +104,7 @@ class VisualizeDerivatives_009( Scene ):
         write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
         self.wait( 5 )
 
-#
-## vim: et sw=4 ts=4
+        fadeall(self)
+
+
+# vim: et sw=4 ts=4

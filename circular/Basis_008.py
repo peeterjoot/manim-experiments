@@ -92,4 +92,6 @@ class Basis_008( Scene ):
                                         run_time=6 )
         self.wait( 1 )
 
+        fadeall(self)
+
 # vim: et sw=4 ts=4

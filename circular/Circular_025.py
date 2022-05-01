@@ -86,18 +86,36 @@ class Circular_025( Scene ):
             x = acceleration( t )
             mob.put_start_and_end_on( x[0], x[0] + x[1] )
 
+        def uvt( mob ):
+            t = t_parameter.get_value()
+            x = velocity( t )
+            dir = x[1]/np.linalg.norm( x[1] )
+            mob.move_to( x[0] + x[1] + 0.2 * dir )
+
+        def uat( mob ):
+            t = t_parameter.get_value()
+            x = acceleration( t )
+            dir = x[1]/np.linalg.norm( x[1] )
+            mob.move_to( x[0] + x[1] + 0.2 * dir )
+
+        otex1 = Text( 'Non-constant angular frequency' ).scale( 0.7 )
+        otex1.set_color( BLUE )
+        otex2 = MathTex( r'\omega = \omega_0 + t\, \alpha' )
+        otex1.shift( 2 * RIGHT + 0 * UP )
+        otex2.move_to( otex1, DOWN )
+        otex2.shift( 1.00 * DOWN )
+
         v1_i = velocity( 0 )
         a1_i = acceleration( 0 )
         v1 = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, stroke_width=20, max_stroke_width_to_length_ratio=10, max_tip_length_to_length_ratio=0.5, buff = 0 ).add_updater(uv).update()
         a1 = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = RED, buff = 0 ).add_updater(ua).update()
-        #vtex = AcolorsMathTex( vec_v ).add_updater(uvt).update()
-        #atex = AcolorsMathTex( vec_a ).add_updater(uat).update()
+        vtex = AcolorsMathTex( vec_v ).add_updater(uvt).update()
+        atex = AcolorsMathTex( vec_a ).add_updater(uat).update()
 
         g1 = ParametricFunction( lambda t: origin + radius * rv( t ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
-        #self.add( VGroup( axes, g1, e1, e2, rtex, ttex, line ) )
-        self.play( AnimationGroup( Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ) ) )
+        self.play( AnimationGroup( Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ), Write( vtex ), Write( atex ), Write( otex1 ), Write( otex2 ) ) )
         self.wait( 4 )
 
         self.play( UpdateFromAlphaFunc( t_parameter,
@@ -112,14 +130,35 @@ class Circular_025( Scene ):
         v1_i = velocity( 0 )
         a1_i = acceleration( 0 )
 
+        otex1p = Text( 'Constant angular frequency' ).scale( 0.7 )
+        otex1p.set_color( BLUE )
+        otex2p = MathTex( r'\omega = \omega_0' )
+        otex1p.shift( 2 * RIGHT + 0 * UP )
+        otex2p.move_to( otex1, DOWN )
+        otex2p.shift( 1.00 * DOWN )
+        otex3 = MathTex( r'v = r \omega' )
+        otex3.move_to( otex2p, DOWN )
+        otex3.shift( 0.5 * DOWN )
+        otex4 = MathTex( concat( r'a = -r \omega^2 = -', l.frac('v^2', 'r') ) )
+        otex4.move_to( otex3, DOWN )
+        otex4.shift( DOWN )
+
         eq3 = AcolorsMathTex( concat( vec_v, " = ", r" r \omega", hat_theta, r",\quad", vec_a, " = - r \omega^2", hat_r ) )
         eq3.move_to( eq2 )
 
         v1p = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, buff = 0 ).add_updater(uv).update()
         a1p = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = RED, buff = 0 ).add_updater(ua).update()
+        vtexp = vtex.copy().update()
+        atexp = atex.copy().update()
         self.play( AnimationGroup( 
             Transform( v1, v1p ),
             Transform( a1, a1p ),
+            Transform( vtex, vtexp ),
+            Transform( atex, atexp ),
+            Transform( otex1, otex1p ),
+            Transform( otex2, otex2p ),
+            Write( otex3 ),
+            Write( otex4 ),
             TransformMatchingTex( eq2, eq3 )
             ) )
 
@@ -128,5 +167,6 @@ class Circular_025( Scene ):
                                         run_time=6 )
         self.wait( 4 )
 
+        fadeall(self)
 
 # vim: et sw=4 ts=4
