@@ -1,0 +1,18 @@
+We will now compute the derivative of the radial unit vector.
+
+Geometrically, imagine that we have such a vector at an initial position, and displace the angle by Delta theta.
+
+Zooming in on the difference, we see that the radial unit vector derivative is tangentially oriented.
+
+We can compute this derivative easily, from our exponential representation. 
+
+The time dependence is all implicit, through the angle theta.  Using chain rule, we bring down a factor of
+i \theta'.
+
+We have to be careful not to commute i, the pseudoscalar for the plane, with any vector factors.
+
+We recognize that the 'r-hat i' vector is theta-hat, leaving us with: 
+
+   rhat prime equals omega-thetahat,
+
+where omega, our angular frequency, is dtheta/dt.

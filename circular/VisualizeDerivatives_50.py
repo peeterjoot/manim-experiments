@@ -17,15 +17,15 @@ class VisualizeDerivatives_50( Scene ):
 
         e1dir = RIGHT
         e2dir = UP
-        r = lambda t: origin + radius * e1dir * np.cos( t * 0.5 * PI ) + radius * e2dir * np.sin( t * 0.5 * PI )
-        tv = lambda t: - e1dir * np.sin( t * 0.5 * PI ) + e2dir * np.cos( t * 0.5 * PI )
+        f_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
+        f_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
 
-        x1 = origin + radius * e1dir
-        x2 = r((PI/2)/8)
-        x1dir = e1dir
-        x2dir = (x2 - origin)/radius
-        t1dir = e2dir
-        t2dir = tv(1/8)
+        x1dir = f_r((PI/16)/(PI/2))
+        x2dir = f_r((3 * PI/16)/(PI/2))
+        t1dir = f_th((PI/16)/(PI/2))
+        t2dir = f_th((3 * PI/16)/(PI/2))
+        x1 = origin + radius * x1dir
+        x2 = origin + radius * x2dir
 
         e1 = Arrow( start = x1, end = x1 + t1dir, color = GREEN, buff = 0 )
         e1p = Arrow( start = x2, end = x2 + t2dir, color = RED, buff = 0 )
@@ -37,24 +37,26 @@ class VisualizeDerivatives_50( Scene ):
         ttexp = MathTex( concat( hat_theta, r'(\theta + \Delta\theta)' ) )
         ttexp.move_to( x2 + 0.25 * t2dir + 1.20 * x2dir )
         ttexp.set_color( RED )
+        dtex = MathTex( r'\Delta \theta' )
+        dtex.move_to( origin + ((x1 + x2)/2 - origin) * 0.7 )
+        dtex.set_color( BLUE )
 
-        g1 = ParametricFunction( r,
+        g1 = ParametricFunction( lambda t: origin + radius * f_r( 0.5 * PI * t ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
-        #all1 = VGroup( axes, g1, e1, e1p, ttex, ttexp, line, linep )
         self.play( AnimationGroup( Write( axes ), Write( g1 ) ) )
         self.wait( 4 )
         self.play( AnimationGroup( Write( e1 ), Write( ttex ), Write( line ) ) )
         self.wait( 4 )
-        self.play( AnimationGroup( Write( e1p ), Write( ttexp ), Write( linep ) ) )
+        self.play( AnimationGroup( Write( e1p ), Write( ttexp ), Write( linep ), Write( dtex ) ) )
         self.wait( 4 )
 
-        self.play( FadeOut( axes, g1, line, linep ) )
+        self.play( FadeOut( axes, g1, line, linep, dtex ) )
         self.wait( 4 )
 
         all2 = VGroup( e1, e1p, ttex, ttexp )
-        origin2 = origin + RIGHT + 0.5 * DOWN
+        origin2 = origin + 2 * RIGHT + 0.5 * DOWN
         slen = 5 # scale factor length
         e1b = origin2
         e1e = origin2 + slen * t1dir
