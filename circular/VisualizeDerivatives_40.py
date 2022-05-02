@@ -1,6 +1,6 @@
 from helper import *
 
-class VisualizeDerivatives_009( Scene ):
+class VisualizeDerivatives_40( Scene ):
     def construct( self ):
         title = Text( 'Radial vector derivative.' )
         title.move_to( 3 * UP )
@@ -17,13 +17,13 @@ class VisualizeDerivatives_009( Scene ):
 
         e1dir = RIGHT
         e2dir = UP
-        r = lambda t: origin + radius * e1dir * np.cos( t * 0.5 * PI ) + radius * e2dir * np.sin( t * 0.5 * PI )
-        tv = lambda t: - e1dir * np.sin( t * 0.5 * PI ) + e2dir * np.cos( t * 0.5 * PI )
+        f_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
+        #f_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
 
-        x1 = origin + radius * e1dir
-        x2 = r(PI/16)
-        x1dir = e1dir
-        x2dir = (x2 - origin)/radius
+        x1dir = f_r((PI/16)/(PI/2))
+        x2dir = f_r((3 * PI/16)/(PI/2))
+        x1 = origin + radius * x1dir
+        x2 = origin + radius * x2dir
 
         e1 = Arrow( start = x1, end = x1 + x1dir, color = GREEN, buff = 0 )
         e1p = Arrow( start = x2, end = x2 + x2dir, color = RED, buff = 0 )
@@ -35,8 +35,11 @@ class VisualizeDerivatives_009( Scene ):
         rtexp = MathTex( concat( hat_r, r'(\theta + \Delta\theta)' ) )
         rtexp.move_to( x2 + 1.75 * x2dir )
         rtexp.set_color( RED )
+        dtex = MathTex( r'\Delta \theta' )
+        dtex.move_to( origin + ((x1 + x2)/2 - origin) * 0.7 )
+        dtex.set_color( BLUE )
 
-        g1 = ParametricFunction( r,
+        g1 = ParametricFunction( lambda t: origin + radius * f_r( 0.5 * PI * t ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
@@ -45,10 +48,10 @@ class VisualizeDerivatives_009( Scene ):
         self.wait( 4 )
         self.play( AnimationGroup( Write( e1 ), Write( rtex ), Write( line ) ) )
         self.wait( 4 )
-        self.play( AnimationGroup( Write( e1p ), Write( rtexp ), Write( linep ) ) )
+        self.play( AnimationGroup( Write( e1p ), Write( rtexp ), Write( linep ), Write( dtex ) ) )
         self.wait( 4 )
 
-        self.play( FadeOut( axes, g1, line, linep ) )
+        self.play( FadeOut( axes, g1, line, linep, dtex ) )
         self.wait( 4 )
 
         all2 = VGroup( e1, e1p, rtex, rtexp )
@@ -83,7 +86,7 @@ class VisualizeDerivatives_009( Scene ):
 #        all4 = VGroup( r1, r1p, srtex, srtexp, t1, t1tex )
 #        self.play( ApplyFunction( moveit, all4 ) )
 
-        tprime = prime(r'\theta')
+        tprime = prime( r'\theta' )
 
         eq = [ AcolorsMathTex( concat( prime(hat_r), r' = ', l.frac('d', 'dt'), vec_e1, r'e^{i\theta}') ),
                AcolorsMathTex( concat(               ' = ', vec_e1, r'e^{i\theta} i', tprime ) ),

@@ -1,7 +1,7 @@
 #from manim import *
 from helper import *
 
-class Finale_150( Scene ):
+class Finale_90( Scene ):
     def construct( self ):
         # This is from sudgy.  I had to tweak the alignment since I don't appear to have ManimBanner2() available.
         #banner = ManimBanner2()

@@ -1,2 +1,9 @@
-- script everything.  Trial recordings with additional delays.
+- Adjust tangential slide: VisualizeDerivatives_50.py 
+  like the radial slide, to offset the initial angle.
+- GADecoding:
+   - Add mini GA intro (e_i^2 = 1, e_1 e_2 = - e_2 e_1)
+   - add explicit computation of thetahat = rhat i.
+
+
+- script the remainder.  Trial recordings with additional delays.
 - final edit.

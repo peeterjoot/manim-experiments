@@ -1,6 +1,6 @@
 from helper import *
 
-class GADecoding_010( Scene ):
+class GADecoding_30( Scene ):
     def construct( self ):
 
         title = Text( 'Unpacking the exponentials.' )

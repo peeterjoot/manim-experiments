@@ -1,6 +1,6 @@
 from helper import *
 
-class VisualizeDerivatives_009b( Scene ):
+class VisualizeDerivatives_50( Scene ):
     def construct( self ):
         title = Text( 'Tangential vector derivative.' )
         title.move_to( 3 * UP )

@@ -4,7 +4,7 @@
 
 from helper import *
 
-class General_022( Scene ):
+class General_70( Scene ):
     def construct( self ):
         title = Text( 'Velocity and acceleration.' )
         title.move_to( 3 * UP )
