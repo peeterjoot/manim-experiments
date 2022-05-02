@@ -1,0 +1,7 @@
+Circular coordinates parameterize points in the plane using an angle and radial length.
+
+Keeping the radius fixed, and varying the angle, we trace out circular arcs.
+
+Keeping the angle fixed, and varying the radius, we trace out lines radiating outward from the origin.
+
+Varying both simultaneously allows us to trace out arbitrary paths.

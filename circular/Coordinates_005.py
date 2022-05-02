@@ -12,6 +12,7 @@ class Coordinates_005( Scene ):
         axes = Axes( x_range = [-1, 4, 1], y_range = [-1, 4, 1], x_length = 4, y_length = 4,
                      axis_config = {"include_tip": True, "numbers_to_exclude": [0]} ).add_coordinates()
         axes.to_edge( LEFT )
+        axes.shift( RIGHT + DOWN )
 
         rline = NumberLine(
             x_range=[0, 4, 1],
@@ -21,6 +22,7 @@ class Coordinates_005( Scene ):
             label_direction=DOWN,
         )
         rline.to_edge( RIGHT )
+        rline.shift( 1.0 * LEFT )
         rtex = MathTex( 'r' )
         rtex.move_to( rline, LEFT )
         rtex.shift( 0.5 * LEFT )

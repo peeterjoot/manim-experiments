@@ -3,6 +3,8 @@
 #q='-q h'
 #p='-p'
 
+./clean.sh
+
 ../bin/build $q $p Coordinates_005.py
 ../bin/build $q $p Basis_008.py
 ../bin/build $q $p VisualizeDerivatives_009.py
