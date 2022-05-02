@@ -1,7 +1,3 @@
-# for Callable:
-#from __future__ import annotations
-#import typing
-
 from helper import *
 
 class Circular_025( Scene ):
@@ -36,18 +32,20 @@ class Circular_025( Scene ):
         e1dir = RIGHT
         e2dir = UP
 
-        rv = lambda t: e1dir * np.cos( t * 0.5 * PI ) + e2dir * np.sin( t * 0.5 * PI )
-        tv = lambda t: - e1dir * np.sin( t * 0.5 * PI ) + e2dir * np.cos( t * 0.5 * PI )
+        h_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
+        h_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
+
+        # \theta = (t + t^2/2) pi/3
+        # \omega = (1 + t) pi/3
+        # \omega' = pi/3
+        def theta( t ):
+            return 0.5 * PI * t * (1 + t/2) * (2/3)
 
         def omega( t ):
-            #return 2 * PI * (t/4)^2
-            return 2 * PI * (t+1)/4
-            #return 1
+            return PI * (1 + t) / 3
 
         def omegaprime( t ):
-            #return 4 * PI * (t/4)
-            return PI/4
-            #return 0
+            return PI / 3
 
         om = omega
         omp = omegaprime
@@ -55,17 +53,12 @@ class Circular_025( Scene ):
         t_parameter = ValueTracker(0)
 
         scale = 0.25
-        # v = r \omega \thetacap
-        #def velocity(t, omegaf: Callable[[float], float]):
-        #    # logically, we are treating r = 1, but we have a scale factor for the rendering.
-        #    p = origin + radius * rv( t )
-        #    d = scale * omegaf( t ) * tv( t )
-        #    return [p, d]
         def velocity(t):
             # logically, we are treating r = 1, but we have a scale factor for the rendering.
-            p = origin + radius * rv( t )
-            d = scale * om( t ) * tv( t )
-            return [p, d]
+            th = theta( t )
+            p = origin + radius * h_r( th )
+            d = scale * om( t ) * h_th( th )
+            return [ p, d ]
 
         def uv( mob ):
             t = t_parameter.get_value()
@@ -74,12 +67,13 @@ class Circular_025( Scene ):
 
         # a = -r \omega^2 \rcap + r \omega' \thetacap
         def acceleration( t ):
-            rt = rv( t )
-            tt = tv( t )
+            th = theta( t )
+            rt = h_r( th )
+            tt = h_th( th )
             p = origin + radius * rt
             o = om( t )
             d = scale * (- o * o * rt + omp( t ) * tt)
-            return [p, d]
+            return [ p, d ]
 
         def ua( mob ):
             t = t_parameter.get_value()
@@ -108,14 +102,16 @@ class Circular_025( Scene ):
         v1_i = velocity( 0 )
         a1_i = acceleration( 0 )
         v1 = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, stroke_width=20, max_stroke_width_to_length_ratio=10, max_tip_length_to_length_ratio=0.5, buff = 0 ).add_updater(uv).update()
+        #v1 = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, buff = 0 ).add_updater(uv).update()
         a1 = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = RED, buff = 0 ).add_updater(ua).update()
         vtex = AcolorsMathTex( vec_v ).add_updater(uvt).update()
         atex = AcolorsMathTex( vec_a ).add_updater(uat).update()
 
-        g1 = ParametricFunction( lambda t: origin + radius * rv( t ),
+        g1 = ParametricFunction( lambda t: origin + radius * h_r( theta(t) ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
-        self.play( AnimationGroup( Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ), Write( vtex ), Write( atex ), Write( otex1 ), Write( otex2 ) ) )
+        self.play( AnimationGroup(
+            Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ), Write( vtex ), Write( atex ), Write( otex1 ), Write( otex2 ) ) )
         self.wait( 4 )
 
         self.play( UpdateFromAlphaFunc( t_parameter,
@@ -123,9 +119,10 @@ class Circular_025( Scene ):
                                         run_time=6 )
         self.wait( 4 )
 
-        om = lambda t: 1
+        theta = lambda t: 0.5 * PI * t
+        om = lambda t: 0.5 * PI
         omp = lambda t: 0
-        scale = 1
+        scale = 0.5
         t_parameter = ValueTracker(0)
         v1_i = velocity( 0 )
         a1_i = acceleration( 0 )
@@ -147,10 +144,11 @@ class Circular_025( Scene ):
         eq3.move_to( eq2 )
 
         v1p = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, buff = 0 ).add_updater(uv).update()
+        #v1p = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, stroke_width=2, max_stroke_width_to_length_ratio=4, max_tip_length_to_length_ratio=0.5, buff = 0 ).add_updater(uv).update()
         a1p = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = RED, buff = 0 ).add_updater(ua).update()
         vtexp = vtex.copy().update()
         atexp = atex.copy().update()
-        self.play( AnimationGroup( 
+        self.play( AnimationGroup(
             Transform( v1, v1p ),
             Transform( a1, a1p ),
             Transform( vtex, vtexp ),
