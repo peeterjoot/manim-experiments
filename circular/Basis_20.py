@@ -175,6 +175,6 @@ class Basis_20( Scene ):
         self.play( Write( Thattex ) )
         self.wait( 4 )
 
-        fadeall(self)
+        fadeall( self )
 
 # vim: et sw=4 ts=4

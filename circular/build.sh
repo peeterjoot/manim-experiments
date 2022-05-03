@@ -7,6 +7,8 @@
 
 ../bin/build $q $p Coordinates_10.py
 ../bin/build $q $p Basis_20.py # script (only start is good now that I changed everything.)
+../bin/build $q $p GAIntro_26.py # script
+../bin/build $q $p GAIntroRot90_27.py # script
 ../bin/build $q $p GADecoding_30.py # script
 ../bin/build $q $p VisualizeDerivatives_40.py
 ../bin/build $q $p VisualizeDerivatives_50.py # script

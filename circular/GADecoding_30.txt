@@ -1,0 +1,9 @@
+A geometric algebra is a vector space with scalar, vector and product-of-vector elements, subject to an additional constraint,
+the contraction axiom:
+
+The square of a vector is the dot product of that vector with itself.
+
+#dimensional geometric algebra can be understood completely is a particularly simple geomet
+
+#by applying a complex exponentials to e1 and e2 respectively,
+#where i is ordered product of e1 e2, a bivector that squares to -1.

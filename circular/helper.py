@@ -64,7 +64,7 @@ dr_prime   = dprime('r')
 rhat_prime = prime(hat_r)
 that_prime = prime(hat_theta)
 
-def fadeall(self):
+def fadeall( self ):
     self.play( *[FadeOut(mob)for mob in self.mobjects] )
 
 # vim: et sw=4 ts=4

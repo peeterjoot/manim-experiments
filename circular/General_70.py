@@ -118,6 +118,6 @@ class General_70( Scene ):
                                         run_time=6 )
         self.wait( 4 )
 
-        fadeall(self)
+        fadeall( self )
 
 # vim: et sw=4 ts=4
