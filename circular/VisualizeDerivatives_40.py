@@ -15,11 +15,6 @@ class VisualizeDerivatives_40( Scene ):
         axes.shift( DOWN + 3 * LEFT )
         origin = axes.coords_to_point( 0, 0 )
 
-        e1dir = RIGHT
-        e2dir = UP
-        f_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
-        #f_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
-
         x1dir = f_r((PI/16)/(PI/2))
         x2dir = f_r((3 * PI/16)/(PI/2))
         x1 = origin + radius * x1dir

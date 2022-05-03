@@ -26,11 +26,6 @@ class General_70( Scene ):
 
         axes.shift( DOWN + 0 * LEFT )
         origin = axes.coords_to_point( 0, 0 )
-        e1dir = RIGHT
-        e2dir = UP
-
-        h_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
-        h_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
 
         fr = PI
         f_theta = lambda t: 0.5 * PI * ( t + t * np.sin( fr * t ) )

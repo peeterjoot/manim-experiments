@@ -2,8 +2,6 @@
    - Add mini GA intro (e_i^2 = 1, e_1 e_2 = - e_2 e_1)
    - show better: thetahat = rhat i = e_2 e^{i\theta}
    - reverse the logic to assemble the GA exponential form.
-- GAIntroRot90_27
-   - animation rotation of vector by right multiplication with i
 - Finale: add a subscribe popup.
 
 - script the remainder.  Trial recordings with additional delays.

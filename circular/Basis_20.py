@@ -14,14 +14,9 @@ class Basis_20( Scene ):
 
         axes.shift( DOWN + 0 * LEFT )
         origin = axes.coords_to_point( 0, 0 )
-        e1dir = RIGHT
-        e2dir = UP
 
         x1 = origin + radius * e1dir
         x2 = origin + radius * e2dir
-
-        h_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
-        h_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
 
         f_th = lambda t: (PI/6) * t
 

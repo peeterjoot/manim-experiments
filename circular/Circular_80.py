@@ -29,11 +29,6 @@ class Circular_80( Scene ):
 
         axes.shift( DOWN + 3 * LEFT )
         origin = axes.coords_to_point( 0, 0 )
-        e1dir = RIGHT
-        e2dir = UP
-
-        h_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
-        h_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
 
         # \theta = (t + t^2/2) pi/3
         # \omega = (1 + t) pi/3

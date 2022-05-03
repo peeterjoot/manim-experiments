@@ -3,7 +3,7 @@ from helper import *
 class GAIntro_26( Scene ):
     def construct( self ):
 
-        title = Text( 'Geometric algebra: fundamentals.' )
+        title = Text( '2D Geometric algebra: fundamentals.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )

@@ -67,4 +67,9 @@ that_prime = prime(hat_theta)
 def fadeall( self ):
     self.play( *[FadeOut(mob)for mob in self.mobjects] )
 
+e1dir = RIGHT
+e2dir = UP
+h_r = lambda th: e1dir * np.cos( th ) + e2dir * np.sin( th )
+h_th = lambda th: - e1dir * np.sin( th ) + e2dir * np.cos( th )
+
 # vim: et sw=4 ts=4
