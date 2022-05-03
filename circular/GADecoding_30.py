@@ -3,64 +3,67 @@ from helper import *
 class GADecoding_30( Scene ):
     def construct( self ):
 
-        title = Text( 'Unpacking the exponentials.' )
+        title = Text( 'Exponential unit vector representation.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = [ AcolorsMathTex( concat( vec_e1, vec_e1, ' = ', vec_e2, vec_e2, '= 1' ) ),
-               AcolorsMathTex( concat( vec_e1, vec_e2, ' = -', vec_e2, vec_e1 ) ) ]
+        req = [ MathTex( concat( hat_r, ' = ', vec_e1, r'\cos\theta + ', vec_e2, r'\sin\theta' ) ),
+                MathTex( concat(        ' = ', vec_e1, r'\cos\theta + ', vec_e1, vec_e1, vec_e2, r'\sin\theta' ) ),
+                MathTex( concat(        ' = ', vec_e1, l.lr( r'\cos\theta + ', vec_e1, vec_e2, r'\sin\theta' ) ) ),
+                MathTex( concat(        ' = ', vec_e1, l.lr( r'\cos\theta + i \sin\theta' ) ) ),
+                MathTex( concat(        ' = ', vec_e1, r'e^{i\theta}' ) ) ]
 
-        eq[0].shift( 1.5 * UP )
-        self.play( Write( eq[0] ) )
-        self.wait( 5 )
+        teq = [ MathTex( concat( hat_theta, ' = ', vec_e2, r'\cos\theta - ', vec_e1, r'\sin\theta' ) ),
+                MathTex( concat(            ' = ', vec_e2, r'\cos\theta - ', vec_e2, vec_e2, vec_e1, r'\sin\theta' ) ),
+                MathTex( concat(            ' = ', vec_e2, l.lr( r'\cos\theta - ', vec_e2, vec_e1, r'\sin\theta' ) ) ),
+                MathTex( concat(            ' = ', vec_e2, l.lr( r'\cos\theta + ', vec_e1, vec_e2, r'\sin\theta' ) ) ),
+                MathTex( concat(            ' = ', vec_e2, l.lr( r'\cos\theta + i \sin\theta' ) ) ),
+                MathTex( concat(            ' = ', vec_e2, r'e^{i\theta}' ) ) ]
 
-        i = 0
-        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.40 * LEFT, None )
-        self.wait( 5 )
+        teq2 = [ MathTex( concat( hat_theta, ' = ', hat_r, 'i' ) ),
+                 MathTex( concat(            ' = ', vec_e1, r'e^{i\theta} i' ) ),
+                 MathTex( concat(            ' = ', vec_e1, r'i e^{i\theta}' ) ),
+                 MathTex( concat(            ' = ', vec_e2, r'e^{i\theta}' ) ) ]
 
-        self.play( FadeOut( *eq ) )
-
-        eq = [ AcolorsMathTex( hat_r, ' = ', vec_e1, r'e^{i\theta}' ),                          # 0
-               AcolorsMathTex(        ' = ', vec_e1, l.lr( r'\cos\theta + i \sin\theta' ) ),    # 1
-               AcolorsMathTex(        ' = ', vec_e1, r'\cos\theta', '+' ),                      # 2
-                   AcolorsMathTex( vec_e1, vec_e1 ),                                            # 3
-                   AcolorsMathTex( vec_e2, r'\sin\theta' ) ]                                    # 4
-
-        eq2 = AcolorsMathTex(        ' = ', vec_e1, r'\cos\theta', '+', vec_e2, r'\sin\theta' )
-
-        eq[0].shift( 2 * LEFT + 2 * UP )
-        self.play( Write( eq[0] ) )
+        req[0].shift( UP )
+        self.play( Write( req[0] ) )
         self.wait( 4 )
-        i = 0
-        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.00 * LEFT, None ) # write 1
-        self.wait( 4 )
-        i = 1
-        align_it( self, eq[i], eq[i+1], 0.75 * DOWN + 0.00 * LEFT, m = None, what = '=' )
-        eq[3].move_to( eq[2].get_right(), RIGHT )
-        eq[3].shift( RIGHT + 0.05 * DOWN )
-        eq[4].move_to( eq[3].get_right(), RIGHT )
-        eq[4].shift( 1.5 * RIGHT + 0.07 * UP )
-        self.play( AnimationGroup( Write( eq[2] ), Write( eq[3] ), Write( eq[4] ) ) )
-        self.wait( 4 )
-        self.play( Indicate( eq[3] ) )
-        self.wait( 4 )
-        align_it( self, eq[1], eq2, 0.75 * DOWN + 0.00 * LEFT, m = None, what = '=' )
-        self.play( TransformMatchingTex( VGroup( eq[2], eq[3], eq[4] ), eq2 ) )
-        self.wait( 4 )
-
-        eq3 = [ AcolorsMathTex( hat_theta, ' = ', hat_r, 'i' ),
-                AcolorsMathTex(            ' = ', vec_e1, r'e^{i\theta} i' ),
-                AcolorsMathTex(            ' = ', vec_e1, l.lr( r'i \cos\theta - \sin\theta' ) ),
-                AcolorsMathTex(            ' = ', vec_e2, r'\cos\theta - ', vec_e1, r'\sin\theta' ) ]
-
-        eq3[0].shift( 2.38 * LEFT + 0.5 * DOWN )
-        self.play( Write( eq3[0] ) )
-        self.wait( 4 )
-        for i in range(3):
-            write_aligned( self, eq3[i], eq3[i+1], 0.75 * DOWN + 0.00 * LEFT, None )
+        for i in range(4):
+            write_aligned( self, req[i], req[i+1], 0.75 * DOWN + 0.00 * LEFT, m = None )
             self.wait( 4 )
+
+        req2 = MathTex( concat( hat_r, ' = ', vec_e1, r'e^{i\theta}' ) )
+        req2.move_to( 5 * LEFT + 1 * UP )
+        self.play( Transform( VGroup(*req), req2 ) )
+        self.wait( 4 )
+
+        teq[0].shift( UP )
+        self.play( Write( teq[0] ) )
+        self.wait( 5 )
+        for i in range(5):
+            write_aligned( self, teq[i], teq[i+1], 0.75 * DOWN + 0.00 * LEFT, m = None )
+            self.wait( 4 )
+
+        teq3 = MathTex( concat( hat_theta, ' = ', vec_e2, r'e^{i\theta}' ) )
+        teq3.move_to( 5 * LEFT + 0 * UP )
+        self.play( Transform( VGroup(*teq), teq3 ) )
+        self.wait( 4 )
+
+        teq2[0].shift( UP )
+        self.play( Write( teq2[0] ) )
+        self.wait( 5 )
+        for i in range(3):
+            write_aligned( self, teq2[i], teq2[i+1], 0.75 * DOWN + 0.00 * LEFT, m = None )
+            self.wait( 4 )
+
+        teq4 = MathTex( concat( ' =',  hat_r, 'i' ) )
+        teq4.move_to( teq3, RIGHT )
+        teq4.shift( RIGHT )
+        self.play( AnimationGroup( FadeOut( *teq2 ),
+                                   Write( teq4 ) ) )
+        self.wait( 4 )
 
         fadeall( self )
 

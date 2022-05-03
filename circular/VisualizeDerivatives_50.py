@@ -15,10 +15,10 @@ class VisualizeDerivatives_50( Scene ):
         axes.shift( DOWN + 3 * LEFT )
         origin = axes.coords_to_point( 0, 0 )
 
-        x1dir = f_r((PI/16)/(PI/2))
-        x2dir = f_r((3 * PI/16)/(PI/2))
-        t1dir = f_th((PI/16)/(PI/2))
-        t2dir = f_th((3 * PI/16)/(PI/2))
+        x1dir = h_r((PI/16)/(PI/2))
+        x2dir = h_r((3 * PI/16)/(PI/2))
+        t1dir = h_th((PI/16)/(PI/2))
+        t2dir = h_th((3 * PI/16)/(PI/2))
         x1 = origin + radius * x1dir
         x2 = origin + radius * x2dir
 
@@ -36,7 +36,7 @@ class VisualizeDerivatives_50( Scene ):
         dtex.move_to( origin + ((x1 + x2)/2 - origin) * 0.7 )
         dtex.set_color( BLUE )
 
-        g1 = ParametricFunction( lambda t: origin + radius * f_r( 0.5 * PI * t ),
+        g1 = ParametricFunction( lambda t: origin + radius * h_r( 0.5 * PI * t ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
