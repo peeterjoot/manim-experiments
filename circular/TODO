@@ -1,7 +1,7 @@
 - GADecoding:
    - Add mini GA intro (e_i^2 = 1, e_1 e_2 = - e_2 e_1)
-   - add explicit computation of thetahat = rhat i.
-
+   - show better: thetahat = rhat i = e_2 e^{i\theta}
+- Finale: add a subscribe popup.
 
 - script the remainder.  Trial recordings with additional delays.
 - final edit.

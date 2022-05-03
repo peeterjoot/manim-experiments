@@ -6,6 +6,8 @@ The unit radial vector r-hat is a rotation of the e_1 basis vector.
 
 Similarly, the theta-hat vector is the rotation of the e_2 basis vector.
 
-Algebraically, we can describe these rotations using geometric algebra by applying a complex exponentials to e1 and e2 respectively,
+
+# redo from here:
+#Algebraically, we can describe these rotations using geometric algebra by applying a complex exponentials to e1 and e2 respectively,
 where i is ordered product of e1 e2, a bivector that squares to -1.
 

@@ -1,0 +1,8 @@
+This video was produced using the community edition of Manim.
+
+Be sure to like and subscribe for more future content.
+
+Also, check out my blog, peeterjoot.com
+ for more in depth geometric algebra material,
+ and a free pdf copy of book 'Geometric Algebra for Electrical Engineers',
+ and for detailed notes from a selected set of physics and engineering courses.
