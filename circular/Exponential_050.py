@@ -1,6 +1,6 @@
 from helper import *
 
-class GADecoding_30( Scene ):
+class Exponential_050( Scene ):
     def construct( self ):
 
         title = Text( 'Exponential unit vector representation.' )

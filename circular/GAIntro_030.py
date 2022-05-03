@@ -1,6 +1,6 @@
 from helper import *
 
-class GAIntro_26( Scene ):
+class GAIntro_030( Scene ):
     def construct( self ):
 
         title = Text( '2D Geometric algebra: fundamentals.' )

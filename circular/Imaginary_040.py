@@ -1,6 +1,6 @@
 from helper import *
 
-class GAIntroRot90_27( Scene ):
+class Imaginary_040( Scene ):
     def construct( self ):
 
         title = Text( '2D Geometric algebra: the imaginary.' )

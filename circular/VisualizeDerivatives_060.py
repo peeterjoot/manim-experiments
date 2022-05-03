@@ -1,6 +1,6 @@
 from helper import *
 
-class VisualizeDerivatives_40( Scene ):
+class VisualizeDerivatives_060( Scene ):
     def construct( self ):
         title = Text( 'Radial vector derivative.' )
         title.move_to( 3 * UP )

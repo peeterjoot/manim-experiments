@@ -1,6 +1,6 @@
 from helper import *
 
-class Basis_20( Scene ):
+class Basis_020( Scene ):
     def construct( self ):
         title = Text( 'Circular basis vectors.' )
         title.move_to( 3 * UP )

@@ -1,6 +1,6 @@
 from helper import *
 
-class Velocity_and_acceleration_60( Scene ):
+class Velocity_and_acceleration_080( Scene ):
     def construct( self ):
 
         title = Text( 'Velocity and acceleration.' )

@@ -1,6 +1,6 @@
 from helper import *
 
-class Coordinates_10( Scene ):
+class Coordinates_010( Scene ):
     def construct( self ):
 
         title = Text( 'Circular coordinates.' )
