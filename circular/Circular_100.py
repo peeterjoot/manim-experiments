@@ -150,14 +150,15 @@ class Circular_100( Scene ):
             Transform( atex, atexp ),
             Transform( otex1, otex1p ),
             Transform( otex2, otex2p ),
-            Write( otex3 ),
-            Write( otex4 ),
             TransformMatchingTex( eq2, eq3 )
             ) )
 
         self.play( UpdateFromAlphaFunc( t_parameter,
                                         lambda mob, alpha: mob.set_value( alpha ) ),
                                         run_time=6 )
+        self.wait( 4 )
+
+        self.play( AnimationGroup( Write( otex3 ), Write( otex4 ) ) )
         self.wait( 4 )
 
         fadeall( self )

@@ -1,0 +1,17 @@
+It shouldn't be a suprise that an important special case velocity and acceleration in circular coordinates
+ is motion that is constrained to a circle.
+
+For circular motion, where the radius is fixed, all the r' derivatives are zero, so our
+ velocity and acceleration formulas are considerably simplified.
+
+We see that the velocity is neccessarily and completely tangential to the circular path.
+The acceleration always has an inward facing component, the centripedial component
+ of the acceleration,
+ but only has a tangential component if the angular frequency varies with time.
+
+Here is a plot of velocity and acceleration for angular frequency with a line time dependency.
+
+For circular motion with constant angular frequency, the acceleration is strictly directed
+ inwards to the origin, as shown in the plot to the left.
+
+You have probably encountered equations for this type of motion in scalar form.
