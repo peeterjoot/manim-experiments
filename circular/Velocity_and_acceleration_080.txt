@@ -1,0 +1,19 @@
+
+
+our position vector is r rhat, so the velocity is a chain rule expansion, where
+ we take derivatives of r and rhat in turn.
+
+We've computed rhat-prime, which is just omega-thetahat.
+
+
+We can compute the acceleration in the same fashion, but it's easier to stick with r-hat',
+ and then take the second derivatives.
+
+Now we plug in rhat',
+ and expand the omega thetahat derivative.
+
+We can now plug in thetahat'
+
+and regroup, finding the radial and tangential components of the acceleration.
+
+Finally, assuming we don't care about r = 0, we tidy up the thetahat component of the acceleration slightly.

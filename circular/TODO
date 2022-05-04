@@ -1,7 +1,7 @@
 - Script the remainder
-   - Velocity_and_acceleration_080.txt
-   - General_090.txt
    - Circular_100.txt
+- General_090.py
+   - Try playing with the theta-function to make a non-tangential component of the velocity show up better.
 - Trial recordings.
 - Add sufficient delays.
 - Final edit.

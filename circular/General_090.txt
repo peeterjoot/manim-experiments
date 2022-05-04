@@ -1,0 +1,2 @@
+In general, both the velocity and acceleration associated with an arbitrary time parameterized
+path, have both radial and tangential components.

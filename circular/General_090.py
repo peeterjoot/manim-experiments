@@ -31,8 +31,8 @@ class General_090( Scene ):
         f_theta = lambda t: 0.5 * PI * ( t + t * np.sin( fr * t ) )
         f_omega = lambda t: 0.5 * PI * ( 1 + np.sin( fr * t ) + fr * t * np.cos( fr * t ) )
         f_omegap = lambda t: 0.5 * PI * ( 2 * fr * np.cos( fr * t ) - t * fr * fr * np.sin( fr * t ) )
-        f_r = lambda t: 3 + t * t/2
-        f_rp = lambda t: 1 * t
+        f_r = lambda t: 0.5 * t + 3 + t * t/2
+        f_rp = lambda t: 0.5 + 1 * t
         f_rpp = lambda t: 1
 
         t_parameter = ValueTracker(0)
@@ -64,7 +64,7 @@ class General_090( Scene ):
             om = f_omega( t )
             p = origin + r * rh
             d = (f_rpp( t ) - r * om * om ) * rh + ( 2 * f_rp(t) * om + r * f_omegap(t) ) * thh
-            return [ p, d/12 ]
+            return [ p, d/16 ]
 
         def ud( mob ):
             t = t_parameter.get_value()
