@@ -24,20 +24,36 @@ class Finale_110( Scene ):
         ))
         self.wait( 4 )
 
-        t4a = Text( 'My book: ' )
-
-        t4a.set_color( TEAL )
-        t4a.shift( 1.00 * UP + 4.70 * LEFT )
-
-        t4b = Text( 'Geometric Algebra for Electrical Engineers' ).scale( 0.8 )
-        t4b.next_to( t4a, RIGHT )
-
-        t4 = Tex("\\verb|http://peeterjoot.com/gaee/|") #.scale( 0.7 )
-        t4.next_to( t4a, DOWN )
-        t4.shift( 4 * RIGHT )
-
-        g = VGroup( t4, t4a, t4b )
+        rect = RoundedRectangle( corner_radius=0.3, color=PURE_RED, height=1, width=5 )
+        rect.set_fill( PURE_RED, opacity=1.0 )
+        rect.move_to( 4 * LEFT + 2 * RIGHT )
+        sub = Text( 'Subscribe' ).set_color( WHITE )
+        sub.move_to( rect )
+        g = VGroup( rect, sub )
         self.play( FadeIn( g ) )
+        self.play( g.animate.shift(5.0 * RIGHT + 0 * DOWN), run_time=3, rate_func=linear )
+        self.play( FadeOut( g ) )
+        self.wait( 4 )
+
+        t1 = Text( 'My blog: ' )
+        t1.set_color( TEAL )
+        t1.shift( 2.00 * UP + 4.70 * LEFT )
+        t2 = Tex("\\verb|http://peeterjoot.com/|") #.scale( 0.7 )
+        t2.next_to( t1, DOWN )
+        t2.shift( 4 * RIGHT )
+        self.play( FadeIn( t1, t2 ) )
+        self.wait( 4 )
+
+        t3 = Text( 'My book: ' )
+        t3.set_color( TEAL )
+        t3.shift( 0.00 * UP + 4.70 * LEFT )
+        t4 = Text( 'Geometric Algebra for Electrical Engineers' ).scale( 0.8 )
+        t4.next_to( t3, RIGHT )
+        t5 = Tex("\\verb|http://peeterjoot.com/gaee/|") #.scale( 0.7 )
+        t5.next_to( t3, DOWN )
+        t5.shift( 4 * RIGHT )
+
+        self.play( FadeIn( t3, t4, t5 ) )
         self.wait( 4 )
 
         fadeall( self )

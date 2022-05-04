@@ -1,6 +1,6 @@
-This video was produced using the community edition of Manim.
+This video was created with Manim.
 
-Be sure to like and subscribe for more future content.
+Be sure to like, subscribe and click the bell, for more future content.
 
 Also, check out my blog, peeterjoot.com
  for more in depth geometric algebra material,
