@@ -12,6 +12,6 @@ With the radial unit vector (r-hat) at an angle theta from the horizontal, then 
 
 Similarily, the tangential unit vector (theta-hat) is at an angle theta from the vertical, so it equals -e_1 sin theta + e_2 cos theta.
 
-We could work with this trigonometric form for the circular unit vectors, but will opt instead to describe these 
+We could work with this trigonometric form for the circular unit vectors, but will opt instead to describe these
 rotated frame using geometric algebra.
 

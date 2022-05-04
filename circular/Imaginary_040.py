@@ -25,16 +25,15 @@ class Imaginary_040( Scene ):
                 MathTex( concat(           '= ', vec_e2 ) ) ]
 
         eq3 = [ MathTex( concat( vec_e2, 'i = ', vec_e2, l.lr( vec_e1, vec_e2 ) ) ),
-                MathTex( concat(           '= ', l.lr( vec_e2, vec_e1 ), vec_e2 ) ),
-                MathTex( concat(           '= ', l.lr( '-', vec_e1, vec_e2 ), vec_e2 ) ),
-                MathTex( concat(           '= -', vec_e1, l.lr( vec_e2, vec_e2 ) ) ),
+                MathTex( concat(           '= -', vec_e2, l.lr( vec_e2, vec_e1 ) ) ),
+                MathTex( concat(           '= -', l.lr( vec_e2, vec_e2 ), vec_e1 ) ),
                 MathTex( concat(           '= -', vec_e1 ) ) ]
 
         eq4 = [ MathTex( concat( 'i^2 = ', l.lr( vec_e1, vec_e2 ), l.lr( vec_e1, vec_e2 ) ) ),
-                MathTex( concat(     '= ', vec_e1, l.lr( vec_e2, vec_e1 ), vec_e2 ) ),
-                MathTex( concat(     '= ', vec_e1, l.lr( '-', vec_e1, vec_e2 ), vec_e2 ) ),
-                MathTex( concat(     '= -', l.sq( vec_e1 ), l.sq( vec_e2 ) ) ),
-                MathTex( concat(           '= -1' ) ) ]
+                MathTex( concat(     '= -', l.lr( vec_e2, vec_e1 ), l.lr( vec_e1, vec_e2 ) ) ),
+                MathTex( concat(     '= -', vec_e2, l.lr( vec_e1, vec_e1 ), vec_e2 ) ),
+                MathTex( concat(     '= -', vec_e2, vec_e2 ) ),
+                MathTex( concat(     '= - 1' ) ) ]
 
         g = VGroup( *eq )
         eq2[0].move_to( eq[0] )
@@ -70,7 +69,7 @@ class Imaginary_040( Scene ):
 
         self.play( Write( eq3[0] ) )
         self.wait( 3 )
-        for i in range(4):
+        for i in range(3):
             write_aligned( self, eq3[i], eq3[i+1], 0.75 * DOWN + 0.0 * LEFT, m = None )
             self.wait( 3 )
 

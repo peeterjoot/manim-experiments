@@ -6,9 +6,9 @@
 ./clean.sh
 
 ../bin/build $q $p Coordinates_010.py
-../bin/build $q $p Basis_020.py # script (only start is good now that I changed everything.)
-../bin/build $q $p GAIntro_030.py # script
-../bin/build $q $p Imaginary_040.py # script
+../bin/build $q $p Basis_020.py
+../bin/build $q $p GAIntro_030.py
+../bin/build $q $p Imaginary_040.py
 ../bin/build $q $p Exponential_050.py # script
 ../bin/build $q $p VisualizeDerivatives_060.py
 ../bin/build $q $p VisualizeDerivatives_070.py # script

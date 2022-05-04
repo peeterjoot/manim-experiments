@@ -1,0 +1,28 @@
+In 2D any bivector is proportional to e1 e2.
+
+Let's look at the properties of this important bivector, which we will designate as i.
+
+First, we compute i-squared.
+
+Written out explicitly, i^2 is e1 e2 e1 e2.
+
+Using the anticommutation property that we just found, we can flip the order of the
+first two vectors, changing the sign as we do so.
+
+We can opt to compute these products in whatever order we like, so we group the two adjacent e1 products, which is one.
+
+We are left with minus e1 squared, but e1 squared is one, so we find that the square of our unit bivector i is minus one.
+
+Now let's look at products of vectors with i.
+We need to be careful with order, since i commutes scalars and bivectors, but not with vectors.
+In this video, we will keep vectors on the left in any vector-multivector products.
+
+Expanding e_1 i, we have an e1-squared product, which is one, leaving e2.
+
+Expanding e_2 i, we can use the anticommutation property, to write i as -e2 e1.
+Grouping e2 factors, we are left with -e1.
+
+We've just seen that right multiplication of e1 with i rotates it by 90 degrees towards e2,
+and that right multiplication of e2 with i also rotates another 90 degrees.
+
+By superposition, it is generally true that right multiplication of any vector with i rotates it positively by 90 degrees.
