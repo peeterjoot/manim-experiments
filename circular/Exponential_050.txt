@@ -1,9 +1,27 @@
-A geometric algebra is a vector space with scalar, vector and product-of-vector elements, subject to an additional constraint,
-the contraction axiom:
 
-The square of a vector is the dot product of that vector with itself.
+We now know enough to express our unit radial and tangential vectors in complex exponential form.
 
-#dimensional geometric algebra can be understood completely is a particularly simple geomet
+Starting with the radial unit vector, we introduce a factor of
+ one = e1 e1 on the sine term.
 
-#by applying a complex exponentials to e1 and e2 respectively,
-#where i is ordered product of e1 e2, a bivector that squares to -1.
+We can now factor out the leading e1, leaving an e1 e2 factor for the sine.
+
+Assuming knowledge of complex algebra, we write e1 e2 as i, recovering the familar
+ cos + i sine.  The usual argument for expressing cos + i sine as e^i-theta
+ uses the Taylor series for exp, sine, and cosine, which only requires that i^2 = -1.
+ For this reason, we are free to form a bivector-valued "complex exponential".
+
+We can do the same thing for the thetacap vector, this time introducing a factor of
+ one as e2-squared.
+
+We can now factor out the leading e2, and then use the anticommutative property, to
+ find another cos + i sine.  This gives us an exponential representation for both
+ r-hat and theta-hat.
+
+We should also be able to show that thetacap = rhat i.  Let's expand that.
+ We may commute i with the complex exponential, and then expand the remaining
+ e1 i product, which is e2.  Sure enough, as expected, we find the complex exponential
+ form of theta-cap.
+
+We can think of r-hat and theta-hat as rotations of the original e1,e2 frame, as we
+ traverse a circle.

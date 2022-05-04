@@ -9,9 +9,9 @@
 ../bin/build $q $p Basis_020.py
 ../bin/build $q $p GAIntro_030.py
 ../bin/build $q $p Imaginary_040.py
-../bin/build $q $p Exponential_050.py # script
+../bin/build $q $p Exponential_050.py
 ../bin/build $q $p VisualizeDerivatives_060.py
-../bin/build $q $p VisualizeDerivatives_070.py # script
+../bin/build $q $p VisualizeDerivatives_070.py
 ../bin/build $q $p Velocity_and_acceleration_080.py # script
 ../bin/build $q $p General_090.py # script
 ../bin/build $q $p Circular_100.py # script
