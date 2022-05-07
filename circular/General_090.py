@@ -31,9 +31,12 @@ class General_090( Scene ):
         f_theta = lambda t: 0.5 * PI * ( t + t * np.sin( fr * t ) )
         f_omega = lambda t: 0.5 * PI * ( 1 + np.sin( fr * t ) + fr * t * np.cos( fr * t ) )
         f_omegap = lambda t: 0.5 * PI * ( 2 * fr * np.cos( fr * t ) - t * fr * fr * np.sin( fr * t ) )
-        f_r = lambda t: 0.5 * t + 3 + t * t/2
-        f_rp = lambda t: 0.5 + 1 * t
-        f_rpp = lambda t: 1
+        f_r = lambda t: (2.5 * t + 4 + t * t/2)/2
+        f_rp = lambda t: (2.5 + 1 * t)/2
+        f_rpp = lambda t: 1/2
+        #f_r = lambda t: 2.0 * (2 + ((t-1)**2) * np.cos(8 * t)  ) - 2
+        #f_rp = lambda t: 2.0 * (2 * (t-1) * np.cos(8 * t) - 8 * ((t-1)**2) * np.sin( 8 * t ) )
+        #f_rpp = lambda t: 2.0 * (2 * np.cos(8 * t) - 16 * (t-1) * np.sin( 8 * t ) - 16 * (t-1) * np.sin( 8 * t ) - 64 * ((t-1)**2) * np.cos( 8 * t ) )
 
         t_parameter = ValueTracker(0)
 
@@ -41,7 +44,6 @@ class General_090( Scene ):
             r = f_r( t )
             th = f_theta( t )
             rh = h_r( th )
-            #print( r * rh )
             p = r * rh
             return p
 
@@ -93,19 +95,59 @@ class General_090( Scene ):
             dir = x[1]/np.linalg.norm( x[1] )
             mob.move_to( x[0] + x[1] + 0.2 * dir )
 
+        s2 = 0.75
+        def ur1( mob ):
+            t = t_parameter.get_value()
+            th = f_theta( t )
+            s = origin + s2 * h_r( th )
+            e = origin + 2 * s2 * h_r( th )
+            mob.put_start_and_end_on( s, e )
+
+        def ut1( mob ):
+            t = t_parameter.get_value()
+            th = f_theta( t )
+            s = origin + s2 * h_r( th )
+            e = s + s2 * h_th( th )
+            mob.put_start_and_end_on( s, e )
+
+        uhr = lambda mob: mob.move_to( origin + 2.2 * s2 * h_r( f_theta( t_parameter.get_value() ) ) )
+
+        def uht( mob ):
+            th = f_theta( t_parameter.get_value() )
+            e = origin + s2 * h_r( th ) + 1.2 * s2 * h_th( th )
+            mob.move_to( e )
+
         v1_i = velocity( 0 )
         a1_i = acceleration( 0 )
         d1 = Dot( v1_i[0], color = GREEN ).add_updater(ud).update()
         v1 = Arrow( start = v1_i[0], end = v1_i[0] + v1_i[1], color = RED, buff = 0 ).add_updater(uv).update()
         a1 = Arrow( start = a1_i[0], end = a1_i[0] + a1_i[1], color = BLUE, buff = 0 ).add_updater(ua).update()
+        r1 = Arrow( start = origin + h_r( f_theta( 0 ) ), end = origin + 2 * h_r( f_theta( 0 ) ), color = RED, buff = 0 ).add_updater(ur1).update()
+        t1 = Arrow( start = origin + h_r( f_theta( 0 ) ), end = origin + h_th( f_theta( 0 ) ), color = RED, buff = 0 ).add_updater(ut1).update()
         vtex = AcolorsMathTex( vec_v ).add_updater(uvt).update()
         atex = AcolorsMathTex( vec_a ).add_updater(uat).update()
+        rtex = AcolorsMathTex( hat_r ).add_updater(uhr).update()
+        thtex = AcolorsMathTex( hat_theta ).add_updater(uht).update()
 
         g1 = ParametricFunction( lambda t: origin + position( t ),
                                  t_range=[0, 1],
                                  scaling=axes.x_axis.scaling, color=YELLOW )
-        #self.play( AnimationGroup( Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ), Write( d1 ) ) )
-        self.play( AnimationGroup( Write( axes ), Write( g1 ), Write( v1 ), Write( a1 ), Write( vtex ), Write( atex ), Write( d1 ) ) )
+
+        g2 = ParametricFunction( lambda t: origin + s2 * h_r( f_theta( t ) ),
+                                 t_range=[0, 1],
+                                 scaling=axes.x_axis.scaling, color=YELLOW )
+        self.play( AnimationGroup( Write( axes ),
+                                   Write( g1 ),
+                                   Write( v1 ),
+                                   Write( a1 ),
+                                   Write( vtex ),
+                                   Write( atex ),
+                                   Write( g2 ),
+                                   Write( r1 ),
+                                   Write( t1 ),
+                                   Write( rtex ),
+                                   Write( thtex ),
+                                   Write( d1 ) ) )
         self.wait( 4 )
 
         self.play( UpdateFromAlphaFunc( t_parameter,
