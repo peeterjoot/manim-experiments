@@ -43,16 +43,16 @@ class GAIntro_030( Scene ):
 
         eq1 = MathTex( concat( l.sq( vec_e1 ), ' = 1' ) )
         eq1.move_to( eq, DOWN )
-        eq1.shift( DOWN )
+        eq1.shift( DOWN + 1.0 * LEFT )
         eq1.set_color( GREEN )
 
         eq2 = MathTex( concat( l.sq( vec_e2 ), ' = 1' ) )
-        eq2.move_to( eq1, DOWN )
-        eq2.shift( DOWN )
+        eq2.move_to( eq1, RIGHT )
+        eq2.shift( 2.0 * RIGHT )
         eq2.set_color( RED )
 
         eq3 = MathTex( concat( l.sq( l.lr( l.add( vec_e1, vec_e2 ) ) ), ' = 2' ) )
-        eq3.move_to( eq2, DOWN )
+        eq3.move_to( eq1, DOWN )
         eq3.shift( DOWN )
         eq3.set_color( BLUE )
 
@@ -79,11 +79,19 @@ class GAIntro_030( Scene ):
             write_aligned( self, eq3b[i], eq3b[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
             self.wait( 3 )
 
-        eq3c = MathTex( concat( vec_e2, vec_e1, ' = - ', vec_e1, vec_e2 ) )
-        eq3c.move_to( eq2, DOWN )
-        eq3c.shift( DOWN )
-        eq3c.set_color( BLUE )
-        self.play( Transform( VGroup(*eq3b), eq3c ) )
+        eq4 = MathTex( concat( '0 = ', vec_e1, vec_e2, '+', vec_e2, vec_e1 ) )
+        eq4.set_color( BLUE )
+        write_aligned( self, eq3b[3], eq4, 0.75 * DOWN + 0.0 * LEFT, None )
+        self.wait( 4 )
+
+        self.play( FadeOut( VGroup(*eq3b) ) )
+        self.wait( 4 )
+
+        eq5 = MathTex( concat( vec_e2, vec_e1, ' = - ', vec_e1, vec_e2 ) )
+        eq5.move_to( eq1, DOWN )
+        eq5.shift( DOWN + RIGHT )
+        eq5.set_color( BLUE )
+        self.play( TransformMatchingTex( eq4, eq5 ) )
         self.wait( 4 )
 
         fadeall( self )
