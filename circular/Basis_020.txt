@@ -1,10 +1,9 @@
 In a circular coordinate system, a basis vector is defined at each point along a circular arc.
-
 These basis vectors are rotations of the standard basis vectors.
 
 The unit radial vector r-hat is a rotation of the e_1 basis vector.
 
-Similarly, the theta-hat vector is the rotation of the e_2 basis vector.
+The theta-hat vector is the rotation of the e_2 basis vector.
 
 Let's zoom in on these vectors so that we can describe them algebraically.
 
@@ -13,5 +12,5 @@ With the radial unit vector (r-hat) at an angle theta from the horizontal, then 
 Similarily, the tangential unit vector (theta-hat) is at an angle theta from the vertical, so it equals -e_1 sin theta + e_2 cos theta.
 
 We could work with this trigonometric form for the circular unit vectors, but will opt instead to describe these
-rotated frame using geometric algebra.
+rotated frame vectors using geometric algebra.
 

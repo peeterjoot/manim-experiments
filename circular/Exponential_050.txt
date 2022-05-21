@@ -1,5 +1,5 @@
 
-We now know enough to express our unit radial and tangential vectors in complex exponential form.
+We can now express the unit radial and tangential vectors in complex exponential form.
 
 Starting with the radial unit vector, we introduce a factor of
  one = e1 e1 on the sine term.

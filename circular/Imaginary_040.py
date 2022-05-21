@@ -18,7 +18,8 @@ class Imaginary_040( Scene ):
         self.wait( 5 )
         for i in range(2):
             write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-            self.wait( 3 )
+            self.wait( 7 )
+        self.wait( 5 )
 
         eq2 = [ MathTex( concat( vec_e1, 'i = ', vec_e1, l.lr( vec_e1, vec_e2 ) ) ),
                 MathTex( concat(           '= ', l.lr( vec_e1, vec_e1 ), vec_e2 ) ),
@@ -49,7 +50,8 @@ class Imaginary_040( Scene ):
         self.wait( 3 )
         for i in range(4):
             write_aligned( self, eq4[i], eq4[i+1], 0.75 * DOWN + 0.0 * LEFT, m = None )
-            self.wait( 3 )
+            self.wait( 7 )
+        self.wait( 5 )
 
         eq4a = MathTex( 'i^2 = -1' )
         align_it( self, eq[2], eq4a, 0.75 * DOWN + 0.0 * LEFT, m = None, what = '=' )

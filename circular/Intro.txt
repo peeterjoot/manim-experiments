@@ -1,0 +1,5 @@
+In this video we will discuss circular coordinates and their associated unit vectors, 
+ and velocity and accelleration in circular coordinates.  
+ 
+ We will use geometric algebra for some of this discussion.
+

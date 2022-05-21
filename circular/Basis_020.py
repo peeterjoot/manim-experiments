@@ -75,7 +75,7 @@ class Basis_020( Scene ):
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
         self.play( FadeIn( VGroup( axes, g1, line ) ) )
-        self.wait( 4 )
+        self.wait( 10 )
 
         self.play( AnimationGroup( Write( e1 ), Write( rtex ) ) )
         self.wait( 4 )
@@ -168,7 +168,7 @@ class Basis_020( Scene ):
         self.wait( 4 )
         Thattex.set_color( BLUE )
         self.play( Write( Thattex ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         fadeall( self )
 

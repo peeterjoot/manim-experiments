@@ -101,16 +101,18 @@ class Exponential_050( Scene ):
         def ur(mob):
             t = t_parameter.get_value()
             th = f_th(t)
-            p = origin + radius * h_r(th)
-            d = 1.65 * (p - origin)/radius
+            rc = h_r(th)
+            p = origin + radius * rc
+            d = 1.85 * rc - 0.75 * h_th(th)
             mob.move_to( p + d )
 
         def ut(mob):
             t = t_parameter.get_value()
             th = f_th(t)
-            p = origin + radius * h_r(th)
-            d2 = h_th(th)
-            d1 = 0.65 * (p - origin)/radius
+            rc = h_r(th)
+            p = origin + radius * rc
+            d1 = 1.25 * rc
+            d2 = 0.7 * h_th(th)
             mob.move_to( p + d1 + d2 )
 
         def ul(mob):
@@ -131,8 +133,8 @@ class Exponential_050( Scene ):
         v1 = Arrow( start = x1, end = x1 + e1dir, color = GREEN, buff = 0 ).add_updater(u1).update()
         v2 = Arrow( start = x1, end = x1 + e2dir, color = GREEN, buff = 0 ).add_updater(u2).update()
         line = Line( start = origin, end = x1, color = RED, buff = 0 ).add_updater(ul).update()
-        rtex = AcolorsMathTex( concat( vec_e1, r'e^{i\theta}' ) ).add_updater(ur).update()
-        ttex = AcolorsMathTex( concat( vec_e2, r'e^{i\theta}' ) ).add_updater(ut).update()
+        rtex = AcolorsMathTex( concat( hat_r, '=', vec_e1, r'e^{i\theta}' ) ).add_updater(ur).update()
+        ttex = AcolorsMathTex( concat( hat_theta, '=', vec_e2, r'e^{i\theta}' ) ).add_updater(ut).update()
         e1tex = AcolorsMathTex( vec_e1 )
         e2tex = AcolorsMathTex( vec_e2 )
         thtex = AcolorsMathTex( r'\theta' ).add_updater(uth).update()

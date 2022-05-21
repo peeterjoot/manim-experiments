@@ -1,17 +1,25 @@
-In 2D any bivector is proportional to e1 e2.
+Here's a summary of the unit vector properties that we've found for a two dimensional geometric algebra.
 
-Let's look at the properties of this important bivector, which we will designate as i.
+- Both unit vectors square to one: e1^2 = e2^2 = 1
+- The product of perpendicular unit vectors is anticommutative.
 
-First, we compute i-squared.
+Any 2 dimensional bivector is proportional to e1 e2.  We use this bivector as the
+basis bivector for a two dimensional geometric algebra,
 
-Written out explicitly, i^2 is e1 e2 e1 e2.
+and designate it as i, like the imaginary i of complex numbers, since it happens to also
+square to minus one.
 
-Using the anticommutation property that we just found, we can flip the order of the
-first two vectors, changing the sign as we do so.
+To show this, we write out the square
 
-We can opt to compute these products in whatever order we like, so we group the two adjacent e1 products, which is one.
+i^2 = e1 e2 e1 e2.
 
-We are left with minus e1 squared, but e1 squared is one, so we find that the square of our unit bivector i is minus one.
+Using the anticommutation property that we just found, we can flip the order 
+any vectors, such as the first, provided we changing the sign as we do so.
+
+Group the two adjacent e1 products, eliminates them, since e1^2 equals one.
+
+We are left with minus e2 squared, but e2 squared is one.
+  We find, perhaps without suprise, that the square of our unit bivector i is minus one.
 
 Now let's look at products of vectors with i.
 We need to be careful with order, since i commutes scalars and bivectors, but not with vectors.
@@ -25,4 +33,4 @@ Grouping e2 factors, we are left with -e1.
 We've just seen that right multiplication of e1 with i rotates it by 90 degrees towards e2,
 and that right multiplication of e2 with i also rotates another 90 degrees.
 
-By superposition, it is generally true that right multiplication of any vector with i rotates it positively by 90 degrees.
+We can conclude, by superposition, that right multiplication of any vector with i rotates positively by 90 degrees in the plane.
