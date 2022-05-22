@@ -7,31 +7,30 @@ class GAIntro_030( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        self.wait( 5 )
+        self.wait( 9 )
 
-        eq0 = MathTex( 'M = ',
-                       r'(a)\, 1',
-                       concat( r'+ (b)\, ', vec_e1 ),
-                       concat( r'+ (c)\, ', vec_e2 ),
-                       concat( r'+ (d)\, ', vec_e1, vec_e2 ) )
-        delays = [ 0,
-                   0.25,
-                   0,
-                   0.5,
-                   0 ]
-        i = 0
-        for e in eq0:
-            self.play( Write( e ) )
-            self.wait( delays[i] )
-            i = i + 1
-        self.wait( 5 )
-        self.play( FadeOut( eq0 ) )
-
+        #eq0 = MathTex( 'M = ',
+        #               r'(a)\, 1',
+        #               concat( r'+ (b)\, ', vec_e1 ),
+        #               concat( r'+ (c)\, ', vec_e2 ),
+        #               concat( r'+ (d)\, ', vec_e1, vec_e2 ) )
+        #delays = [ 0,
+        #           0.25,
+        #           0,
+        #           0.5,
+        #           0 ]
+        #i = 0
+        #for e in eq0:
+        #    self.play( Write( e ) )
+        #    self.wait( delays[i] )
+        #    i = i + 1
+        #self.wait( 9 )
+        #self.play( FadeOut( eq0 ) )
         eq = AcolorsMathTex( concat( l.sq(vec_x), ' = ', l.dot( vec_x, vec_x ) ) )
         eq.shift( 2 * RIGHT )
 
         self.play( Write( eq ) )
-        self.wait( 5 )
+        self.wait( 9 )
 
         origin = 6 * LEFT + 2 * DOWN
         s = 3
@@ -54,10 +53,10 @@ class GAIntro_030( Scene ):
                                    Write( e2 ), Write( e2tex ),
                                    Write( e1e2 ), Write( e1e2tex )
                                    ) )
-        self.wait( 5 )
+        self.wait( 9 )
 
         self.play( eq.animate.shift(2 * UP), run_time=1, rate_func=linear )
-        self.wait( 5 )
+        self.wait( 9 )
 
         eq1 = MathTex( concat( l.sq( vec_e1 ), ' = 1' ) )
         eq1.move_to( eq, DOWN )
@@ -75,11 +74,11 @@ class GAIntro_030( Scene ):
         eq3.set_color( BLUE )
 
         self.play( Write( eq1 ) )
-        self.wait( 3 )
+        self.wait( 9 )
         self.play( Write( eq2 ) )
-        self.wait( 3 )
+        self.wait( 9 )
         self.play( Write( eq3 ) )
-        self.wait( 3 )
+        self.wait( 9 )
 
         eq3b = [ MathTex( concat( '2 = ', l.sq( l.lr( l.add( vec_e1, vec_e2 ) ) ) ) ),
                  MathTex( concat( '= ', l.lr( l.add( vec_e1, vec_e2 ) ), l.lr( l.add( vec_e1, vec_e2 ) ) ) ),
@@ -95,22 +94,22 @@ class GAIntro_030( Scene ):
         for i in range(3):
             eq3b[i+1].set_color( BLUE )
             write_aligned( self, eq3b[i], eq3b[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-            self.wait( 3 )
+            self.wait( 9 )
 
         eq4 = MathTex( concat( '0 = ', vec_e1, vec_e2, '+', vec_e2, vec_e1 ) )
         eq4.set_color( BLUE )
         write_aligned( self, eq3b[3], eq4, 0.75 * DOWN + 0.0 * LEFT, None )
-        self.wait( 4 )
+        self.wait( 9 )
 
         self.play( FadeOut( VGroup(*eq3b) ) )
-        self.wait( 4 )
+        self.wait( 9 )
 
         eq5 = MathTex( concat( vec_e2, vec_e1, ' = - ', vec_e1, vec_e2 ) )
         eq5.move_to( eq1, DOWN )
         eq5.shift( DOWN + RIGHT )
         eq5.set_color( BLUE )
         self.play( TransformMatchingTex( eq4, eq5 ) )
-        self.wait( 4 )
+        self.wait( 9 )
 
         fadeall( self )
 

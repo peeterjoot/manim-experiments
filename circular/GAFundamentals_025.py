@@ -1,6 +1,6 @@
 from helper import *
 
-class GAIntro_030( Scene ):
+class GAFundamentals_025( Scene ):
     def construct( self ):
 
         title = Text( 'Geometric algebra.' )
@@ -16,15 +16,15 @@ class GAIntro_030( Scene ):
 
         eq.shift( 2 * UP )
         self.play( Write( eq ) )
-        self.wait( 4 )
+        self.wait( 10 )
         eq1.move_to( eq )
         eq1.shift( scale * DOWN )
         self.play( Write( eq1 ) )
-        self.wait( 4 )
+        self.wait( 10 )
         eq2.move_to( eq1 )
         eq2.shift( scale * DOWN )
         self.play( Write( eq2 ) )
-        self.wait( 4 )
+        self.wait( 10 )
 
         table = MathTable( [ [r'\text{Associativity of addition}',	       r'R + (S + T) = (R + S) + T'],
                              [r'\text{Commutativity of addition}',	       r'R + S = S + R'],
@@ -34,7 +34,7 @@ class GAIntro_030( Scene ):
         table.move_to( eq2 )
         table.shift( 2.25 * DOWN )
         self.play( Write( table ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         fadeall( self )
 
