@@ -1,16 +1,7 @@
-A geometric algebra is a vector space where the elements are sums of scalars, vectors, and products of vectors.
-Such a sum is called a multivector.
-These elements are subject to a rule, called the contraction axiom, that states:
+The simplest geometric algebra, is that of the Euclidean plane, with unit vectors
+ e1, e2, both perpendicular.
 
-   The square of a vector, is the dot product of that vector with itself.
-
-In words, this says that the square of a vector is the squared length of a vector.
-
-
-Let's apply the contraction axiom to each of the vectors in the following right triangle.
-
-We have unit vectors on the horizontal and vertical sides of the triangle, so we can
- immediately state that
+The contraction axiom implies that
 
  e1^2 = 1
 
@@ -18,17 +9,13 @@ and
 
  e2^2 = 1
 
-The squared length of the diagonal vector, e1 + e2, is 2.  Let's flip this around and
-expand this square, taking care to maintain product order.
+Let's apply the contraction axiom to the diagonal of the right triangle with sides e1,e2.
+
+The squared length of the diagonal vector, e1 + e2, is 2, so
+2 = (e1 +e2)^2
+Let's expand this square, taking care to maintain product order.
 
 We have the sum of squares of two unit vectors, which is 2.  We find immediately that the contraction axiom implies that the product of perpendicular unit vectors anticommutes.  
 A product of two perpendicular vectors is called a bivector.
 
-In a few seconds, we've extracted the most fundamental relationships for a two dimensional geometrical algebra, namely:
-
-   e1^2 = e2^2 = 1
-
-and
-
-   e2 e1 = - e1 e2
-
+#All bivectors in a 2D geometric algebra are proportional to e1 e2, which we designate as i.
