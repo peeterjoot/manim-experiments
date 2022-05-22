@@ -3,11 +3,29 @@ from helper import *
 class GAIntro_030( Scene ):
     def construct( self ):
 
-        title = Text( '2D Geometric algebra: fundamentals.' )
+        title = Text( '2D Geometric algebra.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
         self.wait( 5 )
+
+        eq0 = MathTex( 'M = ',
+                       r'(a)\, 1',
+                       concat( r'+ (b)\, ', vec_e1 ),
+                       concat( r'+ (c)\, ', vec_e2 ),
+                       concat( r'+ (d)\, ', vec_e1, vec_e2 ) )
+        delays = [ 0,
+                   0.25,
+                   0,
+                   0.5,
+                   0 ]
+        i = 0
+        for e in eq0:
+            self.play( Write( e ) )
+            self.wait( delays[i] )
+            i = i + 1
+        self.wait( 5 )
+        self.play( FadeOut( eq0 ) )
 
         eq = AcolorsMathTex( concat( l.sq(vec_x), ' = ', l.dot( vec_x, vec_x ) ) )
         eq.shift( 2 * RIGHT )

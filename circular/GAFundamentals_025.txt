@@ -1,0 +1,15 @@
+A geometric algebra is said to be generated from a vector space that has an associated dot product (i.e.: a dot product space.)
+
+Given a dot product space V spanned by N elements x_i,
+
+ the geometric algebra G(V) for that space is a vector space where the elements, called multivectors,
+ are linear combinations of all the possible scalars, vectors, and products of vectors.
+
+A geometric algebra has an associative and commutative addition operation,
+
+ and has an associative and distributive, but not neccessarily commutative, multiplication operation.
+
+The square of any vector products found within a given multivector,
+ are subject to the contraction axiom:
+
+   the square of any vector is the dot product of that vector with itself (i.e.: the squared length of that vector)
