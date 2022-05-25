@@ -1,5 +1,4 @@
-The simplest geometric algebra, is that of the Euclidean plane, with unit vectors
- e1, e2, both perpendicular.
+The simplest geometric algebra, is that of the Euclidean plane, characterized by a pair of orthonormal unit vectors e1, e2.
 
 The contraction axiom implies that
 

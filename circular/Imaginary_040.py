@@ -98,34 +98,33 @@ class Imaginary_040( Scene ):
         e1Tex.set_color( GREEN )
         e1Tex.move_to( origin + (s + 0.3) * h_r( 0 ) + 0.3 * UP )
         e2 = Arrow( start = origin, end = origin + s * h_r( PI/2 ), color = RED, buff = 0 )
-        e2Tex = MathTex( concat( vec_e1, 'i' ) )
-        e2Tex.set_color( RED )
+        e1iTex = MathTex( concat( vec_e1, 'i' ) )
+        e1iTex.set_color( GREEN )
+        e1iTex.move_to( origin + (s + 0.3) * h_r( PI/2 ) + 0.3 * RIGHT )
+
+        self.play( AnimationGroup( Write( e1 ), Write( e1Tex ) ) )
+        self.wait( 4 )
+        self.play( AnimationGroup( FadeOut( e1Tex ),
+                                   Rotate( e1, PI/2, run_time=1, about_point = origin ),
+                                   FadeIn( e1iTex ) ) )
+        self.wait( 4 )
+
+        e2Tex = MathTex( vec_e2 )
+        e2Tex.set_color( GREEN )
         e2Tex.move_to( origin + (s + 0.3) * h_r( PI/2 ) + 0.3 * RIGHT )
 
-        self.play( AnimationGroup( Write( e1 ), Write( e1Tex ) ) )
-        self.wait( 4 )
-        self.play( AnimationGroup( Write( e2 ), Write( e2Tex ) ) )
-        self.wait( 4 )
-        self.play( FadeOut( VGroup( e1, e2, e1Tex, e2Tex ) ) )
-        self.wait( 4 )
+        #self.play( Transform( e1iTex, e2Tex ) )
+        #self.wait( 4 )
+        e2iTex = MathTex( concat( vec_e2, 'i' ) )
+        e2iTex.set_color( GREEN )
+        e2iTex.move_to( origin + (s + 0.3) * h_r( PI ) + 0.3 * UP )
 
-
-        e1 = Arrow( start = origin, end = origin + s * h_r( PI/2 ), color = GREEN, buff = 0 )
-        e1Tex = MathTex( vec_e2 )
-        e1Tex.set_color( GREEN )
-        e1Tex.move_to( origin + (s + 0.3) * h_r( PI/2 ) + 0.3 * RIGHT )
-        e2 = Arrow( start = origin, end = origin + s * h_r( PI ), color = RED, buff = 0 )
-        e2Tex = MathTex( concat( vec_e2, 'i' ) )
-        e2Tex.set_color( RED )
-        e2Tex.move_to( origin + (s + 0.3) * h_r( PI ) + 0.3 * UP )
-
-        self.play( AnimationGroup( Write( e1 ), Write( e1Tex ) ) )
+        self.play( AnimationGroup( FadeOut( e1iTex ),
+                                   Rotate( e1, PI/2, run_time=1, about_point = origin ),
+                                   FadeIn( e2iTex ) ) )
         self.wait( 4 )
-        self.play( AnimationGroup( Write( e2 ), Write( e2Tex ) ) )
+        self.play( FadeOut( VGroup( e1, e2iTex ) ) )
         self.wait( 4 )
-        self.play( FadeOut( VGroup( e1, e2, e1Tex, e2Tex ) ) )
-        self.wait( 4 )
-
 
 
         th1 = PI/6
@@ -135,14 +134,17 @@ class Imaginary_040( Scene ):
         v1Tex = MathTex( vec_x )
         v1Tex.set_color( GREEN )
         v1Tex.move_to( origin + (radius + 0.3) * h_r( th1 ) )
-        v2 = Arrow( start = origin, end = origin + radius * h_r( th2 ), color = RED, buff = 0 )
+        #v2 = Arrow( start = origin, end = origin + radius * h_r( th2 ), color = RED, buff = 0 )
         v2Tex = MathTex( concat( vec_x, 'i' ) )
-        v2Tex.set_color( RED )
+        v2Tex.set_color( GREEN )
         v2Tex.move_to( origin + (radius + 0.3) * h_r( th2 ) )
 
         self.play( AnimationGroup( Write( v1 ), Write( v1Tex ) ) )
         self.wait( 4 )
-        self.play( AnimationGroup( Write( v2 ), Write( v2Tex ) ) )
+        self.play( AnimationGroup( FadeOut( v1Tex ),
+                                   Rotate( v1, PI/2, run_time=1, about_point = origin ),
+                                   FadeIn( v2Tex ) ) )
+        #self.play( AnimationGroup( Write( v2 ), Write( v2Tex ) ) )
         self.wait( 4 )
 
         fadeall( self )

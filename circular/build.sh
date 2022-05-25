@@ -8,9 +8,11 @@ p='-p'
 concat=concat.low.in
 fi
 
-#./clean.sh
-../bin/build $q $p GAIntro_030.py 
-#../bin/build $q $p GAFundamentals_025.py 
+./clean.sh
+#../bin/build $q $p GAIntro_030.py
+#../bin/build $q $p GAFundamentals_025.py
+#../bin/build $q $p Imaginary_040.py
+../bin/build $q $p VisualizeDerivatives_060.py
 
 #../bin/build $q $p Coordinates_010.py && \
 #../bin/build $q $p Basis_020.py && \
