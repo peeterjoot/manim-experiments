@@ -9,7 +9,8 @@ class Velocity_and_acceleration_080( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = [ AcolorsMathTex( concat( vec_v, " = ", r_prime, hat_r, ' + r ', rhat_prime ) ),
+        eq = [ AcolorsMathTex( concat( vec_v, " = ", l.lr( 'r', hat_r ), "'" ) ),
+               AcolorsMathTex( concat(        " = ", r_prime, hat_r, ' + r ', rhat_prime ) ),
                AcolorsMathTex( concat(        " = ", r_prime, hat_r, r' + r \omega', hat_theta ) ) ]
 
         eq2 = [ AcolorsMathTex( concat( vec_a, " = ", prime( l.lr( r_prime, hat_r, ' + r ', rhat_prime ) ) ) ),
@@ -26,6 +27,9 @@ class Velocity_and_acceleration_080( Scene ):
         self.wait( 5 )
 
         i = 0
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN, None )
+        self.wait( 5 )
+        i = 1
         write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN, None )
         self.wait( 5 )
 

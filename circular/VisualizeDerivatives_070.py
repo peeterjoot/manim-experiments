@@ -6,7 +6,7 @@ class VisualizeDerivatives_070( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        #self.wait( 5 )
+        #self.wait( 8 )
 
         radius = 4
         axes = Axes( x_range = [0, 1, 1], y_range = [0, 1, 1], x_length = radius, y_length = radius,
@@ -41,14 +41,14 @@ class VisualizeDerivatives_070( Scene ):
                                  scaling=axes.x_axis.scaling, color=YELLOW )
 
         self.play( AnimationGroup( Write( axes ), Write( g1 ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
         self.play( AnimationGroup( Write( e1 ), Write( ttex ), Write( line ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
         self.play( AnimationGroup( Write( e1p ), Write( ttexp ), Write( linep ), Write( dtex ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         self.play( FadeOut( axes, g1, line, linep, dtex ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         all2 = VGroup( e1, e1p, ttex, ttexp )
         origin2 = origin + 2 * RIGHT + 0.5 * DOWN
@@ -71,10 +71,11 @@ class VisualizeDerivatives_070( Scene ):
         #all3 = VGroup( r1, r1p )
         all3 = VGroup( r1, r1p, sttex, sttexp )
         self.play( Transform( all2, all3 ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         tangent = VGroup( t1, t1tex )
         self.play( AnimationGroup( Write( t1 ), Write( t1tex ) ) )
+        self.wait( 8 )
 
         tprime = prime(r'\theta')
 
@@ -85,17 +86,17 @@ class VisualizeDerivatives_070( Scene ):
 
         eq2[0].shift( 1.5 * UP + 2 * RIGHT )
         self.play( Write( eq2[0] ) )
-        self.wait( 5 )
+        self.wait( 8 )
 
         i = 0
         write_aligned( self, eq2[i], eq2[i+1], 1.15 * DOWN + 0.30 * RIGHT, None )
-        self.wait( 5 )
+        self.wait( 8 )
         i = 1
         write_aligned( self, eq2[i], eq2[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-        self.wait( 5 )
+        self.wait( 8 )
         i = 2
         write_aligned( self, eq2[i], eq2[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-        self.wait( 5 )
+        self.wait( 8 )
 
         fadeall( self )
 

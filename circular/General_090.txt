@@ -1,2 +1,10 @@
-In general, both the velocity and acceleration associated with an arbitrary time parameterized
-path, have both radial and tangential components.
+Let's look at an example of a vector traceing out all the positions along a continuous curve.
+
+rhat neccessarily points towards the point on the path, and
+the velocity is always tangent to the curve, but may have both rhat and thetahat components at all points
+along the path.
+
+In general, for an arbitrary parameterized path,
+both the velocity and acceleration vectors have radial and tangential components, with just the right combination of those
+rhat and thetahat components so that the velocity lies always tangent to the curve.
+

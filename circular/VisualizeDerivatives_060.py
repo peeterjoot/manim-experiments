@@ -6,7 +6,7 @@ class VisualizeDerivatives_060( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        #self.wait( 5 )
+        #self.wait( 8 )
 
         radius = 4
         axes = Axes( x_range = [0, 1, 1], y_range = [0, 1, 1], x_length = radius, y_length = radius,
@@ -40,14 +40,14 @@ class VisualizeDerivatives_060( Scene ):
 
         #all1 = VGroup( axes, g1, e1, e1p, rtex, rtexp, line, linep )
         self.play( AnimationGroup( Write( axes ), Write( g1 ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
         self.play( AnimationGroup( Write( e1 ), Write( rtex ), Write( line ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
         self.play( AnimationGroup( Write( e1p ), Write( rtexp ), Write( linep ), Write( dtex ) ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         self.play( FadeOut( axes, g1, line, linep, dtex ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         all2 = VGroup( e1, e1p, rtex, rtexp )
         origin2 = 6 * LEFT + 0.75 * UP
@@ -69,7 +69,7 @@ class VisualizeDerivatives_060( Scene ):
 
         all3 = VGroup( r1, r1p, srtex, srtexp )
         self.play( Transform( all2, all3 ) )
-        self.wait( 4 )
+        self.wait( 8 )
 
         tangent = VGroup( t1, t1tex )
         self.play( AnimationGroup( Write( t1 ), Write( t1tex ) ) )
@@ -90,17 +90,17 @@ class VisualizeDerivatives_060( Scene ):
 
         eq[0].shift( 0.00 * UP + 0.00 * LEFT )
         self.play( Write( eq[0] ) )
-        self.wait( 5 )
+        self.wait( 8 )
 
         i = 0
         write_aligned( self, eq[i], eq[i+1], 1.15 * DOWN + 0.30 * RIGHT, None )
-        self.wait( 5 )
+        self.wait( 8 )
         i = 1
         write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-        self.wait( 5 )
+        self.wait( 8 )
         i = 2
         write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
-        self.wait( 5 )
+        self.wait( 8 )
 
         fadeall( self )
 
