@@ -48,7 +48,7 @@ class m020_Multivector ( Scene ):
         eq3 = AcolorsMathTex( concat( r'\textrm{Let}\quad M_r = ', l.gpgrade('M', n = 'r'), r',\quad N_s = ', l.gpgrade('N', n = 's') ) )
         self.play( Write( eq3 ) )
         self.wait( 5 )
-    
+
         eq4 = [ AcolorsMathTex( concat( r'M_r \cdot N_s \equiv', l.gpgrade( 'M_r N_s', n = r'\lvert {r - s} \rvert' ) ) ),
                 AcolorsMathTex( concat( r'M_r \wedge N_s \equiv', l.gpgrade( 'M_r N_s', n = 'r + s' ) ) ) ]
 
@@ -62,13 +62,29 @@ class m020_Multivector ( Scene ):
         eq4p1 = eq4[1].copy().shift( 3.0 * RIGHT + 2.5 * UP )
         self.play( FadeOut( eq3 ) )
         self.play( ReplacementTransform( VGroup(*eq4), VGroup(eq4p0, eq4p1) ) )
-        eqpp = AcolorsMathTex( concat( r'M = \sum_k ', l.gpgrade('M', n = 'k'), r' = \sum_k M_k', 
+        eqpp = AcolorsMathTex( concat( r'M = \sum_k ', l.gpgrade('M', n = 'k'), r' = \sum_k M_k',
                                        r',\quad N = \sum_k ', l.gpgrade('N', n = 'k'), r' = \sum_k N_k' ) )
         eqpp.move_to( eqp[0] ).shift( 0.0 * LEFT + 0.5 * DOWN )
         self.play( ReplacementTransform( VGroup(*eqp), eqpp ) )
         self.wait( 5 )
 
-        #eq5 = [ AcolorsMathTex( concat( l.gpgradezero( 'M N' ), ' = ', 
+        eq5 = [ AcolorsMathTex( concat( l.gpgradezero( 'M N' ), ' = ', l.gpgradezero('M'), l.gpgradezero('N'),
+                                                                 '+', l.dot( l.gpgradeone('M'), l.gpgradeone('N') ),
+                                                                 '+', l.dot( l.gpgradetwo('M'), l.gpgradetwo('N') ) ) ),
+                AcolorsMathTex( concat( l.gpgradeone( 'M N' ), ' = ', l.gpgradezero('M'), l.gpgradeone('N'),
+                                                                 '+', l.gpgradezero('N'), l.gpgradeone('M'),
+                                                                 '+', l.dot( l.gpgradeone('M'), l.gpgradetwo('N') ),
+                                                                 '+', l.dot( l.gpgradetwo('M'), l.gpgradeone('N') ) ) ),
+                AcolorsMathTex( concat( l.gpgradetwo( 'M N' ), ' = ', l.gpgradezero('M'), l.gpgradetwo('N'),
+                                                                 '+', l.gpgradezero('N'), l.gpgradetwo('M'),
+                                                                 '+', l.wedge( l.gpgradeone('M'), l.gpgradeone('N') ) ) ) ]
+        eq5[0].shift( 0.5 * DOWN + 1.5 * LEFT )
+        self.play( Write( eq5[0] ) )
+        self.wait( 5 )
+        for i in range(2):
+            write_aligned( self, eq5[i], eq5[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
+            self.wait( 7 )
+        self.wait( 5 )
 
         fadeall( self )
 
