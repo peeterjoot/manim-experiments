@@ -1,6 +1,6 @@
 from helper import *
 
-class GAvectorProduct_035 ( Scene ):
+class m010_GAvectorProduct( Scene ):
     def construct( self ):
 
         title = Text( '2D Geometric algebra: Vector product.' )

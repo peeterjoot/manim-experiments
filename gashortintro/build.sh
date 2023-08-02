@@ -7,7 +7,7 @@ p='-p'
 fi
 
 #./clean.sh
-#../bin/build $q $p GAvectorProduct_035.py
-../bin/build $q $p Multivector_40.py
+#../bin/build $q $p m010_GAvectorProduct.py
+../bin/build $q $p m020_Multivector.py
 #../bin/build $q $p Finale_110.py && \
 #echo done

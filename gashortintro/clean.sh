@@ -1,1 +1,1 @@
-rm -rf __pycache__ media *.mp4
+../circular/clean.sh
