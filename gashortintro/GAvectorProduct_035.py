@@ -38,21 +38,25 @@ class GAvectorProduct_035 ( Scene ):
             write_aligned( self, eq3[i], eq3[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
             self.wait( 7 )
         self.wait( 5 )
-        self.play( FadeOut( VGroup( *eq3 ) ) )
+        g3 = VGroup( *eq3 )
+        self.play( FadeOut( g3 ) )
 
         for i in range(1, 2):
             write_aligned( self, eq2[i], eq2[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
             self.wait( 7 )
         self.wait( 5 )
+        eq2p = AcolorsMathTex( concat( vec_x, vec_y, ' = a c + b d', '+ (a d - b c)', vec_e1, vec_e2 ) )
+        eq2p.move_to( eq2[0] )
+        self.play( ReplacementTransform( VGroup(*eq2), eq2p ) )
 
         eq4 = [ AcolorsMathTex( concat( vec_x, vec_y, ' = ', l.gpgradezero( vec_x, vec_y ), '+', l.gpgradetwo( vec_x, vec_y ) ) ),
-                AcolorsMathTex( concat( l.gpgradezero( vec_x, vec_y ), '=', l.dot( vec_x, vec_y ) ) ),
-                AcolorsMathTex( concat( l.gpgradetwo( vec_x, vec_y ), r'\equiv', l.wedge( vec_x, vec_y ), '=', l.det22( 'a', 'b', 'c', 'd' ), vec_e1, vec_e2 ) ) ]
-        eq4[0].shift( 1.5 * DOWN )
+                AcolorsMathTex( concat( l.gpgradezero( vec_x, vec_y ), '=', l.dot( vec_x, vec_y ), ' = a c + b d' ) ),
+                AcolorsMathTex( concat( l.gpgradetwo( vec_x, vec_y ), '=', l.wedge( vec_x, vec_y ), '=', l.det22( 'a', 'b', 'c', 'd' ), vec_e1, vec_e2 ) ) ]
+        eq4[0].shift( 0.0 * UP )
         self.play( Write( eq4[0] ) )
         self.wait( 5 )
         for i in range(2):
-            write_aligned( self, eq4[i], eq4[i+1], 0.75 * DOWN + 0.0 * LEFT, None )
+            write_aligned( self, eq4[i], eq4[i+1], 1.25 * DOWN + 1.0 * LEFT, None )
             self.wait( 7 )
         self.wait( 5 )
 

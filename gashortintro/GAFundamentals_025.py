@@ -1,1 +1,0 @@
-../circular/GAFundamentals_025.py
