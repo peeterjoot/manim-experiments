@@ -1,10 +1,8 @@
-Let's look at an example of a vector traceing out all the positions along a continuous curve.
-
-rhat neccessarily points towards the point on the path, and
-the velocity is always tangent to the curve, but may have both rhat and thetahat components at all points
-along the path.
+Let's look at an example of a vector tracing out all the positions along a continuous curve.
 
 In general, for an arbitrary parameterized path,
-both the velocity and acceleration vectors have radial and tangential components, with just the right combination of those
-rhat and thetahat components so that the velocity lies always tangent to the curve.
+ both the velocity and acceleration vectors have rhat and thetahat components.
+
+For the velocity, we have just the right superposition of 
+ rhat and thetahat components for the velocity to always lie tangent to the curve.
 

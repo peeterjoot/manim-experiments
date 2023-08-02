@@ -38,7 +38,7 @@ class Finale_110( Scene ):
         t1 = Text( 'My blog: ' )
         t1.set_color( TEAL )
         t1.shift( 2.00 * UP + 4.70 * LEFT )
-        t2 = Tex("\\verb|http://peeterjoot.com/|") #.scale( 0.7 )
+        t2 = Tex("\\verb|https://peeterjoot.com/|") #.scale( 0.7 )
         t2.next_to( t1, DOWN )
         t2.shift( 4 * RIGHT )
         self.play( FadeIn( t1, t2 ) )
@@ -49,12 +49,12 @@ class Finale_110( Scene ):
         t3.shift( 0.00 * UP + 4.70 * LEFT )
         t4 = Text( 'Geometric Algebra for Electrical Engineers' ).scale( 0.8 )
         t4.next_to( t3, RIGHT )
-        t5 = Tex("\\verb|http://peeterjoot.com/gaee/|") #.scale( 0.7 )
+        t5 = Tex("\\verb|https://peeterjoot.com/gaee/|") #.scale( 0.7 )
         t5.next_to( t3, DOWN )
         t5.shift( 4 * RIGHT )
 
         self.play( FadeIn( t3, t4, t5 ) )
-        self.wait( 4 )
+        self.wait( 10 )
 
         fadeall( self )
 

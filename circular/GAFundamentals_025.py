@@ -30,7 +30,7 @@ class GAFundamentals_025( Scene ):
                              [r'\text{Commutativity of addition}',	       r'R + S = S + R'],
                              [r'\text{Multiplication is associative}',       r'R(S T) = (R S) T'],
                              [r'\text{Multiplication is distributive}',      r'T(R + S) = T R + T S'],
-                             [r'\text{Contraction axiom}',                   r'{\mathbf{x}_i}^2 = \mathbf{x}_i \cdot \mathbf{x}_i'] ], include_outer_lines = True ).scale( 0.60 )
+                             [r'\text{Contraction axiom}',                   r'{\mathbf{x}}^2 = \mathbf{x} \cdot \mathbf{x}, \forall \mathbf{x} \in V'] ], include_outer_lines = True ).scale( 0.60 )
         table.move_to( eq2 )
         table.shift( 2.25 * DOWN )
         self.play( Write( table ) )

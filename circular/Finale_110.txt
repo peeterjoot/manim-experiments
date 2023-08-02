@@ -1,8 +1,8 @@
 This video was created with Manim.
 
-Be sure to like, subscribe and click the bell, for more future content.
+For more future content, be sure to like, subscribe and click the bell.
 
-Also, check out my blog, peeterjoot.com
- for more in depth geometric algebra material,
- and a free pdf copy of book 'Geometric Algebra for Electrical Engineers',
- and for detailed notes from a selected set of physics and engineering courses.
+Check out my blog, peeterjoot.com
+ for more geometric algebra material, 
+ where you can also find a free pdf copy of my book 'Geometric Algebra for Electrical Engineers',
+ and detailed (latex-typeset) notes from a number of physics and engineering courses.
