@@ -15,12 +15,14 @@ class m30_dt( Scene ):
         self.wait( 5 )
 
         eq2 = [ MathTex( concat( l.frac( r'\partial \mathbf{x}', r'\partial \theta'), ' = r', vec_e3, r' j e^{j\theta}' ) ),
-                MathTex( concat(  ' = r', vec_e3, vec_e3, vec_e1, r" e^{i\phi} e^{j\theta}" ) ),
-                MathTex( concat(  ' = r', vec_e1, r" e^{i\phi} e^{j\theta}" ) ) ]
+                #MathTex( concat(  ' = r', vec_e3, vec_e3, vec_e1, r" e^{i\phi} e^{j\theta}" ) ),
+                #MathTex( concat(  ' = r', vec_e3, r" j e^{j\theta}" ) ),
+                MathTex( concat(  ' = r', vec_e3, r" e^{j(\theta + \pi/2)}" ) ) ]
+                #MathTex( concat(  ' = r', vec_e1, r" e^{i\phi} e^{j\theta}" ) ) 
         eq2[0].move_to( eq[0] ).shift( 0.00 * DOWN + 4.00 * RIGHT )
         self.play( Write( eq2[0] ) )
         self.wait( 5 )
-        for i in range(2):
+        for i in range(1):
             sh = 1.0 * DOWN + 0.0 * RIGHT
             if i == 0:
                 #print("sh")
@@ -29,8 +31,9 @@ class m30_dt( Scene ):
             self.wait( 3 )
         self.wait( 5 )
 
-        eq3 = [ MathTex( concat( r'\hat{\boldsymbol{\theta}} =', vec_e1, r"e^{i\phi} e^{j\theta}" ) ) ]
-        eq3[0].move_to( eq2[2] ).shift( 1.50 * DOWN + 0.35 * LEFT )
+        #eq3 = [ MathTex( concat( r'\hat{\boldsymbol{\theta}} =', vec_e1, r"e^{i\phi} e^{j\theta}" ) ) ]
+        eq3 = [ MathTex( concat( r'\hat{\boldsymbol{\theta}} =', vec_e3, r"e^{j(\theta + \pi/2)}" ) ) ]
+        eq3[0].move_to( eq2[1] ).shift( 1.50 * DOWN + 0.35 * LEFT )
         self.play( Write( eq3[0] ) )
         self.wait( 5 )
 

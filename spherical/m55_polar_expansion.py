@@ -9,13 +9,13 @@ class m55_polar_expansion( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = [ MathTex( concat( r'\hat{\boldsymbol{\theta}} =', vec_e1, r"e^{i\phi} e^{j\theta}" ) ),
-               MathTex( concat(                           ' = ', vec_e1, r"e^{i\phi}", l.lr( r'\cos\theta + j \sin\theta' ) ) ),
-               MathTex( concat(                           ' = ', vec_e1, r"e^{i\phi}", l.lr( r'\cos\theta + ', vec_e3, vec_e1, r'e^{i\phi} \sin\theta' ) ) ),
-               MathTex( concat(                           ' = ', vec_e1, l.lr( r'\cos\theta e^{i\phi} + ', vec_e3, r'e^{i\phi}', vec_e1, r'e^{i\phi} \sin\theta' ) ) ),
-               MathTex( concat(                           ' = ', vec_e1, l.lr( r'\cos\theta e^{i\phi} + ', vec_e3, vec_e1, r'e^{-i\phi} e^{i\phi} \sin\theta' ) ) ),
-               MathTex( concat(                           ' = ', vec_e1, l.lr( r'\cos\theta e^{i\phi} + ', vec_e3, vec_e1, r'\sin\theta' ) ) ),
-               MathTex( concat(                           ' = ', vec_e1, r'\cos\theta \cos\phi + ', vec_e2, r'\cos\theta \sin\phi -', vec_e3, r'\sin\theta' ) ) ]
+        eq = [ MathTex( concat( r'\hat{\boldsymbol{\theta}} =', vec_e3, r"e^{j(\theta + \pi/2)}" ) ),
+               MathTex( concat( ' = ', vec_e3, r'j e^{j\theta}' ) ),
+               MathTex( concat( ' = ', vec_e3, r'j', l.lr( r'\cos\theta + j \sin\theta' ) ) ),
+               MathTex( concat( ' = ', vec_e3, l.lr( r'j \cos\theta - \sin\theta' ) ) ),
+               MathTex( concat( ' = ', vec_e3, l.lr( vec_e3, vec_e1, r'e^{i\phi} \cos\theta - \sin\theta' ) ) ),
+               MathTex( concat( ' = ', vec_e1, r'\cos\theta', l.lr( r'\cos\phi + i \sin\phi' ), ' - ', vec_e3, r'\sin\theta' ) ),
+               MathTex( concat( ' = ', vec_e1, r'\cos\theta \cos\phi + ', vec_e2, r'\cos\theta \sin\phi -', vec_e3, r'\sin\theta' ) ) ]
 
         eq[0].shift( 2 * UP + 3 * LEFT )
         self.play( Write( eq[0] ) )
