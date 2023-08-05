@@ -17,17 +17,41 @@ class m70_summary( Scene ):
                MathTex( concat( r'\hat{\boldsymbol{\phi}} =', vec_e2, r'e^{i\phi}' ) ),
                MathTex( concat( ' = -', vec_e1, r'\sin\phi + ', vec_e2, r'\cos\phi' ) ) ]
 
-        eq[0].shift( 2 * UP + 2 * LEFT )
+        eq[0].shift( 2 * UP + 0.5 * LEFT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
 
-        for i in range(6):
-            sh = 0.75 * DOWN + 0.0 * RIGHT
-            if i == 0:
-                sh += 0.50 * RIGHT
-            write_aligned( self, eq[i], eq[i+1], sh, None )
-            self.wait( 3 )
+        eq[1].move_to( eq[0] ).shift( 1.00 * DOWN + 3.0 * LEFT )
+        self.play( Write( eq[1] ) )
         self.wait( 5 )
+    
+        i = 1
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.37 * RIGHT, None )
+        self.wait( 5 )
+
+        eq[3].move_to( eq[1] ).shift( 1.7 * DOWN + 0.57 * RIGHT )
+        self.play( Write( eq[3] ) )
+        self.wait( 5 )
+
+        i = 3
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.42 * RIGHT, None )
+        self.wait( 5 )
+
+        eq[5].move_to( eq[3] ).shift( 1.7 * DOWN + 0.65 * LEFT )
+        self.play( Write( eq[5] ) )
+        self.wait( 5 )
+
+        i = 5
+        write_aligned( self, eq[i], eq[i+1], 0.75 * DOWN + 0.48 * RIGHT, None )
+        self.wait( 5 )
+
+        #for i in range(6):
+        #    sh = 0.75 * DOWN + 0.0 * RIGHT
+        #    if i % 2 == 0:
+        #        sh += 0.50 * RIGHT
+        #    write_aligned( self, eq[i], eq[i+1], sh, None )
+        #    self.wait( 3 )
+        #self.wait( 5 )
 
         fadeall( self )
 
