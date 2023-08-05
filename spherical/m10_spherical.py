@@ -3,7 +3,7 @@ from helper import *
 class m10_spherical( Scene ):
     def construct( self ):
 
-        title = Text( 'Spherical basis with Geometric algebra.' )
+        title = Text( 'Spherical position vector.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
