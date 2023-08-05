@@ -9,6 +9,7 @@ l = latex2( )
 
 vec_e1     = concat( l.vec( 'e' ), '_1' )
 vec_e2     = concat( l.vec( 'e' ), '_2' )
+vec_e3     = concat( l.vec( 'e' ), '_3' )
 acolors    = { l.vec('x'): GREEN, l.vec('y'):RED, l.vec('a'): GREEN, l.vec('r'): GREEN , l.vec('v'): GREEN, l.hat(l.vec('r')): RED, l.hat(r'\boldsymbol{\theta}'): YELLOW }
 
 vec_x      = l.doublebr( l.vec( 'x' ) )
