@@ -1,6 +1,6 @@
 from helper import *
 
-class m20_dt( Scene ):
+class m40_dp( Scene ):
     def construct( self ):
 
         title = Text( 'Azimuthal unit vector' )
