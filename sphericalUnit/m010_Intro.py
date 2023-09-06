@@ -9,12 +9,12 @@ class m010_Intro( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = MathTex( concat( vec_x, " = r ", hat_r ) )
+        eq = MathTex( concat( vec_r, " = r ", hat_r ) )
         eq.shift( UP )
         self.play( Write( eq ) )
         self.wait( 5 )
 
-        eq2 = MathTex( concat( vec_x, " = r' ", hat_r, " + r ", rhat_prime ) )
+        eq2 = MathTex( concat( prime(vec_r), " = r' ", hat_r, " + r ", rhat_prime ) )
         eq2.move_to( eq ).shift( DOWN * 1.5 )
         self.play( Write( eq2 ) )
         self.wait( 5 )
