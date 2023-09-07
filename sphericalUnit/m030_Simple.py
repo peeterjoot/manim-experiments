@@ -9,14 +9,13 @@ class m030_Simple( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = [ MathTex( concat( rhat_prime, " = ", l.frac( 'd', 'dt' ), '(', vec_r, '/r)' ) ),
-               #MathTex( concat(             " = ", prime(vec_r), "/r  - r'", vec_r, "/r^2" ) ),
-               MathTex(                    r" = { \mathbf{r}' \over r } - { \mathbf{r} \over r^2 }" ),
-               MathTex( concat(             " = ", l.frac('1', 'r'), "(", prime(vec_r), " - r'", hat_r, " )" ) ),
-               MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \mathbf{r}' - r' )" ) ]
+        eq = [ MathTex( concat( rhat_prime,r" = { d \over dt } { \mathbf{x} \over r }" ) ),
+               MathTex(                    r" = { \mathbf{x}' \over r } - { {r' \mathbf{x}} \over r^2 }" ),
+               MathTex( concat(             " = ", l.frac('1', 'r'), "(", prime(vec_x), " - r'", hat_r, " )" ) ),
+               MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \mathbf{x}' - r' )" ) ]
 
-        eq2 = [ MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \mathbf{r}' - \hat{\mathbf{r}} \cdot \mathbf{r}' )" ),
-                MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \wedge \mathbf{r}' )" ) ]
+        eq2 = [ MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \mathbf{x}' - \hat{\mathbf{r}} \cdot \mathbf{x}' )" ),
+                MathTex( r" = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \wedge \mathbf{x}' )" ) ]
         eq[0].shift( 2 * UP + 3 * LEFT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
@@ -43,7 +42,7 @@ class m030_Simple( Scene ):
             write_aligned( self, eq2[i], eq2[i+1], sh, None )
             self.wait( 5 )
 
-        eq3 = MathTex( r"\hat{\mathbf{r}}' = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \wedge \mathbf{r}' )" ) 
+        eq3 = MathTex( r"\hat{\mathbf{r}}' = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \wedge \mathbf{x}' )" ) 
         self.play( ReplacementTransform( VGroup(*eq, *eq2), eq3 ) )
         self.wait( 5 )
 
