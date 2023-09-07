@@ -12,8 +12,9 @@ class m050_3d( Scene ):
         eq = [ MathTex( r"\hat{\mathbf{r}}' = { \hat{\mathbf{r}} \over r } ( \hat{\mathbf{r}} \wedge \mathbf{x}' )" ),
                MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" \hat{\mathbf{r}} ( \hat{\mathbf{r}} \wedge \mathbf{x}' )" ) ) ),
                MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" \hat{\mathbf{r}} I ( \hat{\mathbf{r}} \times \mathbf{x}' )" ) ) ),
-               MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" I^2 \hat{\mathbf{r}} \times ( \hat{\mathbf{r}} \times \mathbf{x}' )" ) ) ),
-               MathTex( concat(           r"= {1 \over r}", r"( \hat{\mathbf{r}} \times \mathbf{x}' ) \times \hat{\mathbf{r}} " ) ) ]
+               MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" I \hat{\mathbf{r}} ( \hat{\mathbf{r}} \times \mathbf{x}' )" ) ) ),
+               MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" I( \hat{\mathbf{r}} \cdot ( \hat{\mathbf{r}} \times \mathbf{x}') ) + I^2 (\hat{\mathbf{r}} \times ( \hat{\mathbf{r}} \times \mathbf{x}') )" ) ) ) ]
+        #MathTex( concat(           r"= {1 \over r}", l.gpgradeone( r" I^2 \hat{\mathbf{r}} \times ( \hat{\mathbf{r}} \times \mathbf{x}' )" ) ) ) 
         eq[0].shift( 2 * UP + 1 * LEFT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
@@ -25,6 +26,10 @@ class m050_3d( Scene ):
             #    sh += 0.50 * LEFT + 0.0 * DOWN
             write_aligned( self, eq[i], eq[i+1], sh, None )
             self.wait( 5 )
+
+        eq2 = MathTex(  r"\hat{\mathbf{r}}' = {1 \over r} ( \hat{\mathbf{r}} \times \mathbf{x}' ) \times \hat{\mathbf{r}} " )
+        self.play( ReplacementTransform( VGroup(*eq), eq2 ) )
+        self.wait( 5 )
 
         fadeall( self )
 
