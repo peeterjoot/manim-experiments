@@ -3,7 +3,7 @@ from helper import *
 class m030_Simple( Scene ):
     def construct( self ):
 
-        title = Text( 'Radial unit derivative: niave approach.' )
+        title = Text( 'Radial unit derivative: naive approach.' )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
