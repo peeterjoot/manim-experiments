@@ -9,8 +9,6 @@ class m020_Start( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 2 )
 
-        #MathTex( r"\mathbf{p} = \mathbf{p} \cdot \mathbf{\hat{r}} \mathbf{\hat{r}} + {1 \over r} \mathbf{\hat{r}} \mathbf{r} \wedge \mathbf{p}" ),
-        #MathTex( r"\mathbf{p} = \mathbf{p} \cdot \mathbf{\hat{r}} \mathbf{\hat{r}} + {1 \over r} \mathbf{\hat{r}} L" )
         eq = [ MathTex( r"\mathbf{\hat{r}}' = {1 \over r} \mathbf{\hat{r}} ( \mathbf{\hat{r}} \wedge \mathbf{v} )" ),
                MathTex( r"                  = {1 \over {r^2 m} } \mathbf{\hat{r}} ( \mathbf{x} \wedge \mathbf{p} )" ),
                MathTex( r"                  = {1 \over {m} } {\mathbf{\hat{r}} \over r^2} L" ),

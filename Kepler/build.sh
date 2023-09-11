@@ -11,6 +11,7 @@ fi
 
 #./clean.sh
 #../bin/build $q $p m010_Intro.py
-../bin/build $q $p m020_Start.py
+#../bin/build $q $p m020_Start.py
+../bin/build $q $p m030_vL.py
 #../bin/build $q $p m060_Summary.py
 #echo done
