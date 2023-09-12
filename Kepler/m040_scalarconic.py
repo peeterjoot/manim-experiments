@@ -67,15 +67,31 @@ class m040_scalarconic( Scene ):
             self.wait( 5 )
 
         eq5 = [ MathTex( r"r (1 + e \cos\theta) = -{L^2 \over {G m^2 M} }" ),
-                MathTex( r"                     = e d" ) ]
-        eq5[0].move_to( eq4[0] ).shift( 2.00 * LEFT )
+                MathTex( r" = e d" ) ]
+        eq5[0].move_to( eq4[0] ).shift( 3.00 * LEFT )
         self.play( AnimationGroup( FadeOut( VGroup(*eq2) ),
                                    ReplacementTransform( VGroup(*eq4), eq5[0] ) ) )
         self.wait( 5 )
 
-        i = 0
-        sh = 1.00 * DOWN + 2.90 * RIGHT
-        write_aligned( self, eq5[i], eq5[i+1], sh, None )
+        eq5[1].move_to( eq5[0] ).shift( 3.50 * RIGHT )
+        self.play( Write( eq5[1] ) )
+        #i = 0
+        #sh = 1.00 * DOWN + 2.90 * RIGHT
+        #write_aligned( self, eq5[i], eq5[i+1], sh, None )
+        self.wait( 5 )
+
+        # labels for e < 0, e = 0, e > 0.
+        eqe = [ MathTex( r"0 \ge e < 1" ),
+                MathTex( r"e = 1" ),
+                MathTex( r"e > 1" ) ]
+        eqe[0].move_to( eq5[0] ).shift( 4.50 * DOWN + 3.00 * LEFT )
+        eqe[1].move_to( eqe[0] ).shift( 4.00 * RIGHT )
+        eqe[2].move_to( eqe[1] ).shift( 4.00 * RIGHT )
+        self.play( Write( eqe[0] ) )
+        self.wait( 5 )
+        self.play( Write( eqe[1] ) )
+        self.wait( 5 )
+        self.play( Write( eqe[2] ) )
         self.wait( 5 )
 
         fadeall( self )
