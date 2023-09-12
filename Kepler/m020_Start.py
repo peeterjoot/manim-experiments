@@ -58,7 +58,7 @@ class m020_Start( Scene ):
 
 
         eq3 = [ MathTex( r"{ d \mathbf{\hat{r}} \over {dt } } = -{1 \over {G m M} } {d \mathbf{v} \over {dt} } L" ),
-                MathTex( r"                                   = -{1 \over {G m M} } {d (\mathbf{v} L) \over {dt} } - {d L \over {dt} }" ),
+                MathTex( concat( r"                                   = -{1 \over {G m M} }", l.lr( "{d (\mathbf{v} L) \over {dt} } - {d L \over {dt} }", big = 1 ) ) ),
                 MathTex( r"                                   = -{1 \over {G m M} } {d (\mathbf{v} L) \over {dt} }" ),
                 MathTex( r"\mathbf{\hat{r}} = -{1 \over {G m M} } \mathbf{v} L - \mathbf{e}" ) ]
         eq3[0].move_to( eq[0] )
