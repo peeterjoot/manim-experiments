@@ -12,7 +12,7 @@ class m010_Intro( Scene ):
         eq = MathTex( r"\mathbf{F} = - { {G m M} \over r^2 } \mathbf{\hat{r}}" )
         eq.shift( 0.50 * DOWN + 3 * RIGHT )
         self.play( Write( eq ) )
-        self.wait( 15 )
+        self.wait( 25 )
 
         fadeall( self )
 
