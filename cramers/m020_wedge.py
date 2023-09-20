@@ -23,7 +23,7 @@ class cMathTex(MathTex):
 class m020_wedge( Scene ):
     def construct( self ):
 
-        title = Text( "Wedge product linear solution, and Cramer's rule." )
+        title = Text( "Wedge product solutions, and Cramer's rule." )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
@@ -72,8 +72,6 @@ class m020_wedge( Scene ):
                 sh += 0.00 * DOWN + 1.30 * LEFT
             if i == 2:
                 sh += 0.00 * DOWN + 1.20 * LEFT
-            #if i == 2:
-            #    sh += 0.00 * DOWN + 0.41 * LEFT
             write_aligned( self, eq3[i], eq3[i+1], sh, None )
             self.wait( 5 )
 
@@ -81,18 +79,22 @@ class m020_wedge( Scene ):
         self.play( ReplacementTransform( VGroup(eq3[0], eq3[1], eq3[2], eq3[3]), eq4 ) )
         self.wait( 5 )
 
-        eq5 = [ cMathTex( r"{{ \mathbf{a} }} \wedge {{ \mathbf{b} }} = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2" ),
+        eq5 = [ cMathTex( r"{{ \mathbf{a} }} \wedge {{ \mathbf{b} }} = \sum_{i < j} \begin{vmatrix} a_i & b_i \\ a_j & b_j \end{vmatrix} \mathbf{e}_i \mathbf{e}_j" ),
+                cMathTex( r"= \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2\quad \mbox{($\mathbb{R}^2$})" ),
                 cMathTex( r"x = { { \begin{vmatrix} c_1 & b_1 \\ c_2 & b_2 \end{vmatrix} } \over \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} } }" ),
                 cMathTex( r"y = { { \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} } \over \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} } }" ) ]
-        eq5[0].move_to( eq4 ).shift( 3.00 * LEFT + 1.50 * DOWN )
-        eq5[1].move_to( eq5[0] ).shift( 3.00 * LEFT + 1.00 * DOWN )
-        eq5[2].move_to( eq5[0] ).shift( 3.00 * RIGHT + 1.00 * DOWN )
+        eq5[0].move_to( eq4 ).shift( 6.50 * LEFT + 1.50 * DOWN )
+        eq5[1].move_to( eq5[0] ).shift( 6.00 * RIGHT )
+        eq5[2].move_to( eq5[0] ).shift( 0.00 * LEFT + 1.00 * DOWN )
+        eq5[3].move_to( eq5[2] ).shift( 6.00 * RIGHT + 0.00 * DOWN )
         self.play( Write( eq5[0] ) )
         self.wait( 5 )
-        self.play( FadeOut( eq5[0] ) )
         self.play( Write( eq5[1] ) )
         self.wait( 5 )
+        self.play( FadeOut( VGroup( eq5[0], eq5[1] ) ) )
         self.play( Write( eq5[2] ) )
+        self.wait( 5 )
+        self.play( Write( eq5[3] ) )
         self.wait( 5 )
 
         fadeall( self )
