@@ -11,6 +11,8 @@ fi
 
 #./clean.sh
 #../bin/build $q $p m010_Intro.py
-../bin/build $q $p m020_wedge.py
-#../bin/build $q $p m100_summary.py
+#../bin/build $q $p m020_wedge.py
+#../bin/build $q $p m030_approximation.py
+#../bin/build $q $p m050_leastsq.py
+../bin/build $q $p m100_summary.py
 #echo done
