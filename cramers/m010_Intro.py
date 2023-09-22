@@ -3,7 +3,7 @@ from helper import *
 class m010_Intro( Scene ):
     def construct( self ):
 
-        title = Text( "Wedge product, Cramer's rule, and least squares GA solution." )
+        title = Text( "Wedges, Cramer's rule, and least squares." )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
