@@ -1,6 +1,8 @@
-In this video, we show how wedge products can be used to solve exact systems, how this relates to Cramer's rule, and a geometric algebra formulation of a least squares solution.
+In this video, we use a 2 parameter linear system to show how wedge products can be used to solve exact linear systems.
+We see how this relates to Cramer's rule, and see how to generalize the solution method to inexact systems, solving the least squares problem geometrically.
+Finally, we use a conventional calculus least squares formulation, and show that this leads to the same solution as the geometric algebra formulation.
 
-Prerequisites: geometric algebra basics (vector multiplication, grade selection, vector/bivector products, ...)
+Prerequisites: geometric algebra basics (vector multiplication, grade selection, vector/bivector products, bivector products and dot products, ...), linear algebra (matrix algebra, inversion, ...), and calculus (partial differentials, minimization.)
 
 Wordpress and PDF versions of this video can be found at:
 
