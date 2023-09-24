@@ -2,8 +2,6 @@ from helper import *
 
 mycolors    = { l.vec('a'): GREEN, l.vec('b'):RED, l.vec('c'): BLUE }
 
-hat_theta  = l.doublebr( l.hat( r'\boldsymbol{\theta}' ) )
-
 class cMathTex(MathTex):
     def __init__(
         self,
