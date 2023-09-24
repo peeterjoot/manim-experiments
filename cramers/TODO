@@ -1,1 +1,12 @@
- 
+030:
+
+* Replace: Generally want -> Cannot generally solve.
+* Add transformation: ratio -> dot product.
+* Replace: equality in first expression.
+* Write out c_\perp, and c = c_\parallel + c_\perp
+
+040:
+
+* maybe: switch to illustration that shows c varying, and how c_\perp \wedge b is always perpendicular, but with different size.
+* or: illustrate the angle between the cperp-b plane and the a-b plane.
+

@@ -29,11 +29,12 @@ class m030_approximation( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 2 )
 
-        eq = [ cMathTex( r"\mbox{Generally want:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c} }}" ),
-               cMathTex( r"\mbox{Can solve:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c}_\parallel }}, \quad {{ \mathbf{c}_\parallel }} = i^{-1} (i \cdot {{ \mathbf{c} }}), \quad i = {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}." ),
-               cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})" ),
-               cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }}) - { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c}_\perp }} \wedge {{ \mathbf{b} }})" ),
-               cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }})" ) ]
+        eq = [ cMathTex( r"\mbox{May not be able to solve:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c} }}" ),
+               cMathTex( r"i = {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}" ),
+               cMathTex( r"{{ \mathbf{c}_\parallel }} = i^{-1} (i \cdot {{ \mathbf{c} }})" ),
+               cMathTex( r"{{ \mathbf{c}_\perp }} = i^{-1} (i \wedge {{ \mathbf{c} }})" ),
+               cMathTex( r"{{ \mathbf{c} }} = {{ \mathbf{c}_\parallel }} + {{ \mathbf{c}_\perp }}" ) ]
+
         eq[0].shift( 2.00 * UP + 0.00 * LEFT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
@@ -41,15 +42,44 @@ class m030_approximation( Scene ):
         for i in range(4):
             sh = 1.00 * DOWN
             if i == 0:
-                sh += 0.00 * DOWN + 8.00 * LEFT
+                sh += 0.00 * DOWN + 9.00 * LEFT
             if i == 1:
-                sh += 0.00 * DOWN + 2.00 * LEFT
+                sh += 0.00 * DOWN + 0.34 * LEFT
             if i == 2:
-                sh += 0.60 * DOWN + 0.40 * RIGHT
+                sh += 0.00 * DOWN + 0.76 * LEFT
             if i == 3:
-                sh += 0.60 * DOWN + 0.00 * RIGHT
+                sh += 0.00 * DOWN + 0.40 * LEFT
             write_aligned( self, eq[i], eq[i+1], sh, None )
             self.wait( 5 )
+        self.wait( 30 )
+
+        eq2 = [ cMathTex( r"\mbox{Can solve:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c}_\parallel }}" ),
+                cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})" ),
+                cMathTex( r" = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})" ),
+                cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }}) - { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c}_\perp }} \wedge {{ \mathbf{b} }})" ),
+                cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }})" ) ]
+        self.play( FadeOut( VGroup( *eq ) ) )
+        eq2[0].move_to( eq[0] ).shift( 0.00 * DOWN + 0.00 * LEFT )
+        self.play( Write( eq2[0] ) )
+        self.wait( 5 )
+        for i in range(4):
+            sh = 1.50 * DOWN
+            if i == 0:
+                sh += 0.50 * UP + 4.00 * LEFT
+            if i == 1:
+                sh += 0.00 * DOWN + 0.40 * RIGHT
+            write_aligned( self, eq2[i], eq2[i+1], sh, None )
+            self.wait( 5 )
+        self.wait( 30 )
+
+        eq3 = [ cMathTex( r"{{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c}_\parallel }}" ),
+                cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }})" ),
+                cMathTex( r"y = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{c} }})" ) ]
+        eq3[0].move_to( eq2[0] ).shift( 1.00 * DOWN )
+        eq3[1].move_to( eq3[0] ).shift( 1.50 * DOWN )
+        eq3[2].move_to( eq3[1] ).shift( 1.50 * DOWN )
+        self.play( ReplacementTransform( VGroup(*eq2), VGroup(*eq3) ) )
+        self.wait( 10 )
 
         fadeall( self )
 

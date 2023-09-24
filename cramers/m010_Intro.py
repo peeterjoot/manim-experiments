@@ -7,7 +7,7 @@ class m010_Intro( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        self.wait( 20 )
+        self.wait( 40 )
 
         fadeall( self )
 
