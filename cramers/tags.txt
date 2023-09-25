@@ -1,0 +1,1 @@
+geometric algebra,linear algebra,linear system solution,best fit approximation,least squares solution,wedge product,bivector,multivector,calculus,extreme value problem

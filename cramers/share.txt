@@ -1,0 +1,11 @@
+Here's a new GA video, covering material that was in my "OAC" (grade-13) linear algebra class eons ago when I was in high school (solvable linear systems, least squares and projective solution fitting, and Cramer's rule.)
+
+https://youtu.be/Ktg5M7EMgoo
+
+There's already a few YouTube videos that demonstrate that Cramer's rule can be derived using the wedge product, including a couple nice ones that show how Cramer's rule can be interpreted geometrically as parallelogram and hypervolume ratios.  
+
+I briefly touch on the Cramer's connection in this video too, but then show that this exact system solution can be generalized slightly to express the "best fit" solution, and show that the GA results found are also equivalent to a standard least squares calculation.  It's a kind of fun result, one that I haven't seen anywhere else that I recall.  I also include some numerical and graphical presentation, using a Mathematica notebook.
+
+Supplementary PDF (or inline wordpress) notes available on my blog:
+
+https://wp.me/p4EqdS-1jq
