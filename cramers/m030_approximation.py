@@ -29,9 +29,11 @@ class m030_approximation( Scene ):
 
         eq = [ cMathTex( r"\mbox{May not be able to solve:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c} }}" ),
                cMathTex( r"i = {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}" ),
-               cMathTex( r"{{ \mathbf{c}_\parallel }} = i^{-1} (i \cdot {{ \mathbf{c} }})" ),
-               cMathTex( r"{{ \mathbf{c}_\perp }} = i^{-1} (i \wedge {{ \mathbf{c} }})" ),
-               cMathTex( r"{{ \mathbf{c} }} = {{ \mathbf{c}_\parallel }} + {{ \mathbf{c}_\perp }}" ) ]
+               cMathTex( r"{{ \mathbf{c} }} = i^{-1} i {{ \mathbf{c} }}" ),
+               cMathTex( r"                 = i^{-1} ( i \cdot {{ \mathbf{c} }} + i \wedge {{ \mathbf{c} }} )" ),
+               #cMathTex( r"{{ \mathbf{c}_\parallel }} = i^{-1} (i \cdot {{ \mathbf{c} }})" ),
+               #cMathTex( r"{{ \mathbf{c}_\perp }} = i^{-1} (i \wedge {{ \mathbf{c} }})" ),
+               cMathTex( r"                 = {{ \mathbf{c}_\parallel }} + {{ \mathbf{c}_\perp }}" ) ]
 
         eq[0].shift( 2.00 * UP + 0.00 * LEFT )
         self.play( Write( eq[0] ) )
@@ -42,17 +44,17 @@ class m030_approximation( Scene ):
             if i == 0:
                 sh += 0.00 * DOWN + 9.00 * LEFT
             if i == 1:
-                sh += 0.00 * DOWN + 0.34 * LEFT
+                sh += 0.00 * DOWN + 0.10 * LEFT
             if i == 2:
-                sh += 0.00 * DOWN + 0.76 * LEFT
+                sh += 0.00 * DOWN + 0.00 * LEFT
             if i == 3:
-                sh += 0.00 * DOWN + 0.40 * LEFT
+                sh += 0.00 * DOWN + 0.00 * LEFT
             write_aligned( self, eq[i], eq[i+1], sh, None )
             self.wait( 5 )
         self.wait( 30 )
 
         eq2 = [ cMathTex( r"\mbox{Can solve:}\quad {{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c}_\parallel }}" ),
-                cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})" ),
+                cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})\quad\quad\quad y = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } ({{ \mathbf{a} }} \wedge {{ \mathbf{c}_\parallel }})" ),
                 cMathTex( r" = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c}_\parallel }} \wedge {{ \mathbf{b} }})" ),
                 cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }}) - { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c}_\perp }} \wedge {{ \mathbf{b} }})" ),
                 cMathTex( r"= { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }})" ) ]
@@ -63,7 +65,7 @@ class m030_approximation( Scene ):
         for i in range(4):
             sh = 1.50 * DOWN
             if i == 0:
-                sh += 0.50 * UP + 4.00 * LEFT
+                sh += 0.50 * UP + 6.00 * LEFT
             if i == 1:
                 sh += 0.00 * DOWN + 0.40 * RIGHT
             write_aligned( self, eq2[i], eq2[i+1], sh, None )

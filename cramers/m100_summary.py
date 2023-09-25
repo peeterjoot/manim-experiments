@@ -25,7 +25,7 @@ class m100_summary( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        self.wait( 2 )
+        self.wait( 8 )
 
         eq = [ cMathTex( r"{{ \mathbf{a} }} x + {{ \mathbf{b} }} y = {{ \mathbf{c} }}" ),
                cMathTex( r"x = { 1 \over {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} } \cdot ({{ \mathbf{c} }} \wedge {{ \mathbf{b} }})" ),
@@ -33,7 +33,7 @@ class m100_summary( Scene ):
                cMathTex( r"\epsilon = ({{ \mathbf{c} }} - {{ \mathbf{a} }} x - {{ \mathbf{b} }} y){}^2" ) ]
         eq[0].shift( 2.00 * UP + 0.00 * LEFT )
         self.play( Write( eq[0] ) )
-        self.wait( 5 )
+        self.wait( 8 )
 
         for i in range(3):
             sh = 1.00 * DOWN
@@ -45,7 +45,7 @@ class m100_summary( Scene ):
             if i == 2:
                 sh += 0.50 * DOWN + 0.00 * LEFT
             write_aligned( self, eq[i], eq[i+1], sh, None )
-            self.wait( 5 )
+            self.wait( 8 )
 
         fadeall( self )
 

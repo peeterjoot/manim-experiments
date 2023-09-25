@@ -35,7 +35,7 @@ class m050_leastsq( Scene ):
 
         eq[0].shift( 2.00 * UP + 0.00 * LEFT )
         self.play( Write( eq[0] ) )
-        self.wait( 5 )
+        self.wait( 8 )
 
         for i in range(3):
             sh = 1.00 * DOWN
@@ -46,7 +46,7 @@ class m050_leastsq( Scene ):
             if i == 2:
                 sh += 0.50 * DOWN + 0.00 * RIGHT
             write_aligned( self, eq[i], eq[i+1], sh, None )
-            self.wait( 5 )
+            self.wait( 8 )
 
         eq2 = [ MathTex( r"x = { { \mathbf{b}^2 ( \mathbf{a} \cdot \mathbf{c} ) - ( \mathbf{a} \cdot \mathbf{b} ) ( \mathbf{b} \cdot \mathbf{c} ) } \over { \mathbf{a}^2 \mathbf{b}^2 - ( \mathbf{a} \cdot \mathbf{b} ){}^2 } }" ),
                 MathTex( r"y = { { \mathbf{a}^2 ( \mathbf{b} \cdot \mathbf{c} ) - ( \mathbf{a} \cdot \mathbf{b} ) ( \mathbf{a} \cdot \mathbf{c} ) } \over { \mathbf{a}^2 \mathbf{b}^2 - ( \mathbf{a} \cdot \mathbf{b} ){}^2 } }" ) ]
@@ -57,24 +57,24 @@ class m050_leastsq( Scene ):
         eq2[0].move_to( eq[0] ).shift( 0.50 * DOWN + 3.50 * LEFT )
         eq2[1].move_to( eq2[0] ).shift( 0.00 * DOWN + 7.00 * RIGHT )
         self.play( ReplacementTransform( VGroup(*eq), VGroup(*eq2) ) )
-        self.wait( 5 )
+        self.wait( 8 )
 
         sh = 0.42 * RIGHT + 1.40 * DOWN
         write_aligned( self, eq2[0], eqx[0], sh, None )
-        self.wait( 5 )
+        self.wait( 8 )
         sh = 0.00 * RIGHT + 1.40 * DOWN
         write_aligned( self, eqx[0], eqx[1], sh, None )
-        self.wait( 5 )
+        self.wait( 8 )
 
         eqy = [ MathTex( r" = { -{( \mathbf{a} \wedge \mathbf{b} ) \cdot ( \mathbf{a} \wedge \mathbf{c} ) } \over { -( \mathbf{a} \wedge \mathbf{b} ){}^2 } }" ),
                 MathTex( r" = {1 \over {\mathbf{a} \wedge \mathbf{b}} } \cdot ( \mathbf{a} \wedge \mathbf{c} )" ) ]
 
         sh = 0.42 * RIGHT + 1.40 * DOWN
         write_aligned( self, eq2[1], eqy[0], sh, None )
-        self.wait( 5 )
+        self.wait( 8 )
         sh = 0.00 * RIGHT + 1.40 * DOWN
         write_aligned( self, eqy[0], eqy[1], sh, None )
-        self.wait( 5 )
+        self.wait( 8 )
 
         fadeall( self )
 
