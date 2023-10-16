@@ -1,7 +1,7 @@
 from helper import *
 
 mycolors = { l.vec('E'): GREEN, l.vec('B'):RED, l.vec('J'): BLUE, l.vec('D'): GREEN, l.vec('H'):RED, l.vec('M'): BLUE }
-    
+
 class cMathTex(MathTex):
     def __init__(
         self,
