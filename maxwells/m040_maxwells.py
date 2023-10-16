@@ -1,6 +1,6 @@
 from mycolors import *
 
-class m030_divcurl( Scene ):
+class m040_maxwells( Scene ):
     def construct( self ):
 
         title = Text( "Maxwell's equation" )
