@@ -9,10 +9,10 @@ class m010_Intro( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq = [ MathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{E} }} = -{{ \mathbf{M} }} - { \partial {{ \mathbf{B} }} \over \partial t } " ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{H} }} = {{ \mathbf{J} }} + { \partial {{ \mathbf{D} }} \over \partial t } " ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{D} }} = \rho" ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{B} }} = \rho_{\mathrm{m}}" ) ]
+        eq = [ cMathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{E} }} = -{{ \mathbf{M} }} - { \partial {{ \mathbf{B} }} \over \partial t } " ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{H} }} = {{ \mathbf{J} }} + { \partial {{ \mathbf{D} }} \over \partial t } " ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{D} }} = \rho" ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{B} }} = \rho_{\mathrm{m}}" ) ]
         eq[0].shift( 1.50 * UP + 0 * RIGHT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
@@ -30,10 +30,10 @@ class m010_Intro( Scene ):
         self.play( FadeOut( VGroup( *eq ) ) )
         self.wait( 5 )
 
-        eq2 = [ MathTex( r"\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over \partial t } \Bigr) F = J" ),
-                MathTex( r"F = {{ \mathbf{E} }} + I \eta {{ \mathbf{H} }}" ),
+        eq2 = [ cMathTex( r"\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over \partial t } \Bigr) F = J" ),
+                cMathTex( r"F = {{ \mathbf{E} }} + I \eta {{ \mathbf{H} }}" ),
                 # = {{ \mathbf{E} }} + I c {{ \mathbf{B} }}" ),
-                MathTex( r"J = \eta( c \rho - {{ \mathbf{J} }} ) + I ( c \rho_{\mathrm{m}} - {{ \mathbf{M} }} )" ) ]
+                cMathTex( r"J = \eta( c \rho - {{ \mathbf{J} }} ) + I ( c \rho_{\mathrm{m}} - {{ \mathbf{M} }} )" ) ]
         eq2[0].move_to( eq[0] )
         self.play( Write( eq2[0] ) )
         self.wait( 5 )
