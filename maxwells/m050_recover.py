@@ -87,7 +87,24 @@ class m050_recover( Scene ):
         self.play( FadeOut( VGroup( *eq4 ) ) )
         self.wait( 5 )
 
-        # summarize.
+        # summarize:
+        eq5 = [ MathTex( r"\boldsymbol{\nabla} \cdot \mathbf{E} = { \rho \over \epsilon }" ),
+                MathTex( r"\boldsymbol{\nabla} \times \mathbf{H} = \mathbf{J} + \epsilon { \partial \mathbf{E} \over { \partial t } }" ),
+                MathTex( r"\boldsymbol{\nabla} \times \mathbf{E} = -\mathbf{M} - \mu { \partial \mathbf{H} \over { \partial t } }" ),
+                MathTex( r"\mu \boldsymbol{\nabla} \cdot \mathbf{H} = \rho_{ \mathrm{m} }" ) ]
+        eq5[0].move_to( eq[1] ).shift( 1.5 * LEFT )
+        self.play( Write( eq5[0] ) )
+        self.wait( 5 )
+        for i in range(3):
+            sh = 1.00 * DOWN + 0.00 * RIGHT
+            #if i == 0:
+            #    sh += 0.40 * DOWN + 4.80 * RIGHT
+            #if i == 1:
+            #    sh += 0.00 * DOWN + 1.25 * RIGHT
+            #if i == 2:
+            #    sh += 0.00 * DOWN - 0.75 * RIGHT
+            write_aligned( self, eq5[i], eq5[i+1], sh, None )
+            self.wait( 5 )
 
         fadeall( self )
 
