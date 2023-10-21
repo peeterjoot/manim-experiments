@@ -1,0 +1,26 @@
+In this video we will translate from the vector and scalar (curl and divergence) forms of Maxwell's equations in matter, 
+to a multivector geometric algebra formulation of Maxwell's equation (singular.)
+
+We will start with an almost conventional form of Maxwell's equation, but include magnetic charge and current density terms
+rho_m and capital-M, which have utility in antenna and microwave engineering.
+We have only to set those to zero to have the conventional form of Maxwell's equations in matter.
+
+We will restrict our attention to the special case of isometric matter, that is, matter that is the same in all directions.
+We model this by assuming that the magnetic fields B and H are related by a scalar (not tensor) proportionality factor, as
+are the D and E fields.
+
+============================
+
+We will find that Maxwell's equation can be expressed as a spacetime differential operator, acting on a multivector electromagnetic field F, which results in, or is determined by, a charge and current density J.
+
+The electromagnetic field F, like the electric field, has units of Volts/Meter.  As the Magnetic field H has units of Ampere's/Meter, our scaling factor eta, as units of Ohms (resistance.)
+
+The factor c has dimensions of velocity (the speed of light in the medium.)
+
+============================
+
+After constructing the (singular) form of Maxwell's equation, we will wrap up by showing that we can deconstruct this equation and find the original divergence and curl equation representations of Maxwell's equations.
+
+============================
+
+Applications of this unified form of Maxwell's equation will come in future videos.
