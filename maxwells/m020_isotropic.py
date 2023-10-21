@@ -9,10 +9,10 @@ class m020_isotropic( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq0 = [ MathTex( r"{{ \mathbf{B} }} = \mu {{ \mathbf{H} }}" ),
-                MathTex( r"{{ \mathbf{D} }} = \epsilon {{ \mathbf{E} }}" ),
-                MathTex( r"\eta = \sqrt{\mu \over \epsilon}" ),
-                MathTex( r"c = 1/\sqrt{\mu \epsilon}" ) ]
+        eq0 = [ cMathTex( r"{{ \mathbf{B} }} = \mu {{ \mathbf{H} }}" ),
+                cMathTex( r"{{ \mathbf{D} }} = \epsilon {{ \mathbf{E} }}" ),
+                cMathTex( r"\eta = \sqrt{\mu \over \epsilon}" ),
+                cMathTex( r"c = 1/\sqrt{\mu \epsilon}" ) ]
         eq0[0].shift( 1.50 * UP + 5 * LEFT )
         self.play( Write( eq0[0] ) )
         self.wait( 5 )
@@ -26,10 +26,10 @@ class m020_isotropic( Scene ):
             self.wait( 5 )
         self.wait( 5 )
 
-        eq = [ MathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{E} }} = -{{ \mathbf{M} }} - \mu { \partial {{ \mathbf{H} }} \over \partial t } " ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{H} }} = {{ \mathbf{J} }} + \epsilon { \partial {{ \mathbf{E} }} \over \partial t } " ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{E} }} = { \rho \over \epsilon }" ),
-               MathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{H} }} = { \rho_{\mathrm{m}} \over \mu }" ) ]
+        eq = [ cMathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{E} }} = -{{ \mathbf{M} }} - \mu { \partial {{ \mathbf{H} }} \over \partial t } " ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \times {{ \mathbf{H} }} = {{ \mathbf{J} }} + \epsilon { \partial {{ \mathbf{E} }} \over \partial t } " ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{E} }} = { \rho \over \epsilon }" ),
+               cMathTex( r"{{ \boldsymbol{\nabla} }} \cdot {{ \mathbf{H} }} = { \rho_{\mathrm{m}} \over \mu }" ) ]
         eq[0].shift( 1.50 * UP + 0 * RIGHT )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
