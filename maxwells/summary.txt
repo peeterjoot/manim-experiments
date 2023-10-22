@@ -1,0 +1,12 @@
+We started with Maxwell's equations, augmented with fictitious magnetic charge and current densities.
+
+We introduced a re-dimensionalizing factor eta (with units of Ohms), and a propagation speed constant (c),
+and assumed that our matter had isometric properties (the same in all directions), and recast
+Maxwell's equations with E,H as the primary fields.
+
+We were able to form linear combinations of Maxwell's equations to show that they can be written as a 
+multivector equation, with a multivector current and charge density on one side, and on the other a
+space time derivative operator, acting on a combined electro-magnetic field (called the Faraday by some authors.)
+
+We finished off by showing that we were able to recover the original conventional Maxwell's equations by grade
+selection.
