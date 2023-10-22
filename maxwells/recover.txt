@@ -1,0 +1,55 @@
+We have assembled the multivector form of Maxwell's equations,
+selectively adding and scaling our original equations in ways that may seem suspect.
+
+We should now be able to verify that we haven't lost any information, by extracting
+the original curl and divergence relations from our multivector Maxwell's equation.
+
+To do so, we need only apply grade selection operations for each of the grades 0,1,2,3, selecting
+the scalar, vector, bivector and trivector grades of the multivector Maxwell's equation, and then showing
+how those relate to the original equations.
+
+============================================
+Let's start by selecting the scalar grade.
+
+All of the grade selections from the current and charge density multivector (J) are trivial, as we explicitly have one term for each grade.
+
+On the right hand side, the time partials contribute only vector and scalar grades, and Grad I-eta-H has only vector and trivector grades.
+
+This leaves us with eta-c-rho = <Grad E>_0,
+
+or grad dot E = rho over epsilon, 
+
+which is Gauss's law.
+============================================
+
+For the vector grade selection, we have contributions from dE/dt and Grad I-eta-H
+
+We can commute I and Grad, and then expand Grad H as
+
+Grad dot H plus Grad wedge H
+
+The scalar term does not contribute to the vector grade selection, and we can further expand Grad wedge H as
+I times ( Grad \cross H ).
+
+Dividing through by eta leaves us with the Ampere-Maxwell equation.
+
+============================================
+For the bivector grade selection, we have contributions d/dt (I-eta-H) and Grad E.
+
+We write out the bivector term of Grad E in dual form, using the cross product, 
+
+then multiply through by I, to find the Maxwell-Faraday equation 
+(with the inclusion of the ficticious magnetic current density.)
+
+============================================
+
+For the trivector grade selection, we only have contributions from the time partial of (I-eta-H).
+
+Again, we can commute Grad and I, and then expand Grad H as Grad-dot plus Grad-wedge.  Only the divergence
+portion of that expansion contributes to the overall trivector grade.
+
+We are left with Gauss's law for magnetism.
+
+============================================
+Summarizing, we have found Maxwell's equations, in terms of E and H fields, by grade selection.
+============================================
