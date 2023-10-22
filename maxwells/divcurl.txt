@@ -1,0 +1,50 @@
+We will be able to group pairs of Maxwell's equations by taking advantage of the geometric product in reverse.
+
+The product of two vectors X, and Y has a dot product and wedge product component.  
+
+We can write the wedge product in dual form, as I times the cross of the two.
+
+Finally, we can let one of these vectors be the gradient, and find that the gradient acting on a vector, has a 
+divergence and a dual-curl component.
+
+===========================================
+
+We now take Gauss's law, and the Maxwell-Faraday equation (with Magnetic current density added), and group these 
+into a single electric field gradient equation.
+
+Grad E = Div E + I Curl E
+
+To find: Grad E = rho over epsilon -I M - I mu d H/dt.
+
+===========================================
+
+We do the same for Gauss's law for magnetism (with our magnetic charge density contribution), and the Ampere-Maxwell equation, and form
+
+Grad H = Div H + I Curl H
+
+To find: Grad H = rho-m over mu + I J + I epsilon d E /dt.
+
+===========================================
+
+Our electric and magnetic fields have different units (volts/meter and ampere's/meter respectively).  There are two combinations of mu and epsilon that are particularly useful, the first is 
+
+   eta = square-root of mu over epsilon
+
+which has units of Ohms, the dimensions of resistance.  The combination that we will call
+
+   c = 1/ square-root (mu epsilon)
+
+has dimensions of velocity.  We will use eta-H as the re-dimensionalized magnetic field, so that both electric and magnetic fields have units of Volts/Meter.
+
+===========================================
+
+In our electric field gradient equation, we rewrite mu as 
+
+sqrt( mu / epsilon ) times sqrt ( mu epsilon) 
+
+which is eta over c.  We will see that we want to treat the magnetic field as a bivector, so we group together (I eta H) as our magnetic bivector field variable.
+
+===========================================
+
+We proceed to rewrite our Grad H equation in terms of I eta H too.  First multiplying both sides by eta we find an
+equation for Grad eta-H, and simplify it.  Then we multiply through by the pseudoscalar I, noting that I commutes with vectors, and are left with an equation for Grad I-eta-H.

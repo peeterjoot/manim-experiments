@@ -1,0 +1,3 @@
+Our first step is simple, just transforming D to E and, B to H.  Our isotropic assumption means that these fields are related by constants, not tensors.
+
+With that done, Maxwell's equations are left with a field variable for each of the electric and magnetic fields, plus all the sources.

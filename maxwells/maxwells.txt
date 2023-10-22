@@ -1,0 +1,33 @@
+Writing out our previous results with all the differential operators on the left hand side, we see that the differential operators all have dimensions of inverse-length.
+
+We have two multivector equations, the first that has Grad E and the time partial of I-eta-H,
+and a second with Grad I-eta-H and the time partial of E.
+
+With the units all consistent, we are now in the position where we can simply add these two equations together.
+
+This leaves us with the gradient applied from the left to a multivector electromagnetic field, and
+the time partial of the same electromagnetic field.
+
+We can factor all the differential operators, leaving a hybrid space and time differential operator,
+applied to the multivector electromagnetic field.  The action of that space-time gradient (actually a four vector 
+operator in a relativisic context) is equal to the specific combination of charge and current densities that we see
+on the right.
+
+This is Maxwell's equation (singular.)
+
+We could call it a day, and say that we are done.  However, it is esthetically pleasing to introduce a couple of 
+helper variables.  
+
+We write 
+
+F = E + I-eta-H
+
+for the electromagnetic field, 
+
+and 
+
+J for our multivector current and charge density contributions.
+
+Maxwell's equation is now:
+
+space-time-derivative of F = J.

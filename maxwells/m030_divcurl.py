@@ -1,5 +1,4 @@
 from mycolors import *
-
 class m030_divcurl( Scene ):
     def construct( self ):
 
@@ -9,13 +8,18 @@ class m030_divcurl( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 5 )
 
-        eq0 = [ MathTex( r" \mathbf{X} \mathbf{Y} = \mathbf{X} \cdot \mathbf{Y} + I ( \mathbf{X} \times \mathbf{Y} )" ),
+        eq0 = [ MathTex( r" \mathbf{X} \mathbf{Y} = \mathbf{X} \cdot \mathbf{Y} + \mathbf{X} \wedge \mathbf{Y}" ),
+                MathTex( r"                       = \mathbf{X} \cdot \mathbf{Y} + I ( \mathbf{X} \times \mathbf{Y} )" ),
                 MathTex( r" \boldsymbol{\nabla} {{ \mathbf{Y} }} = \boldsymbol{\nabla} \cdot {{ \mathbf{Y} }}  + I (  \boldsymbol{\nabla} \times {{ \mathbf{Y} }} )" ) ]
         eq0[0].shift( 1.50 * UP + 0 * LEFT )
         self.play( Write( eq0[0] ) )
         self.wait( 5 )
         i = 0
-        sh = 1.00 * DOWN + 0.00 * LEFT
+        sh = 1.00 * DOWN + 1.00 * RIGHT
+        write_aligned( self, eq0[i], eq0[i+1], sh, None )
+        self.wait( 5 )
+        i = 1
+        sh = 1.00 * DOWN + 1.10 * LEFT
         write_aligned( self, eq0[i], eq0[i+1], sh, None )
         self.wait( 5 )
         self.play( FadeOut( VGroup(*eq0) ) )
