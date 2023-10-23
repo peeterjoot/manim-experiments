@@ -17,7 +17,7 @@ On the right hand side, the time partials contribute only vector and scalar grad
 
 This leaves us with eta-c-rho = <Grad E>_0,
 
-or grad dot E = rho over epsilon, 
+or grad dot E = rho over epsilon,
 
 which is Gauss's law.
 ============================================
@@ -36,14 +36,14 @@ Dividing through by eta leaves us with the Ampere-Maxwell equation.
 ============================================
 For the bivector grade selection, we have contributions d/dt (I-eta-H) and Grad E.
 
-We write out the bivector term of Grad E in dual form, using the cross product, 
+We write out the bivector term of Grad E in dual form, using the cross product,
 
-then multiply through by I, to find the Maxwell-Faraday equation 
+then multiply through by I, to find the Maxwell-Faraday equation
 (with the inclusion of the ficticious magnetic current density.)
 
 ============================================
 
-For the trivector grade selection, we only have contributions from the time partial of (I-eta-H).
+For the trivector grade selection, we only have contributions from the gradient of (I-eta-H).
 
 Again, we can commute Grad and I, and then expand Grad H as Grad-dot plus Grad-wedge.  Only the divergence
 portion of that expansion contributes to the overall trivector grade.

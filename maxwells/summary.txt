@@ -4,7 +4,7 @@ We introduced a re-dimensionalizing factor eta (with units of Ohms), and a propa
 and assumed that our matter had isometric properties (the same in all directions), and recast
 Maxwell's equations with E,H as the primary fields.
 
-We were able to form linear combinations of Maxwell's equations to show that they can be written as a 
+We were able to form linear combinations of Maxwell's equations to show that they can be written as a
 multivector equation, with a multivector current and charge density on one side, and on the other a
 space time derivative operator, acting on a combined electro-magnetic field (called the Faraday by some authors.)
 

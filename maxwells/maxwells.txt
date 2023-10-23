@@ -1,30 +1,34 @@
-Writing out our previous results with all the differential operators on the left hand side, we see that the differential operators all have dimensions of inverse-length.
+We now write out our equations for Grad E and Grad I-eta-H with all differential operators on the left.
 
-We have two multivector equations, the first that has Grad E and the time partial of I-eta-H,
-and a second with Grad I-eta-H and the time partial of E.
+Our Grad E equation, has only scalar and bivector terms.
+Our Grad I-eta-H equation, has only vector and trivector terms.
+In both, all terms have units of Volts/meter-squared, so we are free to add these without any loss of information.
 
-With the units all consistent, we are now in the position where we can simply add these two equations together.
+Performing that sum, we see that we naturally end up with a total electric and magnetic field multivector:
 
-This leaves us with the gradient applied from the left to a multivector electromagnetic field, and
-the time partial of the same electromagnetic field.
+E plus I-eta-H
 
-We can factor all the differential operators, leaving a hybrid space and time differential operator,
-applied to the multivector electromagnetic field.  The action of that space-time gradient (actually a four vector 
+and can factor all the differential operators, leaving a hybrid space and time differential operator,
+acting on that multivector electromagnetic field.
+
+The action of that space-time gradient (actually a four vector
 operator in a relativisic context) is equal to the specific combination of charge and current densities that we see
 on the right.
 
 This is Maxwell's equation (singular.)
 
-We could call it a day, and say that we are done.  However, it is esthetically pleasing to introduce a couple of 
-helper variables.  
+============================================
 
-We write 
+We could call it a day, and say that we are done.  However, it is esthetically pleasing to introduce a couple of
+helper variables.
+
+We write
 
 F = E + I-eta-H
 
-for the electromagnetic field, 
+for the electromagnetic field,
 
-and 
+and
 
 J for our multivector current and charge density contributions.
 
