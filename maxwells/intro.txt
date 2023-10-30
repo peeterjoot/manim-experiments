@@ -1,39 +1,73 @@
+In this video we will figure out a geometric algebra form of Maxwell's equation,
+translating from the
+Gibbs form of Maxwell's equations, with curls and divergences,
+to a multivector form that incorporates all of these into one equation.
 
++10s
+============================
 
-In this video we will translate from the Gibbs form of Maxwell's equations (two curl equations and two divergence equations),
-into a multivector geometric algebra formulation of Maxwell's equation (singular.)
+Because they are useful in antenna and microwave engineering, and don't add much additional complexity,
+I've included the conventional electric charge density rho and current density J sources,
+as well as fictional magnetic magnetic charge density (rho_m) and current density (vector-capital-M) sources.
+
++10s
+============================
+
+We will use E and H as the primary fields, assuming that the
+and the electric fields E and D are also related by a scalar (not tensor) proportionality factor epsilon,
+and that the magnetic fields B and H related by a scalar (not tensor) proportionality factor mu.
+
+This implies that we are treating the matter containing the fields and charges as isometric,
+the same in all directions.
+
++19s
+============================
+
+We are going to make a series of transformations using linear combinations of Maxwell's equations.
+We will first group our divs and curls,
+to show how we can find a pair of multivector gradient equations, one for each field,
+using the geometric product of the gradient and that field.
+
++13s
+============================
+
+We will then scale our magnetic field so that it, like the electric field, has SI units of Volts/meter,
+and write it as a bivector I eta H, where eta is the square root of mu/epsilon.
+
++10s
+============================
+
+We will see another constant combination, the reciprocal square root of mu epsilon, occur repeatedly.
+
+We'll label this c.
+In a future video, we'll show that c is the speed of propagation of the fields in regions free of sources.
+
++12s
+============================
+
+After this rescaling of the magnetic gradient equation, we'll be able to add our two remaining equations,
+and factor out all the differential operators to find Maxwell's equation.
+
++9s
+
+We've taken Maxwell's equations, a seemingly crazy mix of divs and curls and various signs,
+and found a simple underlying structure for it all.
+
++8s
+
+We will write our combined electric and magnetic field multivector as F, called the Faraday,
+and will call the charge and current density multivector J.
+
++9s
+
+It's tempting to give the spacetime differential operator a special symbol, but I won't do that here.
+We will, however,
+call it the spacetime-gradient, an entity that happens to have intrinsically relativistic four dimensional structure.
+
++11s
 
 ============================
 
-We will start with an almost conventional form of Maxwell's equations.
-For completeness, fictious magnetic charge density (rho_m) and current density (vector-capital-M) terms,
-which have utility in antenna and microwave engineering,
-will be included.
-We have only to set those to zero to recover the the conventional form of Maxwell's equations in matter.
+Applications of this unified form of Maxwell's equations will be left for future videos.
 
-============================
-
-We will restrict our attention to the special and simplest case of isometric matter.
-That is, matter that is the same electrically in all directions.
-
-We model this by assuming that the magnetic fields B and H related by a scalar (not tensor) proportionality factor mu,
-and the electric fields E and D are also related by a scalar proportionality factor epsilon.
-
-============================
-
-We will find that Maxwell's equation can be expressed as a spacetime differential operator, acting on a multivector
-electromagnetic field F, which results in, or is determined by (depending on what is given), a charge and current density J.
-
-The electromagnetic field F, like the electric field, has units of Volts/Meter.  As the Magnetic field H has units
-of Ampere's/Meter, our scaling factor eta, as units of Ohms (resistance.)
-
-The factor c has dimensions of velocity.  C is the speed of light in the medium, but we will not demonstrate that in this video.
-
-============================
-
-After constructing the (singular) form of Maxwell's equation, we will wrap up by showing that we can deconstruct
-this equation to find the original divergence and curl equation representations of Maxwell's equations.
-
-============================
-
-Applications of this unified form of Maxwell's equation will be deferred to future videos.
++5s

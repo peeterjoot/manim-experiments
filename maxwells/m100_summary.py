@@ -51,7 +51,7 @@ class m100_summary( Scene ):
                 ReplacementTransform( eq[2], eqEH[2] ),
                 ReplacementTransform( eq[3], eqEH[3] ) ) )
         self.wait( 7 )
- 
+
         eq2 = [ cMathTex( r"\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over \partial t } \Bigr) {{ F }} = J" ),
                 cMathTex( r"{{ F }} = {{ \mathbf{E} }} + I \eta {{ \mathbf{H} }}" ),
                 cMathTex( r"J = \eta( c \rho - {{ \mathbf{J} }} ) + I ( c \rho_{\mathrm{m}} - {{ \mathbf{M} }} )" ) ]

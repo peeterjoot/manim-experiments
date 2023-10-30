@@ -7,32 +7,52 @@ class m050_recover( Scene ):
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
-        self.wait( 5 )
+        self.wait( 1 )
 
         eq = [ MathTex( r"\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} ) = \Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H})" ),
-               MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H})\Bigr\rangle" ),
-               MathTex( r"\eta c \rho = \langle \boldsymbol{\nabla} \mathbf{E} \rangle" ),
-               MathTex( r"\rho/\epsilon = \boldsymbol{\nabla} \cdot \mathbf{E}" ) ]
+               MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H}){\Bigr\rangle}_0" ),
+               MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H}){\Bigr\rangle}_1" ),
+               MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H}){\Bigr\rangle}_2" ),
+               MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H}){\Bigr\rangle}_3" ) ]
         eq[0].shift( 2.00 * UP )
         self.play( Write( eq[0] ) )
         self.wait( 5 )
-        for i in range(3):
-            sh = 1.00 * DOWN + 0.00 * RIGHT
+        for i in range(4):
+            sh = 1.30 * DOWN + 0.00 * LEFT
             if i == 0:
-                sh += 0.50 * DOWN + 0.00 * RIGHT
-            if i == 1:
-                sh += 0.00 * DOWN + 4.90 * RIGHT
-            if i == 2:
-                sh += 0.00 * DOWN + 0.00 * RIGHT
+                sh += 0.34 * LEFT
+            #if i == 1:
+            #    sh += 0.00 * DOWN + 4.90 * RIGHT
+            #if i == 2:
+            #    sh += 0.00 * DOWN + 0.00 * RIGHT
             write_aligned( self, eq[i], eq[i+1], sh, None )
+            self.wait( 8 )
+        self.play( FadeOut( VGroup( eq[1], eq[2], eq[3], eq[4] ) ) )
+        self.wait( 8 )
+
+        eqs = [ MathTex( r"\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle = \Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H})\Bigr\rangle" ),
+                MathTex( r"\eta c \rho = \langle \boldsymbol{\nabla} \mathbf{E} \rangle" ),
+                MathTex( r"\rho/\epsilon = \boldsymbol{\nabla} \cdot \mathbf{E}" ) ]
+        eqs[0].move_to( eq[1] )
+        self.play( Write( eqs[0] ) )
+        self.wait( 5 )
+        for i in range(2):
+            sh = 1.00 * DOWN + 0.00 * RIGHT
+            #if i == 0:
+            #    sh += 0.50 * DOWN + 0.00 * RIGHT
+            if i == 0:
+                sh += 0.00 * DOWN + 4.90 * RIGHT
+            #if i == 2:
+            #    sh += 0.00 * DOWN + 0.00 * RIGHT
+            write_aligned( self, eqs[i], eqs[i+1], sh, None )
             self.wait( 5 )
+        self.play( FadeOut( VGroup( *eqs ) ) )
+        self.wait( 5 )
 
         eq2 = [ MathTex( r"{\langle\eta ( c \rho - \mathbf{J} ) + I (c \rho_{ \mathrm{m} } - \mathbf{M} )\rangle}_1 = {\Bigl\langle\Bigl( \boldsymbol{\nabla} + { 1 \over c } { \partial \over { \partial t } }\Bigr) (\mathbf{E} + I \eta \mathbf{H})\Bigr\rangle}_1" ),
                 MathTex( r"- \eta \mathbf{J} = { 1 \over c } { \partial \mathbf{E} \over { \partial t } } + \eta {\langle I \boldsymbol{\nabla} \mathbf{H} \rangle}_1" ),
                 MathTex( r"- \eta \mathbf{J} = { 1 \over c } { \partial \mathbf{E} \over { \partial t } } + \eta I^2 (\boldsymbol{\nabla} \times \mathbf{H})" ),
                 MathTex( r"\mathbf{J} + \epsilon { \partial \mathbf{E} \over { \partial t } } = \boldsymbol{\nabla} \times \mathbf{H}" ) ]
-        self.play( FadeOut( VGroup( eq[1], eq[2], eq[3] ) ) )
-        self.wait( 5 )
         eq2[0].move_to( eq[1] )
         self.play( Write( eq2[0] ) )
         self.wait( 5 )
