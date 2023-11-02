@@ -1,6 +1,6 @@
 from helper import *
 
-mycolors = { l.vec('E'): GREEN, l.vec('B'):RED, l.vec('J'): BLUE, l.vec('D'): GREEN, l.vec('H'):RED, l.vec('M'): BLUE, '{{ F }}': PURPLE }
+mycolors = { l.vec('x'): GREEN, '{{ F }}':RED, '{{ G }}': BLUE }
 #, '{{ J }}': YELLOW }
 
 class cMathTex(MathTex):
