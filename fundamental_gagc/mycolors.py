@@ -12,6 +12,7 @@ class cMathTex(MathTex):
     ):
         myTemplate = TexTemplate( )
         myTemplate.add_to_preamble( r'\usepackage{cancel}' )
+        myTemplate.add_to_preamble( r'\usepackage{txfonts}' )
         super().__init__(
                 arg_separator.join( tex_strings ),
                 tex_template = myTemplate,
