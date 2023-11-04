@@ -33,6 +33,47 @@ class m020_lineintegral( Scene ):
         self.play( g.animate.shift(4.00 * LEFT), run_time=1, rate_func=linear )
         self.wait( 8 )
 
+        title2 = Text( "Line integrals: example." )
+        title2.move_to( title ).shift( 0 * LEFT )
+        title2.set_color( BLUE )
+        self.play( AnimationGroup( FadeOut( *g ), ReplacementTransform( title, title2 ) ) )
+
+        eq2 = [ cMathTex( r"{{ \mathbf{x} }}(\phi) = \mathbf{e}_1 e^{i\phi}, \quad i = \mathbf{e}_{12}" ),
+                cMathTex( r"{{ \mathbf{x} }}_1 = \mathbf{e}_2 e^{i\phi}" ),
+                cMathTex( r"d^1 {{ \mathbf{x} }} = \mathbf{e}_2 e^{i\phi} d\phi,\quad F = e^{i\phi}, \quad G = \mathbf{e}_3" ),
+                cMathTex( r"\int_0^{\pi} F d^1 x G =" ),
+                cMathTex( r"\int_0^{\pi} e^{i\phi} \mathbf{e}_2 e^{i\phi} \mathbf{e}_3 d\phi" ),
+                cMathTex( r"\int_0^{\pi} \mathbf{e}_2 e^{-i \phi} e^{i\phi} \mathbf{e}_3 d\phi" ),
+                cMathTex( r"\int_0^{\pi} \mathbf{e}_{23} d\phi" ),
+                cMathTex( r"{ \pi \mathbf{e}_{23} }" ) ]
+
+        eq2[0].shift( 1.50 * UP + 0 * RIGHT )
+        self.play( Write( eq2[0] ) )
+        self.wait( 1 )
+        for i in range(3):
+            sh = 1.00 * DOWN + 0.5 * LEFT
+            if i == 0:
+                sh += 0.00 * DOWN + 0.20 * LEFT
+            if i == 1:
+                sh += 0.00 * DOWN + 1.00 * LEFT
+            if i == 2:
+                sh += 0.20 * DOWN + 0.00 * LEFT
+            write_aligned( self, eq2[i], eq2[i+1], sh, None )
+            self.wait( 1 )
+        eq2[4].move_to( eq2[3] ).shift( 3.70 * RIGHT )
+        self.play( Write( eq2[4] ) )
+        self.wait( 1 )
+        for i in range(5, 8):
+            sh = 0.00 * LEFT
+            if i == 6:
+                sh = 0.75 * LEFT
+            if i == 7:
+                sh = 1.50 * LEFT
+            eq2[i].move_to( eq2[4] ).shift( sh )
+            self.play( ReplacementTransform( eq2[i-1], eq2[i] ) )
+            self.wait( 1 )
+
+        self.wait( 5 )
         fadeall( self )
 
 # vim: et sw=4 ts=4
