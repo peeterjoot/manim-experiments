@@ -15,6 +15,7 @@ fi
 #../bin/build $q $p m020_lineintegral.py
 #../bin/build $q $p m030_surfaceintegral.py
 #../bin/build $q $p m040_volumeintegral.py
-../bin/build $q $p m050_reciprocalbasis.py
+#../bin/build $q $p m050_reciprocalbasis.py
+#../bin/build $q $p m060_gradient.py
 #../bin/build $q $p m100_summary.py
 #echo done

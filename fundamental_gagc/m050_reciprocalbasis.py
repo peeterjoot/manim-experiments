@@ -105,7 +105,6 @@ class m050_reciprocalbasis( Scene ):
             self.wait( 1 )
         self.wait( 3 )
         self.play( FadeOut( *eq5 ) )
-        self.wait( 1 )
 
         self.wait( 5 )
         fadeall( self )
