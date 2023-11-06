@@ -1,5 +1,13 @@
+- working on: fundamental theorem of GC : 1 parameter.
+   - need: "derivation" of d^{1-1} x
+- then: fundamental theorem of GC : 2 parameter.
+   - "derivation" of d^{2-1} x
+- then: fundamental theorem of GC : 3 parameter.
+   - "derivation" of d^{3-1} x
+
+
+
 - refresh all the ~/Movies/ mp4's and clear out the previous suffix versions. (m003 done.)
-- "derivation" of d^{2-1} x, d^{3-1} x
 - summary scene
 - record video and audio for mathematica notebook (logical extension of examples scene)
 - have (a_1, a_2, ...) as the parameters in some scenes, but u_1, u_2, ... in others.  review and switch to u's.
