@@ -21,6 +21,7 @@ fi
 #../bin/build $q $p m070_gradientexamples.py
 #../bin/build $q $p m080_bidirectional.py
 #../bin/build $q $p m090_oneparameter.py
-../bin/build $q $p m100_twoparameters.py
+#../bin/build $q $p m100_twoparameters.py
+../bin/build $q $p m110_threeparameters.py
 #../bin/build $q $p m200_summary.py
 #echo done
