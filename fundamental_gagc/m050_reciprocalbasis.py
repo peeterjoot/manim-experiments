@@ -104,9 +104,50 @@ class m050_reciprocalbasis( Scene ):
             write_aligned( self, eq5[i], eq5[i+1], sh, None )
             self.wait( 1 )
         self.wait( 3 )
-        self.play( FadeOut( *eq5 ) )
 
+        title2 = Text( "Reciprocal basis: generalizing the solution." )
+        title2.move_to( 3 * UP )
+        title2.set_color( BLUE )
+        self.play( AnimationGroup( ReplacementTransform( title, title2 ),
+                                   FadeOut( *eq5 ),
+                                   FadeOut( g ) ) )
+
+        eq6 = [ cMathTex( r"{{ \mathbf{x} }} {}^1 = ({{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3 \bigr) {}^{-1}" ),
+                cMathTex( r"{{ \mathbf{x} }} {}^2 = -({{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_3) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3 \bigr) {}^{-1}" ),
+                cMathTex( r"{{ \mathbf{x} }} {}^3 = ({{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3 \bigr) {}^{-1}" ) ]
+        eq6[0].move_to( eq[1] ).shift( 0.00 * UP + 4.00 * RIGHT )
+        self.play( Write( eq6[0] ) )
+        self.wait( 1 )
+        for i in range(2):
+            sh = 1.00 * DOWN
+            if i == 0:
+                sh += 0.00 * DOWN + 0.30 * LEFT
+            if i == 1:
+                sh += 0.00 * DOWN + 0.26 * LEFT
+            write_aligned( self, eq6[i], eq6[i+1], sh, None )
+            self.wait( 1 )
+        self.play( FadeOut( VGroup( *eq6 ) ) )
         self.wait( 5 )
+
+        eq7 = [ cMathTex( r"{{ \mathbf{x} }} {}^1 = ({{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3 \wedge {{ \mathbf{x} }}_4 ) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3  \wedge {{ \mathbf{x} }}_4 \bigr) {}^{-1}" ),
+                cMathTex( r"{{ \mathbf{x} }} {}^2 = -({{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_3 \wedge {{ \mathbf{x} }}_4 ) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3  \wedge {{ \mathbf{x} }}_4 \bigr) {}^{-1}" ),
+                cMathTex( r"{{ \mathbf{x} }} {}^3 = ({{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_4 ) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3  \wedge {{ \mathbf{x} }}_4 \bigr) {}^{-1}" ),
+                cMathTex( r"{{ \mathbf{x} }} {}^4 = -({{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3 ) \cdot \bigl( {{ \mathbf{x} }}_1 \wedge {{ \mathbf{x} }}_2 \wedge {{ \mathbf{x} }}_3  \wedge {{ \mathbf{x} }}_4 \bigr) {}^{-1}" ) ]
+        eq7[0].move_to( eq[1] ).shift( 0.00 * UP + 4.00 * RIGHT )
+        self.play( Write( eq7[0] ) )
+        self.wait( 1 )
+        for i in range(3):
+            sh = 1.00 * DOWN
+            if i == 0:
+                sh += 0.00 * DOWN + 0.30 * LEFT
+            if i == 1:
+                sh += 0.00 * DOWN + 0.26 * LEFT
+            if i == 2:
+                sh += 0.00 * DOWN + 0.26 * LEFT
+            write_aligned( self, eq7[i], eq7[i+1], sh, None )
+            self.wait( 1 )
+        self.wait( 5 )
+
         fadeall( self )
 
 # vim: et sw=4 ts=4

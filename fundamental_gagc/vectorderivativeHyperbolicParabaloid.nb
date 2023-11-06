@@ -1,0 +1,400 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14494,        392]
+NotebookOptionsPosition[     13346,        369]
+NotebookOutlinePosition[     13778,        386]
+CellTagsIndexPosition[     13735,        383]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"<<", " ", "MaTeX`"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetOptions", "[", 
+    RowBox[{"MaTeX", ",", 
+     RowBox[{"\"\<Preamble\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\\\\usepackage{xcolor,txfonts}\>\"", ",", 
+        "\"\<\\\\definecolor{Black}{HTML}{000000}\>\"", ",", 
+        "\"\<\\\\definecolor{White}{HTML}{FFFFFF}\>\"", ",", 
+        "\"\<\\\\definecolor{BlueDarker}{HTML}{0000AA}\>\"", ",", 
+        "\"\<\\\\definecolor{RedDarker}{HTML}{AA0000}\>\"", ",", 
+        "\"\<\\\\definecolor{PurpleDarker}{HTML}{550055}\>\"", ",", 
+        "\"\<\\\\definecolor{OrangeDarker}{HTML}{AA5500}\>\"", ",", 
+        "\"\<\\\\definecolor{GreenDarker}{HTML}{00AA00}\>\"", ",", 
+        "\"\<\\\\definecolor{YellowDarker}{HTML}{AAAA00}\>\"", ",", 
+        "\"\<\\\\definecolor{Blue}{HTML}{0000FF}\>\"", ",", 
+        "\"\<\\\\definecolor{Red}{HTML}{FF0000}\>\"", ",", 
+        "\"\<\\\\definecolor{Purple}{HTML}{7F007F}\>\"", ",", 
+        "\"\<\\\\definecolor{Orange}{HTML}{FF7F00}\>\"", ",", 
+        "\"\<\\\\definecolor{Green}{HTML}{00FF00}\>\""}], "}"}]}], ",", 
+     RowBox[{"\"\<FontSize\>\"", "->", "16"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.9082042908593063`*^9, 
+  3.908204291197913*^9}},ExpressionUUID->"042f5f16-278b-4a73-9a92-\
+4e8e87da3efb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"<<", " ", "GA30`"}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.908203606195015*^9, 3.908203609782037*^9}, {
+   3.90820378886728*^9, 3.908203789067299*^9}, 
+   3.908204274450842*^9},ExpressionUUID->"3180a489-8ccc-45a9-9281-\
+41a4f0744222"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", 
+  RowBox[{
+  "e1", ",", "e2", ",", "e3", ",", " ", "x", ",", " ", "x1", ",", " ", "u", 
+   ",", " ", "v", ",", " ", "a", ",", "b", ",", " ", "x2", ",", " ", "uu", 
+   ",", " ", "vv"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e1", " ", "=", " ", 
+   RowBox[{"Vector", "[", 
+    RowBox[{"1", ",", "1"}], "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e2", " ", "=", " ", 
+   RowBox[{"Vector", "[", 
+    RowBox[{"1", ",", "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e3", " ", "=", " ", 
+   RowBox[{"Vector", "[", 
+    RowBox[{"1", ",", "3"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"u_", ",", " ", "v_"}], "]"}], " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"u", " ", "e1"}], " ", "+", " ", 
+    RowBox[{"v", " ", "e2"}], " ", "+", " ", 
+    RowBox[{"u", " ", "v", " ", "e3"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+      "MaTeX", "[", "\"\<\\\\color{White}\\\\mathbf{x}(u,v) = \>\"", "]"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"x", "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "}"}], "}"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ParametricPlot3D", "[", " ", 
+   RowBox[{
+    RowBox[{"VectorSelection", "[", 
+     RowBox[{
+      RowBox[{"x", "[", 
+       RowBox[{"u", ",", "v"}], "]"}], ",", " ", "False"}], "]"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"u", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"v", ",", " ", 
+      RowBox[{"-", "1"}], ",", " ", "1"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.908197629646421*^9, 3.9081978566237383`*^9}, {
+   3.9081979177294416`*^9, 3.908197942027611*^9}, {3.908197995450748*^9, 
+   3.9081980041180887`*^9}, {3.908198136037442*^9, 3.9081982354716597`*^9}, {
+   3.9081982826637793`*^9, 3.9081984107805653`*^9}, {3.908198498723033*^9, 
+   3.908198581519536*^9}, {3.908203397272978*^9, 3.908203411904723*^9}, {
+   3.908203471785204*^9, 3.908203556459567*^9}, {3.9082038576477957`*^9, 
+   3.908203880272972*^9}, {3.908204212773011*^9, 3.908204214478018*^9}, 
+   3.908204248978303*^9, {3.908204307038753*^9, 
+   3.908204308734318*^9}},ExpressionUUID->"3d5b449b-6a30-43b0-9fb6-\
+55378708ff0f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x1", "[", 
+    RowBox[{"a_", ",", " ", "b_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"x", "[", 
+         RowBox[{"uu", ",", " ", "b"}], "]"}], ",", " ", "uu"}], "]"}], ")"}],
+      " ", "/.", " ", 
+     RowBox[{"uu", " ", "->", " ", "a"}]}], ")"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x2", "[", 
+    RowBox[{"a_", ",", " ", "b_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"x", "[", 
+         RowBox[{"a", ",", " ", "vv"}], "]"}], ",", " ", "vv"}], "]"}], ")"}],
+      " ", "/.", " ", 
+     RowBox[{"vv", " ", "->", " ", "b"}]}], ")"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_1 = \\\\frac{\\\\partial \
+\\\\mathbf{x}}{\\\\partial u} = \>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"x1", "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_2 = \\\\frac{\\\\partial \
+\\\\mathbf{x}}{\\\\partial v} = \>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"x2", "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+    "}"}], "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.908198521823642*^9, 3.9081985595215473`*^9}, {
+  3.908203413764451*^9, 3.908203414040571*^9}, {3.9082036695036087`*^9, 
+  3.908203711464595*^9}, {3.908203741665554*^9, 3.90820375152957*^9}, {
+  3.908203808767467*^9, 3.908203841406205*^9}, {3.908204229677786*^9, 
+  3.908204251979525*^9}},ExpressionUUID->"8823fc14-4e61-402b-bb34-\
+3f53b8ccd360"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.908203620618384*^9, 
+  3.908203667934092*^9}},ExpressionUUID->"fae2237e-8549-45e6-9030-\
+fc6a33a7fad5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x12", "[", 
+    RowBox[{"u_", ",", " ", "v_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Wedge", "[", 
+    RowBox[{
+     RowBox[{"x1", "[", 
+      RowBox[{"u", ",", " ", "v"}], "]"}], ",", " ", 
+     RowBox[{"x2", "[", 
+      RowBox[{"u", ",", " ", "v"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+      "MaTeX", "[", 
+       "\"\<\\\\color{White}\\\\mathbf{x}_1 \\\\wedge \\\\mathbf{x}_2 = \>\"",
+        "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"x12", "[", 
+       RowBox[{"u", ",", " ", "v"}], "]"}]}], "}"}], "}"}], "]"}], 
+  "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.908198008840033*^9, 3.908198541298643*^9, {3.90819858641912*^9, 
+   3.90819858742232*^9}, {3.908203382877149*^9, 3.90820341801912*^9}, {
+   3.908203898857376*^9, 3.908203942904499*^9}, {3.908204232747109*^9, 
+   3.908204254450913*^9}},ExpressionUUID->"f181252a-7350-4fc0-b79e-\
+3cb54c42d9a7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"o12", "[", 
+    RowBox[{"u_", ",", " ", "v_"}], "]"}], " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"x12", "[", 
+     RowBox[{"u", ",", " ", "v"}], "]"}], "^", 
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+      "MaTeX", "[", 
+       "\"\<\\\\color{White}\\\\frac{ 1 } {\\\\mathbf{x}_1 \\\\wedge \
+\\\\mathbf{x}_2} = \>\"", "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"o12", "[", 
+       RowBox[{"u", ",", " ", "v"}], "]"}]}], "}"}], "}"}], "]"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.908198013242872*^9, {3.908198543784596*^9, 3.908198590327402*^9}, {
+   3.90820341992064*^9, 3.908203420217716*^9}, {3.908203974129059*^9, 
+   3.908203999959402*^9}, {3.9082042352892427`*^9, 
+   3.908204256732225*^9}},ExpressionUUID->"76c717ff-d906-4639-89b8-\
+9f8d8ac5d208"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"X1", "[", 
+    RowBox[{"u_", ",", " ", "v_"}], "]"}], " ", "=", " ", 
+   RowBox[{"Dot", "[", 
+    RowBox[{
+     RowBox[{"x2", "[", 
+      RowBox[{"u", ",", " ", "v"}], "]"}], ",", " ", 
+     RowBox[{"o12", "[", 
+      RowBox[{"u", ",", " ", "v"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"X2", "[", 
+    RowBox[{"u_", ",", " ", "v_"}], "]"}], " ", "=", " ", 
+   RowBox[{"Dot", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"x1", "[", 
+       RowBox[{"u", ",", " ", "v"}], "]"}]}], ",", " ", 
+     RowBox[{"o12", "[", 
+      RowBox[{"u", ",", " ", "v"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", "\"\<\\\\color{White}\\\\mathbf{x}^1 = \>\"", "]"}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"X1", "[", 
+        RowBox[{"u", ",", " ", "v"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", "\"\<\\\\color{White}\\\\mathbf{x}^2 = \>\"", "]"}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"X2", "[", 
+        RowBox[{"u", ",", " ", "v"}], "]"}]}], "}"}]}], "\[IndentingNewLine]",
+     "}"}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.908198549267288*^9, 3.908198567228239*^9}, {
+  3.908203422431691*^9, 3.908203422737809*^9}, {3.908204015259961*^9, 
+  3.908204046142757*^9}, {3.908204237890828*^9, 
+  3.908204259150064*^9}},ExpressionUUID->"706c3baa-3ce4-4ce6-b04a-\
+35390e097b27"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_1 \\\\cdot  \\\\mathbf{x}^1 = \
+\>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Dot", "[", 
+         RowBox[{
+          RowBox[{"x1", "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{"X1", "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "//", " ", 
+        "FullSimplify"}]}], "\[IndentingNewLine]", "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_2 \\\\cdot  \\\\mathbf{x}^2 = \
+\>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Dot", "[", 
+         RowBox[{
+          RowBox[{"x2", "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{"X2", "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "//", " ", 
+        "FullSimplify"}]}], "\[IndentingNewLine]", "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_1 \\\\cdot  \\\\mathbf{x}^2 = \
+\>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Dot", "[", 
+         RowBox[{
+          RowBox[{"x1", "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{"X2", "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "//", " ", 
+        "FullSimplify"}]}], "\[IndentingNewLine]", "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+       "MaTeX", "[", 
+        "\"\<\\\\color{White}\\\\mathbf{x}_2 \\\\cdot  \\\\mathbf{x}^1 = \
+\>\"", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Dot", "[", 
+         RowBox[{
+          RowBox[{"x2", "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{"X1", "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "//", " ", 
+        "FullSimplify"}]}], "\[IndentingNewLine]", "}"}]}], "}"}], "]"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.908198432470435*^9, 3.908198472809299*^9}, {
+  3.908198553011137*^9, 3.908198569914505*^9}, {3.9082040593098717`*^9, 
+  3.908204191705099*^9}, {3.908204241557455*^9, 
+  3.908204262138913*^9}},ExpressionUUID->"f35f643b-9935-4ef2-8c70-\
+55453f0e3620"]
+},
+WindowSize->{1028, 932},
+WindowMargins->{{Automatic, 104}, {Automatic, 27}},
+Magnification:>2. Inherited,
+FrontEndVersion->"13.2 for Mac OS X ARM (64-bit) (January 30, 2023)",
+StyleDefinitions->"ReverseColor.nb",
+ExpressionUUID->"526b8ecd-a816-4c45-a0b8-a2c73ab73fdb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1403, 28, 798, "Input",ExpressionUUID->"042f5f16-278b-4a73-9a92-4e8e87da3efb"],
+Cell[1964, 50, 307, 7, 101, "Input",ExpressionUUID->"3180a489-8ccc-45a9-9281-41a4f0744222"],
+Cell[2274, 59, 2485, 61, 593, "Input",ExpressionUUID->"3d5b449b-6a30-43b0-9fb6-55378708ff0f"],
+Cell[4762, 122, 2033, 56, 634, "Input",ExpressionUUID->"8823fc14-4e61-402b-bb34-3f53b8ccd360"],
+Cell[6798, 180, 152, 3, 59, "Input",ExpressionUUID->"fae2237e-8549-45e6-9030-fc6a33a7fad5"],
+Cell[6953, 185, 1114, 30, 388, "Input",ExpressionUUID->"f181252a-7350-4fc0-b79e-3cb54c42d9a7"],
+Cell[8070, 217, 1068, 28, 429, "Input",ExpressionUUID->"76c717ff-d906-4639-89b8-9f8d8ac5d208"],
+Cell[9141, 247, 1682, 48, 429, "Input",ExpressionUUID->"706c3baa-3ce4-4ce6-b04a-35390e097b27"],
+Cell[10826, 297, 2516, 70, 1003, "Input",ExpressionUUID->"f35f643b-9935-4ef2-8c70-55453f0e3620"]
+}
+]
+*)
+
