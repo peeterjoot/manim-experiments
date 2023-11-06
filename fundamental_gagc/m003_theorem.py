@@ -10,7 +10,7 @@ class m003_theorem( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 1 )
 
-        eq = [ cMathTex( r"\int_V F d^k {{ \mathbf{x} }} \boldsymbol{\partial} G = \int_{\partial V} F d^{k-1} {{ \mathbf{x} }} G" ),
+        eq = [ cMathTex( r"\int_V F d^k {{ \mathbf{x} }} {\stackrel{ \leftrightarrow }{ \boldsymbol{\partial} } G = \int_{\partial V} F d^{k-1} {{ \mathbf{x} }} G" ),
                cMathTex( r"\int_V d^k {{ \mathbf{x} }} \cdot (\boldsymbol{\partial} \wedge F) = \int_{\partial V} d^{k-1} {{ \mathbf{x} }} \cdot F" ),
                cMathTex( r"\int_{u_0}^{u_1} d {{ \mathbf{x} }} \cdot (\boldsymbol{\nabla} \mathbf{f}(u) ) = f(u_1) - f(u_0)" ),
                cMathTex( r"\int_S d^2 {{ \mathbf{x} }} \cdot (\boldsymbol{\nabla} f) = \ointctrclockwise_{\partial S} d {{ \mathbf{x} }} f" ),
