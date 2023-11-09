@@ -1,8 +1,4 @@
-- then: fundamental theorem of GC : 3 parameter.
-   - "derivation" of d^{3-1} x
-
-   skip lots of the details.
-
+- have (a_1, a_2, ...) as the parameters in some scenes, but u_1, u_2, ... in others.  review and switch to u's.
 - 55examples: small transition slide with the hyperbolic parameterization
 
 "x(u,v) = u e_1 + ...
@@ -13,13 +9,12 @@ we want to compute
 
 but need the reciprocal vectors.  Let's do that in software..."
 
+- new slide: Derivation of all the misc stokes theorem variations.
+
 
 
 - refresh all the ~/Movies/ mp4's and clear out the previous suffix versions. (m003 done.)
 - summary scene
-- record video and audio for mathematica notebook (logical extension of examples scene)
-- have (a_1, a_2, ...) as the parameters in some scenes, but u_1, u_2, ... in others.  review and switch to u's.
-
 - rough audio to get idea of required delays
 - add those delays
 - script

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 production=0
-production=1
+#production=1
 
 if [ $production -eq 1 ] ; then
 q='-q h'
@@ -22,6 +22,8 @@ fi
 #../bin/build $q $p m080_bidirectional.py
 #../bin/build $q $p m090_oneparameter.py
 #../bin/build $q $p m100_twoparameters.py
-../bin/build $q $p m110_threeparameters.py
+#../bin/build $q $p m105_d1xboundary.py
+../bin/build $q $p x.py
+#../bin/build $q $p m110_threeparameters.py
 #../bin/build $q $p m200_summary.py
 #echo done
