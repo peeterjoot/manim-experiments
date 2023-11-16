@@ -1,7 +1,7 @@
 from mycolors import *
 import random
 
-class m003_theorem( Scene ):
+class m010_intro( Scene ):
     def construct( self ):
 
         title = Text( "Geometric algebra and calculus identities." )
