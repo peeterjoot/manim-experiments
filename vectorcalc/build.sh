@@ -12,6 +12,7 @@ fi
 #./clean.sh
 #../bin/build $q $p m010_intro.py
 #../bin/build $q $p m020_simple.py
-../bin/build $q $p m030_curlcurl.py
+#../bin/build $q $p m030_curlcurl.py
+../bin/build $q $p m040_curlbivector.py
 #../bin/build $q $p m200_summary.py
 #echo done

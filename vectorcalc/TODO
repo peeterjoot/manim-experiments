@@ -1,16 +1,30 @@
-- have (a_1, a_2, ...) as the parameters in some scenes, but u_1, u_2, ... in others.  review and switch to u's.
-- 55examples: small transition slide with the hyperbolic parameterization
 
-   "x(u,v) = u e_1 + ...
 
-   we want to compute
 
-   \partial = x^1 \partial_1 + x^2 \partial_2,
+ cMathTex( r"\boldsymbol{\nabla} \cdot ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \cdot {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \cdot {{ \mathbf{f} }} )" )
+ cMathTex( r"\boldsymbol{\nabla} \times ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \times {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \times {{ \mathbf{f} }} )" )
+ cMathTex( r"\boldsymbol{\nabla} \wedge ( f A )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \wedge A + f ( \boldsymbol{\nabla} \wedge A )" )
 
-   but need the reciprocal vectors.  Let's do that in software..."
 
-- Show the graphical orientation of the d3-1x surface area element, as was done for the d2-1x boundary line element.
-- Derive of all the misc stokes theorem variations, showing how they all follow from the GAGC fundamental theorem.
+
+ cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{b} }} ) \cdot {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{a} }} ) \cdot {{ \mathbf{b} }}" )
+ cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + {{ \mathbf{a} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} ) + {{ \mathbf{b} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} )" )
+
+ cMathTex( r"\boldsymbol{\nabla} \times ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"-\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )" )
+
+
+ cMathTex( r"\boldsymbol{\nabla} \cdot ( f ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \cdot ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h )" )
+ cMathTex( r"\boldsymbol{\nabla} \wedge ( f ( \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h" )
+
+
+ cMathTex( r"\boldsymbol{\nabla} \wedge ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"{{ \mathbf{b} }} \wedge ( \boldsymbol{\nabla} \wedge {{ \mathbf{a} }} ) - {{ \mathbf{a} }} \wedge ( \boldsymbol{\nabla} \wedge {{ \mathbf{b} }} )" )
+ cMathTex( r"\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"{{ \mathbf{b} }} \cdot ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} ) - {{ \mathbf{a} }} \cdot ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} )" )
+
+
+
+
+
+
 - summary scene
 - draft audio to get idea of required delays
 - add those delays
