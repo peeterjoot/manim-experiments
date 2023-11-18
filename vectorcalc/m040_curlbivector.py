@@ -3,7 +3,7 @@ from mycolors import *
 class m040_curlbivector( Scene ):
     def construct( self ):
 
-        title = Text( "Curl of a bivector." )
+        title = Text( "Curl of a bivector (divergence of a cross.)" )
         title.move_to( 3 * UP )
         title.set_color( BLUE )
         self.play( FadeIn( title ) )
@@ -78,6 +78,8 @@ class m040_curlbivector( Scene ):
             self.play( AnimationGroup( ReplacementTransform( eq3[i][0], eq3[i+1][0] ),
                                        ReplacementTransform( eq3[i][2], eq3[i+1][2] ) ) )
             self.wait( 1 )
+
+        
 
         self.wait( 5 )
         fadeall( self )

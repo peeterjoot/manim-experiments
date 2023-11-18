@@ -1,5 +1,3 @@
-- 40: super quick epsilon proof of identity.
-
 
  cMathTex( r"\boldsymbol{\nabla} \cdot ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \cdot {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \cdot {{ \mathbf{f} }} )" )
  cMathTex( r"\boldsymbol{\nabla} \times ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \times {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \times {{ \mathbf{f} }} )" )
@@ -10,21 +8,17 @@
  cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{b} }} ) \cdot {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{a} }} ) \cdot {{ \mathbf{b} }}" )
  cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + {{ \mathbf{a} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} ) + {{ \mathbf{b} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} )" )
 
- cMathTex( r"\boldsymbol{\nabla} \times ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"-\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )" )
 
 
  cMathTex( r"\boldsymbol{\nabla} \cdot ( f ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \cdot ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h )" )
  cMathTex( r"\boldsymbol{\nabla} \wedge ( f ( \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h" )
 
 
- cMathTex( r"\boldsymbol{\nabla} \wedge ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"{{ \mathbf{b} }} \wedge ( \boldsymbol{\nabla} \wedge {{ \mathbf{a} }} ) - {{ \mathbf{a} }} \wedge ( \boldsymbol{\nabla} \wedge {{ \mathbf{b} }} )" )
- cMathTex( r"\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"{{ \mathbf{b} }} \cdot ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} ) - {{ \mathbf{a} }} \cdot ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} )" )
+next:
 
+ cMathTex( r"\boldsymbol{\nabla} \times ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"-\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )" )
 
-
-
-
-
+- random intro sometimes goes too far.  Need to compute the width of what will be written, and then adjust random adjustment accordingly to keep onscreen.
 - summary scene
 - draft audio to get idea of required delays
 - add those delays
