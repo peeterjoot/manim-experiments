@@ -1,4 +1,4 @@
-
+- 40: super quick epsilon proof of identity.
 
 
  cMathTex( r"\boldsymbol{\nabla} \cdot ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \cdot {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \cdot {{ \mathbf{f} }} )" )
