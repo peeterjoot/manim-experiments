@@ -1,5 +1,26 @@
 from mycolors import *
 
+def aligned( self, eq, ref, ish, sh, w1, w2 ):
+    eq[0][1].next_to( ref, DOWN ).shift( ish )
+    eq[0][0].next_to( eq[0][1], LEFT )
+    eq[0][2].next_to( eq[0][1], RIGHT )
+    elen = len(eq[0])
+    for i in range(elen):
+        self.play( Write( eq[0][i] ) )
+    ref = eq[0][1]
+    self.wait( w1 )
+    alen = len(eq)
+    for j in range(alen-1):
+        eq[j+1][0].next_to( ref, DOWN ).shift( sh )
+        elen = len(eq[j+1])
+        for i in range(elen):
+            if i + 1 < elen:
+                eq[j+1][i+1].next_to( eq[j+1][i], RIGHT )
+            self.play( Write( eq[j+1][i] ) )
+        self.wait( w2 )
+        ref = eq[j+1][0]
+
+
 class m050_graddot( Scene ):
     def construct( self ):
 
@@ -72,25 +93,30 @@ class m050_graddot( Scene ):
                   cMathTex( r"\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }}' \wedge {{ \mathbf{b} }})"
                             r"+\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }}')" ) ],
                 [ cMathTex( r"=" ),
-                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }} - ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}"
-                            r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }} + ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ) ] ]
-        eq4[0][1].next_to( eq3[3][0], DOWN ).shift( 0.0 * LEFT + 0.2 * DOWN )
-        eq4[0][0].next_to( eq4[0][1], LEFT )
-        eq4[0][2].next_to( eq4[0][1], RIGHT )
-        for i in range(3):
-            self.play( Write( eq4[0][i] ) )
-        ref = eq4[0][1]
-        self.wait( 1 )
-        for j in range(1):
-            eq4[j+1][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
-            eq4[j+1][1].next_to( eq4[j+1][0], RIGHT )
-            for i in range(2):
-                self.play( Write( eq4[j+1][i] ) )
-            self.wait( 1 )
-            ref = eq4[j+1][0]
+                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }}" ),
+                  cMathTex( r"- ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ),
+                  cMathTex( r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }}" ),
+                  cMathTex( r"+ ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ) ] ]
 
-
-
+        aligned( self, eq4, eq3[3][0], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
+        #ref = eq3[3][0]
+        #eq4[0][1].next_to( ref, DOWN ).shift( 0.0 * LEFT + 0.2 * DOWN )
+        #eq4[0][0].next_to( eq4[0][1], LEFT )
+        #eq4[0][2].next_to( eq4[0][1], RIGHT )
+        #for i in range(3):
+        #    self.play( Write( eq4[0][i] ) )
+        #ref = eq4[0][1]
+        #self.wait( 1 )
+        #alen = len(eq4):
+        #for j in range(alen-1):
+        #    eq4[j+1][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+        #    elen = len(eq4[j+1])
+        #    for i in range(elen):
+        #        if i + 1 < elen:
+        #            eq4[j+1][i+1].next_to( eq4[j+1][i], RIGHT )
+        #        self.play( Write( eq4[j+1][i] ) )
+        #    self.wait( 1 )
+        #    ref = eq4[j+1][0]
 
 
         self.wait( 5 )
