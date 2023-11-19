@@ -9,11 +9,6 @@
  cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + {{ \mathbf{a} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} ) + {{ \mathbf{b} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} )" )
 
 
-
- cMathTex( r"\boldsymbol{\nabla} \cdot ( f ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \cdot ( \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h )" )
- cMathTex( r"\boldsymbol{\nabla} \wedge ( f ( \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h } )"), cMathTex( "=" ), cMathTex( r"\boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h" )
-
-
 next:
 
  cMathTex( r"\boldsymbol{\nabla} \times ( {{ \mathbf{a} }} \times {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"-\boldsymbol{\nabla} \cdot ( {{ \mathbf{a} }} \wedge {{ \mathbf{b} }} )" )

@@ -41,9 +41,9 @@ class m040_curlbivector( Scene ):
         #self.play( FadeOut( VGroup( *eq ) ) )
         self.wait( 5 )
 
-        eq5p = eq[7].copy().next_to( eq[2], RIGHT )
-        #self.play( AnimationGroup( FadeOut( eq[0] ), ReplacementTransform( VGroup( eq[3], eq[4], eq[5] ), eq5p ) ) )
-        self.play( ReplacementTransform( VGroup( eq[3], eq[4], eq[5], eq[6], eq[7] ), eq5p ) )
+        eqb = eq[7].copy().next_to( eq[2], RIGHT )
+        #self.play( AnimationGroup( FadeOut( eq[0] ), ReplacementTransform( VGroup( eq[3], eq[4], eq[5] ), eqb ) ) )
+        self.play( ReplacementTransform( VGroup( eq[3], eq[4], eq[5], eq[6], eq[7] ), eqb ) )
         self.wait( 5 )
 
         eq2 = [ cMathTex( r"{{ \mathbf{a} }}, {{ \mathbf{b} }} \in \mathbb{R}^3" ),
@@ -78,8 +78,77 @@ class m040_curlbivector( Scene ):
             self.play( AnimationGroup( ReplacementTransform( eq3[i][0], eq3[i+1][0] ),
                                        ReplacementTransform( eq3[i][2], eq3[i+1][2] ) ) )
             self.wait( 1 )
+        self.wait( 2 )
 
-        
+        eq4 = [ [ eq[1].copy(), eq[2].copy(), eqb.copy() ],
+                [ eq3[2][0].copy(), eq3[0][1].copy(), eq3[2][2].copy() ] ]
+        eq4[0][1].next_to( title, DOWN ).shift( 0.5 * DOWN + 1.5 * LEFT )
+        eq4[0][0].next_to( eq4[0][1], LEFT )
+        eq4[0][2].next_to( eq4[0][1], RIGHT )
+        eq4[1][1].next_to( eq4[0][1], DOWN ).shift( 0.25 * DOWN )
+        eq4[1][0].next_to( eq4[1][1], LEFT )
+        eq4[1][2].next_to( eq4[1][1], RIGHT )
+        self.play( AnimationGroup( FadeOut( eq[0], *eq2 ) ) )
+        self.play( AnimationGroup( ReplacementTransform( VGroup( eq[1], eq[2], eq3[0][1], eq3[2][0], eq3[2][2], eqb ),
+                                                         VGroup( *eq4[0], *eq4[1] ) ) ) )
+        self.wait( 2 )
+
+        eq5 = [ [ cMathTex( r"\mathrm{Example}:\, {{ \mathbf{a} }} = f \boldsymbol{\nabla} g,\quad {{ \mathbf{b} }} = \boldsymbol{\nabla} h" ) ],
+                [ cMathTex( r"\boldsymbol{\nabla} \wedge ( f \boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h )"),
+                  cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \wedge (\boldsymbol{\nabla} \wedge (f \boldsymbol{\nabla} g)) - f \boldsymbol{\nabla} g \wedge (\boldsymbol{\nabla} \wedge \boldsymbol{\nabla} h)" ) ],
+                [ cMathTex( "=" ),
+                  cMathTex( r"f\boldsymbol{\nabla} h \wedge (\boldsymbol{\nabla} \wedge \boldsymbol{\nabla} g)"
+                            r"+ \boldsymbol{\nabla} h \wedge \boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g" ) ],
+                [ cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \wedge \boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g" ) ] ]
+        eq5[0][0].next_to( eq4[1][1], DOWN ).shift( 0.3 * DOWN )
+        ref = eq5[0][0]
+        self.play( Write( eq5[0][0] ) )
+        self.wait( 1 )
+        for i in range(3):
+            if i == 0:
+                eq5[i+1][1].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+                eq5[i+1][0].next_to( eq5[i+1][1], LEFT )
+                eq5[i+1][2].next_to( eq5[i+1][1], RIGHT )
+                ref = eq5[i+1][1]
+                for j in range(3):
+                    self.play( Write( eq5[i+1][j] ) )
+            else:
+                eq5[i+1][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+                eq5[i+1][1].next_to( eq5[i+1][0], RIGHT )
+                ref = eq5[i+1][0]
+                for j in range(2):
+                    self.play( Write( eq5[i+1][j] ) )
+            self.wait( 1 )
+        self.play( FadeOut( VGroup( *eq5[1], *eq5[2], *eq5[3] ) ) )
+        self.wait( 1 )
+
+        eq6 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot ( f \boldsymbol{\nabla} g \times \boldsymbol{\nabla} h )"),
+                  cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \cdot (\boldsymbol{\nabla} \times (f \boldsymbol{\nabla} g)) - f \boldsymbol{\nabla} g \times (\boldsymbol{\nabla} \times \boldsymbol{\nabla} h)" ) ],
+                [ cMathTex( "=" ),
+                  cMathTex( r"f\boldsymbol{\nabla} h \cdot (\boldsymbol{\nabla} \times \boldsymbol{\nabla} g)"
+                            r"+ \boldsymbol{\nabla} h \cdot (\boldsymbol{\nabla} f \times \boldsymbol{\nabla} g)" ) ],
+                [ cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \cdot (\boldsymbol{\nabla} f \times \boldsymbol{\nabla} g)" ) ] ]
+        ref = eq5[0][0]
+        self.wait( 1 )
+        for i in range(3):
+            if i == 0:
+                eq6[i][1].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+                eq6[i][0].next_to( eq6[i][1], LEFT )
+                eq6[i][2].next_to( eq6[i][1], RIGHT )
+                ref = eq6[i][1]
+                for j in range(3):
+                    self.play( Write( eq6[i][j] ) )
+            else:
+                eq6[i][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+                eq6[i][1].next_to( eq6[i][0], RIGHT )
+                ref = eq6[i][0]
+                for j in range(2):
+                    self.play( Write( eq6[i][j] ) )
+            self.wait( 1 )
 
         self.wait( 5 )
         fadeall( self )
