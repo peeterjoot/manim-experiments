@@ -45,23 +45,53 @@ class m050_graddot( Scene ):
                             r"+ \boldsymbol{\nabla}' {{ \mathbf{a} }} {{ \mathbf{b} }}' \rangle {}_1" ) ],
                 [ cMathTex( r"=" ),
                   cMathTex( r"\langle (\boldsymbol{\nabla} \cdot {{ \mathbf{a} }} + \boldsymbol{\nabla} \wedge {{ \mathbf{a} }}) {{ \mathbf{b} }}"
-                            r"- {{ \mathbf{a} }} \boldsymbol{\nabla}' {{ \mathbf{b} }}' + 2 (\Ba \cdot \spacegrad) \Bb \rangle {}_1" ) ],
+                            r"- {{ \mathbf{a} }} \boldsymbol{\nabla}' {{ \mathbf{b} }}' + 2 ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }} \rangle {}_1" ) ],
                 [ cMathTex( r"=" ),
-                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }} \Bb + (\boldsymbol{\nabla} \wedge {{ \mathbf{a} }}) \cdot {{ \mathbf{b} }}"
+                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }} + (\boldsymbol{\nabla} \wedge {{ \mathbf{a} }}) \cdot {{ \mathbf{b} }}"
                             r"- {{ \mathbf{a} }}(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }})"
-                            r"- {{ \mathbf{a} }} \cdot (\boldsymbol{\nabla} \wedge {{ \mathbf{b} }}) + 2 (\Ba \cdot \spacegrad) \Bb" ) ]
+                            r"- {{ \mathbf{a} }} \cdot (\boldsymbol{\nabla} \wedge {{ \mathbf{b} }})" ) ],
+                [ cMathTex( r"\quad+" ),
+                  cMathTex( r"2 ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ) ] ]
         eq3[0][1].next_to( eq2[1][0], DOWN ).shift( 0.0 * LEFT + 0.2 * DOWN )
         eq3[0][0].next_to( eq3[0][1], LEFT )
         eq3[0][2].next_to( eq3[0][1], RIGHT )
         for i in range(3):
             self.play( Write( eq3[0][i] ) )
+        ref = eq3[0][1]
         self.wait( 1 )
-        for j in range(2):
-            eq3[j+1][0].next_to( eq3[j+0][1], DOWN ).shift( 0.3 * DOWN )
+        for j in range(3):
+            eq3[j+1][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
             eq3[j+1][1].next_to( eq3[j+1][0], RIGHT )
             for i in range(2):
                 self.play( Write( eq3[j+1][i] ) )
             self.wait( 1 )
+            ref = eq3[j+1][0]
+
+        eq4 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}" ),
+                  cMathTex( r"=" ),
+                  cMathTex( r"\boldsymbol{\nabla}' \cdot {{ \mathbf{a} }}' \wedge {{ \mathbf{b} }}"
+                            r"+\boldsymbol{\nabla}' \cdot {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}'" ) ],
+                [ cMathTex( r"=" ),
+                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }} - (\Bb \cdot \spacegrad) \Ba"
+                            r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }} + (\Ba \cdot \spacegrad) \Bb" ) ] ]
+        eq4[0][1].next_to( eq3[3][0], DOWN ).shift( 0.0 * LEFT + 0.2 * DOWN )
+        eq4[0][0].next_to( eq4[0][1], LEFT )
+        eq4[0][2].next_to( eq4[0][1], RIGHT )
+        for i in range(3):
+            self.play( Write( eq4[0][i] ) )
+        ref = eq4[0][1]
+        self.wait( 1 )
+        for j in range(1):
+            eq4[j+1][0].next_to( ref, DOWN ).shift( 0.3 * DOWN )
+            eq4[j+1][1].next_to( eq4[j+1][0], RIGHT )
+            for i in range(2):
+                self.play( Write( eq4[j+1][i] ) )
+            self.wait( 1 )
+            ref = eq4[j+1][0]
+
+
+
+
 
         self.wait( 5 )
         fadeall( self )
