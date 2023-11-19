@@ -120,18 +120,26 @@ class m050_graddot( Scene ):
                   cMathTex( r"- {{ \mathbf{a} }} \cdot (\boldsymbol{\nabla} \wedge {{ \mathbf{b} }})" ),
                   cMathTex( r"+ ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ),
                   cMathTex( r"+ ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ) ],
+                [ #cMathTex( r"=" ),
+                  #cMathTex( r"(\boldsymbol{\nabla} \wedge {{ \mathbf{a} }}) \cdot {{ \mathbf{b} }}" ],
+                  cMathTex( r"+ (\boldsymbol{\nabla} \wedge {{ \mathbf{b} }}) \cdot {{ \mathbf{a} }}" ) ],
+                  #cMathTex( r"+ ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ),
+                  #cMathTex( r"+ ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ),
                 [ cMathTex( r"=" ),
-                  cMathTex( r"(\boldsymbol{\nabla} \wedge {{ \mathbf{a} }}) \cdot {{ \mathbf{b} }}" ),
-                  cMathTex( r"+ (\boldsymbol{\nabla} \wedge {{ \mathbf{b} }}) \cdot \Ba" ),
-                  cMathTex( r"+ ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ),
-                  cMathTex( r"+ ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ) ] ],
-                [ cMathTex( r"=" ),
-                  cMathTex( r"\Bb \cross (\boldsymbol{\nabla} \cross {{ \mathbf{a} }})" ),
-                  cMathTex( r"+ \Ba \cross (\boldsymbol{\nabla} \cross {{ \mathbf{b} }})" ),
+                  cMathTex( r"{{ \mathbf{b} }} \times (\boldsymbol{\nabla} \times {{ \mathbf{a} }})" ),
+                  cMathTex( r"+ {{ \mathbf{a} }} \times (\boldsymbol{\nabla} \times {{ \mathbf{b} }})" ),
                   cMathTex( r"+ ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ),
                   cMathTex( r"+ ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ) ] ]
 
         aligned1( self, eq5[0], eq2[1][0], 0.3 * DOWN, 1 )
+        self.wait( 1 )
+        eq5[1][0].move_to( eq5[0][2] )
+        self.play( ReplacementTransform( eq5[0][2], eq5[1][0] ) )
+        #aligned1( self, eq5[1], eq5[0][0], 0.3 * DOWN, 1 )
+        self.wait( 1 )
+        self.play( AnimationGroup( Indicate( eq5[0][1] ), Indicate( eq5[1][0] ) ) )
+        self.wait( 5 )
+        aligned1( self, eq5[2], eq5[0][0], 0.3 * DOWN, 1 )
         self.wait( 1 )
 
         self.wait( 5 )
