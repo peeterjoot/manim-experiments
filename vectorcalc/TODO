@@ -1,18 +1,9 @@
-- m050_graddot.py:
-   - use indicate on all the divergence terms that get cancelled in the difference.
-   - use indicate on the a \cdot \grad terms that have partial cancellation.
-   - how to find the array range in python?  Use that to calculate the array length, so that I can split the terms and indicate the ones that I want. ans:
-      len(arrayname)
+- m40: ReplacementTransform to summarize the two last example results.
 
 
  cMathTex( r"\boldsymbol{\nabla} \cdot ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \cdot {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \cdot {{ \mathbf{f} }} )" )
  cMathTex( r"\boldsymbol{\nabla} \times ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \times {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \times {{ \mathbf{f} }} )" )
  cMathTex( r"\boldsymbol{\nabla} \wedge ( f A )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \wedge A + f ( \boldsymbol{\nabla} \wedge A )" )
-
-
-
- cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{b} }} ) \cdot {{ \mathbf{a} }} + ( \boldsymbol{\nabla} \wedge {{ \mathbf{a} }} ) \cdot {{ \mathbf{b} }}" )
- cMathTex( r"\boldsymbol{\nabla} ( {{ \mathbf{a} }} \cdot {{ \mathbf{b} }} )"), cMathTex( "=" ), cMathTex( r"( {{ \mathbf{a} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{b} }} + ( {{ \mathbf{b} }} \cdot \boldsymbol{\nabla} ) {{ \mathbf{a} }} + {{ \mathbf{a} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{b} }} ) + {{ \mathbf{b} }} \times ( \boldsymbol{\nabla} \times {{ \mathbf{a} }} )" )
 
 
 next:
