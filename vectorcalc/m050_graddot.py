@@ -67,13 +67,13 @@ class m050_graddot( Scene ):
             self.wait( 1 )
             ref = eq3[j+1][0]
 
-        eq4 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}" ),
+        eq4 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }})" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"\boldsymbol{\nabla}' \cdot {{ \mathbf{a} }}' \wedge {{ \mathbf{b} }}"
-                            r"+\boldsymbol{\nabla}' \cdot {{ \mathbf{a} }} \wedge {{ \mathbf{b} }}'" ) ],
+                  cMathTex( r"\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }}' \wedge {{ \mathbf{b} }})"
+                            r"+\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }}')" ) ],
                 [ cMathTex( r"=" ),
-                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }} - (\Bb \cdot \spacegrad) \Ba"
-                            r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }} + (\Ba \cdot \spacegrad) \Bb" ) ] ]
+                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }} - ({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}"
+                            r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }} + ({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ) ] ]
         eq4[0][1].next_to( eq3[3][0], DOWN ).shift( 0.0 * LEFT + 0.2 * DOWN )
         eq4[0][0].next_to( eq4[0][1], LEFT )
         eq4[0][2].next_to( eq4[0][1], RIGHT )
