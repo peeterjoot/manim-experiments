@@ -1,11 +1,9 @@
 
- cMathTex( r"\boldsymbol{\nabla} \cdot ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \cdot {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \cdot {{ \mathbf{f} }} )" )
- cMathTex( r"\boldsymbol{\nabla} \times ( f {{ \mathbf{f} }} )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \times {{ \mathbf{f} }} + f ( \boldsymbol{\nabla} \times {{ \mathbf{f} }} )" )
- cMathTex( r"\boldsymbol{\nabla} \wedge ( f A )"), cMathTex( "=" ), cMathTex( r"( \boldsymbol{\nabla} f ) \wedge A + f ( \boldsymbol{\nabla} \wedge A )" )
-
-
+- figure out order.
 - random intro sometimes goes too far.  Need to compute the width of what will be written, and then adjust random adjustment accordingly to keep onscreen.
+- add distribution identity and wedge = i cross to the simple scene
 - summary scene
+
 - draft audio to get idea of required delays
 - add those delays
 - script the audio
