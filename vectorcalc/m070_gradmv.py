@@ -9,22 +9,22 @@ class m070_gradmv( Scene ):
         self.play( FadeIn( title ) )
         self.wait( 1 )
 
-        eq0 = cMathTex( r"A \in \bigwedge^k" )
+        eq0 = cMathTex( r"A \in \bigwedge {}^k" )
         eq0.next_to( title, DOWN )
         self.play( Write( eq0 ) )
 
         eq1 = [ [ cMathTex( r"\boldsymbol{\nabla} (f A)" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"(\spacegrad f)A + f (\spacegrad A)" ) ] ]
+                  cMathTex( r"(\boldsymbol{\nabla} f)A + f (\boldsymbol{\nabla} A)" ) ] ]
         eq2 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot (f A)" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"(\spacegrad f) \cdot A + f (\spacegrad \cdot A)" ) ] ]
+                  cMathTex( r"(\boldsymbol{\nabla} f) \cdot A + f (\boldsymbol{\nabla} \cdot A)" ) ] ]
         eq3 = [ [ cMathTex( r"\boldsymbol{\nabla} \wedge (f A)" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"(\spacegrad f) \wedge A + f (\spacegrad \wedge A)" ) ] ]
-        eq4 = [ [ cMathTex( r"\boldsymbol{\nabla} \cross (f A)" ),
+                  cMathTex( r"(\boldsymbol{\nabla} f) \wedge A + f (\boldsymbol{\nabla} \wedge A)" ) ] ]
+        eq4 = [ [ cMathTex( r"\boldsymbol{\nabla} \times (f A)" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"(\spacegrad f) \cross A + f (\spacegrad \cross A)" ) ] ]
+                  cMathTex( r"(\boldsymbol{\nabla} f) \times A + f (\boldsymbol{\nabla} \times A)" ) ] ]
 
         aligned( self, eq1, eq0, 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
         self.wait( 1 )
@@ -32,7 +32,16 @@ class m070_gradmv( Scene ):
         self.wait( 1 )
         aligned( self, eq3, eq2[0][1], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
         self.wait( 1 )
-        aligned( self, eq4, eq3[0][1], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
+
+        eq5 = cMathTex( r"\Ba \in \mathbb{R}^3" )
+        eq5.next_to( eq4[0][1], DOWN )
+        self.play( Write( eq5 ) )
+        self.wait( 1 )
+
+        eq6 = [ [ cMathTex( r"\boldsymbol{\nabla} \times (f \Ba)" ),
+                  cMathTex( r"=" ),
+                  cMathTex( r"(\boldsymbol{\nabla} f) \times \Ba + f (\boldsymbol{\nabla} \times \Ba)" ) ] ]
+        aligned( self, eq6, eq5, 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
         self.wait( 1 )
 
         self.wait( 5 )
