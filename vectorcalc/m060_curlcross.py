@@ -28,16 +28,16 @@ class m060_curlcross( Scene ):
         #self.play( FadeOut( *eq[0] ) )
         self.wait( 1 )
 
-        eq2 = [[ cMathTex( r"\boldsymbol{\nabla} \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }})" ),
-                 cMathTex( r"=" ),
-                 cMathTex( r"\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }}' \wedge {{ \mathbf{b} }})" ),
-                 cMathTex( r"+\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }}')" ) ],
-               [ cMathTex( r"=" ),
-                 cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }})" ),
-                 cMathTex( r"-(\Bb \cdot \boldsymbol{\nabla}) \Ba" ),
-                 cMathTex( r"(\Ba \cdot \boldsymbol{\nabla}) \Bb" ),
-                 cMathTex( r"-(\boldsymbol{\nabla} \cdot \Bb) \Ba" ) ] ]
-        aligned( self, eq2, eq[0][1], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
+        eq2 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }})" ),
+                  cMathTex( r"=" ),
+                  cMathTex( r"\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }}' \wedge {{ \mathbf{b} }})" ),
+                  cMathTex( r"+\boldsymbol{\nabla}' \cdot ({{ \mathbf{a} }} \wedge {{ \mathbf{b} }}')" ) ],
+                [ cMathTex( r"=" ),
+                  cMathTex( r"(\boldsymbol{\nabla} \cdot {{ \mathbf{a} }}) {{ \mathbf{b} }}" ),
+                  cMathTex( r"-({{ \mathbf{b} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{a} }}" ),
+                  cMathTex( r"+({{ \mathbf{a} }} \cdot \boldsymbol{\nabla}) {{ \mathbf{b} }}" ),
+                  cMathTex( r"-(\boldsymbol{\nabla} \cdot {{ \mathbf{b} }}) {{ \mathbf{a} }}" ) ] ]
+        aligned( self, eq2, eq[0][1], 3.0 * LEFT + 0.6 * DOWN, 0.3 * DOWN, 1, 1 )
 
         self.wait( 5 )
         fadeall( self )

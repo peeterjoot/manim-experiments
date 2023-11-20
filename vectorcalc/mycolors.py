@@ -33,9 +33,10 @@ def aligned1( self, eq, ref, sh, w ):
 def aligned( self, eq, ref, ish, sh, w1, w2 ):
     eq[0][1].next_to( ref, DOWN ).shift( ish )
     eq[0][0].next_to( eq[0][1], LEFT )
-    eq[0][2].next_to( eq[0][1], RIGHT )
     elen = len(eq[0])
     for i in range(elen):
+        if i > 1:
+            eq[0][i].next_to( eq[0][i-1], RIGHT )
         self.play( Write( eq[0][i] ) )
     ref = eq[0][1]
     self.wait( w1 )
