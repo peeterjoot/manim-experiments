@@ -149,6 +149,20 @@ class m040_curlbivector( Scene ):
                 for j in range(2):
                     self.play( Write( eq6[i][j] ) )
             self.wait( 1 )
+        self.play( FadeOut( VGroup( *eq6[0], *eq6[1], *eq6[2] ) ) )
+        self.wait( 1 )
+
+        eq7 = [ [ cMathTex( r"\boldsymbol{\nabla} \wedge ( f (\boldsymbol{\nabla} g \wedge \boldsymbol{\nabla} h) )"),
+                  cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \wedge \boldsymbol{\nabla} f \wedge \boldsymbol{\nabla} g" ) ] ]
+        eq8 = [ [ cMathTex( r"\boldsymbol{\nabla} \cdot ( f (\boldsymbol{\nabla} g \times \boldsymbol{\nabla} h) )"),
+                  cMathTex( "=" ),
+                  cMathTex( r"\boldsymbol{\nabla} h \cdot (\boldsymbol{\nabla} f \times \boldsymbol{\nabla} g)" ) ] ]
+
+        aligned( self, eq7, eq5[0][0], 1.5 * RIGHT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
+        self.wait( 1 )
+        aligned( self, eq8, eq7[0][1], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
+        self.wait( 1 )
 
         self.wait( 5 )
         fadeall( self )
