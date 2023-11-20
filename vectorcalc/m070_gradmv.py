@@ -33,14 +33,14 @@ class m070_gradmv( Scene ):
         aligned( self, eq3, eq2[0][1], 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
         self.wait( 1 )
 
-        eq5 = cMathTex( r"\Ba \in \mathbb{R}^3" )
+        eq5 = cMathTex( r"{{ \mathbf{a} }} \in \mathbb{R}^3,\quad {{ \mathbf{b} }} \wedge {{ \mathbf{c} }} = I( {{ \mathbf{b} }} \times {{ \mathbf{c} }})" )
         eq5.next_to( eq4[0][1], DOWN )
         self.play( Write( eq5 ) )
         self.wait( 1 )
 
-        eq6 = [ [ cMathTex( r"\boldsymbol{\nabla} \times (f \Ba)" ),
+        eq6 = [ [ cMathTex( r"\boldsymbol{\nabla} \times (f {{ \mathbf{a} }})" ),
                   cMathTex( r"=" ),
-                  cMathTex( r"(\boldsymbol{\nabla} f) \times \Ba + f (\boldsymbol{\nabla} \times \Ba)" ) ] ]
+                  cMathTex( r"(\boldsymbol{\nabla} f) \times {{ \mathbf{a} }} + f (\boldsymbol{\nabla} \times {{ \mathbf{a} }})" ) ] ]
         aligned( self, eq6, eq5, 0.0 * LEFT + 0.2 * DOWN, 0.3 * DOWN, 1, 1 )
         self.wait( 1 )
 
