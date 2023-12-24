@@ -1,7 +1,9 @@
 from helper import *
 
-# write just the "&= foo \\" line for aligned:
 def aligned1( self, eq, ref, sh, w ):
+    """
+    write just the "&= foo \\" line for aligned:
+    """
     eq[0].next_to( ref, DOWN ).shift( sh )
     elen = len(eq)
     for i in range(elen):
@@ -10,27 +12,28 @@ def aligned1( self, eq, ref, sh, w ):
         self.play( Write( eq[i] ) )
     self.wait( w )
 
-# Model this common aligned construct:
-#
-# \begin{aligned}
-# a &= b0 + b1 \\
-#   &= c0 + c1 + c2
-#   &= d0 + d1 + d2 + d3
-# \end{aligned}
-#
-# The input would look like:
-#
-# eq = [ [ MathTex( r"a" )
-#          MathTex( r"=" )
-#          MathTex( r"b0" ), MathTex( r"+ b1" ) ],
-#        [ MathTex( r"=" )
-#          MathTex( r"c0" ), MathTex( r"+ c1" ), MathTex( r"+ c2" ) ],
-#        [ MathTex( r"=" )
-#          MathTex( r"d0" ), MathTex( r"+ d1" ), MathTex( r"+ d2" ), MathTex( r"+ d3" ) ] ]
-#
-# The stuff after the = sign doesn't have to be split up, but it can be (to allow for easy Indicate() or transformation if desired.)
-#
 def aligned( self, eq, ref, ish, sh, w1, w2 ):
+    """
+    Model this common aligned construct:
+
+    \begin{aligned}
+    a &= b0 + b1 \\
+    &= c0 + c1 + c2
+    &= d0 + d1 + d2 + d3
+    \end{aligned}
+
+    The input would look like:
+
+    eq = [ [ MathTex( r"a" )
+    MathTex( r"=" )
+    MathTex( r"b0" ), MathTex( r"+ b1" ) ],
+    [ MathTex( r"=" )
+    MathTex( r"c0" ), MathTex( r"+ c1" ), MathTex( r"+ c2" ) ],
+    [ MathTex( r"=" )
+    MathTex( r"d0" ), MathTex( r"+ d1" ), MathTex( r"+ d2" ), MathTex( r"+ d3" ) ] ]
+
+    The stuff after the = sign doesn't have to be split up, but it can be (to allow for easy Indicate() or transformation if desired.)
+    """
     eq[0][1].next_to( ref, DOWN ).shift( ish )
     eq[0][0].next_to( eq[0][1], LEFT )
     elen = len(eq[0])
